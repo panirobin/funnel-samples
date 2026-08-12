@@ -1,0 +1,1101 @@
+<title>The Closer's Framework — Free Live Masterclass</title>
+<style>
+  :root {
+    --paper:      #F4F1E9;
+    --paper-2:    #EAE6DA;
+    --card:       #FBF9F3;
+    --ink:        #14180F;
+    --ink-soft:   #5A6252;
+    --ink-faint:  #8B9182;
+    --line:       rgba(20, 24, 15, 0.13);
+    --line-soft:  rgba(20, 24, 15, 0.07);
+    --forest:     #0E3B27;
+    --forest-2:   #16523A;
+    --on-forest:  #EFF3E9;
+    --sage:       #D9E2C8;
+    --sage-deep:  #4C6B48;
+    --clay:       #A93E24;
+    --btn-bg:     #0E3B27;
+    --btn-fg:     #F4F1E9;
+    --shadow:     0 1px 2px rgba(20,24,15,.05), 0 12px 32px -18px rgba(20,24,15,.35);
+
+    /* always sits on the forest ground — constant across themes */
+    --on-dark-tick: #B9D3A4;
+
+    --badge-bg:       rgba(14, 59, 39, 0.05);
+    --badge-ring:     rgba(14, 59, 39, 0.24);
+    --badge-halo:     rgba(14, 59, 39, 0.045);
+    --badge-dot-halo: rgba(169, 62, 36, 0.20);
+
+    --display: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "JetBrains Mono", "Cascadia Mono", "SF Mono", Consolas, "Liberation Mono", monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:#10130E; --paper-2:#171B14; --card:#1B201A; --ink:#EDEADD;
+      --ink-soft:#A2A897; --ink-faint:#6E7566; --line:rgba(237,234,221,.14);
+      --line-soft:rgba(237,234,221,.07); --forest:#123D2A; --forest-2:#0C2C1E;
+      --on-forest:#EFF3E9; --sage:#2A3A26; --sage-deep:#A7C79C; --clay:#E07A54;
+      --btn-bg:#EDEADD; --btn-fg:#10130E;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 32px -18px rgba(0,0,0,.8);
+      --badge-bg:rgba(167,199,156,.08); --badge-ring:rgba(167,199,156,.32);
+      --badge-halo:rgba(167,199,156,.05); --badge-dot-halo:rgba(224,122,84,.22);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:#10130E; --paper-2:#171B14; --card:#1B201A; --ink:#EDEADD;
+    --ink-soft:#A2A897; --ink-faint:#6E7566; --line:rgba(237,234,221,.14);
+    --line-soft:rgba(237,234,221,.07); --forest:#123D2A; --forest-2:#0C2C1E;
+    --on-forest:#EFF3E9; --sage:#2A3A26; --sage-deep:#A7C79C; --clay:#E07A54;
+    --btn-bg:#EDEADD; --btn-fg:#10130E;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 32px -18px rgba(0,0,0,.8);
+    --badge-bg:rgba(167,199,156,.08); --badge-ring:rgba(167,199,156,.32);
+    --badge-halo:rgba(167,199,156,.05); --badge-dot-halo:rgba(224,122,84,.22);
+  }
+  :root[data-theme="light"] {
+    --paper:#F4F1E9; --paper-2:#EAE6DA; --card:#FBF9F3; --ink:#14180F;
+    --ink-soft:#5A6252; --ink-faint:#8B9182; --line:rgba(20,24,15,.13);
+    --line-soft:rgba(20,24,15,.07); --forest:#0E3B27; --forest-2:#16523A;
+    --on-forest:#EFF3E9; --sage:#D9E2C8; --sage-deep:#4C6B48; --clay:#A93E24;
+    --btn-bg:#0E3B27; --btn-fg:#F4F1E9;
+    --shadow:0 1px 2px rgba(20,24,15,.05), 0 12px 32px -18px rgba(20,24,15,.35);
+    --badge-bg:rgba(14,59,39,.05); --badge-ring:rgba(14,59,39,.24);
+    --badge-halo:rgba(14,59,39,.045); --badge-dot-halo:rgba(169,62,36,.20);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    overflow-wrap: break-word;
+  }
+  img, svg { max-width: 100%; display: block; }
+  a { color: inherit; }
+
+  /* ---------- primitives ---------- */
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 28px; }
+  .narrow { max-width: 720px; margin-left: auto; margin-right: auto; }
+
+  h1, h2, h3 {
+    font-family: var(--display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.06;
+    text-wrap: balance;
+    margin: 0;
+    color: var(--ink);
+  }
+  h1 { font-size: clamp(40px, 7vw, 72px); }
+  h2 { font-size: clamp(28px, 4.2vw, 44px); }
+  h3 { font-size: 21px; letter-spacing: -0.01em; line-height: 1.22; }
+  p  { margin: 0; }
+
+  .tag {
+    display: block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+  }
+  .tag-c { color: var(--clay); }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 600;
+    /* line-height:1 makes the label's box exactly 1em — the same height as the
+       arrow — so the two align by construction instead of being centred against
+       a 24px line box, which left the icon on a half-pixel. Padding is raised to
+       hold the previous button height. */
+    line-height: 1;
+    padding: 20px 30px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background: var(--btn-bg);
+    color: var(--btn-fg);
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform .18s ease, box-shadow .18s ease;
+    white-space: nowrap;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .btn:focus-visible { outline: 2px solid var(--clay); outline-offset: 3px; }
+  /* SVG, not a glyph: the → character is single-weight and ignores the
+     button's 600 weight, so it always looked thinner than the label. */
+  .btn .arw { width: 1em; height: 1em; flex: none; transition: transform .18s ease; }
+  .btn:hover .arw { transform: translateX(4px); }
+  .btn-light { background: var(--on-forest); color: var(--forest); }
+
+  .microcopy {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.07em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+  }
+
+  /* ---------- countdown bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 40;
+    background: var(--forest);
+    color: var(--on-forest);
+  }
+  .topbar .wrap {
+    display: flex; align-items: center; justify-content: center;
+    gap: 14px; min-height: 46px;
+  }
+  /* line-height:1 on both sides so each box hugs its glyphs — with the
+     inherited 1.6 the boxes are loose and centering them does not optically
+     centre the text, which left the digits sitting low against the label */
+  .topbar .cd-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .16em;
+    text-transform: uppercase; opacity: .7;
+    line-height: 1;
+  }
+  .cd { display: flex; align-items: center; gap: 5px; font-family: var(--mono); line-height: 1; }
+  .cd .seg { font-size: 14px; font-weight: 500; font-variant-numeric: tabular-nums; line-height: 1; }
+  .cd .seg span { font-size: 9px; opacity: .55; margin-left: 1px; }
+  .cd .colon { opacity: .3; line-height: 1; }
+
+  /* ---------- event badge ---------- */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px 10px 14px;
+    border: 1px solid var(--badge-ring);
+    border-radius: 999px;
+    background: var(--badge-bg);
+    box-shadow: 0 0 0 5px var(--badge-halo);
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .badge .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--clay);
+    box-shadow: 0 0 0 3px var(--badge-dot-halo);
+    flex: none;
+    animation: badgeBlink 1.6s ease-in-out infinite;
+  }
+  @keyframes badgeBlink { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
+  .badge-label { color: var(--sage-deep); }
+  .badge-date { color: var(--ink); font-weight: 600; }
+
+  /* ---------- hero ---------- */
+  .hero {
+    padding: 104px 0 96px;
+    text-align: center;
+  }
+  .hero .inner { max-width: 780px; margin: 0 auto; }
+  .hero h1 { margin: 22px 0 26px; }
+  .hero h1 .mark-green { color: var(--sage-deep); font-style: italic; }
+  .hero .lede {
+    font-size: 18px; color: var(--ink-soft);
+    max-width: 50ch; margin: 0 auto 38px;
+  }
+  .hero .microcopy { margin-top: 18px; }
+
+  /* ---------- stat band ---------- */
+  .band {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--paper-2);
+  }
+  .band .wrap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding-left: 0; padding-right: 0;
+  }
+  .band .cell {
+    padding: 44px 32px;
+    text-align: center;
+    border-left: 1px solid var(--line-soft);
+  }
+  .band .cell:first-child { border-left: 0; }
+  .band .fig {
+    font-family: var(--display);
+    font-size: clamp(30px, 3.6vw, 42px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .band .cap {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .11em;
+    text-transform: uppercase; color: var(--ink-faint);
+    margin-top: 14px;
+  }
+
+  /* ---------- sections ---------- */
+  .sec { padding: 100px 0; }
+  .sec-alt { background: var(--paper-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  /* the FAQ ends in a rule, so it hands off directly to the closing CTA
+     instead of stacking two sets of section padding */
+  .sec-handoff { padding-bottom: 0; }
+  .head { max-width: 600px; margin-bottom: 52px; }
+  .head h2 { margin: 16px 0 16px; }
+  .head p { color: var(--ink-soft); font-size: 16px; max-width: 50ch; }
+  .head-c { margin-left: auto; margin-right: auto; text-align: center; }
+  .head-c p { margin-left: auto; margin-right: auto; }
+
+  /* ---------- curriculum lead ---------- */
+  .lead-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: center; margin-bottom: 56px;
+  }
+  .lead-grid .head { margin-bottom: 0; max-width: none; }
+
+  /* ---------- live call panel ---------- */
+  .panel {
+    background: var(--forest);
+    color: var(--on-forest);
+    border-radius: 6px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+  }
+  .panel-head {
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--mono); font-size: 10px; letter-spacing: .12em;
+    text-transform: uppercase; opacity: .68;
+    padding-bottom: 16px; border-bottom: 1px solid rgba(239,243,233,.16);
+  }
+  .panel-head .rec { display: inline-flex; align-items: center; gap: 7px; }
+  .panel-head .rec::before {
+    content: ""; width: 5px; height: 5px; border-radius: 50%;
+    background: var(--clay); animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.25} }
+  .said {
+    font-family: var(--display); font-size: 21px; line-height: 1.32;
+    padding: 24px 0 22px;
+  }
+  .said .who {
+    display: block; font-family: var(--mono); font-size: 10px;
+    letter-spacing: .12em; text-transform: uppercase; opacity: .6;
+    margin-bottom: 10px;
+  }
+  .steps { display: flex; flex-direction: column; gap: 1px; background: rgba(239,243,233,.14); border-radius: 3px; overflow: hidden; }
+  .step {
+    background: var(--forest);
+    display: grid; grid-template-columns: 24px 1fr auto;
+    gap: 12px; align-items: center;
+    padding: 14px 15px;
+    font-family: var(--mono); font-size: 11.5px;
+    opacity: 0; transform: translateY(6px);
+    animation: revealStep .5s ease forwards;
+  }
+  .step:nth-child(1) { animation-delay: .3s; }
+  .step:nth-child(2) { animation-delay: 1.1s; }
+  .step:nth-child(3) { animation-delay: 1.9s; }
+  @keyframes revealStep { to { opacity: 1; transform: none; } }
+  .step .n { opacity: .45; }
+  .step .lbl { text-transform: uppercase; letter-spacing: .1em; }
+  .step .val { color: var(--on-dark-tick); text-align: right; }
+  .panel-foot {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 18px; font-family: var(--mono); font-size: 10.5px;
+    letter-spacing: .12em; text-transform: uppercase;
+    opacity: 0; animation: revealStep .5s ease 2.7s forwards;
+  }
+  .panel-foot .won {
+    background: var(--on-dark-tick); color: var(--forest);
+    padding: 5px 11px; border-radius: 2px; font-weight: 600;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .step, .panel-foot { opacity: 1; transform: none; animation: none; }
+    .panel-head .rec::before, .badge .dot { animation: none; }
+    * { transition-duration: .001ms !important; }
+  }
+
+  /* ---------- module cards ---------- */
+  .modules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .mod {
+    background: var(--card); border: 1px solid var(--line-soft);
+    border-radius: 8px; padding: 28px 26px 30px;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .mod .idx {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--clay);
+  }
+  .mod p { color: var(--ink-soft); font-size: 14.5px; margin-top: -2px; }
+
+  /* ---------- fit / not fit ---------- */
+  .fit { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .fit-col { border-radius: 8px; padding: 34px 32px; }
+  .fit-yes { background: var(--forest); color: var(--on-forest); }
+  .fit-no  { background: var(--card); border: 1px solid var(--line-soft); }
+  .fit-col h3 { font-size: 24px; margin-bottom: 24px; }
+  .fit-yes h3 { color: var(--on-forest); }
+  .fit-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
+  .fit-col li {
+    display: grid; grid-template-columns: 20px 1fr; gap: 14px;
+    font-size: 15px; align-items: start; line-height: 1.5;
+  }
+  .fit-col li .ic { width: 20px; height: 20px; margin-top: 2px; flex: none; }
+  .fit-col li .ic svg { width: 20px; height: 20px; }
+  .fit-yes li { color: rgba(239,243,233,.88); }
+  .fit-yes li .ic { color: var(--on-dark-tick); }
+  .fit-no li { color: var(--ink-soft); }
+  .fit-no li .ic { color: var(--ink-faint); }
+
+  /* ---------- host ---------- */
+  .host { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 60px; align-items: start; }
+  .portrait {
+    aspect-ratio: 4 / 5; border-radius: 8px;
+    background: linear-gradient(150deg, var(--forest) 0%, var(--forest-2) 60%, var(--sage-deep) 100%);
+    display: flex; align-items: flex-end; padding: 22px;
+    position: relative; overflow: hidden;
+  }
+  .portrait .initials {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    font-family: var(--display); font-size: 96px; color: rgba(239,243,233,.18);
+    letter-spacing: -0.03em;
+  }
+  .portrait .plate {
+    position: relative; background: var(--paper); color: var(--ink);
+    border-radius: 4px; padding: 13px 16px; width: 100%;
+  }
+  .portrait .plate .nm { font-family: var(--display); font-size: 17px; }
+  .portrait .plate .rl { font-family: var(--mono); font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-faint); margin-top: 2px; }
+  .host-body h2 { margin: 16px 0 22px; }
+  /* class, not `.host-body p` — that type selector outranked `.pull` and was
+     flattening the pull quote to body size and colour */
+  .host-body .bio { color: var(--ink-soft); font-size: 16px; }
+  .pull {
+    font-family: var(--display); font-size: 24px; line-height: 1.34;
+    color: var(--ink); border-left: 2px solid var(--clay);
+    padding: 4px 0 4px 22px; margin: 30px 0;
+  }
+  .creds { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding-top: 28px; border-top: 1px solid var(--line); }
+  .creds .fig { font-family: var(--display); font-size: 28px; line-height: 1; }
+  .creds .cap { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); margin-top: 8px; }
+
+  /* ---------- ledger ---------- */
+  .ledger { background: var(--card); border: 1px solid var(--line-soft); border-radius: 8px; padding: 10px 30px 30px; }
+  .lrow {
+    display: grid; grid-template-columns: 1fr auto; gap: 24px;
+    align-items: baseline; padding: 22px 0; border-bottom: 1px solid var(--line-soft);
+  }
+  .lrow .nm { font-size: 15.5px; font-weight: 600; }
+  .lrow .ds { font-size: 13.5px; color: var(--ink-soft); margin-top: 3px; }
+  .lrow .vl { font-family: var(--mono); font-size: 13px; color: var(--ink-faint); text-decoration: line-through; font-variant-numeric: tabular-nums; }
+  .ltotal { display: flex; justify-content: space-between; align-items: baseline; padding-top: 24px; }
+  .ltotal .lbl { font-family: var(--mono); font-size: 10.5px; letter-spacing: .13em; text-transform: uppercase; color: var(--ink-faint); }
+  .ltotal .amt { display: flex; align-items: baseline; gap: 14px; }
+  .ltotal .old { font-family: var(--mono); font-size: 14px; color: var(--ink-faint); text-decoration: line-through; }
+  .ltotal .new { font-family: var(--display); font-size: 34px; letter-spacing: -0.02em; color: var(--sage-deep); }
+
+  /* ---------- testimonials ---------- */
+  .quotes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .q {
+    background: var(--card); border: 1px solid var(--line-soft);
+    border-radius: 8px; padding: 38px 36px 32px;
+    display: flex; flex-direction: column;
+  }
+  .q blockquote {
+    margin: 0 0 30px;
+    font-family: var(--display); font-size: 21px; line-height: 1.48;
+    max-width: 40ch;
+  }
+  .q .by { margin-top: auto; padding-top: 22px; border-top: 1px solid var(--line-soft); }
+  .q .by .nm { font-size: 14px; font-weight: 600; }
+  .q .by .rl { display: block; font-family: var(--mono); font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); margin-top: 4px; }
+
+  /* ---------- urgency ---------- */
+  .urgent { background: var(--forest); color: var(--on-forest); padding: 92px 0; text-align: center; }
+  .urgent h2 { color: var(--on-forest); margin: 16px auto 32px; max-width: 15ch; }
+  .urgent .tag { color: var(--on-dark-tick); }
+  .meter { max-width: 300px; margin: 40px auto 0; }
+  .meter .track { height: 3px; background: rgba(239,243,233,.2); border-radius: 2px; overflow: hidden; }
+  .meter .fill { height: 100%; width: 87.6%; background: var(--clay); }
+  .meter .cap { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; margin-top: 12px; opacity: .7; }
+
+  /* ---------- faq ---------- */
+  .faq { border-top: 1px solid var(--line); }
+  .fitem { border-bottom: 1px solid var(--line); }
+  .fq {
+    width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 24px;
+    background: none; border: 0; color: var(--ink); font-family: var(--display);
+    font-size: 20px; letter-spacing: -0.01em; text-align: left; padding: 26px 0; cursor: pointer;
+  }
+  .fq:focus-visible { outline: 2px solid var(--clay); outline-offset: 2px; }
+  .fq .sign { font-family: var(--mono); font-size: 15px; color: var(--sage-deep); transition: transform .28s ease; flex: none; }
+  .fitem.open .fq .sign { transform: rotate(45deg); }
+  .fa { max-height: 0; overflow: hidden; transition: max-height .32s ease; }
+  .fa p { padding: 0 60px 28px 0; color: var(--ink-soft); font-size: 15px; max-width: 62ch; }
+
+  /* ---------- final ---------- */
+  .final { padding: 112px 0; text-align: center; }
+  .final h2 { margin: 18px auto 22px; max-width: 15ch; }
+  /* class, not `.final p` — a type selector here outranks `.microcopy` and was
+     overriding both its size and its margin */
+  .final .sub { color: var(--ink-soft); max-width: 42ch; margin: 0 auto 36px; font-size: 16px; }
+  .final .microcopy { margin: 20px auto 0; }
+
+  /* ---------- registration form ---------- */
+  .form-card {
+    max-width: 560px;
+    margin: 0 auto;
+    /* Tally renders its own light form chrome, so this surface stays light in
+       both themes — a transparent embed would be unreadable on the dark ground */
+    background: #FCFAF5;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .form-card iframe {
+    display: block;
+    width: 100%;
+    min-height: 480px;
+    border: 0;
+  }
+  .form-fallback {
+    margin-top: 18px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .form-fallback a { color: var(--sage-deep); text-underline-offset: 3px; }
+  .form-placeholder {
+    padding: 56px 32px;
+    text-align: center;
+    color: #5A6252;
+    font-family: var(--sans);
+  }
+  .form-placeholder strong { display: block; font-size: 16px; color: #14180F; margin-bottom: 8px; }
+  .form-placeholder code {
+    font-family: var(--mono); font-size: 12px;
+    background: rgba(20,24,15,.06); padding: 2px 6px; border-radius: 3px;
+  }
+
+  /* ---------- footer ---------- */
+  footer { border-top: 1px solid var(--line); background: var(--paper-2); padding: 60px 0 44px; }
+  .wordmark {
+    font-family: var(--display); font-size: clamp(56px, 14vw, 152px);
+    line-height: .9; letter-spacing: -0.04em; text-align: center;
+    color: var(--ink); opacity: .9; margin: 10px 0 38px;
+  }
+  .wordmark em { font-style: italic; color: var(--sage-deep); }
+  .fmeta { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding-top: 26px; border-top: 1px solid var(--line); }
+  .fmeta span { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
+  .disc { font-size: 11.5px; line-height: 1.65; color: var(--ink-faint); max-width: 76ch; margin: 28px auto 0; text-align: center; }
+
+  /* ---------- mobile ---------- */
+  .mobile-cta {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; display: none;
+    background: var(--paper); border-top: 1px solid var(--line);
+    /* keep the button clear of the iPhone home indicator */
+    padding: 12px 20px calc(12px + env(safe-area-inset-bottom, 0px));
+  }
+  .mobile-cta .btn { width: 100%; justify-content: center; }
+
+  /* ============ tablet ============ */
+  @media (max-width: 900px) {
+    .lead-grid { grid-template-columns: 1fr; gap: 40px; }
+    .host { grid-template-columns: 1fr; gap: 36px; }
+    .portrait { aspect-ratio: 16 / 10; }
+    .modules, .quotes { grid-template-columns: 1fr; }
+    .band .wrap { grid-template-columns: 1fr; }
+    .band .cell { padding: 30px 28px; border-left: 0; border-top: 1px solid var(--line-soft); }
+    .band .cell:first-child { border-top: 0; }
+    .hero { padding: 56px 0 68px; }
+    .sec { padding: 68px 0; }
+    .sec-handoff { padding-bottom: 0; }
+    .final { padding: 76px 0; }
+    .fit { grid-template-columns: 1fr; }
+    .mobile-cta { display: block; }
+    footer { padding-bottom: 110px; }
+    .fa p { padding-right: 0; }
+  }
+
+  /* ============ phone ============ =========================================
+     Sizing follows the reference: body copy stays readable (15px+, loose
+     leading), cards keep generous internal padding, and the page buys room by
+     stacking and by using vertical rhythm — not by shrinking text. Section
+     headers centre, and primary CTAs go full-width as proper tap targets.
+     ========================================================================= */
+  @media (max-width: 640px) {
+    .wrap { padding: 0 20px; }
+    h1 { font-size: clamp(33px, 8.8vw, 44px); line-height: 1.1; }
+    h2 { font-size: clamp(27px, 7vw, 34px); line-height: 1.12; }
+    h3 { font-size: 20px; }
+
+    .topbar .wrap { gap: 11px; min-height: 44px; }
+    .topbar .cd-label { font-size: 9.5px; letter-spacing: .12em; }
+    .cd { gap: 4px; }
+    .cd .seg { font-size: 13.5px; }
+
+    /* the badge is nowrap, so it must be sized to fit or it scrolls the page */
+    .badge { font-size: 10px; letter-spacing: .09em; padding: 9px 15px 9px 12px; gap: 7px; }
+
+    /* full-width primary actions, matching the reference's button treatment */
+    .hero .btn, .final .btn, .urgent .btn { display: flex; width: 100%; justify-content: center; }
+    .btn { padding: 23px 26px; font-size: 15.5px; }
+
+    .hero { padding: 56px 0 60px; }
+    .hero h1 { margin: 20px 0 24px; }
+    .hero .lede { font-size: 17px; line-height: 1.6; margin-bottom: 34px; }
+
+    .sec { padding: 66px 0; }
+    .sec-handoff { padding-bottom: 0; }
+    .final { padding: 72px 0; }
+    .urgent { padding: 72px 0; }
+
+    /* centre section headers on phone, as the reference does throughout */
+    .head { margin-bottom: 40px; text-align: center; margin-left: auto; margin-right: auto; }
+    .head p { margin-left: auto; margin-right: auto; font-size: 15.5px; line-height: 1.65; }
+
+    .band .cell { padding: 32px 24px; }
+    .band .fig { font-size: 32px; }
+    .band .cap { margin-top: 12px; font-size: 10px; }
+
+    .panel { padding: 20px; }
+    .said { font-size: 20px; padding: 22px 0 20px; }
+    .step { grid-template-columns: 22px 1fr auto; gap: 10px; padding: 14px 13px; font-size: 11px; }
+
+    .modules, .quotes { gap: 16px; }
+    .mod { padding: 28px 24px 30px; gap: 13px; }
+    .mod p { font-size: 15px; line-height: 1.65; }
+
+    .fit { gap: 16px; }
+    .fit-col { padding: 32px 26px; }
+    .fit-col h3 { font-size: 23px; margin-bottom: 24px; }
+    .fit-col ul { gap: 18px; }
+    .fit-col li { font-size: 15px; line-height: 1.6; gap: 14px; }
+
+    .host-body .bio { font-size: 15.5px; line-height: 1.7; }
+    .pull { font-size: 22px; padding-left: 20px; margin: 28px 0; }
+    .creds { grid-template-columns: 1fr; gap: 20px; padding-top: 26px; }
+
+    .ledger { padding: 8px 24px 28px; }
+    .lrow { padding: 22px 0; gap: 18px; }
+    .lrow .nm { font-size: 15.5px; }
+    .lrow .ds { font-size: 14px; line-height: 1.55; margin-top: 5px; }
+    .ltotal { padding-top: 24px; }
+    .ltotal .new { font-size: 32px; }
+
+    .q { padding: 32px 26px 28px; }
+    .q blockquote { font-size: 20px; line-height: 1.5; margin-bottom: 26px; }
+    .q .by { padding-top: 20px; }
+
+    .fq { font-size: 19px; padding: 24px 0; gap: 18px; }
+    .fa p { font-size: 15px; line-height: 1.65; padding-bottom: 26px; }
+
+    .wordmark { margin: 6px 0 32px; }
+    .fmeta { flex-direction: column; gap: 8px; padding-top: 24px; }
+    footer { padding: 50px 0 108px; }
+    .disc { font-size: 11.5px; margin-top: 24px; }
+  }
+
+  /* ============ small phone ============
+     Only the gutter and the few genuinely width-bound items tighten here —
+     body copy is deliberately left alone so it stays readable. */
+  @media (max-width: 400px) {
+    .wrap { padding: 0 18px; }
+    .badge { font-size: 9.5px; padding: 9px 13px 9px 11px; gap: 6px; }
+    .topbar .cd-label { font-size: 9px; letter-spacing: .1em; }
+    .cd .seg { font-size: 13px; }
+    .band .fig { font-size: 29px; }
+    .said { font-size: 19px; }
+    .step { font-size: 10.5px; gap: 9px; padding: 13px 11px; }
+    .fit-col { padding: 28px 22px; }
+    .q { padding: 28px 22px 26px; }
+    .ledger { padding: 8px 20px 26px; }
+  }
+</style>
+
+<div class="topbar">
+  <div class="wrap">
+    <span class="cd-label">Doors close in</span>
+    <div class="cd" id="cd" aria-label="Time remaining until registration closes">
+      <span class="seg" id="cd-d">00<span>D</span></span><span class="colon">:</span>
+      <span class="seg" id="cd-h">00<span>H</span></span><span class="colon">:</span>
+      <span class="seg" id="cd-m">00<span>M</span></span><span class="colon">:</span>
+      <span class="seg" id="cd-s">00<span>S</span></span>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="inner">
+      <span class="badge">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="badge-label">Free live masterclass:</span>
+        <span class="badge-date">Aug 13 · 1 PM ET</span>
+      </span>
+      <h1>Turn <span class="mark-green">&ldquo;I need to think about it&rdquo;</span> into a signature.</h1>
+      <p class="lede">A 52-minute live session on the three-move sequence top reps use to close a stalled deal on the same call.</p>
+      <a class="btn" href="#register">Save my free seat <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <p class="microcopy">Free · No card required</p>
+    </div>
+  </div>
+</header>
+
+<div class="band">
+  <div class="wrap">
+    <div class="cell">
+      <div class="fig">$212M</div>
+      <div class="cap">Closed using this sequence</div>
+    </div>
+    <div class="cell">
+      <div class="fig">1,438</div>
+      <div class="cap">Reps trained since January</div>
+    </div>
+    <div class="cell">
+      <div class="fig">19% → 41%</div>
+      <div class="cap">Close rate in one quarter</div>
+    </div>
+  </div>
+</div>
+
+<section class="sec" id="curriculum">
+  <div class="wrap">
+    <div class="lead-grid">
+      <div class="head">
+        <span class="tag">// The curriculum</span>
+        <h2>Three moves. One sequence.</h2>
+        <p>Every stalled deal dies for one of three reasons. We fix all three live, using calls recorded in the last ninety days.</p>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <span class="rec">Live call — 00:14:22</span>
+          <span>Deal #4471</span>
+        </div>
+
+        <p class="said">
+          <span class="who">Prospect</span>
+          &ldquo;It sounds great. I just need to think about it.&rdquo;
+        </p>
+
+        <div class="steps">
+          <div class="step">
+            <span class="n">01</span>
+            <span class="lbl">Diagnose</span>
+            <span class="val">stall type: trust</span>
+          </div>
+          <div class="step">
+            <span class="n">02</span>
+            <span class="lbl">Reframe</span>
+            <span class="val">objection → reason</span>
+          </div>
+          <div class="step">
+            <span class="n">03</span>
+            <span class="lbl">Close</span>
+            <span class="val">signature requested</span>
+          </div>
+        </div>
+
+        <div class="panel-foot">
+          <span>Outcome</span>
+          <span class="won">Closed / won</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="modules">
+      <article class="mod">
+        <div class="idx">Move 01 — Diagnose</div>
+        <h3>Find the real stall in ten minutes</h3>
+        <p>Four questions that expose whether your prospect is blocked on price, timing, trust, or fit — asked before you've pitched a single feature.</p>
+      </article>
+
+      <article class="mod">
+        <div class="idx">Move 02 — Reframe</div>
+        <h3>Make the objection the reason they buy</h3>
+        <p>What to say the moment you hear &ldquo;let me think about it&rdquo; so the hesitation becomes the argument for deciding now.</p>
+      </article>
+
+      <article class="mod">
+        <div class="idx">Move 03 — Close</div>
+        <h3>Ask, then stop talking</h3>
+        <p>The five-line close Marcus's floor used on every deal, plus the silence technique that does most of the work after you ask.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="head head-c">
+      <span class="tag">// Honest filter</span>
+      <h2>Worth your hour if&hellip;</h2>
+    </div>
+
+    <div class="fit">
+      <div class="fit-col fit-yes">
+        <h3>Show up if you</h3>
+        <ul>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Have live deals sitting in &ldquo;thinking about it&rdquo; right now</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Are new to sales and want a sequence, not vibes</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Run a team and hear the same stall on every call review</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Want a real deal diagnosed on air during the Q&amp;A</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="fit-col fit-no">
+        <h3>Skip it if you</h3>
+        <ul>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <span>Want a pitch deck template rather than a method</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <span>Are looking for pressure tactics or manipulation</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <span>Won't record and review your own calls afterwards</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <span>Expect results without changing how you open a call</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap host">
+    <div class="portrait">
+      <span class="initials">MR</span>
+      <div class="plate">
+        <div class="nm">Marcus Reyes</div>
+        <div class="rl">Your host</div>
+      </div>
+    </div>
+
+    <div class="host-body">
+      <span class="tag">// Who's teaching</span>
+      <h2>Nine years on the floor before a single slide.</h2>
+      <p class="bio">Marcus ran enterprise sales floors for nearly a decade before coaching full-time. The sequence in this masterclass isn't theory — it's what his own reps ran every day, sharpened across thousands of recorded calls.</p>
+
+      <p class="pull">&ldquo;Nobody loses a deal because their deck was wrong. They lose it because they answered an objection they never diagnosed.&rdquo;</p>
+
+      <div class="creds">
+        <div>
+          <div class="fig">$38M</div>
+          <div class="cap">ARR built with a 30-rep team</div>
+        </div>
+        <div>
+          <div class="fig">40+</div>
+          <div class="cap">B2B teams coached since</div>
+        </div>
+        <div>
+          <div class="fig">6,000</div>
+          <div class="cap">Sales calls scored</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="wrap narrow">
+    <div class="head head-c">
+      <span class="tag">// What you get</span>
+      <h2>Everything below is included.</h2>
+    </div>
+
+    <div class="ledger">
+      <div class="lrow">
+        <div>
+          <div class="nm">The 52-minute live masterclass</div>
+          <div class="ds">Full diagnose → reframe → close walkthrough, with call recordings</div>
+        </div>
+        <div class="vl">$197</div>
+      </div>
+      <div class="lrow">
+        <div>
+          <div class="nm">Objection-reframe swipe sheet</div>
+          <div class="ds">Twelve common stalls, written out word for word</div>
+        </div>
+        <div class="vl">$47</div>
+      </div>
+      <div class="lrow">
+        <div>
+          <div class="nm">Open Q&amp;A with Marcus</div>
+          <div class="ds">Bring a live deal — get it diagnosed on the call</div>
+        </div>
+        <div class="vl">$150</div>
+      </div>
+      <div class="lrow">
+        <div>
+          <div class="nm">Session recording</div>
+          <div class="ds">Registrants only, available for seven days</div>
+        </div>
+        <div class="vl">$40</div>
+      </div>
+
+      <div class="ltotal">
+        <span class="lbl">Total value</span>
+        <span class="amt">
+          <span class="old">$434</span>
+          <span class="new">Free</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="head head-c">
+      <span class="tag">// From past sessions</span>
+      <h2>What reps said afterwards</h2>
+    </div>
+
+    <div class="quotes">
+      <figure class="q">
+        <blockquote>Used the reframe two hours after the session. Prospect went from &ldquo;let me think&rdquo; to signed the same day.</blockquote>
+        <figcaption class="by">
+          <span class="nm">Danielle R.</span>
+          <span class="rl">Account Executive, SaaS</span>
+        </figcaption>
+      </figure>
+
+      <figure class="q">
+        <blockquote>First one of these that handed me an actual sequence instead of an hour of mindset advice.</blockquote>
+        <figcaption class="by">
+          <span class="nm">Jordan T.</span>
+          <span class="rl">SDR Team Lead</span>
+        </figcaption>
+      </figure>
+
+      <figure class="q">
+        <blockquote>The diagnosis questions alone were worth it. I'd been pitching people who weren't even the blocker.</blockquote>
+        <figcaption class="by">
+          <span class="nm">Priya K.</span>
+          <span class="rl">Enterprise AE</span>
+        </figcaption>
+      </figure>
+
+      <figure class="q">
+        <blockquote>I run call reviews for nine reps. We watched the replay together and rewrote our discovery script the same week.</blockquote>
+        <figcaption class="by">
+          <span class="nm">Marco B.</span>
+          <span class="rl">Head of Sales, Logistics</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="urgent">
+  <div class="wrap">
+    <span class="tag">// Seats are capped</span>
+    <h2>The room closes when the timer does.</h2>
+    <a class="btn btn-light" href="#register">Save my free seat <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <div class="meter">
+      <div class="track"><div class="fill"></div></div>
+      <div class="cap"><span>438 registered</span><span>62 seats left</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-handoff">
+  <div class="wrap narrow">
+    <div class="head head-c">
+      <span class="tag">// Before you register</span>
+      <h2>Questions reps usually ask</h2>
+    </div>
+
+    <div class="faq" id="faq">
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Is it actually free — no card?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Yes. Registration asks for a name and an email. There's no charge to attend the masterclass or the Q&amp;A.</p></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>What if I can't make it live?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Register anyway. The recording goes to everyone who signed up and stays open for seven days — but only live attendees get into the Q&amp;A, which is usually the most useful part.</p></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Does this only work for B2B?</span><span class="sign">+</span></button>
+        <div class="fa"><p>The recorded examples are B2B, but the sequence applies anywhere a prospect can stall a decision — high-ticket coaching, services, and B2C included.</p></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>I'm brand new. Will this go over my head?</span><span class="sign">+</span></button>
+        <div class="fa"><p>No prior framework needed. Marcus builds the sequence from zero on the call, then plays it against real recorded deals so you hear it in context.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final" id="register">
+  <div class="wrap">
+    <span class="tag tag-c">// Thursday, August 13 · 1:00 PM ET</span>
+    <h2>Bring your hardest open deal.</h2>
+    <p class="sub">Fifty-two minutes, live, free. If there's time, Marcus will diagnose it on air.</p>
+    <div class="form-card">
+      <iframe id="tally-embed" title="Masterclass registration form" loading="lazy"></iframe>
+      <div class="form-placeholder" id="tally-placeholder">
+        <strong>Registration form not connected yet</strong>
+        Set <code>TALLY_FORM_ID</code> at the bottom of this file to your Tally form ID.
+      </div>
+    </div>
+    <p class="form-fallback">
+      Form not loading? <a id="tally-link" href="https://tally.so" target="_blank" rel="noopener noreferrer">Open it in a new tab →</a>
+    </p>
+    <p class="microcopy">Joining link sent by email · Replay for registrants only</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">Closer's <em>Framework</em></div>
+    <div class="fmeta">
+      <span>© 2026 — Sample page</span>
+      <span>Privacy · Terms · Contact</span>
+    </div>
+    <p class="disc">This is a demonstration landing page built to showcase design and copywriting for a free training webinar. The host, testimonials, statistics, and results shown are illustrative placeholders and are not claims about any real person, company, or product. No earnings or outcomes are represented or implied.</p>
+  </div>
+</footer>
+
+<div class="mobile-cta">
+  <a class="btn" href="#register">Save my free seat <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+</div>
+
+<script>
+  /* ════════════════════════════════════════════════════════════════════
+     TALLY FORM ID — replace this one value with your form's ID.
+
+     Your Tally form URL looks like:  https://tally.so/r/wAbCdE
+     The ID is the part after /r/  →  "wAbCdE"
+
+     Until this is set, the page shows a placeholder instead of the form.
+     ════════════════════════════════════════════════════════════════════ */
+  const TALLY_FORM_ID = "REPLACE_ME";
+
+  (function () {
+    var frame = document.getElementById('tally-embed');
+    var placeholder = document.getElementById('tally-placeholder');
+    var link = document.getElementById('tally-link');
+    if (!frame) return;
+
+    var configured = TALLY_FORM_ID && !/^REPLACE_ME$/i.test(TALLY_FORM_ID);
+    if (!configured) {
+      frame.style.display = 'none';
+      return;
+    }
+
+    placeholder.style.display = 'none';
+    var params = 'alignLeft=1&hideTitle=1&dynamicHeight=1';
+    // data-tally-src lets Tally's embed script manage auto-height; src is set
+    // too so the form still renders if that external script is unavailable.
+    frame.setAttribute('data-tally-src', 'https://tally.so/embed/' + TALLY_FORM_ID + '?' + params);
+    frame.src = 'https://tally.so/embed/' + TALLY_FORM_ID + '?' + params;
+    link.href = 'https://tally.so/r/' + TALLY_FORM_ID;
+
+    var s = document.createElement('script');
+    s.src = 'https://tally.so/widgets/embed.js';
+    s.async = true;
+    document.body.appendChild(s);
+  })();
+
+  // The page is published inside a wrapper that supplies <head>; make sure a
+  // viewport tag is present so phones lay out at device width instead of 980px.
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+
+  // Countdown to the next Thursday, 1:00 PM local
+  (function () {
+    var t = new Date();
+    t.setDate(t.getDate() + ((4 - t.getDay() + 7) % 7 || 7));
+    t.setHours(13, 0, 0, 0);
+
+    var d = document.getElementById('cd-d'),
+        h = document.getElementById('cd-h'),
+        m = document.getElementById('cd-m'),
+        s = document.getElementById('cd-s');
+
+    function set(el, n) { el.firstChild.nodeValue = String(n).padStart(2, '0'); }
+
+    function tick() {
+      var diff = Math.max(0, t - new Date());
+      set(d, Math.floor(diff / 864e5));
+      set(h, Math.floor(diff % 864e5 / 36e5));
+      set(m, Math.floor(diff % 36e5 / 6e4));
+      set(s, Math.floor(diff % 6e4 / 1e3));
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  // FAQ accordion
+  (function () {
+    var items = document.querySelectorAll('.fitem');
+
+    items.forEach(function (item) {
+      var btn = item.querySelector('.fq'), panel = item.querySelector('.fa');
+      btn.addEventListener('click', function () {
+        var wasOpen = item.classList.contains('open');
+        items.forEach(function (o) {
+          o.classList.remove('open');
+          o.querySelector('.fq').setAttribute('aria-expanded', 'false');
+          o.querySelector('.fa').style.maxHeight = null;
+        });
+        if (!wasOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+        }
+      });
+    });
+
+    // An open answer's height is measured in pixels, so it goes stale when the
+    // viewport changes width (rotation, resize) and reflows the text. Re-measure.
+    var t;
+    window.addEventListener('resize', function () {
+      clearTimeout(t);
+      t = setTimeout(function () {
+        var open = document.querySelector('.fitem.open .fa');
+        if (open) open.style.maxHeight = open.scrollHeight + 'px';
+      }, 120);
+    });
+  })();
+</script>
