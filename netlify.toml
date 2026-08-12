@@ -11,8 +11,9 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
 
-# The HTML is the whole site, so it must never be served stale after a deploy.
+# The HTML pages are the whole site, so none of them should ever be served
+# stale after a deploy — covers index.html, offer.html, thanks.html, etc.
 [[headers]]
-  for = "/index.html"
+  for = "/*.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
