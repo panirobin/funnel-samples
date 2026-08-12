@@ -457,7 +457,7 @@
   </div>
 </section>
 
-<section class="sec sec-alt sec-handoff">
+<section class="sec sec-handoff">
   <div class="wrap narrow">
     <div class="head head-c">
       <span class="tag">// Before you decide</span>
@@ -536,7 +536,7 @@
       btn.addEventListener('click', function () {
         if (configured) { window.location.href = CHECKOUT_URL; return; }
         if (!toast) return;
-        toast.textContent = 'Checkout not connected — set CHECKOUT_URL in offer.html';
+        toast.textContent = 'This is where you get paid. Click "No Thanks" for now :)';
         toast.classList.add('show');
         clearTimeout(timer);
         timer = setTimeout(function () { toast.classList.remove('show'); }, 3200);
