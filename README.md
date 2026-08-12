@@ -5,7 +5,8 @@ No build step, no dependencies. `index.html` is the entire site.
 
 ## Connecting the Tally registration form
 
-The form is wired up but not yet pointed at a real Tally form.
+Every "Save my free seat" button opens the form as a **popup** (Tally's
+modal overlay) — none of them scroll or navigate anywhere.
 
 1. Build your form at [tally.so](https://tally.so).
 2. Copy its URL — it looks like `https://tally.so/r/wAbCdE`.
@@ -13,9 +14,8 @@ The form is wired up but not yet pointed at a real Tally form.
    `"REPLACE_ME"` with the part after `/r/` (here, `wAbCdE`).
 4. Commit and push — Netlify redeploys automatically.
 
-Until that value is set, the registration section shows a placeholder
-instead of the form. Every "Save my free seat" button on the page links to
-`#register`, so they all scroll to the form once it is connected.
+Until that value is set, clicking any button shows a small toast
+("Registration form not connected...") instead of doing nothing.
 
 ## Local preview
 

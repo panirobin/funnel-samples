@@ -452,43 +452,49 @@
   .final .sub { color: var(--ink-soft); max-width: 42ch; margin: 0 auto 36px; font-size: 16px; }
   .final .microcopy { margin: 20px auto 0; }
 
-  /* ---------- registration form ---------- */
-  .form-card {
-    max-width: 560px;
-    margin: 0 auto;
-    /* Tally renders its own light form chrome, so this surface stays light in
-       both themes — a transparent embed would be unreadable on the dark ground */
-    background: #FCFAF5;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
+  /* ---------- registration popup trigger ---------- */
+  /* the CTAs are now <button>, not <a> — they no longer navigate anywhere,
+     they open the Tally popup, so a real button is the correct element.
+     Reset the UA button chrome; .btn's own rules (background, border,
+     padding) already override the rest. */
+  /* NOT `font: inherit` — that resets the whole shorthand, including
+     line-height, silently undoing .btn's line-height:1 (the fix that keeps
+     the arrow icon pixel-aligned with the label) back to the inherited 1.6. */
+  button.btn {
+    appearance: none;
+    -webkit-appearance: none;
+    margin: 0;
+    text-align: inherit;
   }
-  .form-card iframe {
-    display: block;
-    width: 100%;
-    min-height: 480px;
-    border: 0;
-  }
-  .form-fallback {
-    margin-top: 18px;
+  button.btn::-moz-focus-inner { border: 0; padding: 0; }
+
+  /* shown briefly on click when TALLY_FORM_ID hasn't been set yet, so a
+     click always gives feedback instead of silently doing nothing */
+  .tally-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 28px;
+    z-index: 80;
+    transform: translate(-50%, 12px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease;
+    background: var(--forest);
+    color: var(--on-forest);
     font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    padding: 12px 20px;
+    border-radius: 999px;
+    box-shadow: var(--shadow);
+    white-space: nowrap;
+    max-width: calc(100vw - 40px);
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
-  .form-fallback a { color: var(--sage-deep); text-underline-offset: 3px; }
-  .form-placeholder {
-    padding: 56px 32px;
-    text-align: center;
-    color: #5A6252;
-    font-family: var(--sans);
-  }
-  .form-placeholder strong { display: block; font-size: 16px; color: #14180F; margin-bottom: 8px; }
-  .form-placeholder code {
-    font-family: var(--mono); font-size: 12px;
-    background: rgba(20,24,15,.06); padding: 2px 6px; border-radius: 3px;
+  .tally-toast.show { opacity: 1; transform: translate(-50%, 0); }
+  @media (prefers-reduced-motion: reduce) {
+    .tally-toast { transition: opacity .001ms linear; }
   }
 
   /* ---------- footer ---------- */
@@ -649,7 +655,7 @@
       </span>
       <h1>Turn <span class="mark-green">&ldquo;I need to think about it&rdquo;</span> into a signature.</h1>
       <p class="lede">A 52-minute live session on the three-move sequence top reps use to close a stalled deal on the same call.</p>
-      <a class="btn" href="#register">Save my free seat <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <button type="button" class="btn tally-trigger">Save my free seat <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <p class="microcopy">Free · No card required</p>
     </div>
   </div>
@@ -924,7 +930,7 @@
   <div class="wrap">
     <span class="tag">// Seats are capped</span>
     <h2>The room closes when the timer does.</h2>
-    <a class="btn btn-light" href="#register">Save my free seat <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <button type="button" class="btn btn-light tally-trigger">Save my free seat <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <div class="meter">
       <div class="track"><div class="fill"></div></div>
       <div class="cap"><span>438 registered</span><span>62 seats left</span></div>
@@ -960,21 +966,12 @@
   </div>
 </section>
 
-<section class="final" id="register">
+<section class="final">
   <div class="wrap">
     <span class="tag tag-c">// Thursday, August 13 · 1:00 PM ET</span>
     <h2>Bring your hardest open deal.</h2>
     <p class="sub">Fifty-two minutes, live, free. If there's time, Marcus will diagnose it on air.</p>
-    <div class="form-card">
-      <iframe id="tally-embed" title="Masterclass registration form" loading="lazy"></iframe>
-      <div class="form-placeholder" id="tally-placeholder">
-        <strong>Registration form not connected yet</strong>
-        Set <code>TALLY_FORM_ID</code> at the bottom of this file to your Tally form ID.
-      </div>
-    </div>
-    <p class="form-fallback">
-      Form not loading? <a id="tally-link" href="https://tally.so" target="_blank" rel="noopener noreferrer">Open it in a new tab →</a>
-    </p>
+    <button type="button" class="btn tally-trigger">Save my free seat <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <p class="microcopy">Joining link sent by email · Replay for registrants only</p>
   </div>
 </section>
@@ -991,8 +988,10 @@
 </footer>
 
 <div class="mobile-cta">
-  <a class="btn" href="#register">Save my free seat <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  <button type="button" class="btn tally-trigger">Save my free seat <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 </div>
+
+<div class="tally-toast" id="tally-toast" role="status" aria-live="polite"></div>
 
 <script>
   /* ════════════════════════════════════════════════════════════════════
@@ -1001,34 +1000,46 @@
      Your Tally form URL looks like:  https://tally.so/r/wAbCdE
      The ID is the part after /r/  →  "wAbCdE"
 
-     Until this is set, the page shows a placeholder instead of the form.
+     Every "Save my free seat" button opens this form as a popup — none of
+     them scroll or navigate. Until this is set, clicking a button shows a
+     small toast instead of doing nothing silently.
      ════════════════════════════════════════════════════════════════════ */
   const TALLY_FORM_ID = "REPLACE_ME";
 
   (function () {
-    var frame = document.getElementById('tally-embed');
-    var placeholder = document.getElementById('tally-placeholder');
-    var link = document.getElementById('tally-link');
-    if (!frame) return;
+    var triggers = document.querySelectorAll('.tally-trigger');
+    if (!triggers.length) return;
 
     var configured = TALLY_FORM_ID && !/^REPLACE_ME$/i.test(TALLY_FORM_ID);
-    if (!configured) {
-      frame.style.display = 'none';
+
+    if (configured) {
+      // Attributes are set before embed.js loads, so it sees them as soon as
+      // it scans the DOM — no race between the two.
+      triggers.forEach(function (btn) {
+        btn.setAttribute('data-tally-open', TALLY_FORM_ID);
+        btn.setAttribute('data-tally-layout', 'modal');
+        btn.setAttribute('data-tally-width', '560');
+      });
+
+      var s = document.createElement('script');
+      s.src = 'https://tally.so/widgets/embed.js';
+      s.async = true;
+      document.body.appendChild(s);
       return;
     }
 
-    placeholder.style.display = 'none';
-    var params = 'alignLeft=1&hideTitle=1&dynamicHeight=1';
-    // data-tally-src lets Tally's embed script manage auto-height; src is set
-    // too so the form still renders if that external script is unavailable.
-    frame.setAttribute('data-tally-src', 'https://tally.so/embed/' + TALLY_FORM_ID + '?' + params);
-    frame.src = 'https://tally.so/embed/' + TALLY_FORM_ID + '?' + params;
-    link.href = 'https://tally.so/r/' + TALLY_FORM_ID;
-
-    var s = document.createElement('script');
-    s.src = 'https://tally.so/widgets/embed.js';
-    s.async = true;
-    document.body.appendChild(s);
+    // Not configured yet: give every click real feedback instead of a dead button.
+    var toast = document.getElementById('tally-toast');
+    var toastTimer;
+    triggers.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (!toast) return;
+        toast.textContent = 'Registration form not connected — set TALLY_FORM_ID in index.html';
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 3200);
+      });
+    });
   })();
 
   // The page is published inside a wrapper that supplies <head>; make sure a
