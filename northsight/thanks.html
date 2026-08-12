@@ -1,0 +1,200 @@
+﻿<title>You're confirmed | The Retainer Reset</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- page-specific: thanks ---------- */
+
+  .confirm-hero { padding: 72px 0 20px; text-align: center; }
+  .confirm-hero .inner { max-width: 620px; margin: 0 auto; }
+  .confirm-hero h1 { margin: 18px 0 16px; }
+  .confirm-hero .lede { font-size: 17px; color: var(--ink-soft); }
+
+  .steps-wrap { padding: 40px 0 90px; }
+  .steps-wrap .inner { max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+
+  .stepcard {
+    background: var(--card); border: 1px solid var(--line-soft);
+    border-radius: 10px; padding: 30px 32px;
+  }
+  .stepcard .s-head {
+    display: flex; align-items: center; gap: 14px; margin-bottom: 16px;
+  }
+  .stepcard .s-num {
+    width: 30px; height: 30px; border-radius: 50%; flex: none;
+    background: var(--brand); color: var(--on-brand);
+    font-family: var(--mono); font-size: 12px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .stepcard h2 { font-size: 21px; }
+  .stepcard p { color: var(--ink-soft); font-size: 15px; line-height: 1.6; margin-bottom: 18px; }
+  .stepcard .btn-sm-cta {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: var(--sans); font-size: 14px; font-weight: 600;
+    padding: 13px 22px; border-radius: 4px;
+    background: var(--btn-bg); color: var(--btn-fg);
+    text-decoration: none; cursor: pointer; border: none;
+    line-height: 1;
+  }
+  .stepcard .btn-sm-cta:hover { box-shadow: var(--shadow); }
+  .stepcard .btn-sm-cta:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .stepcard .note { margin-top: 12px; font-size: 12.5px; color: var(--ink-faint); }
+  .stepcard .details {
+    margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line-soft);
+    font-size: 13.5px; color: var(--ink-soft); line-height: 1.7;
+  }
+  .stepcard .details b { color: var(--ink); }
+
+  .back-link {
+    display: inline-block; margin: 8px auto 0;
+    font-family: var(--sans); font-size: 13.5px; color: var(--ink-faint);
+    text-decoration: underline; text-underline-offset: 3px;
+  }
+  .back-link:hover { color: var(--ink-soft); }
+  .back-wrap { text-align: center; padding-bottom: 60px; }
+
+  @media (max-width: 640px) {
+    .confirm-hero { padding: 52px 0 16px; }
+    .stepcard { padding: 24px 22px; }
+    .stepcard h2 { font-size: 19px; }
+  }
+</style>
+
+<header class="confirm-hero">
+  <div class="wrap">
+    <div class="inner">
+      <span class="tag">// Registration confirmed</span>
+      <h1>You're in.</h1>
+      <p class="lede">Three things before Tuesday — take ten minutes now so nothing gets missed later.</p>
+    </div>
+  </div>
+</header>
+
+<section class="steps-wrap">
+  <div class="wrap">
+    <div class="inner">
+
+      <div class="stepcard">
+        <div class="s-head">
+          <span class="s-num">1</span>
+          <h2>Add it to your calendar</h2>
+        </div>
+        <p>One click, so it doesn't get buried under everything else this week.</p>
+        <button type="button" class="btn-sm-cta" id="add-to-calendar">
+          Add to calendar
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <p class="note">Downloads a .ics file that works with Google Calendar, Outlook, and Apple Calendar.</p>
+        <div class="details">
+          <b>Tuesday, August 18 · 12:00 PM ET</b> — The Retainer Reset, live workshop. Joining link sent by email the morning of.
+        </div>
+      </div>
+
+      <div class="stepcard">
+        <div class="s-head">
+          <span class="s-num">2</span>
+          <h2>Watch for the joining link</h2>
+        </div>
+        <p>It goes out from the same address that confirmed your registration, roughly an hour before we start. If it's not in your inbox by then, check spam before messaging support — that's where it ends up most often.</p>
+        <div class="details">
+          Nothing else to do here — this happens automatically once you're registered.
+        </div>
+      </div>
+
+      <div class="stepcard">
+        <div class="s-head">
+          <span class="s-num">3</span>
+          <h2>Bring one live retainer</h2>
+        </div>
+        <p>The workshop works best against a real account, not a hypothetical one. Pick whichever retainer has quietly grown the most since you signed it — you'll walk out knowing exactly where it slipped.</p>
+        <div class="details">
+          If you upgraded to Pro, this is also the retainer to send in for your written teardown.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">Retainer <em>Reset</em></div>
+    <div class="fmeta">
+      <span>© 2026 — Sample page</span>
+      <span>Privacy · Terms · Contact</span>
+    </div>
+    <p class="disc">This is a demonstration page built to showcase design and copywriting for a training webinar funnel. The host, testimonials, and details shown are illustrative placeholders and are not claims about any real person, company, or product.</p>
+  </div>
+</footer>
+
+<div class="back-wrap">
+  <a class="back-link" href="offer.html">Changed your mind? See the Pro upgrade again →</a>
+</div>
+
+<script>
+  // Wrapper supplies <head>; ensure phones lay out at device width.
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+
+  // Client-side .ics generation — no backend, works offline.
+  (function () {
+    var btn = document.getElementById('add-to-calendar');
+    if (!btn) return;
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function toICSDate(d) {
+      return d.getUTCFullYear() + pad(d.getUTCMonth() + 1) + pad(d.getUTCDate()) +
+        'T' + pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + pad(d.getUTCSeconds()) + 'Z';
+    }
+
+    btn.addEventListener('click', function () {
+      // Next Tuesday, 12:00 PM ET in the browser's local
+      // time zone. EVENT_WEEKDAY and EVENT_HOUR_24 must match the countdown on
+      // index.html — if they drift, the invite lands on a different day than the
+      // page promises, and nobody notices until someone misses the session.
+      var start = new Date();
+      start.setDate(start.getDate() + ((2 - start.getDay() + 7) % 7 || 7));
+      start.setHours(12, 0, 0, 0);
+      var end = new Date(start.getTime() + 45 * 60 * 1000);
+      var stamp = toICSDate(new Date());
+
+      var lines = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//The Retainer Reset//Workshop//EN',
+        'CALSCALE:GREGORIAN',
+        'METHOD:PUBLISH',
+        'BEGIN:VEVENT',
+        'UID:northsight-event-' + start.getTime() + '@closersframework.netlify.app',
+        'DTSTAMP:' + stamp,
+        'DTSTART:' + toICSDate(start),
+        'DTEND:' + toICSDate(end),
+        "SUMMARY:The Retainer Reset — Free Live Workshop",
+        'DESCRIPTION:45-minute live workshop on stopping scope creep. Joining link sent by email before the session.',
+        'STATUS:CONFIRMED',
+        'BEGIN:VALARM',
+        'ACTION:DISPLAY',
+        "DESCRIPTION:The Retainer Reset starts in 30 minutes",
+        'TRIGGER:-PT30M',
+        'END:VALARM',
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ];
+
+      var blob = new Blob([lines.join('\r\n')], { type: 'text/calendar;charset=utf-8' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'northsight-event.ics';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    });
+  })();
+</script>
