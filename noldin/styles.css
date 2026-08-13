@@ -1,0 +1,646 @@
+﻿/* ══════════════════════════════════════════════════════════════════
+   Das Vollgas-System — gemeinsames Design-System
+
+   Genutzt von index.html, offer.html und thanks.html. Seiten-eigene
+   Regeln stehen in einem kleinen <style>-Block je Seite.
+
+   Farben aus noldin-consulting.com: Limette #CFD92B (Buttons/Akzent),
+   Navy #122635 (Text und dunkle Panels), Waldgrün #3D5427 (Eyebrows).
+   Limette trägt nie Text — auf Weiß liegt sie bei 1.4:1.
+   ══════════════════════════════════════════════════════════════════ */
+
+  :root {
+    --paper:      #FFFFFF;
+    --paper-2:    #F4F6EC;
+    --card:       #FFFFFF;
+    --ink:        #122635;
+    --ink-soft:   #47596B;
+    --ink-faint:  #61738A;
+    --line:       rgba(18, 38, 53, 0.14);
+    --line-soft:  rgba(18, 38, 53, 0.07);
+    --brand:     #122635;
+    --brand-2:   #0B1926;
+    --on-brand:  #FFFFFF;
+    --brand-tint:       #E4EAB4;
+    --brand-ink:  #3D5427;
+    --accent:       #CFD92B;
+    --accent-ink:   #5F6D0C;
+    --btn-bg:     #CFD92B;
+    --btn-fg:     #122635;
+    --shadow:     0 1px 2px rgba(18,38,53,.06), 0 12px 32px -18px rgba(18,38,53,.40);
+
+    /* liegt immer auf dem Navy-Panel — in beiden Themes identisch */
+    --on-brand-tick: #CFD92B;
+
+    --badge-bg:       rgba(207, 217, 43, 0.12);
+    --badge-ring:     rgba(61, 84, 39, 0.28);
+    --badge-halo:     rgba(207, 217, 43, 0.08);
+    --badge-dot-halo: rgba(207, 217, 43, 0.35);
+
+    --display: "Playfair Display", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: Figtree, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "JetBrains Mono", "Cascadia Mono", "SF Mono", Consolas, "Liberation Mono", monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:#0B1926; --paper-2:#112434; --card:#14293A; --ink:#EDF1F3;
+      --ink-soft:#A3B2BE; --ink-faint:#7E8E9B; --line:rgba(237,241,243,.14);
+      --line-soft:rgba(237,241,243,.07); --brand:#17324A; --brand-2:#0B1926;
+      --on-brand:#FFFFFF; --brand-tint:#2C3A18; --brand-ink:#C3D06A;
+      --accent:#CFD92B; --accent-ink:#C3D06A;
+      --btn-bg:#CFD92B; --btn-fg:#122635;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 32px -18px rgba(0,0,0,.8);
+      --badge-bg:rgba(207,217,43,.10); --badge-ring:rgba(207,217,43,.32);
+      --badge-halo:rgba(207,217,43,.06); --badge-dot-halo:rgba(207,217,43,.28);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:#0B1926; --paper-2:#112434; --card:#14293A; --ink:#EDF1F3;
+    --ink-soft:#A3B2BE; --ink-faint:#7E8E9B; --line:rgba(237,241,243,.14);
+    --line-soft:rgba(237,241,243,.07); --brand:#17324A; --brand-2:#0B1926;
+    --on-brand:#FFFFFF; --brand-tint:#2C3A18; --brand-ink:#C3D06A;
+    --accent:#CFD92B; --accent-ink:#C3D06A;
+    --btn-bg:#CFD92B; --btn-fg:#122635;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 32px -18px rgba(0,0,0,.8);
+    --badge-bg:rgba(207,217,43,.10); --badge-ring:rgba(207,217,43,.32);
+    --badge-halo:rgba(207,217,43,.06); --badge-dot-halo:rgba(207,217,43,.28);
+  }
+  :root[data-theme="light"] {
+    --paper:#FFFFFF; --paper-2:#F4F6EC; --card:#FFFFFF; --ink:#122635;
+    --ink-soft:#47596B; --ink-faint:#61738A; --line:rgba(18,38,53,.14);
+    --line-soft:rgba(18,38,53,.07); --brand:#122635; --brand-2:#0B1926;
+    --on-brand:#FFFFFF; --brand-tint:#E4EAB4; --brand-ink:#3D5427;
+    --accent:#CFD92B; --accent-ink:#5F6D0C;
+    --btn-bg:#CFD92B; --btn-fg:#122635;
+    --shadow:0 1px 2px rgba(18,38,53,.06), 0 12px 32px -18px rgba(18,38,53,.40);
+    --badge-bg:rgba(207,217,43,.12); --badge-ring:rgba(61,84,39,.28);
+    --badge-halo:rgba(207,217,43,.08); --badge-dot-halo:rgba(207,217,43,.35);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    overflow-wrap: break-word;
+  }
+  img, svg { max-width: 100%; display: block; }
+  a { color: inherit; }
+
+  /* ---------- primitives ---------- */
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 28px; }
+  .narrow { max-width: 720px; margin-left: auto; margin-right: auto; }
+
+  h1, h2, h3 {
+    font-family: var(--display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.06;
+    text-wrap: balance;
+    margin: 0;
+    color: var(--ink);
+  }
+  h1 { font-size: clamp(40px, 7vw, 72px); }
+  h2 { font-size: clamp(28px, 4.2vw, 44px); }
+  h3 { font-size: 21px; letter-spacing: -0.01em; line-height: 1.22; }
+  p  { margin: 0; }
+
+  .tag {
+    display: block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brand-ink);
+  }
+  .tag-c { color: var(--accent-ink); }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 600;
+    /* line-height:1 makes the label's box exactly 1em — the same height as the
+       arrow — so the two align by construction instead of being centred against
+       a 24px line box, which left the icon on a half-pixel. Padding is raised to
+       hold the previous button height. */
+    line-height: 1;
+    padding: 20px 30px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background: var(--btn-bg);
+    color: var(--btn-fg);
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform .18s ease, box-shadow .18s ease;
+    white-space: nowrap;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  /* SVG, not a glyph: the → character is single-weight and ignores the
+     button's 600 weight, so it always looked thinner than the label. */
+  .btn .arw { width: 1em; height: 1em; flex: none; transition: transform .18s ease; }
+  .btn:hover .arw { transform: translateX(4px); }
+  .btn-light { background: var(--on-brand); color: var(--brand); }
+
+  .microcopy {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.07em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+  }
+
+  /* ---------- countdown bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 40;
+    background: var(--brand);
+    color: var(--on-brand);
+  }
+  .topbar .wrap {
+    display: flex; align-items: center; justify-content: center;
+    gap: 14px; min-height: 46px;
+  }
+  /* line-height:1 on both sides so each box hugs its glyphs — with the
+     inherited 1.6 the boxes are loose and centering them does not optically
+     centre the text, which left the digits sitting low against the label */
+  .topbar .cd-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .16em;
+    text-transform: uppercase; opacity: .7;
+    line-height: 1;
+  }
+  .cd { display: flex; align-items: center; gap: 5px; font-family: var(--mono); line-height: 1; }
+  .cd .seg { font-size: 14px; font-weight: 500; font-variant-numeric: tabular-nums; line-height: 1; }
+  .cd .seg span { font-size: 9px; opacity: .55; margin-left: 1px; }
+  .cd .colon { opacity: .3; line-height: 1; }
+
+  /* ---------- event badge ---------- */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px 10px 14px;
+    border: 1px solid var(--badge-ring);
+    border-radius: 999px;
+    background: var(--badge-bg);
+    box-shadow: 0 0 0 5px var(--badge-halo);
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .badge .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px var(--badge-dot-halo);
+    flex: none;
+    animation: badgeBlink 1.6s ease-in-out infinite;
+  }
+  @keyframes badgeBlink { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
+  .badge-label { color: var(--brand-ink); }
+  .badge-date { color: var(--ink); font-weight: 600; }
+
+  /* ---------- hero ---------- */
+  .hero {
+    padding: 104px 0 96px;
+    text-align: center;
+  }
+  .hero .inner { max-width: 780px; margin: 0 auto; }
+  .hero h1 { margin: 22px 0 26px; }
+  .hero h1 .mark-green { color: var(--brand-ink); font-style: italic; }
+  .hero .lede {
+    font-size: 18px; color: var(--ink-soft);
+    max-width: 50ch; margin: 0 auto 38px;
+  }
+  .hero .microcopy { margin-top: 18px; }
+
+  /* ---------- stat band ---------- */
+  .band {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--paper-2);
+  }
+  .band .wrap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding-left: 0; padding-right: 0;
+  }
+  .band .cell {
+    padding: 44px 32px;
+    text-align: center;
+    border-left: 1px solid var(--line-soft);
+  }
+  .band .cell:first-child { border-left: 0; }
+  .band .fig {
+    font-family: var(--display);
+    font-size: clamp(30px, 3.6vw, 42px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .band .cap {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .11em;
+    text-transform: uppercase; color: var(--ink-faint);
+    margin-top: 14px;
+  }
+
+  /* ---------- sections ---------- */
+  .sec { padding: 100px 0; }
+  .sec-alt { background: var(--paper-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  /* the FAQ ends in a rule, so it hands off directly to the closing CTA
+     instead of stacking two sets of section padding */
+  .sec-handoff { padding-bottom: 0; }
+  .head { max-width: 600px; margin-bottom: 52px; }
+  .head h2 { margin: 16px 0 16px; }
+  .head p { color: var(--ink-soft); font-size: 16px; max-width: 50ch; }
+  .head-c { margin-left: auto; margin-right: auto; text-align: center; }
+  .head-c p { margin-left: auto; margin-right: auto; }
+
+  /* ---------- curriculum lead ---------- */
+  .lead-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: center; margin-bottom: 56px;
+  }
+  .lead-grid .head { margin-bottom: 0; max-width: none; }
+
+  /* ---------- live call panel ---------- */
+  .panel {
+    background: var(--brand);
+    color: var(--on-brand);
+    border-radius: 6px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+  }
+  .panel-head {
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--mono); font-size: 10px; letter-spacing: .12em;
+    text-transform: uppercase; opacity: .68;
+    padding-bottom: 16px; border-bottom: 1px solid rgba(239,243,233,.16);
+  }
+  .panel-head .rec { display: inline-flex; align-items: center; gap: 7px; }
+  .panel-head .rec::before {
+    content: ""; width: 5px; height: 5px; border-radius: 50%;
+    background: var(--accent); animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.25} }
+  .said {
+    font-family: var(--display); font-size: 21px; line-height: 1.32;
+    padding: 24px 0 22px;
+  }
+  .said .who {
+    display: block; font-family: var(--mono); font-size: 10px;
+    letter-spacing: .12em; text-transform: uppercase; opacity: .6;
+    margin-bottom: 10px;
+  }
+  .steps { display: flex; flex-direction: column; gap: 1px; background: rgba(239,243,233,.14); border-radius: 3px; overflow: hidden; }
+  .step {
+    background: var(--brand);
+    display: grid; grid-template-columns: 24px 1fr auto;
+    gap: 12px; align-items: center;
+    padding: 14px 15px;
+    font-family: var(--mono); font-size: 11.5px;
+    opacity: 0; transform: translateY(6px);
+    animation: revealStep .5s ease forwards;
+  }
+  .step:nth-child(1) { animation-delay: .3s; }
+  .step:nth-child(2) { animation-delay: 1.1s; }
+  .step:nth-child(3) { animation-delay: 1.9s; }
+  @keyframes revealStep { to { opacity: 1; transform: none; } }
+  .step .n { opacity: .45; }
+  .step .lbl { text-transform: uppercase; letter-spacing: .1em; }
+  .step .val { color: var(--on-brand-tick); text-align: right; }
+  .panel-foot {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 18px; font-family: var(--mono); font-size: 10.5px;
+    letter-spacing: .12em; text-transform: uppercase;
+    opacity: 0; animation: revealStep .5s ease 2.7s forwards;
+  }
+  .panel-foot .won {
+    background: var(--on-brand-tick); color: var(--brand);
+    padding: 5px 11px; border-radius: 2px; font-weight: 600;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .step, .panel-foot { opacity: 1; transform: none; animation: none; }
+    .panel-head .rec::before, .badge .dot { animation: none; }
+    * { transition-duration: .001ms !important; }
+  }
+
+  /* ---------- module cards ---------- */
+  .modules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .mod {
+    background: var(--card); border: 1px solid var(--line-soft);
+    border-radius: 8px; padding: 28px 26px 30px;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .mod .idx {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent-ink);
+  }
+  .mod p { color: var(--ink-soft); font-size: 14.5px; margin-top: -2px; }
+
+  /* ---------- fit / not fit ---------- */
+  .fit { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .fit-col { border-radius: 8px; padding: 34px 32px; }
+  .fit-yes { background: var(--brand); color: var(--on-brand); }
+  .fit-no  { background: var(--card); border: 1px solid var(--line-soft); }
+  .fit-col h3 { font-size: 24px; margin-bottom: 24px; }
+  .fit-yes h3 { color: var(--on-brand); }
+  .fit-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
+  .fit-col li {
+    display: grid; grid-template-columns: 20px 1fr; gap: 14px;
+    font-size: 15px; align-items: start; line-height: 1.5;
+  }
+  .fit-col li .ic { width: 20px; height: 20px; margin-top: 2px; flex: none; }
+  .fit-col li .ic svg { width: 20px; height: 20px; }
+  .fit-yes li { color: rgba(239,243,233,.88); }
+  .fit-yes li .ic { color: var(--on-brand-tick); }
+  .fit-no li { color: var(--ink-soft); }
+  .fit-no li .ic { color: var(--ink-faint); }
+
+  /* ---------- host ---------- */
+  .host { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 60px; align-items: start; }
+  .portrait {
+    aspect-ratio: 4 / 5; border-radius: 8px;
+    background: linear-gradient(150deg, var(--brand) 0%, var(--brand-2) 60%, var(--brand-ink) 100%);
+    display: flex; align-items: flex-end; padding: 22px;
+    position: relative; overflow: hidden;
+  }
+  .portrait .initials {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    font-family: var(--display); font-size: 96px; color: rgba(239,243,233,.18);
+    letter-spacing: -0.03em;
+  }
+  .portrait .plate {
+    position: relative; background: var(--paper); color: var(--ink);
+    border-radius: 4px; padding: 13px 16px; width: 100%;
+  }
+  .portrait .plate .nm { font-family: var(--display); font-size: 17px; }
+  .portrait .plate .rl { font-family: var(--mono); font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-faint); margin-top: 2px; }
+  .host-body h2 { margin: 16px 0 22px; }
+  /* class, not `.host-body p` — that type selector outranked `.pull` and was
+     flattening the pull quote to body size and colour */
+  .host-body .bio { color: var(--ink-soft); font-size: 16px; }
+  .pull {
+    font-family: var(--display); font-size: 24px; line-height: 1.34;
+    color: var(--ink); border-left: 2px solid var(--accent);
+    padding: 4px 0 4px 22px; margin: 30px 0;
+  }
+  .creds { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding-top: 28px; border-top: 1px solid var(--line); }
+  .creds .fig { font-family: var(--display); font-size: 28px; line-height: 1; }
+  .creds .cap { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); margin-top: 8px; }
+
+  /* ---------- ledger ---------- */
+  .ledger { background: var(--card); border: 1px solid var(--line-soft); border-radius: 8px; padding: 10px 30px 30px; }
+  .lrow {
+    display: grid; grid-template-columns: 1fr auto; gap: 24px;
+    align-items: baseline; padding: 22px 0; border-bottom: 1px solid var(--line-soft);
+  }
+  .lrow .nm { font-size: 15.5px; font-weight: 600; }
+  .lrow .ds { font-size: 13.5px; color: var(--ink-soft); margin-top: 3px; }
+  .lrow .vl { font-family: var(--mono); font-size: 13px; color: var(--ink-faint); text-decoration: line-through; font-variant-numeric: tabular-nums; }
+  .ltotal { display: flex; justify-content: space-between; align-items: baseline; padding-top: 24px; }
+  .ltotal .lbl { font-family: var(--mono); font-size: 10.5px; letter-spacing: .13em; text-transform: uppercase; color: var(--ink-faint); }
+  .ltotal .amt { display: flex; align-items: baseline; gap: 14px; }
+  .ltotal .old { font-family: var(--mono); font-size: 14px; color: var(--ink-faint); text-decoration: line-through; }
+  .ltotal .new { font-family: var(--display); font-size: 34px; letter-spacing: -0.02em; color: var(--brand-ink); }
+
+  /* ---------- testimonials ---------- */
+  .quotes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .q {
+    background: var(--card); border: 1px solid var(--line-soft);
+    border-radius: 8px; padding: 38px 36px 32px;
+    display: flex; flex-direction: column;
+  }
+  .q blockquote {
+    margin: 0 0 30px;
+    font-family: var(--display); font-size: 21px; line-height: 1.48;
+    max-width: 40ch;
+  }
+  .q .by { margin-top: auto; padding-top: 22px; border-top: 1px solid var(--line-soft); }
+  .q .by .nm { font-size: 14px; font-weight: 600; }
+  .q .by .rl { display: block; font-family: var(--mono); font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); margin-top: 4px; }
+
+  /* ---------- urgency ---------- */
+  .urgent { background: var(--brand); color: var(--on-brand); padding: 92px 0; text-align: center; }
+  .urgent h2 { color: var(--on-brand); margin: 16px auto 32px; max-width: 15ch; }
+  .urgent .tag { color: var(--on-brand-tick); }
+  .meter { max-width: 300px; margin: 40px auto 0; }
+  .meter .track { height: 3px; background: rgba(239,243,233,.2); border-radius: 2px; overflow: hidden; }
+  .meter .fill { height: 100%; width: 87.6%; background: var(--accent); }
+  .meter .cap { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; margin-top: 12px; opacity: .7; }
+
+  /* ---------- faq ---------- */
+  .faq { border-top: 1px solid var(--line); }
+  .fitem { border-bottom: 1px solid var(--line); }
+  .fq {
+    width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 24px;
+    background: none; border: 0; color: var(--ink); font-family: var(--display);
+    font-size: 20px; letter-spacing: -0.01em; text-align: left; padding: 26px 0; cursor: pointer;
+  }
+  .fq:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .fq .sign { font-family: var(--mono); font-size: 15px; color: var(--brand-ink); transition: transform .28s ease; flex: none; }
+  .fitem.open .fq .sign { transform: rotate(45deg); }
+  .fa { max-height: 0; overflow: hidden; transition: max-height .32s ease; }
+  .fa p { padding: 0 60px 28px 0; color: var(--ink-soft); font-size: 15px; max-width: 62ch; }
+
+  /* ---------- final ---------- */
+  .final { padding: 112px 0; text-align: center; }
+  .final h2 { margin: 18px auto 22px; max-width: 15ch; }
+  /* class, not `.final p` — a type selector here outranks `.microcopy` and was
+     overriding both its size and its margin */
+  .final .sub { color: var(--ink-soft); max-width: 42ch; margin: 0 auto 36px; font-size: 16px; }
+  .final .microcopy { margin: 20px auto 0; }
+
+  /* ---------- registration popup trigger ---------- */
+  /* the CTAs are now <button>, not <a> — they no longer navigate anywhere,
+     they open the Tally popup, so a real button is the correct element.
+     Reset the UA button chrome; .btn's own rules (background, border,
+     padding) already override the rest. */
+  /* NOT `font: inherit` — that resets the whole shorthand, including
+     line-height, silently undoing .btn's line-height:1 (the fix that keeps
+     the arrow icon pixel-aligned with the label) back to the inherited 1.6. */
+  button.btn {
+    appearance: none;
+    -webkit-appearance: none;
+    margin: 0;
+    text-align: inherit;
+  }
+  button.btn::-moz-focus-inner { border: 0; padding: 0; }
+
+  /* shown briefly on click when TALLY_FORM_ID hasn't been set yet, so a
+     click always gives feedback instead of silently doing nothing */
+  .tally-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 28px;
+    z-index: 80;
+    transform: translate(-50%, 12px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease;
+    background: var(--brand);
+    color: var(--on-brand);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    padding: 12px 20px;
+    border-radius: 999px;
+    box-shadow: var(--shadow);
+    white-space: nowrap;
+    max-width: calc(100vw - 40px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .tally-toast.show { opacity: 1; transform: translate(-50%, 0); }
+  @media (prefers-reduced-motion: reduce) {
+    .tally-toast { transition: opacity .001ms linear; }
+  }
+
+  /* ---------- footer ---------- */
+  footer { border-top: 1px solid var(--line); background: var(--paper-2); padding: 60px 0 44px; }
+  .wordmark {
+    font-family: var(--display); font-size: clamp(56px, 14vw, 152px);
+    line-height: .9; letter-spacing: -0.04em; text-align: center;
+    color: var(--ink); opacity: .9; margin: 10px 0 38px;
+  }
+  .wordmark em { font-style: italic; color: var(--brand-ink); }
+  .fmeta { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding-top: 26px; border-top: 1px solid var(--line); }
+  .fmeta span { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
+  .disc { font-size: 11.5px; line-height: 1.65; color: var(--ink-faint); max-width: 76ch; margin: 28px auto 0; text-align: center; }
+
+  /* ---------- mobile ---------- */
+  .mobile-cta {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; display: none;
+    background: var(--paper); border-top: 1px solid var(--line);
+    /* keep the button clear of the iPhone home indicator */
+    padding: 12px 20px calc(12px + env(safe-area-inset-bottom, 0px));
+  }
+  .mobile-cta .btn { width: 100%; justify-content: center; }
+
+  /* ============ tablet ============ */
+  @media (max-width: 900px) {
+    .lead-grid { grid-template-columns: 1fr; gap: 40px; }
+    .host { grid-template-columns: 1fr; gap: 36px; }
+    .portrait { aspect-ratio: 16 / 10; }
+    .modules, .quotes { grid-template-columns: 1fr; }
+    .band .wrap { grid-template-columns: 1fr; }
+    .band .cell { padding: 30px 28px; border-left: 0; border-top: 1px solid var(--line-soft); }
+    .band .cell:first-child { border-top: 0; }
+    .hero { padding: 56px 0 68px; }
+    .sec { padding: 68px 0; }
+    .sec-handoff { padding-bottom: 0; }
+    .final { padding: 76px 0; }
+    .fit { grid-template-columns: 1fr; }
+    .mobile-cta { display: block; }
+    footer { padding-bottom: 110px; }
+    .fa p { padding-right: 0; }
+  }
+
+  /* ============ phone ============ =========================================
+     Sizing follows the reference: body copy stays readable (15px+, loose
+     leading), cards keep generous internal padding, and the page buys room by
+     stacking and by using vertical rhythm — not by shrinking text. Section
+     headers centre, and primary CTAs go full-width as proper tap targets.
+     ========================================================================= */
+  @media (max-width: 640px) {
+    .wrap { padding: 0 20px; }
+    h1 { font-size: clamp(33px, 8.8vw, 44px); line-height: 1.1; }
+    h2 { font-size: clamp(27px, 7vw, 34px); line-height: 1.12; }
+    h3 { font-size: 20px; }
+
+    .topbar .wrap { gap: 11px; min-height: 44px; }
+    .topbar .cd-label { font-size: 9.5px; letter-spacing: .12em; }
+    .cd { gap: 4px; }
+    .cd .seg { font-size: 13.5px; }
+
+    /* the badge is nowrap, so it must be sized to fit or it scrolls the page */
+    .badge { font-size: 10px; letter-spacing: .09em; padding: 9px 15px 9px 12px; gap: 7px; }
+
+    /* full-width primary actions, matching the reference's button treatment */
+    .hero .btn, .final .btn, .urgent .btn { display: flex; width: 100%; justify-content: center; }
+    .btn { padding: 23px 26px; font-size: 15.5px; }
+
+    .hero { padding: 56px 0 60px; }
+    .hero h1 { margin: 20px 0 24px; }
+    .hero .lede { font-size: 17px; line-height: 1.6; margin-bottom: 34px; }
+
+    .sec { padding: 66px 0; }
+    .sec-handoff { padding-bottom: 0; }
+    .final { padding: 72px 0; }
+    .urgent { padding: 72px 0; }
+
+    /* centre section headers on phone, as the reference does throughout */
+    .head { margin-bottom: 40px; text-align: center; margin-left: auto; margin-right: auto; }
+    .head p { margin-left: auto; margin-right: auto; font-size: 15.5px; line-height: 1.65; }
+
+    .band .cell { padding: 32px 24px; }
+    .band .fig { font-size: 32px; }
+    .band .cap { margin-top: 12px; font-size: 10px; }
+
+    .panel { padding: 20px; }
+    .said { font-size: 20px; padding: 22px 0 20px; }
+    .step { grid-template-columns: 22px 1fr auto; gap: 10px; padding: 14px 13px; font-size: 11px; }
+
+    .modules, .quotes { gap: 16px; }
+    .mod { padding: 28px 24px 30px; gap: 13px; }
+    .mod p { font-size: 15px; line-height: 1.65; }
+
+    .fit { gap: 16px; }
+    .fit-col { padding: 32px 26px; }
+    .fit-col h3 { font-size: 23px; margin-bottom: 24px; }
+    .fit-col ul { gap: 18px; }
+    .fit-col li { font-size: 15px; line-height: 1.6; gap: 14px; }
+
+    .host-body .bio { font-size: 15.5px; line-height: 1.7; }
+    .pull { font-size: 22px; padding-left: 20px; margin: 28px 0; }
+    .creds { grid-template-columns: 1fr; gap: 20px; padding-top: 26px; }
+
+    .ledger { padding: 8px 24px 28px; }
+    .lrow { padding: 22px 0; gap: 18px; }
+    .lrow .nm { font-size: 15.5px; }
+    .lrow .ds { font-size: 14px; line-height: 1.55; margin-top: 5px; }
+    .ltotal { padding-top: 24px; }
+    .ltotal .new { font-size: 32px; }
+
+    .q { padding: 32px 26px 28px; }
+    .q blockquote { font-size: 20px; line-height: 1.5; margin-bottom: 26px; }
+    .q .by { padding-top: 20px; }
+
+    .fq { font-size: 19px; padding: 24px 0; gap: 18px; }
+    .fa p { font-size: 15px; line-height: 1.65; padding-bottom: 26px; }
+
+    .wordmark { margin: 6px 0 32px; }
+    .fmeta { flex-direction: column; gap: 8px; padding-top: 24px; }
+    footer { padding: 50px 0 108px; }
+    .disc { font-size: 11.5px; margin-top: 24px; }
+  }
+
+  /* ============ small phone ============
+     Only the gutter and the few genuinely width-bound items tighten here —
+     body copy is deliberately left alone so it stays readable. */
+  @media (max-width: 400px) {
+    .wrap { padding: 0 18px; }
+    .badge { font-size: 9.5px; padding: 9px 13px 9px 11px; gap: 6px; }
+    .topbar .cd-label { font-size: 9px; letter-spacing: .1em; }
+    .cd .seg { font-size: 13px; }
+    .band .fig { font-size: 29px; }
+    .said { font-size: 19px; }
+    .step { font-size: 10.5px; gap: 9px; padding: 13px 11px; }
+    .fit-col { padding: 28px 22px; }
+    .q { padding: 28px 22px 26px; }
+    .ledger { padding: 8px 20px 26px; }
+  }

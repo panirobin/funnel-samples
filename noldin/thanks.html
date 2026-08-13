@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="de">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Du bist dabei | Das Vollgas-System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- seiten-eigen: Bestätigung ---------- */
+
+  .confirm-hero { padding: 72px 0 20px; text-align: center; }
+  .confirm-hero .inner { max-width: 620px; margin: 0 auto; }
+  .confirm-hero h1 { margin: 18px 0 16px; }
+  .confirm-hero .lede { font-size: 17px; color: var(--ink-soft); }
+
+  .steps-wrap { padding: 40px 0 90px; }
+  .steps-wrap .inner { max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+
+  .stepcard {
+    background: var(--card); border: 1px solid var(--line-soft);
+    border-radius: 10px; padding: 30px 32px;
+  }
+  .stepcard .s-head {
+    display: flex; align-items: center; gap: 14px; margin-bottom: 16px;
+  }
+  .stepcard .s-num {
+    width: 30px; height: 30px; border-radius: 50%; flex: none;
+    background: var(--brand); color: var(--on-brand);
+    font-family: var(--mono); font-size: 12px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .stepcard h2 { font-size: 21px; }
+  .stepcard p { color: var(--ink-soft); font-size: 15px; line-height: 1.6; margin-bottom: 18px; }
+  .stepcard .btn-sm-cta {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: var(--sans); font-size: 14px; font-weight: 600;
+    padding: 13px 22px; border-radius: 4px;
+    background: var(--btn-bg); color: var(--btn-fg);
+    text-decoration: none; cursor: pointer; border: none;
+    line-height: 1;
+  }
+  .stepcard .btn-sm-cta:hover { box-shadow: var(--shadow); }
+  .stepcard .btn-sm-cta:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .stepcard .note { margin-top: 12px; font-size: 12.5px; color: var(--ink-faint); }
+  .stepcard .details {
+    margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line-soft);
+    font-size: 13.5px; color: var(--ink-soft); line-height: 1.7;
+  }
+  .stepcard .details b { color: var(--ink); }
+
+  .back-link {
+    display: inline-block; margin: 8px auto 0;
+    font-family: var(--sans); font-size: 13.5px; color: var(--ink-faint);
+    text-decoration: underline; text-underline-offset: 3px;
+  }
+  .back-link:hover { color: var(--ink-soft); }
+  .back-wrap { text-align: center; padding-bottom: 60px; }
+
+  @media (max-width: 640px) {
+    .confirm-hero { padding: 52px 0 16px; }
+    .stepcard { padding: 24px 22px; }
+    .stepcard h2 { font-size: 19px; }
+  }
+</style>
+
+<header class="confirm-hero">
+  <div class="wrap">
+    <div class="inner">
+      <span class="tag">// Anmeldung bestätigt</span>
+      <h1>Du bist dabei.</h1>
+      <p class="lede">Drei Dinge vor Donnerstag — zehn Minuten jetzt, damit später nichts untergeht.</p>
+    </div>
+  </div>
+</header>
+
+<section class="steps-wrap">
+  <div class="wrap">
+    <div class="inner">
+
+      <div class="stepcard">
+        <div class="s-head">
+          <span class="s-num">1</span>
+          <h2>Trag es dir ein</h2>
+        </div>
+        <p>Ein Klick, damit der Termin nicht unter allem anderen dieser Woche verschwindet.</p>
+        <button type="button" class="btn-sm-cta" id="add-to-calendar">
+          In den Kalender eintragen
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <p class="note">Lädt eine .ics-Datei, die mit Google Kalender, Outlook und Apple Kalender funktioniert.</p>
+        <div class="details">
+          <b>Donnerstag, 20. August &middot; 19:00 Uhr</b> — Das Vollgas-System, Live-Workshop. Den Zugangslink bekommst du am selben Tag per E-Mail.
+        </div>
+      </div>
+
+      <div class="stepcard">
+        <div class="s-head">
+          <span class="s-num">2</span>
+          <h2>Achte auf den Zugangslink</h2>
+        </div>
+        <p>Er kommt von derselben Adresse, die deine Anmeldung bestätigt hat, etwa eine Stunde vor Beginn. Wenn er bis dahin nicht im Posteingang liegt, schau zuerst in den Spam-Ordner — dort landet er am häufigsten.</p>
+        <div class="details">
+          Hier musst du nichts tun — das läuft automatisch, sobald du angemeldet bist.
+        </div>
+      </div>
+
+      <div class="stepcard">
+        <div class="s-head">
+          <span class="s-num">3</span>
+          <h2>Bring einen echten Fall mit</h2>
+        </div>
+        <p>Der Workshop wirkt an einem echten Fall, nicht an einem gedachten. Nimm den, bei dem gerade wieder alles über deinen Schreibtisch läuft — du gehst mit einer Diagnose dafür raus.</p>
+        <div class="details">
+          Wenn du VIP dazugenommen hast, ist das auch der Fall, den du zur schriftlichen Analyse einschickst.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">Vollgas <em>System</em></div>
+    <div class="fmeta">
+      <span>© 2026 — Beispielseite</span>
+      <span>Datenschutz · Impressum · Kontakt</span>
+    </div>
+    <p class="disc">Dies ist eine Demonstrationsseite, die Design und Text für einen Webinar-Funnel zeigt. Gastgeber, Stimmen und Angaben sind beispielhafte Platzhalter und keine Aussagen über eine reale Person, ein reales Unternehmen oder ein reales Produkt.</p>
+  </div>
+</footer>
+
+<div class="back-wrap">
+  <a class="back-link" href="offer.html">Doch noch interessiert? Zum VIP-Ticket zurück →</a>
+</div>
+
+<script>
+  // Der Wrapper liefert den <head>; sicherstellen, dass Handys auf Gerätebreite layouten.
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+
+  // .ics wird im Browser erzeugt — kein Backend, funktioniert offline.
+  (function () {
+    var btn = document.getElementById('add-to-calendar');
+    if (!btn) return;
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function toICSDate(d) {
+      return d.getUTCFullYear() + pad(d.getUTCMonth() + 1) + pad(d.getUTCDate()) +
+        'T' + pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + pad(d.getUTCSeconds()) + 'Z';
+    }
+
+    btn.addEventListener('click', function () {
+      // Nächster Donnerstag, 19 Uhr in der lokalen Zeitzone des Browsers.
+      // EVENT_WEEKDAY und EVENT_HOUR_24 müssen zum Countdown auf index.html passen —
+      // driften sie auseinander, landet der Termin an einem anderen Tag als dem
+      // versprochenen, und es merkt niemand, bis jemand den Workshop verpasst.
+      var start = new Date();
+      start.setDate(start.getDate() + ((4 - start.getDay() + 7) % 7 || 7));
+      start.setHours(19, 0, 0, 0);
+      var end = new Date(start.getTime() + 45 * 60 * 1000);
+      var stamp = toICSDate(new Date());
+
+      var lines = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Das Vollgas-System//Workshop//EN',
+        'CALSCALE:GREGORIAN',
+        'METHOD:PUBLISH',
+        'BEGIN:VEVENT',
+        'UID:noldin-event-' + start.getTime() + '@salesatscale.netlify.app',
+        'DTSTAMP:' + stamp,
+        'DTSTART:' + toICSDate(start),
+        'DTEND:' + toICSDate(end),
+        "SUMMARY:Das Vollgas-System — kostenloser Live-Workshop mit Tim Noldin",
+        'DESCRIPTION:45 Minuten live: die drei Schritte, mit denen dein Team Verantwortung uebernimmt, statt sie zurueckzuschieben. Den Zugangslink bekommst du per E-Mail vor dem Start.',
+        'STATUS:CONFIRMED',
+        'BEGIN:VALARM',
+        'ACTION:DISPLAY',
+        "DESCRIPTION:Das Vollgas-System startet in 30 Minuten",
+        'TRIGGER:-PT30M',
+        'END:VALARM',
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ];
+
+      var blob = new Blob([lines.join('\r\n')], { type: 'text/calendar;charset=utf-8' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'noldin-event.ics';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    });
+  })();
+</script>

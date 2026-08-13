@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="de">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Einmaliges Angebot — VIP-Ticket | Das Vollgas-System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- seiten-eigen: Angebot ---------- */
+
+  /* Urgency-Leiste — Limette mit Navy-Text, wie die CTAs auf noldin-consulting.com */
+  .alertbar {
+    position: sticky; top: 0; z-index: 40;
+    background: var(--accent);
+    color: #122635;
+  }
+  .alertbar .wrap {
+    display: flex; align-items: center; justify-content: center;
+    gap: 10px; min-height: 46px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
+    text-transform: uppercase; line-height: 1; text-align: center;
+  }
+  .alertbar .pip {
+    width: 7px; height: 7px; border-radius: 50%; flex: none;
+    background: #122635;
+    animation: alertBlink 1.6s ease-in-out infinite;
+  }
+  @keyframes alertBlink { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
+
+  /* Fortschritt — "Schritt 2 von 2" */
+  .progress { padding: 34px 0 0; }
+  .progress .inner { max-width: 460px; margin: 0 auto; }
+  .progress .meta {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--mono); font-size: 10px; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px;
+  }
+  .progress .track {
+    height: 4px; border-radius: 2px; overflow: hidden;
+    background: var(--line);
+  }
+  .progress .fill {
+    height: 100%; width: 90%; border-radius: 2px;
+    background: var(--brand-ink);
+  }
+
+  .offer-hero { padding: 40px 0 64px; text-align: center; }
+  .offer-hero .inner { max-width: 760px; margin: 0 auto; }
+  .offer-hero h1 { margin: 20px 0 22px; }
+  .offer-hero h1 em { font-style: italic; color: var(--brand-ink); }
+  .offer-hero .lede {
+    font-size: 18px; color: var(--ink-soft);
+    max-width: 52ch; margin: 0 auto;
+  }
+
+  /* CTA-Block: Button plus leiser Nein-danke-Link darunter, mehrfach auf der Seite */
+  .cta-block { text-align: center; margin: 40px auto 0; }
+  .cta-block .price-note {
+    margin-top: 14px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .07em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+  .decline {
+    display: inline-block; margin-top: 18px;
+    font-family: var(--sans); font-size: 14px;
+    color: var(--ink-faint); text-decoration: underline;
+    text-underline-offset: 3px; text-decoration-thickness: 1px;
+  }
+  .decline:hover { color: var(--ink-soft); }
+  .decline:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  /* Bonus-Zeilen — abwechselnd Medien-/Textspalte */
+  .bonus { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .bonus + .bonus { margin-top: 56px; }
+  .bonus:nth-child(even) .bonus-media { order: 2; }
+  .bonus .kicker {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent-ink); margin-bottom: 12px;
+  }
+  .bonus h3 { font-size: 25px; margin-bottom: 14px; }
+  .bonus p { color: var(--ink-soft); font-size: 15.5px; line-height: 1.65; }
+  .bonus .worth {
+    display: inline-block; margin-top: 16px;
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--brand-ink);
+    border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px;
+  }
+  .bonus-media {
+    background: var(--brand); color: var(--on-brand);
+    border-radius: 10px; padding: 26px; min-height: 210px;
+    display: flex; flex-direction: column; justify-content: center;
+    box-shadow: var(--shadow);
+  }
+  .bonus-media .m-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .12em;
+    text-transform: uppercase; opacity: .6; margin-bottom: 14px;
+  }
+  .bonus-media .m-row {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 14px; padding: 11px 0;
+    border-bottom: 1px solid rgba(239,243,233,.14);
+    font-family: var(--mono); font-size: 11.5px;
+  }
+  .bonus-media .m-row:last-child { border-bottom: 0; }
+  .bonus-media .m-row .v { color: var(--on-brand-tick); }
+  .bonus-media .m-big {
+    font-family: var(--display); font-size: 40px; line-height: 1;
+    letter-spacing: -0.02em; margin-bottom: 6px;
+  }
+  .bonus-media .m-sub {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .1em;
+    text-transform: uppercase; opacity: .65;
+  }
+
+  /* Ticket-Vergleich — freier Platz gegen VIP, in unserer Palette */
+  .tickets { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+  .ticket { border-radius: 10px; padding: 32px 30px; }
+  .ticket-free { background: var(--card); border: 1px solid var(--line-soft); }
+  .ticket-vip {
+    background: var(--brand); color: var(--on-brand);
+    border: 1px solid var(--brand);
+    box-shadow: var(--shadow);
+    position: relative;
+  }
+  .ticket .t-name {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+    text-transform: uppercase; margin-bottom: 12px;
+  }
+  .ticket-free .t-name { color: var(--ink-faint); }
+  .ticket-vip .t-name { color: var(--on-brand-tick); }
+  .ticket .t-price {
+    font-family: var(--display); font-size: 44px; line-height: 1;
+    letter-spacing: -0.02em; margin-bottom: 6px;
+  }
+  .ticket-vip .t-price { color: var(--on-brand); }
+  .ticket .t-cap {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .1em;
+    text-transform: uppercase; margin-bottom: 24px;
+  }
+  .ticket-free .t-cap { color: var(--ink-faint); }
+  .ticket-vip .t-cap { color: rgba(239,243,233,.6); }
+  .ticket ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+  .ticket li {
+    display: grid; grid-template-columns: 20px 1fr; gap: 13px;
+    align-items: start; font-size: 14.5px; line-height: 1.55;
+  }
+  .ticket li .ic { width: 20px; height: 20px; margin-top: 1px; flex: none; }
+  .ticket li .ic svg { width: 20px; height: 20px; }
+  .ticket-free li { color: var(--ink-soft); }
+  .ticket-free li .ic { color: var(--ink-faint); }
+  .ticket-vip li { color: rgba(239,243,233,.9); }
+  .ticket-vip li .ic { color: var(--on-brand-tick); }
+  .ticket .t-foot {
+    margin-top: 26px; padding-top: 20px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  .ticket-free .t-foot { border-top: 1px solid var(--line-soft); color: var(--ink-faint); }
+  .ticket-vip .t-foot { border-top: 1px solid rgba(239,243,233,.18); color: rgba(239,243,233,.65); }
+  .ticket-vip .flag {
+    position: absolute; top: -1px; right: 24px;
+    background: var(--accent); color: #122635;
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: .12em;
+    text-transform: uppercase; padding: 6px 11px;
+    border-radius: 0 0 4px 4px;
+  }
+
+  /* guarantee */
+  .guarantee { text-align: center; max-width: 620px; margin: 0 auto; }
+  .seal {
+    width: 92px; height: 92px; margin: 0 auto 26px;
+    border-radius: 50%; border: 2px solid var(--brand-ink);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: var(--brand-ink);
+  }
+  .seal .n { font-family: var(--display); font-size: 30px; line-height: 1; }
+  .seal .d {
+    font-family: var(--mono); font-size: 8.5px; letter-spacing: .14em;
+    text-transform: uppercase; margin-top: 3px;
+  }
+  .guarantee p { color: var(--ink-soft); font-size: 16px; line-height: 1.7; }
+
+  @media (max-width: 900px) {
+    .bonus { grid-template-columns: 1fr; gap: 26px; }
+    .bonus:nth-child(even) .bonus-media { order: 0; }
+    .bonus + .bonus { margin-top: 44px; }
+    .tickets { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .alertbar .wrap { font-size: 10px; letter-spacing: .08em; min-height: 44px; gap: 8px; }
+    .progress { padding-top: 26px; }
+    .offer-hero { padding: 30px 0 48px; }
+    .offer-hero .lede { font-size: 17px; }
+    .cta-block .btn, .guarantee .btn { display: flex; width: 100%; justify-content: center; }
+    .bonus h3 { font-size: 22px; }
+    .bonus-media { padding: 22px; min-height: 0; }
+    .bonus-media .m-big { font-size: 34px; }
+    .ticket { padding: 28px 24px; }
+    .ticket .t-price { font-size: 38px; }
+  }
+  @media (max-width: 400px) {
+    .alertbar .wrap { font-size: 9px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .alertbar .pip { animation: none; }
+  }
+</style>
+
+<div class="alertbar">
+  <div class="wrap">
+    <span class="pip" aria-hidden="true"></span>
+    <span>Moment — dein Platz ist noch nicht fertig</span>
+  </div>
+</div>
+
+<div class="progress">
+  <div class="wrap">
+    <div class="inner">
+      <div class="meta"><span>Schritt 2 von 2</span><span>Fast geschafft</span></div>
+      <div class="track"><div class="fill"></div></div>
+    </div>
+  </div>
+</div>
+
+<header class="offer-hero">
+  <div class="wrap">
+    <div class="inner">
+      <span class="tag tag-c">// Einmaliges Angebot · nur auf dieser Seite</span>
+      <h1>Dein Platz steht. Jetzt <em>nimm ihn mit.</em></h1>
+      <p class="lede">Du bist für Donnerstag angemeldet. Bevor du weitergehst: Es gibt eine Variante, in der du die drei Schritte nicht nur zusiehst, sondern sie an deinem eigenen Betrieb durchgespielt bekommst.</p>
+    </div>
+  </div>
+</header>
+
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="head head-c">
+      <span class="tag">// Was dazukommt</span>
+      <h2>Drei Dinge, die im freien Platz nicht drin sind.</h2>
+      <p>Der Workshop zeigt die Reihenfolge. VIP ist der Teil, in dem sie auf deine Leute, deine Rollen und deinen Montagmorgen angewendet wird.</p>
+    </div>
+
+    <div class="bonus">
+      <div class="bonus-media">
+        <div class="m-label">VIP-Runde — 45 Min, direkt im Anschluss</div>
+        <div class="m-row"><span>Fall 01</span><span class="v">Meisterin fragt alles ab</span></div>
+        <div class="m-row"><span>Fall 02</span><span class="v">Regel nach 3 Wochen tot</span></div>
+        <div class="m-row"><span>Fall 03</span><span class="v">Nachfolger im Familienbetrieb</span></div>
+        <div class="m-row"><span>Plätze</span><span class="v">begrenzt auf 40</span></div>
+      </div>
+      <div>
+        <div class="kicker">Bonus 01</div>
+        <h3>Die VIP-Runde direkt im Anschluss</h3>
+        <p>Der Hauptraum schließt, der VIP-Raum geht auf. Vierzig Geschäftsführer, fünfundvierzig Minuten, und Tim nimmt echte Fälle live auseinander — auch die unangenehmen, die man ungern vor 400 Leuten erzählt. Dieser Teil wird für die öffentliche Aufzeichnung nicht mitgeschnitten.</p>
+        <span class="worth">Einzeln nicht buchbar</span>
+      </div>
+    </div>
+
+    <div class="bonus">
+      <div class="bonus-media">
+        <div class="m-big">40</div>
+        <div class="m-sub">Situationen, wörtlich ausformuliert</div>
+        <div class="m-row" style="margin-top:18px"><span>Rückfragen abwehren</span><span class="v">12 Sätze</span></div>
+        <div class="m-row"><span>Aufgaben übergeben</span><span class="v">10 Sätze</span></div>
+        <div class="m-row"><span>Regel eingefordert</span><span class="v">11 Sätze</span></div>
+        <div class="m-row"><span>Konflikt im Team</span><span class="v">7 Sätze</span></div>
+      </div>
+      <div>
+        <div class="kicker">Bonus 02</div>
+        <h3>Der Formulierungs-Ordner</h3>
+        <p>Vierzig Situationen aus dem Führungsalltag, jede einzelne Wort für Wort ausgeschrieben — nicht als Prinzip, sondern als Satz, den du so sagen kannst. Sortiert nach Situation, damit du am Dienstagmorgen nicht suchst, sondern nachliest und loslegst.</p>
+        <span class="worth">Wert 180 €</span>
+      </div>
+    </div>
+
+    <div class="bonus">
+      <div class="bonus-media">
+        <div class="m-label">Fall-Analyse — schriftlich, 48 Std.</div>
+        <div class="m-row"><span>Du schickst</span><span class="v">Situation + Wortlaut</span></div>
+        <div class="m-row"><span>Du bekommst</span><span class="v">Ursache + Diagnose</span></div>
+        <div class="m-row"><span>Dazu</span><span class="v">die nächsten drei Sätze</span></div>
+        <div class="m-row"><span>Dauer</span><span class="v">48 Stunden</span></div>
+      </div>
+      <div>
+        <div class="kicker">Bonus 03</div>
+        <h3>Ein Fall, schriftlich auseinandergenommen</h3>
+        <p>Schick eine Situation, die bei dir hängt — den Zusammenhang und das, was tatsächlich gesagt wurde. Du bekommst eine schriftliche Diagnose, die benennt, woran es wirklich liegt, plus die Sätze für das nächste Gespräch. Keine Vorlage. Dein Fall, deine Leute, deine Sprache.</p>
+        <span class="worth">Wert 150 €</span>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <button type="button" class="btn checkout-trigger">Ja — VIP dazunehmen <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="price-note">47 € einmalig · danach nicht mehr zu diesem Preis</p>
+      <a class="decline" href="thanks.html">Nein danke — ich behalte meinen freien Platz</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="head head-c">
+      <span class="tag">// Platz wählen</span>
+      <h2>Was du hast — und was dazukäme.</h2>
+    </div>
+
+    <div class="tickets">
+      <div class="ticket ticket-free">
+        <div class="t-name">Freier Platz — gehört dir schon</div>
+        <div class="t-price">0 €</div>
+        <div class="t-cap">Für Donnerstag bestätigt</div>
+        <ul>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Der 45-Minuten-Live-Workshop</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Die Übergabe-Formulierungen</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Offene Fragerunde im Hauptraum</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Aufzeichnung für sieben Tage</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <span>Keine VIP-Runde</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <span>Kein Formulierungs-Ordner</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <span>Keine schriftliche Fall-Analyse</span>
+          </li>
+        </ul>
+        <div class="t-foot">Nichts zu tun — du bist bereits dabei</div>
+      </div>
+
+      <div class="ticket ticket-vip">
+        <span class="flag">Empfohlen</span>
+        <div class="t-name">VIP-Ticket</div>
+        <div class="t-price">47 €</div>
+        <div class="t-cap">Einmalig · nur auf dieser Seite</div>
+        <ul>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span><strong>Alles aus dem freien Platz</strong></span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>VIP-Runde direkt nach dem Workshop</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Der Formulierungs-Ordner — 40 Situationen</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Ein eigener Fall, schriftlich analysiert</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Rollen- und Regel-Vorlagen zum Ausfüllen</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Aufzeichnung ein Jahr statt sieben Tage</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Sieben Tage Geld-zurück-Garantie</span>
+          </li>
+        </ul>
+        <div class="t-foot">Begrenzt auf 40 Plätze</div>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <button type="button" class="btn checkout-trigger">Ja — VIP dazunehmen <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="price-note">47 € einmalig · danach nicht mehr zu diesem Preis</p>
+      <a class="decline" href="thanks.html">Nein danke — ich behalte meinen freien Platz</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="wrap narrow">
+    <div class="head head-c">
+      <span class="tag">// Die Rechnung</span>
+      <h2>Was zusammenkommt.</h2>
+    </div>
+
+    <div class="ledger">
+      <div class="lrow">
+        <div>
+          <div class="nm">Die VIP-Runde</div>
+          <div class="ds">45 Minuten, 40 Plätze, echte Fälle live</div>
+        </div>
+        <div class="vl">120 €</div>
+      </div>
+      <div class="lrow">
+        <div>
+          <div class="nm">Der Formulierungs-Ordner</div>
+          <div class="ds">40 Situationen, Wort für Wort ausgeschrieben</div>
+        </div>
+        <div class="vl">180 €</div>
+      </div>
+      <div class="lrow">
+        <div>
+          <div class="nm">Schriftliche Fall-Analyse</div>
+          <div class="ds">Ein Fall aus deinem Betrieb, in 48 Stunden zurück</div>
+        </div>
+        <div class="vl">150 €</div>
+      </div>
+      <div class="lrow">
+        <div>
+          <div class="nm">Rollen- und Regel-Vorlagen</div>
+          <div class="ds">Vier Dokumente zum Ausfüllen, nicht zum Lesen</div>
+        </div>
+        <div class="vl">60 €</div>
+      </div>
+
+      <div class="ltotal">
+        <span class="lbl">Gesamtwert</span>
+        <span class="amt">
+          <span class="old">510 €</span>
+          <span class="new">47 €</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <button type="button" class="btn checkout-trigger">Ja — VIP dazunehmen <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="price-note">47 € einmalig · danach nicht mehr zu diesem Preis</p>
+      <a class="decline" href="thanks.html">Nein danke — ich behalte meinen freien Platz</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="guarantee">
+      <div class="seal" aria-hidden="true">
+        <span class="n">7</span>
+        <span class="d">Tage</span>
+      </div>
+      <span class="tag">// Garantie ohne Diskussion</span>
+      <h2 style="margin:14px 0 18px">Bringt es die 47 € nicht, holst du sie dir zurück.</h2>
+      <p>Komm in die VIP-Runde, nimm den Formulierungs-Ordner mit, schick deinen Fall zur Analyse. Wenn du sieben Tage nach dem Workshop findest, dass es das nicht wert war, antworte auf irgendeine E-Mail und bekommst die vollen 47 € zurück. Die Unterlagen behältst du. Kein Formular, keine Begründung, keine Rückfragen.</p>
+      <div class="cta-block">
+        <button type="button" class="btn checkout-trigger">Ja — VIP dazunehmen <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <p class="price-note">47 € einmalig · danach nicht mehr zu diesem Preis</p>
+        <a class="decline" href="thanks.html">Nein danke — ich behalte meinen freien Platz</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-handoff">
+  <div class="wrap narrow">
+    <div class="head head-c">
+      <span class="tag">// Bevor du entscheidest</span>
+      <h2>Berechtigte Fragen</h2>
+    </div>
+
+    <div class="faq" id="faq">
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Ich habe mich gerade kostenlos angemeldet. Warum jetzt etwas Bezahltes?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Der Workshop ist wirklich kostenlos und für sich vollständig — die drei Schritte bekommst du so oder so. VIP gibt es, weil der häufigste Satz danach lautet: &bdquo;Verstanden, aber wie mache ich das bei <em>meinen</em> Leuten?&ldquo; Das braucht Live-Zeit und schriftliche Arbeit, und beides lässt sich einem unbegrenzten Raum nicht schenken.</p></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Kann ich später aufstocken?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Nicht für 47 €. Die VIP-Runde ist auf 40 Plätze begrenzt, weil dort an echten Fällen gearbeitet wird, und diese Seite ist die einzige Stelle mit diesem Preis. Falls danach noch Plätze frei sind, gilt wieder der reguläre Preis.</p></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Was, wenn ich bei der VIP-Runde nicht live dabei sein kann?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Du bekommst trotzdem die Aufzeichnung, den Formulierungs-Ordner, die Vorlagen und deine schriftliche Fall-Analyse — die läuft ohnehin unabhängig, du kannst deinen Fall einschicken, wann es passt. Nur für die Fälle im Raum musst du live dabei sein.</p></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Ist das ein Abo?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Nein. Einmalig 47 €, nichts Wiederkehrendes, keine hinterlegte Karte, von der später noch einmal abgebucht wird.</p></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Was passiert, wenn ich Nein sage?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Nichts Schlimmes. Dein freier Platz ist bestätigt und bleibt bestätigt. Klick auf den Nein-danke-Link und du landest direkt bei deinen Zugangsdaten für Donnerstag.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="tag tag-c">// Letzter Aufruf auf dieser Seite</span>
+    <h2>Vierzig Plätze. Einmal zahlen. Dann ist es weg.</h2>
+    <p class="sub">Dein freier Platz bleibt so oder so. Hier geht es nur darum, ob Donnerstag mit einer Methode endet — oder mit deinen eigenen Fällen, durchgearbeitet.</p>
+    <div class="cta-block" style="margin-top:0">
+      <button type="button" class="btn checkout-trigger">Ja — VIP dazunehmen <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="price-note">47 € einmalig · 7 Tage Geld-zurück-Garantie</p>
+      <a class="decline" href="thanks.html">Nein danke — ich behalte meinen freien Platz</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">Vollgas <em>System</em></div>
+    <div class="fmeta">
+      <span>© 2026 — Beispielseite</span>
+      <span>Datenschutz · Impressum · Kontakt</span>
+    </div>
+    <p class="disc">Dies ist eine Demonstrationsseite, die Design und Text für einen Webinar-Funnel zeigt. Gastgeber, Stimmen, Zahlen, Preise und Ergebnisse sind beispielhafte Platzhalter und keine Aussagen über eine reale Person, ein reales Unternehmen oder ein reales Produkt. Es werden keine Einkommen oder Ergebnisse versprochen.</p>
+  </div>
+</footer>
+
+<div class="tally-toast" id="offer-toast" role="status" aria-live="polite"></div>
+
+<script>
+  /* ════════════════════════════════════════════════════════════════════
+     CHECKOUT-URL — nur dieser eine Wert verbindet die Zahlung.
+
+     Hier die vollständige URL eintragen, auf die die "Ja"-Buttons zeigen
+     sollen, z. B. ein Stripe Payment Link: https://buy.stripe.com/xxxxxxxx
+
+     Solange der Wert fehlt, zeigt ein Klick einen Hinweis statt ins Leere zu laufen.
+     ════════════════════════════════════════════════════════════════════ */
+  const CHECKOUT_URL = "REPLACE_ME";
+
+  (function () {
+    var triggers = document.querySelectorAll('.checkout-trigger');
+    var toast = document.getElementById('offer-toast');
+    var configured = CHECKOUT_URL && !/^REPLACE_ME$/i.test(CHECKOUT_URL);
+    var timer;
+
+    triggers.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (configured) { window.location.href = CHECKOUT_URL; return; }
+        if (!toast) return;
+        toast.textContent = 'Hier würde die Zahlung starten. Klick solange auf "Nein danke" :)';
+        toast.classList.add('show');
+        clearTimeout(timer);
+        timer = setTimeout(function () { toast.classList.remove('show'); }, 3200);
+      });
+    });
+  })();
+
+  // Der Wrapper liefert den <head>; sicherstellen, dass Handys auf Gerätebreite layouten.
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+
+  // FAQ-Akkordeon — gleiches Verhalten wie auf der Landingpage.
+  (function () {
+    var items = document.querySelectorAll('.fitem');
+    items.forEach(function (item) {
+      var btn = item.querySelector('.fq'), panel = item.querySelector('.fa');
+      btn.addEventListener('click', function () {
+        var wasOpen = item.classList.contains('open');
+        items.forEach(function (o) {
+          o.classList.remove('open');
+          o.querySelector('.fq').setAttribute('aria-expanded', 'false');
+          o.querySelector('.fa').style.maxHeight = null;
+        });
+        if (!wasOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+        }
+      });
+    });
+
+    var t;
+    window.addEventListener('resize', function () {
+      clearTimeout(t);
+      t = setTimeout(function () {
+        var open = document.querySelector('.fitem.open .fa');
+        if (open) open.style.maxHeight = open.scrollHeight + 'px';
+      }, 120);
+    });
+  })();
+</script>
