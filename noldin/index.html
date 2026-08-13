@@ -370,16 +370,20 @@
 
 <script>
   /* ════════════════════════════════════════════════════════════════════
-     TALLY-FORM-ID — nur dieser eine Wert muss ersetzt werden.
-
-     Die URL deines Tally-Formulars sieht so aus:  https://tally.so/r/wAbCdE
-     Die ID ist der Teil nach /r/  →  "wAbCdE"
+     TALLY-FORM-ID — das gemeinsame Anmeldeformular, geteilt über alle
+     Samples hinweg (https://tally.so/r/XxAzXz).
 
      Jeder "Kostenlosen Platz sichern"-Button öffnet dieses Formular als Popup —
      keiner scrollt oder navigiert. Solange der Wert fehlt, zeigt ein Klick
      einen kleinen Hinweis, statt still nichts zu tun.
      ════════════════════════════════════════════════════════════════════ */
-  const TALLY_FORM_ID = "REPLACE_ME";
+  const TALLY_FORM_ID = "XxAzXz";
+
+  // Samples teilen sich ein Tally-Formular; ein verstecktes Feld ordnet jede
+  // Anmeldung dem jeweiligen Sample zu. Das Formular braucht dafür ein
+  // verstecktes Feld mit der Field-ID "source" im Tally-Builder — fehlt es,
+  // verwirft Tally den Query-Parameter kommentarlos.
+  var TALLY_SOURCE = "noldin";
 
   (function () {
     var triggers = document.querySelectorAll('.tally-trigger');
@@ -397,7 +401,7 @@
       // Attribute stehen vor dem Laden von embed.js, damit es sie beim ersten
       // DOM-Scan sieht — kein Wettlauf zwischen beiden.
       triggers.forEach(function (btn) {
-        btn.setAttribute('data-tally-open', TALLY_FORM_ID);
+        btn.setAttribute('data-tally-open', TALLY_FORM_ID + '?source=' + encodeURIComponent(TALLY_SOURCE));
         btn.setAttribute('data-tally-layout', 'modal');
         btn.setAttribute('data-tally-width', '560');
         btn.setAttribute('data-tally-on-submit', 'onRegistrationComplete');
