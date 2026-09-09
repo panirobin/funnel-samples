@@ -1,0 +1,414 @@
+<title>5 event ad scripts | Die Meisterwerk-Formel</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- page-specific: ad scripts ---------- */
+
+  .doc-hero { padding: 76px 0 44px; }
+  .doc-hero .inner { max-width: 760px; }
+  .doc-hero h1 { font-size: clamp(30px, 5vw, 46px); margin: 18px 0 18px; }
+  .doc-hero .lede { font-size: 17px; color: var(--ink-soft); max-width: 58ch; }
+  .backbar { padding-top: 26px; }
+  .backlink {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .backlink:hover { color: var(--ink-soft); }
+  .backlink svg { width: 1em; height: 1em; transform: rotate(180deg); flex: none; }
+
+  .scripts { display: flex; flex-direction: column; gap: 14px; }
+
+  .script { background: var(--card); border: 1px solid var(--line-soft); border-radius: 10px; overflow: hidden; }
+  .script.open { border-color: var(--line); box-shadow: var(--shadow); }
+
+  .s-head {
+    width: 100%; display: grid; grid-template-columns: auto 1fr auto auto;
+    gap: 18px; align-items: center; text-align: left;
+    background: none; border: 0; cursor: pointer;
+    padding: 24px 26px; color: var(--ink); font-family: var(--sans);
+  }
+  .s-head:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .s-num {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .12em;
+    color: var(--accent-ink);
+  }
+  .s-title { font-family: var(--display); font-size: 19px; letter-spacing: -0.01em; line-height: 1.25; }
+  .s-meta {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ink-faint); white-space: nowrap;
+  }
+  .s-sign { font-family: var(--mono); font-size: 15px; color: var(--brand-ink); transition: transform .28s ease; }
+  .script.open .s-sign { transform: rotate(45deg); }
+
+  .s-body { max-height: 0; overflow: hidden; transition: max-height .34s ease; }
+  .s-inner { padding: 4px 26px 26px; }
+
+  .s-part { padding: 18px 0; border-top: 1px solid var(--line-soft); }
+  .s-part:first-child { border-top: 0; padding-top: 6px; }
+  .p-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px;
+  }
+  .s-part p { font-size: 15.5px; line-height: 1.7; color: var(--ink); margin-bottom: 12px; }
+  .s-part p:last-child { margin-bottom: 0; }
+
+  /* claims audit — deliberately visually distinct from the script itself */
+  .verify {
+    margin-top: 20px; padding: 18px 20px;
+    background: var(--paper-2); border: 1px dashed var(--line);
+    border-radius: 8px;
+  }
+  .verify .vhead {
+    display: flex; align-items: center; gap: 9px;
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--accent-ink); margin-bottom: 12px;
+  }
+  .verify ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+  .verify li {
+    display: grid; grid-template-columns: 1fr auto; gap: 14px;
+    font-size: 13.5px; line-height: 1.5; color: var(--ink-soft);
+    padding-bottom: 9px; border-bottom: 1px solid var(--line-soft);
+  }
+  .verify li:last-child { border-bottom: 0; padding-bottom: 0; }
+  .verify .st {
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: .1em;
+    text-transform: uppercase; white-space: nowrap; padding-top: 2px;
+  }
+  .verify .ok { color: var(--brand-ink); }
+  .verify .no { color: var(--accent-ink); }
+
+  .s-actions { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+  .s-btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: var(--sans); font-size: 13.5px; font-weight: 600; line-height: 1;
+    padding: 13px 20px; border-radius: 4px; cursor: pointer;
+    background: var(--btn-bg); color: var(--btn-fg); border: 1px solid transparent;
+    appearance: none; -webkit-appearance: none; margin: 0;
+  }
+  .s-btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+  .s-btn.ghost:hover { background: var(--paper-2); }
+  .s-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .s-btn svg { width: 1em; height: 1em; flex: none; }
+
+  @media (max-width: 640px) {
+    .doc-hero { padding: 52px 0 34px; }
+    .s-head { grid-template-columns: auto 1fr auto; gap: 12px; padding: 20px; }
+    .s-meta { display: none; }
+    .s-title { font-size: 17px; }
+    .s-inner { padding: 4px 20px 22px; }
+    .verify li { grid-template-columns: 1fr; gap: 4px; }
+  }
+</style>
+
+<div class="wrap backbar">
+  <a class="backlink" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back to the package
+  </a>
+</div>
+
+<header class="doc-hero">
+  <div class="wrap">
+    <div class="inner">
+      <span class="tag">// 05 · Event ad scripts</span>
+      <h1>Five scripts, five different people</h1>
+      <p class="lede">Each one speaks to a different reason an entrepreneur in your market is stuck, so they can run at the same time without competing. Spoken copy is in German, in Slatco's podcast voice. Click any script to open it, then copy or download it.</p>
+    </div>
+  </div>
+</header>
+
+<section class="sec">
+  <div class="wrap narrow">
+    <div class="scripts" id="scripts">
+
+      <article class="script" data-slug="script-1">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">01</span>
+          <span class="s-title">Angle 1 — the operator whose holiday ended in a backlog</span>
+          <span class="s-meta">~80 sec</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+
+            <div class="s-part" data-part="HOOK">
+              <div class="p-label">Hook</div>
+              <p>Du warst fünf Tage weg. Handy aus, richtig raus. Und jetzt sitzt du wieder am Schreibtisch und arbeitest einen Berg ab — Entscheidungen, die liegen geblieben sind, Dinge, die niemand angefasst hat. Die ehrliche Frage ist nicht: läuft mein Laden? Die Frage ist: was habe ich vorgefunden, als ich zurückkam?</p>
+            </div>
+
+            <div class="s-part" data-part="BODY">
+              <div class="p-label">Body</div>
+              <p>Ich bin Slatco Sterzenbach. 17 Mal im Ziel eines IRONMAN, seit über 38 Jahren im Gespräch mit Unternehmern — über 1.600 davon einzeln. Dieses Muster sehe ich immer wieder.</p>
+              <p>Deine Abwesenheit ist der ehrlichste Test, den dein Unternehmen bekommt. Wenn nichts entschieden wurde, ist das kein Team-Problem — es ist ein fehlender Entscheidungsrahmen. &bdquo;Ich war ja erreichbar&ldquo; zählt nicht: Erreichbarkeit ist der Beweis, dass es ohne dich nicht läuft.</p>
+            </div>
+
+            <div class="s-part" data-part="WHAT YOU'LL LEARN">
+              <div class="p-label">What you'll learn</div>
+              <p>In 60 Minuten live: die drei Befunde nach einer Abwesenheit und was jeder über dich verrät, ein 60-Sekunden-Test für dein eigenes Unternehmen, und der Entscheidungsrahmen in drei Sätzen — statt drei Seiten Prozesshandbuch.</p>
+            </div>
+
+            <div class="s-part" data-part="CTA">
+              <div class="p-label">Call to action</div>
+              <p>Donnerstag, 19 Uhr. Kostenlos, 60 Minuten, mit offener Fragerunde. Melde dich auf der verlinkten Seite an — die Plätze im Live-Raum sind begrenzt.</p>
+            </div>
+
+            <div class="verify">
+              <div class="vhead">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5 15 14H1L8 1.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 6.5v3.2M8 11.6v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                Verify before running
+              </div>
+              <ul>
+                <li><span>&bdquo;17-facher IRONMAN-Finisher&ldquo;</span><span class="st ok">iron-mind.de</span></li>
+                <li><span>&bdquo;seit über 38 Jahren, 1.600+ Einzelgespräche&ldquo;</span><span class="st no">Not verified</span></li>
+              </ul>
+            </div>
+
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>
+                Copy script
+              </button>
+              <button type="button" class="s-btn ghost download-script">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Download .txt
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </article>
+
+      <article class="script" data-slug="script-2">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">02</span>
+          <span class="s-title">Angle 2 — the number that hasn't moved in years</span>
+          <span class="s-meta">~75 sec</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+            <div class="s-part" data-part="HOOK"><div class="p-label">Hook</div><p>Es gibt eine Zahl in deinem Unternehmen, die seit Jahren fast gleich ist. Der Monatsumsatz. Die Teamgröße. Die Stunden, die du selbst im Tagesgeschäft steckst. Du hattest sie gerade sofort im Kopf.</p></div>
+            <div class="s-part" data-part="BODY"><div class="p-label">Body</div><p>Ich bin Slatco Sterzenbach von IRON.MIND. Diese Decke ist selten der Markt und selten die Kompetenz. Sie ist ein Selbstbild — und ein Selbstbild verteidigt sich, mit Gründen, die jedes Mal sehr plausibel klingen. Mehr Disziplin hilft hier nicht: Disziplin arbeitet innerhalb des Systems, und deine Decke IST das System.</p></div>
+            <div class="s-part" data-part="WHAT YOU'LL LEARN"><div class="p-label">What you'll learn</div><p>Warum mehr Bücher und mehr Druck dich nicht über diese Zahl bringen, die eine Frage, die die Decke sichtbar macht, und wie du in Stunden löst, wofür Jahre allein nicht reichen.</p></div>
+            <div class="s-part" data-part="CTA"><div class="p-label">Call to action</div><p>Kostenloses Live-Webinar, Donnerstag 19 Uhr, 60 Minuten. Bring die eine Zahl mit, die steht. Anmeldung über den Link — begrenzte Plätze.</p></div>
+            <div class="verify">
+              <div class="vhead">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5 15 14H1L8 1.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 6.5v3.2M8 11.6v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                Verify before running
+              </div>
+              <ul><li><span>Website-Kennzahlen (&bdquo;+78 % mehr Zeit&ldquo; etc.) — nicht in der Ad verwenden</span><span class="st no">Not verified</span></li></ul>
+            </div>
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Copy script</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Download .txt</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="script" data-slug="script-3">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">03</span>
+          <span class="s-title">Angle 3 — the control freak who redoes everything</span>
+          <span class="s-meta">~85 sec</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+            <div class="s-part" data-part="HOOK"><div class="p-label">Hook</div><p>Du hast es dreimal versucht abzugeben. Dreimal kam es zurück auf deinen Tisch — nicht ganz falsch, aber nicht so, wie du es gemacht hättest. Also machst du es wieder selbst. Und nennst es Qualität.</p></div>
+            <div class="s-part" data-part="BODY"><div class="p-label">Body</div><p>Slatco Sterzenbach, IRON.MIND. Dein Team entscheidet nicht, weil es nie gelernt hat, in welchem Rahmen es entscheiden darf. Ohne Rahmen ist jede Entscheidung ein Risiko — also warten sie lieber auf dich. Ein Betrieb, der dich für jede Freigabe braucht, ist ein Job. Ein Betrieb, der dich will, ist ein Unternehmen.</p></div>
+            <div class="s-part" data-part="WHAT YOU'LL LEARN"><div class="p-label">What you'll learn</div><p>Wie ein Entscheidungsrahmen konkret aussieht — Betragsgrenze, Kundenklasse, Eskalationsschwelle —, warum Kontrolle die Standards nicht hebt, sondern den Engpass zementiert, und wie du drei Tage offline gehst, ohne dass etwas liegen bleibt.</p></div>
+            <div class="s-part" data-part="CTA"><div class="p-label">Call to action</div><p>Donnerstag, 19 Uhr, kostenlos, live. 60 Minuten plus Fragerunde. Melde dich über den Link an.</p></div>
+            <div class="verify">
+              <div class="vhead">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5 15 14H1L8 1.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 6.5v3.2M8 11.6v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                Verify before running
+              </div>
+              <ul><li><span>&bdquo;Ein Betrieb, der dich braucht, ist ein Job&ldquo; — Meinung/Zitat, nicht als Fakt einsetzen</span><span class="st no">Not verified</span></li></ul>
+            </div>
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Copy script</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Download .txt</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="script" data-slug="script-4">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">04</span>
+          <span class="s-title">Angle 4 — exhausted but can't switch off</span>
+          <span class="s-meta">~80 sec</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+            <div class="s-part" data-part="HOOK"><div class="p-label">Hook</div><p>Du bist müde bis in die Knochen und trotzdem läuft der Kopf. Sonntagabend kreisen die Gedanken um die Firma. Du schläfst schlecht, wirst schneller laut. Und irgendein Teil von dir fragt sich, wie lange der Körper das noch mitmacht.</p></div>
+            <div class="s-part" data-part="BODY"><div class="p-label">Body</div><p>Ich bin Slatco Sterzenbach. Die meisten Unternehmer holen sich erst Hilfe, wenn der Schmerz zu groß wird — nach dem Beinahe-Burnout. Dabei ist der schnellste Hebel nicht mehr Druck, sondern der blinde Fleck: nicht das, was du nicht weißt, sondern das, was du für normal hältst. 60-Stunden-Wochen. Der Anruf am Sonntag. Alles normal — bis du drei Tage weg bist.</p></div>
+            <div class="s-part" data-part="WHAT YOU'LL LEARN"><div class="p-label">What you'll learn</div><p>Woran du erkennst, dass dein Unternehmen an dir hängt und nicht am Markt, wie du die Erreichbarkeit rausnimmst, ohne die Kontrolle zu verlieren, und der erste Schritt, den du am nächsten Morgen gehen kannst.</p></div>
+            <div class="s-part" data-part="CTA"><div class="p-label">Call to action</div><p>Kostenloses Live-Webinar, Donnerstag 19 Uhr, 60 Minuten. Anmeldung über den Link — die Live-Plätze sind begrenzt.</p></div>
+            <div class="verify">
+              <div class="vhead">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5 15 14H1L8 1.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 6.5v3.2M8 11.6v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                Verify before running
+              </div>
+              <ul><li><span>Website-Kennzahlen (&bdquo;+42 % mehr Energie&ldquo;, &bdquo;+37 % Resilienz&ldquo;)</span><span class="st no">Not verified</span></li></ul>
+            </div>
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Copy script</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Download .txt</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="script" data-slug="script-5">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">05</span>
+          <span class="s-title">Angle 5 — tried everything, nothing stuck</span>
+          <span class="s-meta">~75 sec</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+            <div class="s-part" data-part="HOOK"><div class="p-label">Hook</div><p>Du hast die Bücher gelesen. Die Seminare besucht. Die Morgenroutine, das Journaling, das Biohacking. Und ehrlich: viel hat sich nicht bewegt. Also denkst du, entweder funktioniert das nicht — oder dir fehlt die Disziplin.</p></div>
+            <div class="s-part" data-part="BODY"><div class="p-label">Body</div><p>Slatco Sterzenbach, IRON.MIND. Weder noch. Das nächste Buch reicht nicht, weil du es mit demselben Verteidigungsdenken liest, das dich hierher gebracht hat. Selbstreflexion arbeitet mit demselben Apparat, der den Fehler produziert — du prüfst deine Rechnung mit demselben Taschenrechner. Wer im Bild steht, sieht den Rahmen nicht.</p></div>
+            <div class="s-part" data-part="WHAT YOU'LL LEARN"><div class="p-label">What you'll learn</div><p>Warum ausgerechnet kluge, erfolgreiche Menschen an dieser Stelle am schwersten lernen, was eine echte Außenperspektive leistet, die du dir selbst nicht geben kannst, und wie eine Sitzung von außen mehr bewegt als zehn Bücher.</p></div>
+            <div class="s-part" data-part="CTA"><div class="p-label">Call to action</div><p>Donnerstag, 19 Uhr. Kostenlos, live, 60 Minuten. Bring eine Sache mit, die trotz allem nicht vorangeht. Anmeldung über den Link.</p></div>
+            <div class="verify">
+              <div class="vhead">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5 15 14H1L8 1.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 6.5v3.2M8 11.6v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                Verify before running
+              </div>
+              <ul><li><span>&bdquo;kluge Fachleute lernen am schwersten&ldquo; (Argyris, HBR 1991) — Studienbezug prüfen</span><span class="st no">Not verified</span></li></ul>
+            </div>
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Copy script</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Download .txt</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="tag tag-c">// Next</span>
+    <h2>Point these at the landing page.</h2>
+    <p class="sub">Each script ends by sending people to the registration page in this package. Check the claims flagged in each script before you run any spend behind it.</p>
+    <a class="btn" href="index.html">Back to the package <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">Meisterwerk <em>Formel</em></div>
+    <div class="fmeta">
+      <span>Prepared exclusively for Slatco Sterzenbach</span>
+      <span>Built by Sales At Scale</span>
+    </div>
+    <p class="disc">These scripts are drafts written from publicly available research and podcast transcripts. Claims flagged as unverified must be confirmed before use in paid advertising. IRON.MIND's own published figures are the company's claims, not independently checked.</p>
+  </div>
+</footer>
+
+<div class="tally-toast" id="ads-toast" role="status" aria-live="polite"></div>
+
+<script>
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+
+  (function () {
+    var scripts = [].slice.call(document.querySelectorAll('.script'));
+    var toast = document.getElementById('ads-toast');
+    var toastTimer;
+
+    function flash(msg) {
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 2600);
+    }
+
+    // Assemble plain text from the script parts only — the verify block is
+    // internal QA, not part of what gets recorded, so it is deliberately excluded.
+    function scriptText(article) {
+      var title = article.querySelector('.s-title').textContent.trim();
+      var out = [title, ''];
+      [].slice.call(article.querySelectorAll('.s-part')).forEach(function (part) {
+        out.push('[' + (part.getAttribute('data-part') || '').toUpperCase() + ']');
+        [].slice.call(part.querySelectorAll('p')).forEach(function (p) {
+          out.push(p.textContent.trim());
+        });
+        out.push('');
+      });
+      return out.join('\n').replace(/\n{3,}/g, '\n\n').trim() + '\n';
+    }
+
+    function setOpen(article, open) {
+      var body = article.querySelector('.s-body');
+      var btn = article.querySelector('.s-head');
+      article.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      body.style.maxHeight = open ? body.scrollHeight + 'px' : null;
+    }
+
+    scripts.forEach(function (article) {
+      article.querySelector('.s-head').addEventListener('click', function () {
+        setOpen(article, !article.classList.contains('open'));
+      });
+
+      article.querySelector('.copy-script').addEventListener('click', function () {
+        var text = scriptText(article);
+        function fallback() {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); flash('Script copied'); }
+          catch (e) { flash('Copy failed — select the text manually'); }
+          document.body.removeChild(ta);
+        }
+        // navigator.clipboard needs a secure context; fall back where it is absent
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(function () { flash('Script copied'); }, fallback);
+        } else { fallback(); }
+      });
+
+      article.querySelector('.download-script').addEventListener('click', function () {
+        var blob = new Blob([scriptText(article)], { type: 'text/plain;charset=utf-8' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'iron-mind-' + (article.getAttribute('data-slug') || 'script') + '.txt';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+        flash('Downloaded');
+      });
+    });
+
+    // An open panel's pixel height goes stale when the viewport reflows.
+    var t;
+    window.addEventListener('resize', function () {
+      clearTimeout(t);
+      t = setTimeout(function () {
+        var open = document.querySelector('.script.open');
+        if (open) { var b = open.querySelector('.s-body'); b.style.maxHeight = b.scrollHeight + 'px'; }
+      }, 120);
+    });
+  })();
+</script>
