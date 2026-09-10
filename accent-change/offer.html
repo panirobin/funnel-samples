@@ -1,0 +1,586 @@
+﻿<title>One-time offer — The Simulation Vault | The Simulation Room</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- page-specific: offer ---------- */
+
+  /* urgency bar — clay, the palette's existing accent for urgency */
+  .alertbar {
+    position: sticky; top: 0; z-index: 40;
+    background: var(--accent);
+    color: #3A2E00;
+  }
+  .alertbar .wrap {
+    display: flex; align-items: center; justify-content: center;
+    gap: 10px; min-height: 46px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
+    text-transform: uppercase; line-height: 1; text-align: center;
+  }
+  .alertbar .pip {
+    width: 7px; height: 7px; border-radius: 50%; flex: none;
+    background: #3A2E00;
+    animation: alertBlink 1.6s ease-in-out infinite;
+  }
+  @keyframes alertBlink { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
+
+  /* progress — "step 2 of 2", mirrors both reference samples */
+  .progress { padding: 34px 0 0; }
+  .progress .inner { max-width: 460px; margin: 0 auto; }
+  .progress .meta {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--mono); font-size: 10px; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px;
+  }
+  .progress .track {
+    height: 4px; border-radius: 2px; overflow: hidden;
+    background: var(--line);
+  }
+  .progress .fill {
+    height: 100%; width: 90%; border-radius: 2px;
+    background: var(--brand-ink);
+  }
+
+  .offer-hero { padding: 40px 0 64px; text-align: center; }
+  .offer-hero .inner { max-width: 760px; margin: 0 auto; }
+  .offer-hero h1 { margin: 20px 0 22px; }
+  .offer-hero h1 em { font-style: italic; color: var(--brand-ink); }
+  .offer-hero .lede {
+    font-size: 18px; color: var(--ink-soft);
+    max-width: 52ch; margin: 0 auto;
+  }
+
+  /* CTA cluster: primary button + quiet decline beneath, repeated down the page */
+  .cta-block { text-align: center; margin: 40px auto 0; }
+  .cta-block .price-note {
+    margin-top: 14px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .07em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+  .decline {
+    display: inline-block; margin-top: 18px;
+    font-family: var(--sans); font-size: 14px;
+    color: var(--ink-faint); text-decoration: underline;
+    text-underline-offset: 3px; text-decoration-thickness: 1px;
+  }
+  .decline:hover { color: var(--ink-soft); }
+  .decline:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  /* bonus rows — alternating, per reference sample 2 */
+  .bonus { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .bonus + .bonus { margin-top: 56px; }
+  .bonus:nth-child(even) .bonus-media { order: 2; }
+  .bonus .kicker {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent-ink); margin-bottom: 12px;
+  }
+  .bonus h3 { font-size: 25px; margin-bottom: 14px; }
+  .bonus p { color: var(--ink-soft); font-size: 15.5px; line-height: 1.65; }
+  .bonus .worth {
+    display: inline-block; margin-top: 16px;
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--brand-ink);
+    border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px;
+  }
+  .bonus-media {
+    background: var(--brand); color: var(--on-brand);
+    border-radius: 10px; padding: 26px; min-height: 210px;
+    display: flex; flex-direction: column; justify-content: center;
+    box-shadow: var(--shadow);
+  }
+  .bonus-media .m-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .12em;
+    text-transform: uppercase; opacity: .6; margin-bottom: 14px;
+  }
+  .bonus-media .m-row {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 14px; padding: 11px 0;
+    border-bottom: 1px solid rgba(255,255,255,.14);
+    font-family: var(--mono); font-size: 11.5px;
+  }
+  .bonus-media .m-row:last-child { border-bottom: 0; }
+  .bonus-media .m-row .v { color: var(--on-brand-tick); }
+  .bonus-media .m-big {
+    font-family: var(--display); font-size: 40px; line-height: 1;
+    letter-spacing: -0.02em; margin-bottom: 6px;
+  }
+  .bonus-media .m-sub {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .1em;
+    text-transform: uppercase; opacity: .65;
+  }
+
+  /* ticket comparison — reference sample 2's selector, in our palette */
+  .tickets { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+  .ticket { border-radius: 10px; padding: 32px 30px; }
+  .ticket-free { background: var(--card); border: 1px solid var(--line-soft); }
+  .ticket-vip {
+    background: var(--brand); color: var(--on-brand);
+    border: 1px solid var(--brand);
+    box-shadow: var(--shadow);
+    position: relative;
+  }
+  .ticket .t-name {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+    text-transform: uppercase; margin-bottom: 12px;
+  }
+  .ticket-free .t-name { color: var(--ink-faint); }
+  .ticket-vip .t-name { color: var(--on-brand-tick); }
+  .ticket .t-price {
+    font-family: var(--display); font-size: 44px; line-height: 1;
+    letter-spacing: -0.02em; margin-bottom: 6px;
+  }
+  .ticket-vip .t-price { color: var(--on-brand); }
+  .ticket .t-cap {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .1em;
+    text-transform: uppercase; margin-bottom: 24px;
+  }
+  .ticket-free .t-cap { color: var(--ink-faint); }
+  .ticket-vip .t-cap { color: rgba(255,255,255,.6); }
+  .ticket ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+  .ticket li {
+    display: grid; grid-template-columns: 20px 1fr; gap: 13px;
+    align-items: start; font-size: 14.5px; line-height: 1.55;
+  }
+  .ticket li .ic { width: 20px; height: 20px; margin-top: 1px; flex: none; }
+  .ticket li .ic svg { width: 20px; height: 20px; }
+  .ticket-free li { color: var(--ink-soft); }
+  .ticket-free li .ic { color: var(--ink-faint); }
+  .ticket-vip li { color: rgba(255,255,255,.9); }
+  .ticket-vip li .ic { color: var(--on-brand-tick); }
+  .ticket .t-foot {
+    margin-top: 26px; padding-top: 20px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  .ticket-free .t-foot { border-top: 1px solid var(--line-soft); color: var(--ink-faint); }
+  .ticket-vip .t-foot { border-top: 1px solid rgba(255,255,255,.18); color: rgba(255,255,255,.65); }
+  .ticket-vip .flag {
+    position: absolute; top: -1px; right: 24px;
+    background: var(--accent); color: #3A2E00;
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: .12em;
+    text-transform: uppercase; padding: 6px 11px;
+    border-radius: 0 0 4px 4px;
+  }
+
+  /* guarantee */
+  .guarantee { text-align: center; max-width: 620px; margin: 0 auto; }
+  .seal {
+    width: 92px; height: 92px; margin: 0 auto 26px;
+    border-radius: 50%; border: 2px solid var(--brand-ink);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: var(--brand-ink);
+  }
+  .seal .n { font-family: var(--display); font-size: 30px; line-height: 1; }
+  .seal .d {
+    font-family: var(--mono); font-size: 8.5px; letter-spacing: .14em;
+    text-transform: uppercase; margin-top: 3px;
+  }
+  .guarantee p { color: var(--ink-soft); font-size: 16px; line-height: 1.7; }
+
+  @media (max-width: 900px) {
+    .bonus { grid-template-columns: 1fr; gap: 26px; }
+    .bonus:nth-child(even) .bonus-media { order: 0; }
+    .bonus + .bonus { margin-top: 44px; }
+    .tickets { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .alertbar .wrap { font-size: 10px; letter-spacing: .08em; min-height: 44px; gap: 8px; }
+    .progress { padding-top: 26px; }
+    .offer-hero { padding: 30px 0 48px; }
+    .offer-hero .lede { font-size: 17px; }
+    .cta-block .btn, .guarantee .btn { display: flex; width: 100%; justify-content: center; }
+    .bonus h3 { font-size: 22px; }
+    .bonus-media { padding: 22px; min-height: 0; }
+    .bonus-media .m-big { font-size: 34px; }
+    .ticket { padding: 28px 24px; }
+    .ticket .t-price { font-size: 38px; }
+  }
+  @media (max-width: 400px) {
+    .alertbar .wrap { font-size: 9px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .alertbar .pip { animation: none; }
+  }
+</style>
+
+<div class="alertbar">
+  <div class="wrap">
+    <span class="pip" aria-hidden="true"></span>
+    <span>One more thing before Thursday</span>
+  </div>
+</div>
+
+<div class="progress">
+  <div class="wrap">
+    <div class="inner">
+      <div class="meta"><span>Step 2 of 2</span><span>Almost done</span></div>
+      <div class="track"><div class="fill"></div></div>
+    </div>
+  </div>
+</div>
+
+<header class="offer-hero">
+  <div class="wrap">
+    <div class="inner">
+      <span class="tag tag-c">// One-time offer · this page only</span>
+      <h1>Your seat is saved. Now <em>make the sounds stick.</em></h1>
+      <p class="lede">You're registered for Thursday. Before you go — there's a version of this workshop where you don't just watch the simulations, you get drilled on your own voice long after the room closes.</p>
+    </div>
+  </div>
+</header>
+
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="head head-c">
+      <span class="tag">// What the upgrade adds</span>
+      <h2>Three things the free seat doesn't include.</h2>
+      <p>The workshop shows you the drill. The Simulation Vault is what keeps you drilling — with your own voice, after the live room is gone.</p>
+    </div>
+
+    <div class="bonus">
+      <div class="bonus-media">
+        <div class="m-label">Live group simulation — 45 min, after the workshop</div>
+        <div class="m-row"><span>Round 01</span><span class="v">cold open · the R</span></div>
+        <div class="m-row"><span>Round 02</span><span class="v">hard question · the TH</span></div>
+        <div class="m-row"><span>Round 03</span><span class="v">price push-back · vowels</span></div>
+        <div class="m-row"><span>Seats</span><span class="v">capped at 30</span></div>
+      </div>
+      <div>
+        <div class="kicker">Bonus 01</div>
+        <h3>A live group simulation, straight after</h3>
+        <p>The main room ends and the simulation room opens. Thirty people, forty-five minutes, and Dillon puts you on the spot in turn — a cold open, an interruption, a push-back — then drills the sound that broke. This part isn't in the public replay.</p>
+        <span class="worth">Not sold separately</span>
+      </div>
+    </div>
+
+    <div class="bonus">
+      <div class="bonus-media">
+        <div class="m-big">20</div>
+        <div class="m-sub">Scripted pressure-test scenarios</div>
+        <div class="m-row" style="margin-top:18px"><span>Sales &amp; discovery</span><span class="v">6 scripts</span></div>
+        <div class="m-row"><span>Investor / pitch</span><span class="v">4 scripts</span></div>
+        <div class="m-row"><span>Standup / team</span><span class="v">5 scripts</span></div>
+        <div class="m-row"><span>Podcast / Q&amp;A</span><span class="v">5 scripts</span></div>
+      </div>
+      <div>
+        <div class="kicker">Bonus 02</div>
+        <h3>The Simulation Vault</h3>
+        <p>Twenty scripted scenarios for the calls you actually take, each line recorded in clean General American so you have a model to match. Run one in ten minutes: read it cold, record yourself, compare, drill the sound that slipped.</p>
+        <span class="worth">Worth $160</span>
+      </div>
+    </div>
+
+    <div class="bonus">
+      <div class="bonus-media">
+        <div class="m-label">Recording teardown — written, 48hr turnaround</div>
+        <div class="m-row"><span>You send</span><span class="v">2 min of you talking</span></div>
+        <div class="m-row"><span>You get</span><span class="v">every slipped sound, marked</span></div>
+        <div class="m-row"><span>Plus</span><span class="v">the drill order to fix them</span></div>
+        <div class="m-row"><span>Turnaround</span><span class="v">48 hours</span></div>
+      </div>
+      <div>
+        <div class="kicker">Bonus 03</div>
+        <h3>One recording, torn down in writing</h3>
+        <p>Send two minutes of you talking — a real call, a voice memo, whatever's honest. You get back a written teardown marking every sound that slipped, which one is costing you the most, and the order to drill them in. Your voice, not a generic list.</p>
+        <span class="worth">Worth $95</span>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <button type="button" class="btn checkout-trigger">Yes — add the Simulation Vault <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="price-note">$47 once · not offered again after this page</p>
+      <a class="decline" href="thanks.html">No thanks — I'll keep my free seat</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="head head-c">
+      <span class="tag">// Pick your seat</span>
+      <h2>What you have, and what you'd add.</h2>
+    </div>
+
+    <div class="tickets">
+      <div class="ticket ticket-free">
+        <div class="t-name">Free seat — already yours</div>
+        <div class="t-price">$0</div>
+        <div class="t-cap">Confirmed for Thursday</div>
+        <ul>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>The 52-minute live workshop</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>The three-sound drill card</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Group Q&amp;A in the main room</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Seven-day replay access</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <span>No live group simulation</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <span>No Simulation Vault</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <span>No written recording teardown</span>
+          </li>
+        </ul>
+        <div class="t-foot">Nothing to do — you're already in</div>
+      </div>
+
+      <div class="ticket ticket-vip">
+        <span class="flag">Best value</span>
+        <div class="t-name">The Simulation Vault</div>
+        <div class="t-price">$47</div>
+        <div class="t-cap">One payment · this page only</div>
+        <ul>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span><strong>Everything in the free seat</strong></span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Live group simulation after the workshop</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>The Simulation Vault — 20 scripted scenarios + model audio</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Written teardown of one recording you send</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>40 extra scenarios added over the next month</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Replay kept for a year, not seven days</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Seven-day money-back guarantee</span>
+          </li>
+        </ul>
+        <div class="t-foot">Live simulation capped at 30</div>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <button type="button" class="btn checkout-trigger">Yes — add the Simulation Vault <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="price-note">$47 once · not offered again after this page</p>
+      <a class="decline" href="thanks.html">No thanks — I'll keep my free seat</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="wrap narrow">
+    <div class="head head-c">
+      <span class="tag">// The maths</span>
+      <h2>What it adds up to.</h2>
+    </div>
+
+    <div class="ledger">
+      <div class="lrow">
+        <div>
+          <div class="nm">Live group simulation</div>
+          <div class="ds">45 minutes, capped at 30 people, you on the spot</div>
+        </div>
+        <div class="vl">$120</div>
+      </div>
+      <div class="lrow">
+        <div>
+          <div class="nm">The Simulation Vault</div>
+          <div class="ds">20 scripted scenarios with clean General American model audio</div>
+        </div>
+        <div class="vl">$160</div>
+      </div>
+      <div class="lrow">
+        <div>
+          <div class="nm">Written recording teardown</div>
+          <div class="ds">Two minutes of your voice, every slipped sound marked, in 48 hours</div>
+        </div>
+        <div class="vl">$95</div>
+      </div>
+      <div class="lrow">
+        <div>
+          <div class="nm">40 more scenarios over the month</div>
+          <div class="ds">Added to the Vault as they're recorded — yours to keep</div>
+        </div>
+        <div class="vl">$80</div>
+      </div>
+
+      <div class="ltotal">
+        <span class="lbl">Total value</span>
+        <span class="amt">
+          <span class="old">$455</span>
+          <span class="new">$47</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <button type="button" class="btn checkout-trigger">Yes — add the Simulation Vault <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="price-note">$47 once · not offered again after this page</p>
+      <a class="decline" href="thanks.html">No thanks — I'll keep my free seat</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="guarantee">
+      <div class="seal" aria-hidden="true">
+        <span class="n">7</span>
+        <span class="d">Day</span>
+      </div>
+      <span class="tag">// No-argument guarantee</span>
+      <h2 style="margin:14px 0 18px">If it doesn't earn the $47, take it back.</h2>
+      <p>Come to the live simulation, run the Vault scenarios, send a recording in for teardown. If seven days after the workshop you don't think it was worth it, reply to any email and you get the full $47 back. You keep the material. No form, no reason required, no follow-up questions.</p>
+      <div class="cta-block">
+        <button type="button" class="btn checkout-trigger">Yes — add the Simulation Vault <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <p class="price-note">$47 once · not offered again after this page</p>
+        <a class="decline" href="thanks.html">No thanks — I'll keep my free seat</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-handoff">
+  <div class="wrap narrow">
+    <div class="head head-c">
+      <span class="tag">// Before you decide</span>
+      <h2>Fair questions</h2>
+    </div>
+
+    <div class="faq" id="faq">
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>I just registered for free. Why is there a paid thing?</span><span class="sign">+</span></button>
+        <div class="fa"><p>The workshop is genuinely free and complete on its own — you'll get the full drill whether or not you upgrade. The Vault exists because the most common thing people say afterwards is &ldquo;great, but I need to keep drilling <em>my</em> voice.&rdquo; That needs recorded model scenarios and one-on-one written feedback, which can't be given away to an unlimited room.</p></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Can I add it later instead?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Not at $47. The live simulation is capped at 30, and this page is the only place the Vault is offered at this price. If it opens again later it goes back to full price.</p></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>What if I can't make the live simulation?</span><span class="sign">+</span></button>
+        <div class="fa"><p>You still get the recording, the full Vault, the monthly additions, and your written teardown — the teardown is asynchronous, so you can send your clip in whenever. Only the live round needs you in the room.</p></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Is this a subscription?</span><span class="sign">+</span></button>
+        <div class="fa"><p>No. One payment of $47, nothing recurring, no card kept on file for a rebill later.</p></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>What happens if I say no?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Nothing bad. Your free seat is already confirmed and it stays confirmed — click the decline link and you'll go straight to your confirmation details.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="tag tag-c">// Last call on this page</span>
+    <h2>Thirty seats. One payment. Then it's gone.</h2>
+    <p class="sub">Your free seat is safe either way. This is only about whether Thursday ends with a drill you might get to, or with your own voice already being worked on.</p>
+    <div class="cta-block" style="margin-top:0">
+      <button type="button" class="btn checkout-trigger">Yes — add the Simulation Vault <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="price-note">$47 once · 7-day money-back guarantee</p>
+      <a class="decline" href="thanks.html">No thanks — I'll keep my free seat</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">Simulation <em>Room</em></div>
+    <div class="fmeta">
+      <span>© 2026 — Sample page</span>
+      <span>Privacy · Terms · Contact</span>
+    </div>
+    <p class="disc">This is a demonstration page built to showcase design and copywriting for a training webinar funnel. The host, testimonials, statistics, prices, and results shown are illustrative placeholders and are not claims about any real person, company, or product. No earnings or outcomes are represented or implied.</p>
+  </div>
+</footer>
+
+<div class="tally-toast" id="offer-toast" role="status" aria-live="polite"></div>
+
+<script>
+  /* ════════════════════════════════════════════════════════════════════
+     CHECKOUT URL — replace this one value to connect payment.
+
+     Paste the full URL your "Yes" buttons should go to, e.g. a Stripe
+     Payment Link:  https://buy.stripe.com/xxxxxxxx
+
+     Until this is set, clicking shows a toast instead of dead-ending.
+     ════════════════════════════════════════════════════════════════════ */
+  const CHECKOUT_URL = "REPLACE_ME";
+
+  (function () {
+    var triggers = document.querySelectorAll('.checkout-trigger');
+    var toast = document.getElementById('offer-toast');
+    var configured = CHECKOUT_URL && !/^REPLACE_ME$/i.test(CHECKOUT_URL);
+    var timer;
+
+    triggers.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (configured) { window.location.href = CHECKOUT_URL; return; }
+        if (!toast) return;
+        toast.textContent = 'This is where you get paid. Click "No Thanks" for now :)';
+        toast.classList.add('show');
+        clearTimeout(timer);
+        timer = setTimeout(function () { toast.classList.remove('show'); }, 3200);
+      });
+    });
+  })();
+
+  // Wrapper supplies <head>; ensure phones lay out at device width.
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+
+  // FAQ accordion — same behaviour as the landing page.
+  (function () {
+    var items = document.querySelectorAll('.fitem');
+    items.forEach(function (item) {
+      var btn = item.querySelector('.fq'), panel = item.querySelector('.fa');
+      btn.addEventListener('click', function () {
+        var wasOpen = item.classList.contains('open');
+        items.forEach(function (o) {
+          o.classList.remove('open');
+          o.querySelector('.fq').setAttribute('aria-expanded', 'false');
+          o.querySelector('.fa').style.maxHeight = null;
+        });
+        if (!wasOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+        }
+      });
+    });
+
+    var t;
+    window.addEventListener('resize', function () {
+      clearTimeout(t);
+      t = setTimeout(function () {
+        var open = document.querySelector('.fitem.open .fa');
+        if (open) open.style.maxHeight = open.scrollHeight + 'px';
+      }, 120);
+    });
+  })();
+</script>

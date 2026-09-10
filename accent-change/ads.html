@@ -1,0 +1,490 @@
+﻿<title>5 event ad scripts | The Simulation Room</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- page-specific: ad scripts ---------- */
+
+  .doc-hero { padding: 76px 0 44px; }
+  .doc-hero .inner { max-width: 760px; }
+  .doc-hero h1 { font-size: clamp(30px, 5vw, 46px); margin: 18px 0 18px; }
+  .doc-hero .lede { font-size: 17px; color: var(--ink-soft); max-width: 58ch; }
+  .backbar { padding-top: 26px; }
+  .backlink {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .backlink:hover { color: var(--ink-soft); }
+  .backlink svg { width: 1em; height: 1em; transform: rotate(180deg); flex: none; }
+
+  .scripts { display: flex; flex-direction: column; gap: 14px; }
+
+  .script { background: var(--card); border: 1px solid var(--line-soft); border-radius: 10px; overflow: hidden; }
+  .script.open { border-color: var(--line); box-shadow: var(--shadow); }
+
+  .s-head {
+    width: 100%; display: grid; grid-template-columns: auto 1fr auto auto;
+    gap: 18px; align-items: center; text-align: left;
+    background: none; border: 0; cursor: pointer;
+    padding: 24px 26px; color: var(--ink); font-family: var(--sans);
+  }
+  .s-head:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .s-num {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .12em;
+    color: var(--accent-ink);
+  }
+  .s-title { font-family: var(--display); font-size: 19px; letter-spacing: -0.01em; line-height: 1.25; }
+  .s-meta {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ink-faint); white-space: nowrap;
+  }
+  .s-sign { font-family: var(--mono); font-size: 15px; color: var(--brand-ink); transition: transform .28s ease; }
+  .script.open .s-sign { transform: rotate(45deg); }
+
+  .s-body { max-height: 0; overflow: hidden; transition: max-height .34s ease; }
+  .s-inner { padding: 4px 26px 26px; }
+
+  .s-part { padding: 18px 0; border-top: 1px solid var(--line-soft); }
+  .s-part:first-child { border-top: 0; padding-top: 6px; }
+  .p-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px;
+  }
+  .s-part p { font-size: 15.5px; line-height: 1.7; color: var(--ink); margin-bottom: 12px; }
+  .s-part p:last-child { margin-bottom: 0; }
+
+  /* claims audit — deliberately visually distinct from the script itself */
+  .verify {
+    margin-top: 20px; padding: 18px 20px;
+    background: var(--paper-2); border: 1px dashed var(--line);
+    border-radius: 8px;
+  }
+  .verify .vhead {
+    display: flex; align-items: center; gap: 9px;
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--accent-ink); margin-bottom: 12px;
+  }
+  .verify ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+  .verify li {
+    display: grid; grid-template-columns: 1fr auto; gap: 14px;
+    font-size: 13.5px; line-height: 1.5; color: var(--ink-soft);
+    padding-bottom: 9px; border-bottom: 1px solid var(--line-soft);
+  }
+  .verify li:last-child { border-bottom: 0; padding-bottom: 0; }
+  .verify .st {
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: .1em;
+    text-transform: uppercase; white-space: nowrap; padding-top: 2px;
+  }
+  .verify .ok { color: var(--brand-ink); }
+  .verify .no { color: var(--accent-ink); }
+
+  .s-actions { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+  .s-btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: var(--sans); font-size: 13.5px; font-weight: 600; line-height: 1;
+    padding: 13px 20px; border-radius: 4px; cursor: pointer;
+    background: var(--btn-bg); color: var(--btn-fg); border: 1px solid transparent;
+    appearance: none; -webkit-appearance: none; margin: 0;
+  }
+  .s-btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+  .s-btn.ghost:hover { background: var(--paper-2); }
+  .s-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .s-btn svg { width: 1em; height: 1em; flex: none; }
+
+  @media (max-width: 640px) {
+    .doc-hero { padding: 52px 0 34px; }
+    .s-head { grid-template-columns: auto 1fr auto; gap: 12px; padding: 20px; }
+    .s-meta { display: none; }
+    .s-title { font-size: 17px; }
+    .s-inner { padding: 4px 20px 22px; }
+    .verify li { grid-template-columns: 1fr; gap: 4px; }
+    .verify .st { white-space: normal; }
+  }
+</style>
+
+<div class="wrap backbar">
+  <a class="backlink" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back to the package
+  </a>
+</div>
+
+<header class="doc-hero">
+  <div class="wrap">
+    <div class="inner">
+      <span class="tag">// 05 · Event ad scripts</span>
+      <h1>Five scripts, five different people</h1>
+      <p class="lede">Each one speaks to a different reason someone in your market is stuck, so they can run simultaneously without competing. Written in your voice from your own content. Click any script to open it, then copy or download it.</p>
+    </div>
+  </div>
+</header>
+
+<section class="sec">
+  <div class="wrap narrow">
+    <div class="scripts" id="scripts">
+
+      <article class="script" data-slug="script-1">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">01</span>
+          <span class="s-title">For the expert who keeps hearing &ldquo;sorry, say that again?&rdquo;</span>
+          <span class="s-meta">~80 sec</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+
+            <div class="s-part" data-part="HOOK">
+              <div class="p-label">Hook</div>
+              <p>You know your subject better than almost anyone on the call. And you still get &ldquo;sorry, could you repeat that?&rdquo; two or three times an hour.</p>
+              <p>Your English isn't the problem. Your grammar is fine, your vocabulary is fine. It's a handful of sounds that slip the moment the call gets tense — and the listener stops hearing your point and starts decoding your words.</p>
+            </div>
+
+            <div class="s-part" data-part="BODY">
+              <div class="p-label">Body</div>
+              <p>I'm Dillon. I moved here from Munich to act, and for two years I got cast as Nazis and weirdos, because that's all a strong German accent is good for. So I spent two years in Voice &amp; Speech training at the William Esper Studio and eighteen months drilling, and got my own accent to about 97% American.</p>
+              <p>Here's what nobody tells you: understanding how a sound works and keeping it under pressure are two different skills. You can watch a video on the American R today. Holding that R when someone pushes back on price — that only comes from drilling it, then getting pushed on purpose. That second half is what this workshop is.</p>
+            </div>
+
+            <div class="s-part" data-part="WHAT YOU'LL LEARN">
+              <div class="p-label">What you'll learn</div>
+              <p>The three sounds that give away most foreign accents on an English call, and which one is costing you the most. A ten-minute drill you can run before your next meeting. And why speeding up to get past a hard word is the exact thing that breaks it.</p>
+            </div>
+
+            <div class="s-part" data-part="CTA">
+              <div class="p-label">Call to action</div>
+              <p>It's free, it's live, it's 52 minutes, and we run real simulations on sentences from the room. Thursday, 1 PM Eastern. Register at the link and bring one sentence you dread saying.</p>
+            </div>
+
+            <div class="verify">
+              <div class="vhead">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5 15 14H1L8 1.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 6.5v3.2M8 11.6v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                Verify before running
+              </div>
+              <ul>
+                <li><span>&ldquo;Two years of Voice &amp; Speech at the William Esper Studio&rdquo;</span><span class="st ok">accentchange.com / About</span></li>
+                <li><span>&ldquo;About 97% American&rdquo; and &ldquo;18 months&rdquo;</span><span class="st ok">accentchange.com / About (Dillon's own figures)</span></li>
+                <li><span>&ldquo;Cast as Nazis and weirdos&rdquo;</span><span class="st ok">Dillon's own phrasing, About page</span></li>
+                <li><span>&ldquo;Two or three times an hour&rdquo; repeat rate</span><span class="st no">Not verified — illustrative, soften or drop</span></li>
+              </ul>
+            </div>
+
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>
+                Copy script
+              </button>
+              <button type="button" class="s-btn ghost download-script">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Download .txt
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </article>
+
+      <article class="script" data-slug="script-2">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">02</span>
+          <span class="s-title">For the founder with one shot at the pitch</span>
+          <span class="s-meta">~78 sec</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+            <div class="s-part" data-part="HOOK">
+              <div class="p-label">Hook</div>
+              <p>You've rehearsed the pitch forty times. It's clean when you read it alone. Then the partner interrupts with a question, you improvise the answer, and your accent walks straight back in.</p>
+              <p>That's not a preparation problem. That's the difference between a sound you understand and a sound that holds when you're off-script.</p>
+            </div>
+            <div class="s-part" data-part="BODY">
+              <div class="p-label">Body</div>
+              <p>I'm Dillon Ford. I'm an actor by training — William Esper Studio in New York — and I changed my own accent from &ldquo;obviously German&rdquo; to around 97% American in eighteen months. The method I use is the one actors use to prepare for a role: understand the sound, drill it into a habit, then pressure-test it under improvisation until it doesn't break.</p>
+              <p>Rehearsing your deck harder doesn't touch the part that fails. The part that fails is the unscripted answer. So that's what we practise.</p>
+            </div>
+            <div class="s-part" data-part="WHAT YOU'LL LEARN">
+              <div class="p-label">What you'll learn</div>
+              <p>Which sounds collapse first when you improvise, and why. How to drill one so it survives an interruption. And a live simulation where I stop you mid-answer with a hard question — on purpose — so you feel exactly where it breaks and how to hold it.</p>
+            </div>
+            <div class="s-part" data-part="CTA">
+              <div class="p-label">Call to action</div>
+              <p>Free, live, 52 minutes. Thursday at 1 PM Eastern. If you've got a raise, a demo day, or a board update coming up, register at the link and bring the question you're most afraid they'll ask.</p>
+            </div>
+            <div class="verify">
+              <div class="vhead">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5 15 14H1L8 1.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 6.5v3.2M8 11.6v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                Verify before running
+              </div>
+              <ul>
+                <li><span>&ldquo;The method actors use to prepare for a role&rdquo;</span><span class="st ok">accentchange.com — Day-Lewis / Bale comparison is Dillon's own</span></li>
+                <li><span>&ldquo;~97% American in 18 months&rdquo;</span><span class="st ok">Dillon's own figure, About page</span></li>
+                <li><span>William Esper Studio training</span><span class="st ok">accentchange.com / About</span></li>
+              </ul>
+            </div>
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Copy script</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Download .txt</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="script" data-slug="script-3">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">03</span>
+          <span class="s-title">For the one who's tried the apps and a course already</span>
+          <span class="s-meta">~82 sec</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+            <div class="s-part" data-part="HOOK">
+              <div class="p-label">Hook</div>
+              <p>You've done the pronunciation app. Maybe a course. You can explain how the American R is made — tongue position, everything. And it still doesn't come out that way when you talk.</p>
+              <p>You're not lazy and you didn't buy the wrong thing. You just stopped one step early. Knowing the sound isn't the finish line. It's the warm-up.</p>
+            </div>
+            <div class="s-part" data-part="BODY">
+              <div class="p-label">Body</div>
+              <p>I'm Dillon. I changed my own accent, and I've since coached non-native professionals and educational creators to do the same. The pattern is always identical: lots of theory, no changed habit.</p>
+              <p>Fixing that has two parts nobody sells you. Drilling — short, boring reps until the sound is automatic. And simulation — someone putting you under pressure on purpose so you find out whether it actually holds. Apps can't do the second one. A room can.</p>
+            </div>
+            <div class="s-part" data-part="WHAT YOU'LL LEARN">
+              <div class="p-label">What you'll learn</div>
+              <p>Why passive study doesn't transfer to live speech. What a drill that actually builds a habit looks like, versus a lesson you watch once. And a recording loop that tells you it's working without paying a coach to sit there.</p>
+            </div>
+            <div class="s-part" data-part="CTA">
+              <div class="p-label">Call to action</div>
+              <p>Free, live, 52 minutes, Thursday 1 PM Eastern. If you've spent money on this before and it didn't stick, this is the missing half. Register at the link.</p>
+            </div>
+            <div class="verify">
+              <div class="vhead">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5 15 14H1L8 1.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 6.5v3.2M8 11.6v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                Verify before running
+              </div>
+              <ul>
+                <li><span>&ldquo;Coached non-native professionals and educational creators&rdquo;</span><span class="st ok">accentchange.com / Instagram — creator focus is stated</span></li>
+                <li><span>&ldquo;Theory ≠ skill&rdquo; framing and the Understand/Drill/Simulate split</span><span class="st ok">accentchange.com — UDS Method, in Dillon's words</span></li>
+                <li><span>Any specific client count or result</span><span class="st no">Not verified — none stated; keep it qualitative</span></li>
+              </ul>
+            </div>
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Copy script</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Download .txt</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="script" data-slug="script-4">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">04</span>
+          <span class="s-title">For the one who's afraid this means losing their accent</span>
+          <span class="s-meta">~76 sec</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+            <div class="s-part" data-part="HOOK">
+              <div class="p-label">Hook</div>
+              <p>Part of you doesn't want to do this. Softening your accent feels like sanding off where you're from. Like you'd be pretending to be someone else.</p>
+              <p>I felt the same way. So let me be clear about what this is and isn't.</p>
+            </div>
+            <div class="s-part" data-part="BODY">
+              <div class="p-label">Body</div>
+              <p>I'm Dillon. I'm German. I changed my accent years ago and I'm still German — it didn't touch my identity, my history, or how I sound to my family. What it changed was how much energy a stranger spends decoding me on a first call.</p>
+              <p>This isn't accent elimination and it isn't an impression. The target is General American — the same neutral delivery TV hosts use — and you reach for it when it's useful and drop it when it's not. It's a tool you own, not a mask you're stuck in.</p>
+            </div>
+            <div class="s-part" data-part="WHAT YOU'LL LEARN">
+              <div class="p-label">What you'll learn</div>
+              <p>The difference between changing a few sounds and &ldquo;losing your accent.&rdquo; Why fluent speakers actually have an advantage here — you learned the language on purpose, so you can adjust it on purpose. And how small the actual change is: usually three sounds, not a personality.</p>
+            </div>
+            <div class="s-part" data-part="CTA">
+              <div class="p-label">Call to action</div>
+              <p>Free, live, 52 minutes. Thursday, 1 PM Eastern. Come sceptical — that's fine. Register at the link and decide afterward.</p>
+            </div>
+            <div class="verify">
+              <div class="vhead">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5 15 14H1L8 1.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 6.5v3.2M8 11.6v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                Verify before running
+              </div>
+              <ul>
+                <li><span>&ldquo;Changing my accent didn't make me any less German&rdquo;</span><span class="st ok">Dillon, blog.accentchange.com — near-verbatim</span></li>
+                <li><span>&ldquo;General American&rdquo; as the target; &ldquo;fluent speakers have an advantage&rdquo;</span><span class="st ok">accentchange.com blog — Dillon's framing</span></li>
+                <li><span>&ldquo;Usually three sounds&rdquo;</span><span class="st no">Not verified — a teaching simplification, not a measured figure</span></li>
+              </ul>
+            </div>
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Copy script</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Download .txt</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="script" data-slug="script-5">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">05</span>
+          <span class="s-title">For the creator whose accent is capping their reach</span>
+          <span class="s-meta">~80 sec</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+            <div class="s-part" data-part="HOOK">
+              <div class="p-label">Hook</div>
+              <p>You know your material cold. But you've seen the comments — &ldquo;good info, hard to follow&rdquo; — and you've watched your retention graph dip every time you hit a certain sound.</p>
+              <p>An American audience that has to work to understand you doesn't leave. It just doesn't come back.</p>
+            </div>
+            <div class="s-part" data-part="BODY">
+              <div class="p-label">Body</div>
+              <p>I'm Dillon Ford. I'm a trained actor, I changed my own accent to about 97% American, and I work with educational creators — some with 20,000-plus subscribers — on exactly this. Not to erase how they sound. To stop a handful of sounds from taxing every sentence.</p>
+              <p>On camera you get takes, so you think you're fine. Then a podcast, a live stream, a Q&amp;A — no second take — and it slips. That gap between rehearsed and live is the whole problem, and it's what we drill.</p>
+            </div>
+            <div class="s-part" data-part="WHAT YOU'LL LEARN">
+              <div class="p-label">What you'll learn</div>
+              <p>The three sounds most likely to be pulling your watch time down. A ten-minute pre-recording drill. And a live, unscripted simulation — the podcast-guest test — so you know it holds when there's no edit.</p>
+            </div>
+            <div class="s-part" data-part="CTA">
+              <div class="p-label">Call to action</div>
+              <p>Free, live, 52 minutes. Thursday, 1 PM Eastern. Bring a line from a recent video you weren't happy with. Register at the link.</p>
+            </div>
+            <div class="verify">
+              <div class="vhead">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5 15 14H1L8 1.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 6.5v3.2M8 11.6v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                Verify before running
+              </div>
+              <ul>
+                <li><span>&ldquo;Educational creators, some with 20,000-plus subscribers&rdquo;</span><span class="st ok">accentchange.com / Instagram bio — Dillon's own claim</span></li>
+                <li><span>&ldquo;~97% American&rdquo;</span><span class="st ok">Dillon's own figure, About page</span></li>
+                <li><span>&ldquo;Retention dips on a certain sound&rdquo; / &ldquo;watch time&rdquo; causal link</span><span class="st no">Not verified — plausible framing, no data; keep it as the creator's own observation</span></li>
+              </ul>
+            </div>
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Copy script</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Download .txt</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="tag tag-c">// Next</span>
+    <h2>Point these at the landing page.</h2>
+    <p class="sub">Each script ends by sending people to the registration page in this package. Check the claims flagged in each script before you run any spend behind it.</p>
+    <a class="btn" href="index.html">Back to the package <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">Simulation <em>Room</em></div>
+    <div class="fmeta">
+      <span>Prepared exclusively for Dillon Ford</span>
+      <span>Built by Sales At Scale</span>
+    </div>
+    <p class="disc">These scripts are drafts written from publicly available research. Claims flagged as unverified must be confirmed before use in paid advertising.</p>
+  </div>
+</footer>
+
+<div class="tally-toast" id="ads-toast" role="status" aria-live="polite"></div>
+
+<script>
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+
+  (function () {
+    var scripts = [].slice.call(document.querySelectorAll('.script'));
+    var toast = document.getElementById('ads-toast');
+    var toastTimer;
+
+    function flash(msg) {
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 2600);
+    }
+
+    // Assemble plain text from the script parts only — the verify block is
+    // internal QA, not part of what gets recorded, so it is deliberately excluded.
+    function scriptText(article) {
+      var title = article.querySelector('.s-title').textContent.trim();
+      var out = [title, ''];
+      [].slice.call(article.querySelectorAll('.s-part')).forEach(function (part) {
+        out.push('[' + (part.getAttribute('data-part') || '').toUpperCase() + ']');
+        [].slice.call(part.querySelectorAll('p')).forEach(function (p) {
+          out.push(p.textContent.trim());
+        });
+        out.push('');
+      });
+      return out.join('\n').replace(/\n{3,}/g, '\n\n').trim() + '\n';
+    }
+
+    function setOpen(article, open) {
+      var body = article.querySelector('.s-body');
+      var btn = article.querySelector('.s-head');
+      article.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      body.style.maxHeight = open ? body.scrollHeight + 'px' : null;
+    }
+
+    scripts.forEach(function (article) {
+      article.querySelector('.s-head').addEventListener('click', function () {
+        setOpen(article, !article.classList.contains('open'));
+      });
+
+      article.querySelector('.copy-script').addEventListener('click', function () {
+        var text = scriptText(article);
+        function fallback() {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); flash('Script copied'); }
+          catch (e) { flash('Copy failed — select the text manually'); }
+          document.body.removeChild(ta);
+        }
+        // navigator.clipboard needs a secure context; fall back where it is absent
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(function () { flash('Script copied'); }, fallback);
+        } else { fallback(); }
+      });
+
+      article.querySelector('.download-script').addEventListener('click', function () {
+        var blob = new Blob([scriptText(article)], { type: 'text/plain;charset=utf-8' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'accent-change-' + (article.getAttribute('data-slug') || 'script') + '.txt';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+        flash('Downloaded');
+      });
+    });
+
+    // An open panel's pixel height goes stale when the viewport reflows.
+    var t;
+    window.addEventListener('resize', function () {
+      clearTimeout(t);
+      t = setTimeout(function () {
+        var open = document.querySelector('.script.open');
+        if (open) { var b = open.querySelector('.s-body'); b.style.maxHeight = b.scrollHeight + 'px'; }
+      }, 120);
+    });
+  })();
+</script>

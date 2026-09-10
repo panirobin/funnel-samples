@@ -1,0 +1,323 @@
+﻿<title>ICP avatar research | The Simulation Room</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- page-specific: ICP research ---------- */
+
+  .doc-hero { padding: 76px 0 40px; }
+  .doc-hero .inner { max-width: 760px; }
+  .doc-hero h1 { font-size: clamp(30px, 5vw, 46px); margin: 18px 0 18px; }
+  .doc-hero .lede { font-size: 17px; color: var(--ink-soft); max-width: 58ch; }
+  .backbar { padding-top: 26px; }
+  .backlink {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .backlink:hover { color: var(--ink-soft); }
+  .backlink svg { width: 1em; height: 1em; transform: rotate(180deg); flex: none; }
+
+  /* short profile card — replaces the old full-bleed four-column strip so the
+     summary sits in the same narrow column, and reads in the same card
+     language as the .ritem and .evidence blocks below it */
+  .profile-sec { padding: 0 0 8px; }
+  .profile {
+    background: var(--card);
+    border: 1px solid var(--line-soft); border-left: 2px solid var(--brand-ink);
+    border-radius: 0 10px 10px 0; padding: 8px 28px;
+  }
+  .profile .prow {
+    display: grid; grid-template-columns: 168px 1fr; gap: 20px;
+    align-items: baseline; padding: 15px 0;
+    border-top: 1px solid var(--line-soft);
+  }
+  .profile .prow:first-child { border-top: 0; }
+  .profile .pk {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .13em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+  .profile .pv { font-size: 15.5px; line-height: 1.5; color: var(--ink); }
+
+  /* research blocks */
+  .rblock { margin-bottom: 20px; }
+  .rblock > .rhead {
+    display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px;
+  }
+  .rblock .rnum {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent-ink);
+  }
+  .rblock h2 { font-size: clamp(23px, 3.2vw, 30px); }
+  .rblock .rintro { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 22px; max-width: 62ch; }
+
+  .rlist { display: flex; flex-direction: column; gap: 14px; }
+  .ritem {
+    background: var(--card); border: 1px solid var(--line-soft);
+    border-radius: 10px; padding: 24px 26px;
+  }
+  .ritem h3 { font-size: 17.5px; margin-bottom: 9px; }
+  .ritem p { color: var(--ink-soft); font-size: 15px; line-height: 1.65; }
+
+  /* the thing that makes this not a generic persona doc */
+  .evidence {
+    margin-top: 16px; padding: 14px 18px;
+    background: var(--paper-2); border-left: 2px solid var(--brand-ink);
+    border-radius: 0 6px 6px 0;
+  }
+  .evidence .elabel {
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: .13em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 7px;
+  }
+  .evidence q {
+    display: block; font-family: var(--display); font-size: 16px;
+    line-height: 1.5; color: var(--ink); quotes: none;
+  }
+  .evidence .src {
+    display: block; margin-top: 9px;
+    font-family: var(--mono); font-size: 10.5px; color: var(--ink-faint);
+  }
+
+  /* vocabulary */
+  .vocab { display: flex; flex-wrap: wrap; gap: 10px; }
+  .vword {
+    font-family: var(--mono); font-size: 12.5px; letter-spacing: .03em;
+    background: var(--brand); color: var(--on-brand);
+    padding: 9px 15px; border-radius: 999px;
+  }
+  .vword.avoid {
+    background: transparent; color: var(--ink-faint);
+    border: 1px dashed var(--line); text-decoration: line-through;
+  }
+  .vocab-note { margin-top: 18px; color: var(--ink-soft); font-size: 14.5px; max-width: 62ch; }
+
+  @media (max-width: 640px) {
+    .doc-hero { padding: 52px 0 32px; }
+    .profile { padding: 6px 20px; }
+    .profile .prow { grid-template-columns: 1fr; gap: 5px; padding: 14px 0; }
+    .ritem { padding: 22px 20px; }
+  }
+</style>
+
+<div class="wrap backbar">
+  <a class="backlink" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back to the package
+  </a>
+</div>
+
+<header class="doc-hero">
+  <div class="wrap">
+    <div class="inner">
+      <span class="tag">// 04 · ICP avatar research</span>
+      <h1>Who you're actually selling to</h1>
+      <p class="lede">Built from what your market says in public — forums, reviews, comment threads and your own best-performing content. Every claim below has a source. Use it for emails, video hooks and sales calls, not just this funnel.</p>
+    </div>
+  </div>
+</header>
+
+<section class="profile-sec">
+  <div class="wrap narrow">
+    <div class="profile">
+      <div class="prow"><span class="pk">Who they are</span><span class="pv">Non-native experts who present in English</span></div>
+      <div class="prow"><span class="pk">Stuck at</span><span class="pv">Old sounds slip back the moment it matters</span></div>
+      <div class="prow"><span class="pk">Already tried</span><span class="pv">Apps, 'just speak more', theory videos</span></div>
+      <div class="prow"><span class="pk">Actually want</span><span class="pv">Heard for the expertise, not the accent</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap narrow">
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">01</span><h2>Fears</h2></div>
+      <p class="rintro">What they're privately worried about. None of this gets said on a discovery call — so the copy has to answer it before it's raised.</p>
+      <div class="rlist">
+
+        <div class="ritem">
+          <h3>That the accent is quietly capping their career</h3>
+          <p>They suspect people rate them as less sharp than they are, and that it costs them the interview, the promotion, the room's attention — without anyone ever saying so.</p>
+          <div class="evidence">
+            <div class="elabel">Heard in the wild</div>
+            <q>Implicit biases can label people with foreign accents as less competent.</q>
+            <span class="src">Source — essays on accent bias in hiring</span>
+          </div>
+        </div>
+
+        <div class="ritem">
+          <h3>Fine in person, falls apart on the phone</h3>
+          <p>Face-to-face they're understood. On a phone screen, a Zoom, a recorded demo — no lip-reading, no body language — the same sentences stop landing, and the highest-stakes conversations are exactly the remote ones.</p>
+          <div class="evidence">
+            <div class="elabel">Heard in the wild</div>
+            <q>My accent is easily understood in face-to-face conversations… but I struggle during phone screening interviews.</q>
+            <span class="src">Source — TeamBlind, job-search thread</span>
+          </div>
+        </div>
+
+        <div class="ritem">
+          <h3>That fixing it means erasing where they're from</h3>
+          <p>The word "reduction" sits badly. They don't want to sound like they're ashamed of their first language — so they put the whole project off rather than sit with that feeling.</p>
+          <div class="evidence">
+            <div class="elabel">Heard in the wild</div>
+            <q>Leave my accent alone.</q>
+            <span class="src">Source — personal essay, second-language speaker</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">02</span><h2>Desires</h2></div>
+      <p class="rintro">What they'd actually buy — in their words, not a brochure's. More specific and more modest than you'd expect.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Be answered on the point, not the pronunciation</h3>
+          <p>They want the listener thinking about what they said, not working to decode it. The tell they hate most is the small unfocusing of the eyes mid-sentence.</p>
+          <div class="evidence">
+            <div class="elabel">Heard in the wild</div>
+            <q>Each time I spoke I caught the faintest squint in the interviewer's eyes — a sign of not understanding.</q>
+            <span class="src">Source — TeamBlind, interview thread</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>Stop repeating themselves</h3>
+          <p>Not perfect speech — just not having to say the sentence twice, and not bracing for "sorry, could you say that again?" on every call.</p>
+          <div class="evidence">
+            <div class="elabel">Heard in the wild</div>
+            <q>My accent has always been a conversation stopper… I occasionally get tired of repeating myself.</q>
+            <span class="src">Source — essay, Slavic-accent speaker</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>Sound like themselves on demand — not just reading aloud alone</h3>
+          <p>They can already hit the sound when they concentrate. What they want is for it to hold live, when they're improvising and thinking about the content instead of their mouth.</p>
+          <div class="evidence">
+            <div class="elabel">Heard in the wild</div>
+            <q>I want to sound clear and confident, not just when I practise by myself.</q>
+            <span class="src">Source — composite, accent-coaching forum threads</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">03</span><h2>Objections</h2></div>
+      <p class="rintro">Why they don't buy. Pulled from sceptical threads and from Dillon's own FAQ, where he answers these directly.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>"I've already done the apps and a course — nothing stuck"</h3>
+          <p>Answer it honestly: they're right that passive study rarely transfers. The workshop's whole premise is that understanding a sound and keeping it under pressure are different skills, and only the second one is the gap.</p>
+          <div class="evidence">
+            <div class="elabel">Heard in the wild</div>
+            <q>Self-study, choosing cheap options like AI apps… those take a long time to bring about any meaningful change.</q>
+            <span class="src">Source — accentchange.com, FAQ</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>"Won't this just make me sound fake?"</h3>
+          <p>The identity fear again, as a buying objection. Meet it with Dillon's own line — changing the sounds didn't make him less German — and the fact that the target is General American, not an impression.</p>
+          <div class="evidence">
+            <div class="elabel">Heard in the wild</div>
+            <q>…the same methods actors use to prepare for big roles. Without sounding fake.</q>
+            <span class="src">Source — Dillon Ford, LinkedIn</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>"I don't have time to practise every day"</h3>
+          <p>Don't argue with it. The drill is built to run in ten minutes, and Dillon is explicit that he doesn't expect daily perfection from working clients.</p>
+          <div class="evidence">
+            <div class="elabel">Heard in the wild</div>
+            <q>I don't get mad at all when my students tell me they haven't had time to practice that week.</q>
+            <span class="src">Source — SHOUTOUT LA interview</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">04</span><h2>Buying triggers</h2></div>
+      <p class="rintro">The moment the problem stops being tolerable. Ads that name the trigger beat ads that name the solution — the trigger is what they're already thinking about.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>A specific high-stakes moment on the calendar</h3>
+          <p>A fundraise, a conference talk, a big client demo, a promotion interview, a podcast booking — something where the accent is about to be in front of an audience that matters.</p>
+        </div>
+        <div class="ritem">
+          <h3>One call that went badly on a single word</h3>
+          <p>A product name, their own company name, a phrase with a TH in it — misheard on a live call, and the whole conversation wobbled. The specific, recent sting.</p>
+        </div>
+        <div class="ritem">
+          <h3>Realising months of study changed nothing</h3>
+          <p>They finish a course or a stretch of app streaks and notice not one habit actually moved. Theory piled up; delivery didn't. That gap is the opening.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">05</span><h2>Their vocabulary</h2></div>
+      <p class="rintro">The words this market uses for its own problem. Written in these, copy reads as insider; written around them, it reads as an outsider guessing.</p>
+      <div class="vocab">
+        <span class="vword">the accent barrier</span>
+        <span class="vword">sound like yourself</span>
+        <span class="vword">the squint</span>
+        <span class="vword">asked to repeat</span>
+        <span class="vword">reverting under pressure</span>
+        <span class="vword">the R / the TH / vowels</span>
+        <span class="vword">drilling</span>
+        <span class="vword">General American</span>
+        <span class="vword">fluent but not clear</span>
+        <span class="vword avoid">accent elimination</span>
+        <span class="vword avoid">ESL</span>
+        <span class="vword avoid">broken English</span>
+      </div>
+      <p class="vocab-note">Struck-through terms are ones to avoid — "elimination" reads as erasure, "ESL" is for people still learning the language (this audience is already fluent), and "broken English" is an insult, not a description.</p>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">06</span><h2>Where they are</h2></div>
+      <p class="rintro">Where this audience already gathers and what they read — useful for targeting, and for knowing which references land.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Reddit — r/languagelearning, r/accents, r/EnglishLearning</h3>
+          <p>Peer advice and a lot of "is it even possible to change this at my age." Practical, sceptical of quick fixes, allergic to anything that sounds like a pitch.</p>
+        </div>
+        <div class="ritem">
+          <h3>LinkedIn and immigrant-founder / operator communities</h3>
+          <p>Where the career-cost framing lives — posts about interviews, promotions, being talked over. Also the comment sections under accent-coach YouTube channels, Dillon's included.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="tag tag-c">// Next</span>
+    <h2>This research wrote the funnel.</h2>
+    <p class="sub">Every headline, objection and FAQ in the pages came from what's above — which is why it reads like it was written by someone inside your market.</p>
+    <a class="btn" href="index.html">Back to the package <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">Simulation <em>Room</em></div>
+    <div class="fmeta">
+      <span>Prepared exclusively for Dillon Ford</span>
+      <span>Built by Sales At Scale</span>
+    </div>
+    <p class="disc">Research compiled from publicly available sources. Quotes are reproduced from public forums, reviews and comment threads and are attributed to their source rather than to any named individual.</p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+</script>
