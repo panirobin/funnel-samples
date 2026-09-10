@@ -1,12 +1,12 @@
-<title>ICP avatar research | Die Meisterwerk-Formel</title>
+<title>ICP-Recherche | Die Meisterwerk-Formel</title>
 <link rel="stylesheet" href="styles.css">
 <style>
   /* ---------- page-specific: ICP research ---------- */
 
-  .doc-hero { padding: 76px 0 40px; }
+  .doc-hero { padding: 72px 0 34px; }
   .doc-hero .inner { max-width: 760px; }
-  .doc-hero h1 { font-size: clamp(30px, 5vw, 46px); margin: 18px 0 18px; }
-  .doc-hero .lede { font-size: 17px; color: var(--ink-soft); max-width: 58ch; }
+  .doc-hero h1 { font-size: clamp(30px, 5vw, 46px); margin: 18px 0 16px; }
+  .doc-hero .lede { font-size: 17px; color: var(--ink-soft); max-width: 56ch; }
   .backbar { padding-top: 26px; }
   .backlink {
     font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
@@ -16,31 +16,38 @@
   .backlink:hover { color: var(--ink-soft); }
   .backlink svg { width: 1em; height: 1em; transform: rotate(180deg); flex: none; }
 
-  /* summary strip */
-  .avatar-strip {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
-    background: var(--paper-2);
+  /* short profile card — replaces the old full-bleed four-column strip so the
+     summary sits in the same narrow column, and reads in the same card
+     language as the .ritem and .evidence blocks below it */
+  .profile-sec { padding: 0 0 8px; }
+  .profile {
+    background: var(--card);
+    border: 1px solid var(--line-soft); border-left: 2px solid var(--brand-ink);
+    border-radius: 0 10px 10px 0; padding: 8px 28px;
   }
-  .avatar-strip .cell { padding: 26px 24px; border-left: 1px solid var(--line-soft); }
-  .avatar-strip .cell:first-child { border-left: 0; }
-  .avatar-strip .k {
-    font-family: var(--mono); font-size: 10px; letter-spacing: .12em;
-    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px;
+  .profile .prow {
+    display: grid; grid-template-columns: 168px 1fr; gap: 20px;
+    align-items: baseline; padding: 15px 0;
+    border-top: 1px solid var(--line-soft);
   }
-  .avatar-strip .v { font-size: 15px; line-height: 1.5; }
+  .profile .prow:first-child { border-top: 0; }
+  .profile .pk {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .13em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+  .profile .pv { font-size: 15.5px; line-height: 1.5; color: var(--ink); }
 
   /* research blocks */
   .rblock { margin-bottom: 20px; }
   .rblock > .rhead {
-    display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px;
+    display: flex; align-items: baseline; gap: 14px; margin-bottom: 14px;
   }
   .rblock .rnum {
     font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
     text-transform: uppercase; color: var(--accent-ink);
   }
   .rblock h2 { font-size: clamp(23px, 3.2vw, 30px); }
-  .rblock .rintro { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 22px; max-width: 62ch; }
+  .rblock .rintro { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 20px; max-width: 60ch; }
 
   .rlist { display: flex; flex-direction: column; gap: 14px; }
   .ritem {
@@ -80,14 +87,12 @@
     background: transparent; color: var(--ink-faint);
     border: 1px dashed var(--line); text-decoration: line-through;
   }
-  .vocab-note { margin-top: 18px; color: var(--ink-soft); font-size: 14.5px; max-width: 62ch; }
+  .vocab-note { margin-top: 18px; color: var(--ink-soft); font-size: 14.5px; max-width: 60ch; }
 
-  @media (max-width: 900px) { .avatar-strip { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 640px) {
-    .doc-hero { padding: 52px 0 32px; }
-    .avatar-strip { grid-template-columns: 1fr; }
-    .avatar-strip .cell { border-left: 0; border-top: 1px solid var(--line-soft); }
-    .avatar-strip .cell:first-child { border-top: 0; }
+    .doc-hero { padding: 52px 0 28px; }
+    .profile { padding: 6px 20px; }
+    .profile .prow { grid-template-columns: 1fr; gap: 5px; padding: 14px 0; }
     .ritem { padding: 22px 20px; }
   }
 </style>
@@ -95,76 +100,78 @@
 <div class="wrap backbar">
   <a class="backlink" href="index.html">
     <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    Back to the package
+    Zurück zum Paket
   </a>
 </div>
 
 <header class="doc-hero">
   <div class="wrap">
     <div class="inner">
-      <span class="tag">// 04 · ICP avatar research</span>
-      <h1>Who you're actually selling to</h1>
-      <p class="lede">Built from what your market says in public — Trustpilot reviews, German entrepreneur forums, and Slatco's own top-performing episodes. Every claim below has a source. Use it for emails, video hooks and the Analyse call, not just this funnel.</p>
+      <span class="tag">// 04 · ICP-Recherche</span>
+      <h1>Wen du wirklich ansprichst</h1>
+      <p class="lede">Aus öffentlichen Quellen: Trustpilot, deutsche Unternehmer-Foren und deine eigenen stärksten Folgen. Jede Aussage hat eine Quelle.</p>
     </div>
   </div>
 </header>
 
-<div class="avatar-strip">
-  <div class="wrap" style="display:contents">
-    <div class="cell">
-      <div class="k">Who they are</div>
-      <div class="v">Unternehmer:in, 5–50 Mitarbeitende</div>
-    </div>
-    <div class="cell">
-      <div class="k">The stuck moment</div>
-      <div class="v">Läuft auf Adrenalin – kann nicht abschalten</div>
-    </div>
-    <div class="cell">
-      <div class="k">What they've already tried</div>
-      <div class="v">Mehr Disziplin, Bücher, Biohacking, Urlaub</div>
-    </div>
-    <div class="cell">
-      <div class="k">What they actually want</div>
-      <div class="v">Leistung ohne Dauerstress – Klarheit & Energie</div>
+<section class="profile-sec">
+  <div class="wrap narrow">
+    <div class="profile">
+      <div class="prow">
+        <span class="pk">Wer</span>
+        <span class="pv">Unternehmer:in, 5–50 Mitarbeitende</span>
+      </div>
+      <div class="prow">
+        <span class="pk">Festgefahren bei</span>
+        <span class="pv">Läuft auf Adrenalin – kann nicht abschalten</span>
+      </div>
+      <div class="prow">
+        <span class="pk">Schon versucht</span>
+        <span class="pv">Mehr Disziplin, Bücher, Biohacking, Urlaub</span>
+      </div>
+      <div class="prow">
+        <span class="pk">Will wirklich</span>
+        <span class="pv">Leistung ohne Dauerstress – Klarheit &amp; Energie</span>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
 <section class="sec">
   <div class="wrap narrow">
 
     <div class="rblock">
-      <div class="rhead"><span class="rnum">01</span><h2>Fears</h2></div>
-      <p class="rintro">What they're privately worried about. These are the objections that never get said out loud on a call — so the copy has to answer them before they're raised.</p>
+      <div class="rhead"><span class="rnum">01</span><h2>Ängste</h2></div>
+      <p class="rintro">Was sie insgeheim beschäftigt und im Gespräch nie ausspricht. Die Copy muss das beantworten, bevor es gesagt wird.</p>
       <div class="rlist">
 
         <div class="ritem">
-          <h3>The business is quietly built around me</h3>
-          <p>They suspect that if they stepped away for two weeks they'd come back to a pile of un-made decisions — so they arrange the calendar to never have to find out.</p>
+          <h3>Der Laden ist heimlich um mich herum gebaut</h3>
+          <p>Sie ahnen, dass sie nach zwei Wochen Abwesenheit einen Stapel unentschiedener Dinge vorfinden — und legen den Kalender so, dass sie es nie herausfinden müssen.</p>
           <div class="evidence">
-            <div class="elabel">Heard in the wild</div>
+            <div class="elabel">So gesagt</div>
             <q>Der Kopf steht nie still – selbst im Urlaub oder bei familiären Anlässen kreisen die Gedanken um die Firma.</q>
-            <span class="src">Source — impulse.de, „Burnout bei Unternehmern"</span>
+            <span class="src">Quelle — impulse.de, &bdquo;Burnout bei Unternehmern&ldquo;</span>
           </div>
         </div>
 
         <div class="ritem">
-          <h3>If I delegate, it comes back worse</h3>
-          <p>Every hand-off has ended with them redoing it, so they've quietly concluded that control is the only thing keeping standards up.</p>
+          <h3>Wenn ich abgebe, kommt es schlechter zurück</h3>
+          <p>Jede Übergabe endete damit, dass sie es neu gemacht haben. Daraus ist der stille Schluss geworden: Kontrolle ist das Einzige, was die Standards hält.</p>
           <div class="evidence">
-            <div class="elabel">Heard in the wild</div>
+            <div class="elabel">So gesagt</div>
             <q>Ich komme vom Kontrollfreak …</q>
-            <span class="src">Source — Trustpilot-Rezension zu iron-mind.de (Marcus S.)</span>
+            <span class="src">Quelle — Trustpilot-Rezension zu iron-mind.de (Marcus S.)</span>
           </div>
         </div>
 
         <div class="ritem">
-          <h3>I'm running on adrenaline and it will catch up with me</h3>
-          <p>Exhausted but wired — can't sleep, snaps at people, and privately wonders how long the body holds at this pace.</p>
+          <h3>Ich laufe auf Adrenalin — und irgendwann holt es mich ein</h3>
+          <p>Erschöpft und trotzdem aufgedreht. Schläft schlecht, wird schneller laut, und fragt sich insgeheim, wie lange der Körper dieses Tempo mitmacht.</p>
           <div class="evidence">
-            <div class="elabel">Heard in the wild</div>
+            <div class="elabel">So gesagt</div>
             <q>Total erschöpft und trotzdem innerlich unruhig.</q>
-            <span class="src">Source — impulse.de</span>
+            <span class="src">Quelle — impulse.de</span>
           </div>
         </div>
 
@@ -172,95 +179,95 @@
     </div>
 
     <div class="rblock">
-      <div class="rhead"><span class="rnum">02</span><h2>Desires</h2></div>
-      <p class="rintro">What they'd actually buy — stated the way they'd state it, not the way a brochure would. Usually more modest and more specific than you'd expect.</p>
+      <div class="rhead"><span class="rnum">02</span><h2>Wünsche</h2></div>
+      <p class="rintro">Was sie tatsächlich kaufen würden — in ihren Worten. Meist bescheidener und konkreter, als man erwartet.</p>
       <div class="rlist">
         <div class="ritem">
-          <h3>Hand things off and stay relaxed about it</h3>
-          <p>Not a smaller role — the same authority, without being the bottleneck for every decision.</p>
+          <h3>Abgeben und dabei gelassen bleiben</h3>
+          <p>Keine kleinere Rolle — dieselbe Autorität, ohne der Engpass für jede Entscheidung zu sein.</p>
           <div class="evidence">
-            <div class="elabel">Heard in the wild</div>
+            <div class="elabel">So gesagt</div>
             <q>Delegiere ich gnadenlos und gebe ab und bin dabei absolut tiefenentspannt.</q>
-            <span class="src">Source — Trustpilot (Marcus S.)</span>
+            <span class="src">Quelle — Trustpilot (Marcus S.)</span>
           </div>
         </div>
         <div class="ritem">
-          <h3>Grow from clarity, not from more pressure</h3>
-          <p>Done with the "push harder" model; want expansion that doesn't cost another ten hours a week.</p>
+          <h3>Wachsen aus Klarheit, nicht aus mehr Druck</h3>
+          <p>Fertig mit dem &bdquo;mehr Gas&ldquo;-Modell. Sie wollen Wachstum, das nicht weitere zehn Stunden pro Woche kostet.</p>
           <div class="evidence">
-            <div class="elabel">Heard in the wild</div>
+            <div class="elabel">So gesagt</div>
             <q>Wachstum nicht aus Druck, sondern aus Stimmigkeit.</q>
-            <span class="src">Source — Trustpilot (Vanessa T.)</span>
+            <span class="src">Quelle — Trustpilot (Vanessa T.)</span>
           </div>
         </div>
         <div class="ritem">
-          <h3>A business that survives three days offline</h3>
-          <p>A real switch-off — a weekend, a holiday — without the laptop and the Sunday phone call.</p>
+          <h3>Ein Unternehmen, das drei Tage offline übersteht</h3>
+          <p>Wirklich abschalten — ein Wochenende, ein Urlaub — ohne Laptop und ohne den Anruf am Sonntag.</p>
           <div class="evidence">
-            <div class="elabel">Heard in the wild</div>
+            <div class="elabel">So gesagt</div>
             <q>Raus aus dem Hamsterrad – permanent in Bewegung, und trotzdem auf der Stelle.</q>
-            <span class="src">Source — larsbobach.de / GABAL Magazin, „Hamsterrad-Syndrom"</span>
+            <span class="src">Quelle — larsbobach.de / GABAL Magazin, &bdquo;Hamsterrad-Syndrom&ldquo;</span>
           </div>
         </div>
       </div>
     </div>
 
     <div class="rblock">
-      <div class="rhead"><span class="rnum">03</span><h2>Objections</h2></div>
-      <p class="rintro">Why they don't buy. Sourced deliberately from critical reviews and sceptical threads — the negative material is the most useful research in the document.</p>
+      <div class="rhead"><span class="rnum">03</span><h2>Einwände</h2></div>
+      <p class="rintro">Warum sie nicht kaufen. Bewusst aus kritischen Rezensionen gezogen — das negative Material ist die nützlichste Recherche hier.</p>
       <div class="rlist">
         <div class="ritem">
-          <h3>Is this just another mindset talk?</h3>
-          <p>They've sat through motivational content before and want to know that something concrete leaves the room. Answer it by naming the take-away — the three-sentence Entscheidungsrahmen — up front.</p>
+          <h3>Ist das nur wieder ein Mindset-Vortrag?</h3>
+          <p>Sie kennen Motivationsinhalte und wollen wissen, dass etwas Konkretes den Raum verlässt. Antwort: den Entscheidungsrahmen in drei Sätzen vorab benennen.</p>
           <div class="evidence">
-            <div class="elabel">Heard in the wild</div>
+            <div class="elabel">So gesagt</div>
             <q>Noch ein Mindset-Vortrag – und am Montag ist alles wie vorher.</q>
-            <span class="src">Source — recurring in the Hamsterrad blog comment threads</span>
+            <span class="src">Quelle — wiederkehrend in den Kommentaren der Hamsterrad-Blogs</span>
           </div>
         </div>
         <div class="ritem">
-          <h3>A group format won't get to my situation</h3>
-          <p>For an effectiveness-minded operator, a room of 20–30 feels like it dilutes the value. Answer it: the last third works real businesses from the room, and the paid tier is a 1:1.</p>
+          <h3>Ein Gruppenformat kommt nicht zu meiner Situation</h3>
+          <p>Für effektivitätsgetriebene Unternehmer verwässert ein Raum mit 20–30 Leuten den Wert. Antwort: das letzte Drittel arbeitet echte Fälle, und die bezahlte Stufe ist 1:1.</p>
           <div class="evidence">
-            <div class="elabel">Heard in the wild</div>
+            <div class="elabel">So gesagt</div>
             <q>Gruppencoaching mit 20–30 Teilnehmenden ist … nicht optimal.</q>
-            <span class="src">Source — Trustpilot (M.L., 4 Sterne — the only critical review)</span>
+            <span class="src">Quelle — Trustpilot (M.L., 4 Sterne — die einzige kritische Rezension)</span>
           </div>
         </div>
         <div class="ritem">
-          <h3>I've read the books and nothing changed</h3>
-          <p>They've done the self-study and concluded either it doesn't work or they lack discipline. Answer it with Slatco's own line: you read the next book with the same defensive reasoning that got you here.</p>
+          <h3>Ich habe die Bücher gelesen, nichts hat sich geändert</h3>
+          <p>Sie haben das Selbststudium gemacht und schließen daraus: funktioniert nicht — oder mir fehlt Disziplin. Antwort mit Slatcos eigener Linie: du liest das nächste Buch mit demselben Verteidigungsdenken.</p>
           <div class="evidence">
-            <div class="elabel">Heard in the wild</div>
+            <div class="elabel">So gesagt</div>
             <q>Das nächste Buch wird nicht ausreichen … weil du es mit demselben Verteidigungsdenken liest.</q>
-            <span class="src">Source — IRON.MIND Podcast, „Warum du seit Jahren an derselben Zahl festhängst"</span>
+            <span class="src">Quelle — IRON.MIND Podcast, &bdquo;Warum du seit Jahren an derselben Zahl festhängst&ldquo;</span>
           </div>
         </div>
       </div>
     </div>
 
     <div class="rblock">
-      <div class="rhead"><span class="rnum">04</span><h2>Buying triggers</h2></div>
-      <p class="rintro">The moment the problem stops being tolerable. Ads that name the trigger outperform ads that name the solution, because the trigger is what they're already thinking about.</p>
+      <div class="rhead"><span class="rnum">04</span><h2>Kaufauslöser</h2></div>
+      <p class="rintro">Der Moment, in dem das Problem untragbar wird. Ads, die den Auslöser benennen, schlagen Ads, die die Lösung benennen.</p>
       <div class="rlist">
         <div class="ritem">
-          <h3>A number that hasn't moved in years</h3>
-          <p>Revenue, headcount, or weekly hours stuck on the same figure since 2022 — and the usual explanations have stopped convincing them.</p>
+          <h3>Eine Zahl, die sich seit Jahren nicht bewegt</h3>
+          <p>Umsatz, Teamgröße oder Wochenstunden stehen seit 2022 — und die üblichen Erklärungen überzeugen sie selbst nicht mehr.</p>
         </div>
         <div class="ritem">
-          <h3>A holiday that ended in a backlog</h3>
-          <p>Came back from a week away to a pile of things nobody decided — the absence test, run by accident.</p>
+          <h3>Ein Urlaub, der im Rückstand endete</h3>
+          <p>Nach einer Woche weg wartete ein Stapel Dinge, die niemand entschieden hat — der Abwesenheits-Test, versehentlich durchgeführt.</p>
         </div>
         <div class="ritem">
-          <h3>A health warning shot</h3>
-          <p>A near-burnout, a bad check-up, a moment the body said no. Suddenly "push harder" is off the table.</p>
+          <h3>Ein gesundheitlicher Warnschuss</h3>
+          <p>Beinahe-Burnout, ein schlechter Check-up, ein Moment, in dem der Körper Nein gesagt hat. Plötzlich ist &bdquo;mehr Gas&ldquo; keine Option mehr.</p>
         </div>
       </div>
     </div>
 
     <div class="rblock">
-      <div class="rhead"><span class="rnum">05</span><h2>Their vocabulary</h2></div>
-      <p class="rintro">The words this market uses for its own problem. Copy written in these words reads as insider; copy written around them reads as an outsider guessing.</p>
+      <div class="rhead"><span class="rnum">05</span><h2>Ihr Vokabular</h2></div>
+      <p class="rintro">Die Worte, die dieser Markt für sein eigenes Problem benutzt. Copy in diesen Worten liest sich wie von innen.</p>
       <div class="vocab">
         <span class="vword">Autopilot</span>
         <span class="vword">die Decke</span>
@@ -271,20 +278,20 @@
         <span class="vword avoid">Transformation</span>
         <span class="vword avoid">Leadership-Journey</span>
       </div>
-      <p class="vocab-note">Struck-through terms mark the outsider register — Slatco never uses them on the podcast, and the audience doesn't either. When in doubt, use the concrete noun ("die Decke") over the abstract one ("Barriere").</p>
+      <p class="vocab-note">Durchgestrichenes ist Außenseiter-Sprache — Slatco benutzt es im Podcast nicht, die Zielgruppe auch nicht. Im Zweifel das konkrete Wort (&bdquo;die Decke&ldquo;) statt des abstrakten (&bdquo;Barriere&ldquo;).</p>
     </div>
 
     <div class="rblock">
-      <div class="rhead"><span class="rnum">06</span><h2>Where they are</h2></div>
-      <p class="rintro">Where this audience already gathers and what they read — useful for targeting, and for knowing which references will land.</p>
+      <div class="rhead"><span class="rnum">06</span><h2>Wo sie sind</h2></div>
+      <p class="rintro">Wo diese Zielgruppe ohnehin schon zusammenkommt — nützlich fürs Targeting und für die Frage, welche Referenzen zünden.</p>
       <div class="rlist">
         <div class="ritem">
-          <h3>The IRON.MIND podcast &amp; YouTube</h3>
-          <p>His own channel — "Unternehmerwildnis" tone, monologue plus co-host, listened to on the commute. The top episodes are all "successful but stuck", which is the exact webinar promise.</p>
+          <h3>IRON.MIND Podcast &amp; YouTube</h3>
+          <p>Dein eigener Kanal — Ton &bdquo;Unternehmerwildnis&ldquo;, Monolog plus Co-Host, gehört auf dem Weg zur Arbeit. Die Top-Folgen sind alle &bdquo;erfolgreich, aber festgefahren&ldquo; — genau das Versprechen des Webinars.</p>
         </div>
         <div class="ritem">
-          <h3>German entrepreneur forums &amp; review sites</h3>
-          <p>foerderland, WiWi-TReFF, the impulse.de comment threads, and Trustpilot — where the "Hamsterrad" and "kann nicht abschalten" language runs thick.</p>
+          <h3>Deutsche Unternehmer-Foren &amp; Bewertungsseiten</h3>
+          <p>foerderland, WiWi-TReFF, die Kommentare bei impulse.de und Trustpilot — dort läuft die &bdquo;Hamsterrad&ldquo;- und &bdquo;kann nicht abschalten&ldquo;-Sprache.</p>
         </div>
       </div>
     </div>
@@ -294,10 +301,10 @@
 
 <section class="final">
   <div class="wrap">
-    <span class="tag tag-c">// Next</span>
-    <h2>This research wrote the funnel.</h2>
-    <p class="sub">Every headline, objection and FAQ in the pages came from what's above — which is why it reads like it was written by someone inside your market.</p>
-    <a class="btn" href="index.html">Back to the package <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <span class="tag tag-c">// Weiter</span>
+    <h2>Diese Recherche hat den Funnel geschrieben.</h2>
+    <p class="sub">Jede Headline, jeder Einwand und jede FAQ in den Seiten kommt von oben.</p>
+    <a class="btn" href="index.html">Zurück zum Paket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
   </div>
 </section>
 
@@ -305,10 +312,10 @@
   <div class="wrap">
     <div class="wordmark">Meisterwerk <em>Formel</em></div>
     <div class="fmeta">
-      <span>Prepared exclusively for Slatco Sterzenbach</span>
-      <span>Built by Sales At Scale</span>
+      <span>Exklusiv für Slatco Sterzenbach erstellt</span>
+      <span>Gebaut von Sales At Scale</span>
     </div>
-    <p class="disc">Research compiled from publicly available sources. Quotes are reproduced from public forums, reviews and podcast transcripts and are attributed to their source rather than presented as endorsements. Trustpilot first names are those shown publicly on the review.</p>
+    <p class="disc">Recherche aus öffentlich zugänglichen Quellen. Zitate stammen aus öffentlichen Foren, Rezensionen und Podcast-Transkripten und sind der Quelle zugeordnet, nicht als Empfehlung dargestellt. Trustpilot-Vornamen sind die öffentlich sichtbaren Angaben der Rezension.</p>
   </div>
 </footer>
 

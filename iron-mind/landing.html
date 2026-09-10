@@ -112,6 +112,25 @@
     .modal-card { padding: 28px 22px 24px; }
     .modal-head h2 { font-size: 24px; }
   }
+
+  /* host portrait photo — sits behind the name plate, which is opaque.
+     Source is a full-length shot, so zoom toward the head and upper body. */
+  .portrait img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .portrait img { object-position: 50% 26%; transform: scale(1.5); transform-origin: 50% 26%; }
+
+  /* TEMPORARY: lets the prospect reach the offer page without entering data.
+     Remove this button (and #skip-reg) before the funnel goes live. */
+  .f-skip {
+    display: block; width: 100%; margin-top: 12px;
+    background: none; border: 0; cursor: pointer; appearance: none;
+    font-family: var(--sans); font-size: 13px; color: var(--ink-faint);
+    text-decoration: underline; text-underline-offset: 3px;
+  }
+  .f-skip:hover { color: var(--ink-soft); }
+  .f-skip:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; border-radius: 4px; }
 </style>
 
 <div class="topbar">
@@ -317,7 +336,8 @@
 <section class="sec">
   <div class="wrap host">
     <div class="portrait">
-      <span class="initials">SS</span>
+      <span class="initials" aria-hidden="true">SS</span>
+      <img src="assets/slatco-portrait.jpg" alt="Slatco Sterzenbach" onerror="this.remove()">
       <div class="plate">
         <div class="nm">Slatco Sterzenbach</div>
         <div class="rl">Dein Gastgeber</div>
@@ -546,6 +566,10 @@
       </button>
 
       <p class="f-note">Kostenlos · Zugangslink per E-Mail · Jederzeit abmeldbar</p>
+
+      <!-- TEMPORARY preview shortcut — lets you reach the offer page without
+           entering data. Delete this button before the funnel goes live. -->
+      <button type="button" class="f-skip" id="skip-reg">Überspringen und direkt zum Angebot →</button>
       <p class="f-error" id="f-error" role="alert" hidden></p>
     </form>
   </div>
@@ -593,6 +617,15 @@
     modal.querySelectorAll('[data-close]').forEach(function (b) {
       b.addEventListener('click', closeModal);
     });
+
+    // TEMPORARY preview shortcut — jumps to the offer page without submitting.
+    // Delete this block together with the .f-skip button before going live.
+    var skip = document.getElementById("skip-reg");
+    if (skip) {
+      skip.addEventListener("click", function () {
+        window.location.href = "offer.html";
+      });
+    }
     document.addEventListener('keydown', function (e) {
       if (modal.hidden) return;
       if (e.key === 'Escape') { closeModal(); return; }

@@ -1,51 +1,98 @@
-﻿<title>Slatco Sterzenbach — webinar funnel built by Sales At Scale</title>
+<title>Slatco Sterzenbach — Webinar-Funnel von Sales At Scale</title>
 <link rel="stylesheet" href="styles.css">
 <style>
   /* ---------- page-specific: hub ---------- */
 
-  .hub-hero { padding: 84px 0 64px; text-align: center; }
+  .hub-hero { padding: 34px 0 26px; text-align: center; }
   .hub-hero .inner { max-width: 760px; margin: 0 auto; }
-  .hub-hero .foronly {
-    display: inline-flex; align-items: center; gap: 9px;
-    font-family: var(--mono); font-size: 10.5px; letter-spacing: .16em;
-    text-transform: uppercase; color: var(--ink-faint);
-    padding-bottom: 14px;
+
+  /* prospect identity row — avatar beside the "exclusively for" plate */
+  .whofor-row {
+    display: flex; align-items: center; justify-content: center;
+    gap: 18px; margin-bottom: 20px; text-align: left;
   }
-  .hub-hero .foronly::before,
-  .hub-hero .foronly::after {
-    content: ""; width: 26px; height: 1px; background: var(--line);
+  .whofor-pic {
+    position: relative; z-index: 1;
+    width: 100%; height: 100%; border-radius: 50%;
+    background: linear-gradient(150deg, var(--brand) 0%, var(--brand-2) 70%, var(--brand-ink) 100%);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 0 26px -2px rgba(229, 42, 34, .55), var(--shadow);
+    border: 1px solid var(--line);
+  }
+  /* initials sit underneath and show through if the photo is ever missing */
+  .whofor-pic .fb {
+    font-family: var(--display); font-size: 26px; color: var(--on-brand);
+    letter-spacing: -0.02em; line-height: 1;
+  }
+  .whofor-pic img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  /* live element — soft brand glow, a slow ring pulsing outward, and a blinking
+     status dot, so the prospect's name reads as "on air" rather than static */
+  .whofor-avatar { position: relative; flex: none; width: 78px; height: 78px; }
+  .whofor-avatar::before,
+  .whofor-avatar::after {
+    content: ""; position: absolute; inset: 0; border-radius: 50%;
+    animation: avatarPulse 2.8s ease-out infinite;
+  }
+  .whofor-avatar::after { animation-delay: 1.4s; }
+  @keyframes avatarPulse {
+    0%   { box-shadow: 0 0 0 0 rgba(229, 42, 34, .5); }
+    100% { box-shadow: 0 0 0 18px rgba(229, 42, 34, 0); }
+  }
+  .whofor-avatar .live-dot {
+    position: absolute; right: 1px; bottom: 3px; z-index: 2;
+    width: 15px; height: 15px; border-radius: 50%;
+    background: var(--brand); border: 3px solid var(--paper);
+    animation: badgeBlink 1.6s ease-in-out infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .whofor-avatar::before, .whofor-avatar::after, .whofor-avatar .live-dot { animation: none; }
+  }
+  .hub-hero .foronly {
+    display: block;
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 6px;
   }
   .hub-hero .whofor {
-    font-family: var(--display); font-size: clamp(26px, 4.4vw, 38px);
-    letter-spacing: -0.02em; color: var(--brand-ink); margin-bottom: 22px;
+    font-family: var(--display); font-size: clamp(24px, 3.6vw, 32px);
+    letter-spacing: -0.02em; color: var(--brand-ink); line-height: 1.1;
   }
-  .hub-hero h1 { font-size: clamp(30px, 5vw, 50px); margin-bottom: 22px; }
+  .hub-hero h1 { font-size: clamp(27px, 4.1vw, 40px); margin-bottom: 14px; }
   .hub-hero .lede {
-    font-size: 17.5px; color: var(--ink-soft); max-width: 54ch; margin: 0 auto 34px;
+    font-size: 16.5px; color: var(--ink-soft); max-width: 52ch; margin: 0 auto 12px;
   }
+  /* the package is the point of this page — start it high enough to be visible
+     without scrolling on a laptop, instead of stacking two full section paddings */
+  .hub-hero + .sec { padding-top: 42px; }
+  /* the package heading is a signpost, not a section intro — tighter than the
+     shared .head spacing so the cards themselves come into view sooner */
+  .hub-hero + .sec .head { margin-bottom: 32px; }
 
   /* ---------- deliverable cards ---------- */
-  .deliverables { display: flex; flex-direction: column; gap: 16px; }
+  .deliverables { display: flex; flex-direction: column; gap: 14px; }
   .dcard {
-    display: grid; grid-template-columns: 64px 1fr auto;
-    gap: 26px; align-items: center;
+    display: grid; grid-template-columns: 56px 1fr auto;
+    gap: 24px; align-items: center;
     background: var(--card); border: 1px solid var(--line-soft);
-    border-radius: 10px; padding: 28px 30px;
+    border-radius: 10px; padding: 24px 28px;
     text-decoration: none; color: inherit;
     transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
   }
   .dcard:hover { transform: translateY(-2px); box-shadow: var(--shadow); border-color: var(--line); }
   .dcard:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   .dcard .num {
-    font-family: var(--display); font-size: 34px; line-height: 1;
+    font-family: var(--display); font-size: 32px; line-height: 1;
     color: var(--brand-ink); opacity: .55; letter-spacing: -0.02em;
   }
   .dcard .kind {
     font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
-    text-transform: uppercase; color: var(--accent-ink); margin-bottom: 8px;
+    text-transform: uppercase; color: var(--accent-ink); margin-bottom: 7px;
   }
-  .dcard h3 { font-size: 20px; margin-bottom: 7px; }
-  .dcard p { color: var(--ink-soft); font-size: 14.5px; line-height: 1.6; max-width: 60ch; }
+  .dcard h3 { font-size: 19px; margin-bottom: 6px; }
+  .dcard p { color: var(--ink-soft); font-size: 14.5px; line-height: 1.55; max-width: 58ch; }
   .dcard .go {
     font-family: var(--sans); font-size: 13px; font-weight: 600;
     color: var(--brand-ink); white-space: nowrap;
@@ -58,8 +105,7 @@
   .cal-wrap {
     background: var(--card); border: 1px solid var(--line-soft);
     border-radius: 10px; overflow: hidden; min-height: 560px;
-    /* Cal renders its own light chrome, so this surface stays light in both
-       themes — the same reasoning as the Tally embed on the funnel. */
+    /* Cal renders its own light chrome, so this surface stays light in both themes */
     background-color: #FCFAF5;
   }
   .cal-wrap > div { min-height: 560px; }
@@ -86,18 +132,26 @@
 
   /* ---------- bio ---------- */
   .biocard {
-    display: grid; grid-template-columns: 92px 1fr; gap: 26px;
-    align-items: start; max-width: 640px; margin: 0 auto;
+    display: grid; grid-template-columns: 210px 1fr; gap: 0;
+    align-items: stretch; max-width: 700px; margin: 0 auto; overflow: hidden;
     background: var(--card); border: 1px solid var(--line-soft);
-    border-radius: 10px; padding: 30px 32px;
+    border-radius: 10px; padding: 0;
   }
   .biocard .avatar {
-    width: 92px; height: 92px; border-radius: 10px;
+    position: relative; overflow: hidden;
+    width: 100%; height: 100%; min-height: 260px; border-radius: 0;
     background: linear-gradient(150deg, var(--brand) 0%, var(--brand-2) 70%, var(--brand-ink) 100%);
     display: flex; align-items: center; justify-content: center;
     font-family: var(--display); font-size: 30px; color: var(--on-brand);
     letter-spacing: -0.02em;
   }
+  .biocard .avatar img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  /* photo runs the full height of the card, flush to its edges; text keeps the padding */
+  .biocard .avatar img { object-position: center 28%; }
+  .biocard .bio-text { padding: 30px 32px; }
   .biocard .nm { font-family: var(--display); font-size: 21px; letter-spacing: -0.01em; }
   .biocard .rl {
     font-family: var(--mono); font-size: 10px; letter-spacing: .13em;
@@ -117,13 +171,18 @@
     .timeline { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 640px) {
-    .hub-hero { padding: 56px 0 46px; }
-    .dcard { grid-template-columns: 44px 1fr; gap: 18px; padding: 24px 22px; }
-    .dcard .num { font-size: 26px; }
+    .hub-hero { padding: 34px 0 28px; }
+    .hub-hero + .sec { padding-top: 40px; }
+    .whofor-row { gap: 14px; margin-bottom: 22px; }
+    .whofor-avatar { width: 64px; height: 64px; }
+    .whofor-pic .fb { font-size: 22px; }
+    .dcard { grid-template-columns: 40px 1fr; gap: 16px; padding: 22px 20px; }
+    .dcard .num { font-size: 25px; }
     .dcard .go { grid-column: 2; margin-top: 4px; }
     .timeline { grid-template-columns: 1fr; }
-    .biocard { grid-template-columns: 1fr; gap: 20px; padding: 26px 22px; }
-    .biocard .avatar { width: 64px; height: 64px; font-size: 22px; }
+    .biocard { grid-template-columns: 1fr; }
+    .biocard .avatar { height: 300px; min-height: 0; }
+    .biocard .bio-text { padding: 24px 22px 26px; }
     .cal-wrap, .cal-wrap > div { min-height: 620px; }
   }
 </style>
@@ -131,12 +190,24 @@
 <header class="hub-hero">
   <div class="wrap">
     <div class="inner">
-      <span class="foronly">Exclusively for</span>
-      <div class="whofor">Slatco Sterzenbach</div>
-      <h1>I built you a complete webinar funnel — free, and yours to keep.</h1>
-      <p class="lede">Not a mockup and not a pitch deck. Every page below is live, works on a phone, and is written for the successful-but-stuck operator in your world. It's designed to sit in front of your Performance Analyse call, so the people who book already bought the worldview.</p>
-      <a class="btn" href="#book">Book a call <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      <p class="microcopy" style="margin-top:18px">Built by Sales At Scale · No obligation</p>
+
+      <div class="whofor-row">
+        <span class="whofor-avatar">
+          <span class="whofor-pic">
+            <span class="fb" aria-hidden="true">SS</span>
+            <img src="assets/slatco-sterzenbach.jpg" alt="Slatco Sterzenbach" onerror="this.remove()">
+          </span>
+          <span class="live-dot" aria-hidden="true"></span>
+        </span>
+        <div>
+          <span class="foronly">Exklusiv für</span>
+          <div class="whofor">Slatco Sterzenbach</div>
+        </div>
+      </div>
+
+      <h1>Ich habe dir einen kompletten Webinar-Funnel gebaut.</h1>
+      <p class="lede">Kostenlos, und er gehört dir. Fünf fertige Teile — live, mobil, in den Worten deiner Zielgruppe. Gebaut, um vor deiner Performance-Analyse zu laufen.</p>
+      <p class="microcopy">Von Sales At Scale · Unverbindlich</p>
     </div>
   </div>
 </header>
@@ -144,9 +215,8 @@
 <section class="sec sec-alt">
   <div class="wrap">
     <div class="head head-c">
-      <span class="tag">// The package</span>
-      <h2>Here's what I built for you</h2>
-      <p>Five pieces. The first three are the live funnel; the last two are the research and copy that make it convert.</p>
+      <span class="tag">// Das Paket</span>
+      <h2>Das habe ich gebaut</h2>
     </div>
 
     <div class="deliverables">
@@ -154,51 +224,51 @@
       <a class="dcard" href="landing.html">
         <span class="num">01</span>
         <div>
-          <div class="kind">Landing page</div>
-          <h3>The registration page</h3>
-          <p>Where your audience lands and registers for the live webinar. Live countdown, mobile-first, and written in the words your market already uses — Autopilot, die Decke, Erreichbarkeit.</p>
+          <div class="kind">Landingpage</div>
+          <h3>Die Anmeldeseite</h3>
+          <p>Wo sich deine Zielgruppe für das Live-Webinar anmeldet. Countdown, mobil, in ihren eigenen Worten — Autopilot, die Decke, Erreichbarkeit.</p>
         </div>
-        <span class="go">View landing page <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="go">Ansehen <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
 
       <a class="dcard" href="offer.html">
         <span class="num">02</span>
         <div>
-          <div class="kind">Upsell page</div>
-          <h3>The one-time offer</h3>
-          <p>Shown the moment someone registers, while intent is highest. Turns free registrants into paid buyers and recovers ad spend before the event even runs.</p>
+          <div class="kind">Upsell-Seite</div>
+          <h3>Das einmalige Angebot</h3>
+          <p>Erscheint direkt nach der Anmeldung, wenn die Absicht am höchsten ist — und holt Werbebudget zurück, bevor das Webinar überhaupt läuft.</p>
         </div>
-        <span class="go">View upsell page <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="go">Ansehen <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
 
       <a class="dcard" href="thanks.html">
         <span class="num">03</span>
         <div>
-          <div class="kind">Confirmation page</div>
-          <h3>The show-up page</h3>
-          <p>Registrations are worthless if nobody attends. One-click calendar invite, clear next steps, and the one thing they should bring to get value on the day.</p>
+          <div class="kind">Bestätigungsseite</div>
+          <h3>Die Show-up-Seite</h3>
+          <p>Anmeldungen ohne Teilnahme sind wertlos. Kalendereintrag per Klick — und die eine Sache, die sie mitbringen sollen.</p>
         </div>
-        <span class="go">View confirmation page <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="go">Ansehen <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
 
       <a class="dcard" href="icp.html">
         <span class="num">04</span>
         <div>
-          <div class="kind">ICP avatar research</div>
-          <h3>Who you're actually selling to</h3>
-          <p>Their fears, desires, objections and buying triggers — pulled from what your market says in public, in their words. Use it for emails, video hooks and sales calls, not just this funnel.</p>
+          <div class="kind">ICP-Recherche</div>
+          <h3>Wen du wirklich ansprichst</h3>
+          <p>Ängste, Wünsche, Einwände und Kaufauslöser — mit Quelle, in ihren eigenen Worten. Nutzbar für Mails, Hooks und Calls, nicht nur hier.</p>
         </div>
-        <span class="go">See the research <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="go">Lesen <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
 
       <a class="dcard" href="ads.html">
         <span class="num">05</span>
         <div>
-          <div class="kind">5 event ad scripts</div>
-          <h3>Ready-to-record ad scripts</h3>
-          <p>Five angles, five different people they speak to. Written in your voice, structured hook-body-proof-CTA, with a copy button so you can hand them straight to an editor.</p>
+          <div class="kind">5 Ad-Skripte</div>
+          <h3>Fertig zum Aufnehmen</h3>
+          <p>Fünf Winkel, fünf verschiedene Menschen. In deiner Stimme, Hook–Body–Beweis–CTA, mit Kopier-Button für den Cutter.</p>
         </div>
-        <span class="go">Read the scripts <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="go">Lesen <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
 
     </div>
@@ -208,14 +278,14 @@
 <section class="sec" id="book">
   <div class="wrap narrow">
     <div class="head head-c">
-      <span class="tag tag-c">// If it's useful</span>
-      <h2>Grab a time and let's talk</h2>
-      <p>No pitch deck. I'll walk you through what I'd change, what it takes to launch, and you can decide from there.</p>
+      <span class="tag tag-c">// Wenn's nützlich ist</span>
+      <h2>Such dir einen Termin</h2>
+      <p>Kein Pitch. Ich zeige dir, was ich ändern würde und was ein Launch braucht.</p>
     </div>
 
     <div class="cal-wrap"><div id="cal-inline"></div></div>
     <p class="cal-fallback">
-      Calendar not loading? <a href="https://cal.com/panirobin/book" target="_blank" rel="noopener noreferrer">Open the booking page →</a>
+      Kalender lädt nicht? <a href="https://cal.com/panirobin/book" target="_blank" rel="noopener noreferrer">Zur Buchungsseite →</a>
     </p>
   </div>
 </section>
@@ -223,26 +293,26 @@
 <section class="sec sec-alt">
   <div class="wrap">
     <div class="head head-c">
-      <span class="tag">// The mechanism</span>
-      <h2>What a webinar funnel actually does</h2>
-      <p>Entrepreneurs don't book a call from a cold page. They book after you've run the diagnosis on them live and shown how you think — which is exactly what the Performance Analyse call needs walking in.</p>
+      <span class="tag">// Der Mechanismus</span>
+      <h2>Was ein Webinar-Funnel leistet</h2>
+      <p>Unternehmer buchen keinen Call von einer kalten Seite. Sie buchen, nachdem sie die Diagnose live erlebt haben.</p>
     </div>
 
     <div class="modules">
       <article class="mod">
-        <div class="idx">Step 01</div>
-        <h3>Traffic goes to one page</h3>
-        <p>Instead of asking strangers to buy, you ask them to show up to something free and specific. The commitment is small, so the cost per registration stays low.</p>
+        <div class="idx">Schritt 01</div>
+        <h3>Traffic auf eine Seite</h3>
+        <p>Statt Fremde zum Kauf zu bitten, lädst du sie zu etwas Kostenlosem ein. Kleine Hürde, günstige Anmeldung.</p>
       </article>
       <article class="mod">
-        <div class="idx">Step 02</div>
-        <h3>The webinar does the selling</h3>
-        <p>You run the absence test and the "the ceiling is a self-image" reframe live. By the end, the people who want help have felt the diagnosis — so booking the Analyse call is the obvious next step, not a pitch.</p>
+        <div class="idx">Schritt 02</div>
+        <h3>Das Webinar verkauft</h3>
+        <p>Du führst den Abwesenheits-Test live durch. Danach ist die Performance-Analyse der logische nächste Schritt — kein Pitch.</p>
       </article>
       <article class="mod">
-        <div class="idx">Step 03</div>
-        <h3>The funnel pays for itself early</h3>
-        <p>The €49 Performance-Paket runs immediately after registration, so a share of ad spend comes back before the webinar even airs. That's what makes filling the room repeatable.</p>
+        <div class="idx">Schritt 03</div>
+        <h3>Der Funnel zahlt früh</h3>
+        <p>Das 49-€-Paket läuft direkt nach der Anmeldung. Ein Teil des Budgets kommt zurück, bevor das Webinar stattfindet.</p>
       </article>
     </div>
   </div>
@@ -251,30 +321,30 @@
 <section class="sec">
   <div class="wrap">
     <div class="head head-c">
-      <span class="tag">// If we work together</span>
-      <h2>From this sample to live in about two weeks</h2>
+      <span class="tag">// Wenn wir zusammenarbeiten</span>
+      <h2>Von hier bis live: rund zwei Wochen</h2>
     </div>
 
     <div class="timeline">
       <div class="tstep">
-        <div class="when">Days 1–2</div>
-        <h3>Positioning</h3>
-        <p>We lock the offer, the promise and the event outline. Most of the research is already done — it's in section 04.</p>
+        <div class="when">Tag 1–2</div>
+        <h3>Positionierung</h3>
+        <p>Offer, Versprechen und Ablauf stehen. Die Recherche liegt schon vor.</p>
       </div>
       <div class="tstep">
-        <div class="when">Days 3–6</div>
-        <h3>Build</h3>
-        <p>Pages finalised with your real assets, forms and payment connected, emails and reminders wired up.</p>
+        <div class="when">Tag 3–6</div>
+        <h3>Aufbau</h3>
+        <p>Seiten final, Formulare und Zahlung angebunden, Mails eingerichtet.</p>
       </div>
       <div class="tstep">
-        <div class="when">Days 7–10</div>
+        <div class="when">Tag 7–10</div>
         <h3>Traffic</h3>
-        <p>Ads produced from the scripts in section 05, tracking installed, and the first spend goes live to fill the room.</p>
+        <p>Ads aus den Skripten, Tracking installiert, erstes Budget läuft.</p>
       </div>
       <div class="tstep">
-        <div class="when">Day 11+</div>
-        <h3>Run &amp; iterate</h3>
-        <p>We run the event, watch where people drop, and fix the weak step. The second run is always the profitable one.</p>
+        <div class="when">Ab Tag 11</div>
+        <h3>Live &amp; optimieren</h3>
+        <p>Wir laufen das Webinar und fixen die Stelle, an der Leute abspringen.</p>
       </div>
     </div>
   </div>
@@ -283,59 +353,58 @@
 <section class="sec sec-alt">
   <div class="wrap">
     <div class="head head-c">
-      <span class="tag">// Honest comparison</span>
-      <h2>What you have today vs what working together adds</h2>
-      <p>The sample is genuinely yours either way — nothing below is locked behind a call.</p>
+      <span class="tag">// Ehrlicher Vergleich</span>
+      <h2>Was du heute hast — und was dazukommt</h2>
     </div>
 
     <div class="fit">
       <div class="fit-col fit-no">
-        <h3>What you got today, free</h3>
+        <h3>Heute, kostenlos</h3>
         <ul>
           <li>
             <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span>Three live funnel pages, written for your audience</span>
+            <span>Drei fertige Funnel-Seiten</span>
           </li>
           <li>
             <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span>ICP research you can use anywhere, not just here</span>
+            <span>ICP-Recherche, überall nutzbar</span>
           </li>
           <li>
             <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span>Five ad scripts, ready to record</span>
+            <span>Fünf Ad-Skripte zum Aufnehmen</span>
           </li>
           <li>
             <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span>No call required to keep any of it</span>
+            <span>Kein Call nötig, um es zu behalten</span>
           </li>
         </ul>
       </div>
 
       <div class="fit-col fit-yes">
-        <h3>What working together adds</h3>
+        <h3>Mit Zusammenarbeit</h3>
         <ul>
           <li>
             <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span>Forms, payments and email sequences actually connected</span>
+            <span>Formulare, Zahlung und Mail-Strecken angebunden</span>
           </li>
           <li>
             <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span>Reminder and no-show sequences so the room fills</span>
+            <span>Erinnerungs- und No-Show-Sequenzen</span>
           </li>
           <li>
             <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span>Ads produced, tracked and optimised against real numbers</span>
+            <span>Ads produziert, getrackt und optimiert</span>
           </li>
           <li>
             <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span>Someone accountable for the number at the end</span>
+            <span>Jemand, der für die Zahl am Ende geradesteht</span>
           </li>
         </ul>
       </div>
     </div>
 
     <div style="text-align:center; margin-top:38px">
-      <a class="btn" href="#book">Book a call <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="btn" href="#book">Termin buchen <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
   </div>
 </section>
@@ -343,18 +412,18 @@
 <section class="sec sec-handoff">
   <div class="wrap">
     <div class="head head-c">
-      <span class="tag">// Who made this</span>
-      <h2>Quick bio</h2>
+      <span class="tag">// Wer das gemacht hat</span>
+      <h2>Kurz zu mir</h2>
     </div>
 
     <div class="biocard">
-      <div class="avatar">RP</div>
-      <div>
+      <div class="avatar"><img src="assets/robin-pani.jpg" alt="Robin Pani"></div>
+      <div class="bio-text">
         <div class="nm">Robin Pani</div>
         <div class="rl">CEO, Sales At Scale</div>
-        <p>I build event funnels for people who already know their subject and want the marketing side handled properly. I built this one for you before we ever spoke, because showing is faster than explaining.</p>
+        <p>Ich baue Event-Funnels für Leute, die ihr Thema beherrschen und das Marketing sauber gelöst haben wollen. Diesen hier habe ich gebaut, bevor wir gesprochen haben — zeigen geht schneller als erklären.</p>
         <div class="contact">
-          <a href="https://cal.com/panirobin/book" target="_blank" rel="noopener noreferrer"><span class="lbl">Book</span> cal.com/panirobin/book</a>
+          <a href="https://cal.com/panirobin/book" target="_blank" rel="noopener noreferrer"><span class="lbl">Termin</span> cal.com/panirobin/book</a>
           <a href="https://instagram.com/robinpanibiz" target="_blank" rel="noopener noreferrer"><span class="lbl">Instagram</span> @robinpanibiz</a>
         </div>
       </div>
@@ -365,10 +434,10 @@
 <section class="final">
   <div class="wrap">
     <span class="tag tag-c">// Slatco Sterzenbach</span>
-    <h2>The whole thing is yours either way.</h2>
-    <p class="sub">If it's useful, the fastest next step is fifteen minutes on a call. If it's not, keep the pages and the research anyway.</p>
-    <a class="btn" href="#book">Book a call <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-    <p class="microcopy">Prepared exclusively for Slatco Sterzenbach</p>
+    <h2>Es gehört dir — so oder so.</h2>
+    <p class="sub">Wenn's nützlich ist, sind 15 Minuten der schnellste nächste Schritt.</p>
+    <a class="btn" href="#book">Termin buchen <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <p class="microcopy">Exklusiv für Slatco Sterzenbach erstellt</p>
   </div>
 </section>
 
@@ -376,10 +445,10 @@
   <div class="wrap">
     <div class="wordmark">Meisterwerk <em>Formel</em></div>
     <div class="fmeta">
-      <span>Prepared exclusively for Slatco Sterzenbach</span>
-      <span>Built by Sales At Scale</span>
+      <span>Exklusiv für Slatco Sterzenbach erstellt</span>
+      <span>Gebaut von Sales At Scale</span>
     </div>
-    <p class="disc">This is a demonstration package built to showcase design and copywriting for a webinar funnel. Testimonials, statistics and event details shown inside the funnel pages are illustrative placeholders and are not claims about any real person, company or product. Figures attributed to IRON.MIND (e.g. "15,000+ entrepreneurs", "Trustpilot 4.9") are that company's own public claims, carried here as such and not independently verified.</p>
+    <p class="disc">Demonstrationspaket für Design und Copywriting eines Webinar-Funnels. Testimonials, Kennzahlen und Event-Angaben in den Funnel-Seiten sind illustrative Platzhalter. Zahlen, die IRON.MIND zugeschrieben werden (z. B. &bdquo;15.000+ Unternehmer&ldquo;, &bdquo;Trustpilot 4,9&ldquo;), sind eigene Angaben des Unternehmens und nicht unabhängig geprüft.</p>
   </div>
 </footer>
 
