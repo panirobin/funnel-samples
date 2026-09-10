@@ -51,6 +51,18 @@
   .back-link:hover { color: var(--ink-soft); }
   .back-wrap { text-align: center; padding-bottom: 60px; }
 
+  /* TEMPORARY: preview-only shortcut back to the hub, so someone walking the
+     sample doesn't have to use the browser back button. Remove this rule and
+     the #preview-home link before the funnel goes live. */
+  .preview-home {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 20px;
+    font-family: var(--sans); font-size: 13px; font-weight: 600;
+    padding: 11px 18px; border-radius: 4px;
+    border: 1px solid var(--line); color: var(--ink-soft); text-decoration: none;
+  }
+  .preview-home:hover { background: var(--paper-2); color: var(--ink); }
+  .preview-home:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; }
+
   @media (max-width: 640px) {
     .confirm-hero { padding: 52px 0 16px; }
     .stepcard { padding: 24px 22px; }
@@ -127,6 +139,9 @@
 
 <div class="back-wrap">
   <a class="back-link" href="offer.html">Changed your mind? See the Simulation Vault again →</a>
+  <!-- TEMPORARY preview shortcut — lets someone walking the sample return to the hub
+       without the browser back button. Delete this block before the funnel goes live. -->
+  <div><a class="preview-home" id="preview-home" href="index.html">← Back to the hub (preview only)</a></div>
 </div>
 
 <script>
