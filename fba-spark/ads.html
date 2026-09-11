@@ -1,0 +1,493 @@
+﻿<title>5 event ad scripts | The Scan Room</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- page-specific: ad scripts ---------- */
+
+  .doc-hero { padding: 76px 0 44px; }
+  .doc-hero .inner { max-width: 760px; }
+  .doc-hero h1 { font-size: clamp(30px, 5vw, 46px); margin: 18px 0 18px; }
+  .doc-hero .lede { font-size: 17px; color: var(--ink-soft); max-width: 58ch; }
+  .backbar { padding-top: 26px; }
+  .backlink {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .backlink:hover { color: var(--ink-soft); }
+  .backlink svg { width: 1em; height: 1em; transform: rotate(180deg); flex: none; }
+
+  .scripts { display: flex; flex-direction: column; gap: 14px; }
+
+  .script { background: var(--card); border: 1px solid var(--line-soft); border-radius: 10px; overflow: hidden; }
+  .script.open { border-color: var(--line); box-shadow: var(--shadow); }
+
+  .s-head {
+    width: 100%; display: grid; grid-template-columns: auto 1fr auto auto;
+    gap: 18px; align-items: center; text-align: left;
+    background: none; border: 0; cursor: pointer;
+    padding: 24px 26px; color: var(--ink); font-family: var(--sans);
+  }
+  .s-head:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .s-num {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .12em;
+    color: var(--accent-ink);
+  }
+  .s-title { font-family: var(--display); font-size: 19px; letter-spacing: -0.01em; line-height: 1.25; }
+  .s-meta {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ink-faint); white-space: nowrap;
+  }
+  .s-sign { font-family: var(--mono); font-size: 15px; color: var(--brand-ink); transition: transform .28s ease; }
+  .script.open .s-sign { transform: rotate(45deg); }
+
+  .s-body { max-height: 0; overflow: hidden; transition: max-height .34s ease; }
+  .s-inner { padding: 4px 26px 26px; }
+
+  .s-part { padding: 18px 0; border-top: 1px solid var(--line-soft); }
+  .s-part:first-child { border-top: 0; padding-top: 6px; }
+  .p-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px;
+  }
+  .s-part p { font-size: 15.5px; line-height: 1.7; color: var(--ink); margin-bottom: 12px; }
+  .s-part p:last-child { margin-bottom: 0; }
+
+  /* claims audit — deliberately visually distinct from the script itself */
+  .verify {
+    margin-top: 20px; padding: 18px 20px;
+    background: var(--paper-2); border: 1px dashed var(--line);
+    border-radius: 8px;
+  }
+  .verify .vhead {
+    display: flex; align-items: center; gap: 9px;
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--accent-ink); margin-bottom: 12px;
+  }
+  .verify ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+  .verify li {
+    display: grid; grid-template-columns: 1fr auto; gap: 14px;
+    font-size: 13.5px; line-height: 1.5; color: var(--ink-soft);
+    padding-bottom: 9px; border-bottom: 1px solid var(--line-soft);
+  }
+  .verify li:last-child { border-bottom: 0; padding-bottom: 0; }
+  .verify .st {
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: .1em;
+    text-transform: uppercase; white-space: nowrap; padding-top: 2px;
+  }
+  .verify .ok { color: var(--brand-ink); }
+  .verify .no { color: var(--accent-ink); }
+
+  .s-actions { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+  .s-btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: var(--sans); font-size: 13.5px; font-weight: 600; line-height: 1;
+    padding: 13px 20px; border-radius: 4px; cursor: pointer;
+    background: var(--btn-bg); color: var(--btn-fg); border: 1px solid transparent;
+    appearance: none; -webkit-appearance: none; margin: 0;
+  }
+  .s-btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+  .s-btn.ghost:hover { background: var(--paper-2); }
+  .s-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .s-btn svg { width: 1em; height: 1em; flex: none; }
+
+  @media (max-width: 640px) {
+    .doc-hero { padding: 52px 0 34px; }
+    .s-head { grid-template-columns: auto 1fr auto; gap: 12px; padding: 20px; }
+    .s-meta { display: none; }
+    .s-title { font-size: 17px; }
+    .s-inner { padding: 4px 20px 22px; }
+    .verify li { grid-template-columns: 1fr; gap: 4px; }
+    .verify .st { white-space: normal; }
+  }
+</style>
+
+<div class="wrap backbar">
+  <a class="backlink" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back to the package
+  </a>
+</div>
+
+<header class="doc-hero">
+  <div class="wrap">
+    <div class="inner">
+      <span class="tag">// 05 · Event ad scripts</span>
+      <h1>Five scripts, five different people</h1>
+      <p class="lede">Each one speaks to a different reason someone in your market is stuck, so they can run simultaneously without competing. Written in your voice, from your own videos. Click any script to open it, then copy or download it.</p>
+    </div>
+  </div>
+</header>
+
+<section class="sec">
+  <div class="wrap narrow">
+    <div class="scripts" id="scripts">
+
+      <article class="script" data-slug="script-1">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">01</span>
+          <span class="s-title">For the one who sources all weekend and buys nothing</span>
+          <span class="s-meta">~80 sec</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+
+            <div class="s-part" data-part="HOOK">
+              <div class="p-label">Hook</div>
+              <p>You just spent six hours in Keepa and bought nothing. Forty tabs open, half of them still loading, and not one lead you'd actually put money on.</p>
+              <p>That's not a you problem and it's not because Amazon is picked over. It's that you're giving every listing the same twenty minutes — including the ones that were never going to work.</p>
+            </div>
+
+            <div class="s-part" data-part="BODY">
+              <div class="p-label">Body</div>
+              <p>I'm Dave. I've been reselling on Amazon for five years and I've spent thousands of hours doing exactly what you're doing. The thing that actually changed my numbers wasn't a better way to find winners. It was a faster way to throw out losers.</p>
+              <p>There are four things I look at before I read anything else on a listing. If any one of them is there, I'm out — not "I'll think about it", out, in about two seconds. An IP complaint anywhere in the history. The brand sitting in the Buy Box. A price spike that isn't what it looks like. And an offer count that's been climbing all month. That last one is the one that gets people: the price hasn't crashed yet, but it's going to.</p>
+            </div>
+
+            <div class="s-part" data-part="WHAT YOU'LL LEARN">
+              <div class="p-label">What you'll learn</div>
+              <p>The four kill signals and how to read them off a chart at a glance. The 10% rule — why a lead that isn't close enough at list price is never getting there with coupons, so you stop burning an hour on it. And live, on screen: a hundred-lead list cut down to the handful worth opening.</p>
+            </div>
+
+            <div class="s-part" data-part="CTA">
+              <div class="p-label">Call to action</div>
+              <p>It's free, it's live, it's 55 minutes, and I'm sharing my screen the whole way. Thursday, 1 PM Eastern. Register at the link and bring one lead you couldn't make a call on.</p>
+            </div>
+
+            <div class="verify">
+              <div class="vhead">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5 15 14H1L8 1.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 6.5v3.2M8 11.6v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                Verify before running
+              </div>
+              <ul>
+                <li><span>&ldquo;Five years reselling&rdquo; and &ldquo;thousands of hours&rdquo;</span><span class="st ok">Dave's own words, sourcing-criteria video</span></li>
+                <li><span>The four kill criteria, in this order</span><span class="st ok">Dave's own framework, same video</span></li>
+                <li><span>The 10% rule and the ~30% ROI target</span><span class="st ok">Dave's own numbers, same video</span></li>
+                <li><span>&ldquo;A hundred leads down to ten&rdquo;</span><span class="st no">His illustration, not a measured ratio — keep it as an example, not a promise</span></li>
+              </ul>
+            </div>
+
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>
+                Copy script
+              </button>
+              <button type="button" class="s-btn ghost download-script">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Download .txt
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </article>
+
+      <article class="script" data-slug="script-2">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">02</span>
+          <span class="s-title">For the one whose last lead tanked</span>
+          <span class="s-meta">~78 sec</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+            <div class="s-part" data-part="HOOK">
+              <div class="p-label">Hook</div>
+              <p>You bought the units. The numbers were good when you checked out. Then the shipment lands, and the price is twenty percent lower than the day you bought it.</p>
+              <p>Here's the annoying part: it was on the chart. You just weren't looking at the line that predicts it.</p>
+            </div>
+            <div class="s-part" data-part="BODY">
+              <div class="p-label">Body</div>
+              <p>I'm Dave, I resell on Amazon and I coach sellers one-to-one. Almost everyone who brings me a lead that tanked bought it off the price line. And the price line tells you where it <em>has been</em>. The offer count tells you where it's going.</p>
+              <p>When offers climb hard for a month, that price is coming down — it doesn't matter how healthy today looks. Same story when one big seller has been holding a listing at their price: the moment they're back in stock, it goes back to their number, and you're stuck at yours.</p>
+            </div>
+            <div class="s-part" data-part="WHAT YOU'LL LEARN">
+              <div class="p-label">What you'll learn</div>
+              <p>How to read an offer-count spike before it becomes a price crash. What a real IP complaint looks like on a chart versus an ordinary sell-off. And the sellers-to-sales ratio I use — a hard number, so the "is this too saturated" question stops being a feeling.</p>
+            </div>
+            <div class="s-part" data-part="CTA">
+              <div class="p-label">Call to action</div>
+              <p>Free, live, 55 minutes, Thursday at 1 PM Eastern. If you've got a lead sitting in your storage right now that you wish you hadn't bought, bring it — we'll put it on screen and find the signal you missed. Register at the link.</p>
+            </div>
+            <div class="verify">
+              <div class="vhead">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5 15 14H1L8 1.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 6.5v3.2M8 11.6v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                Verify before running
+              </div>
+              <ul>
+                <li><span>Offer-count spike as the leading indicator of a price crash</span><span class="st ok">Dave's own framing, sourcing-criteria video</span></li>
+                <li><span>The 15% sellers-to-monthly-sales rule</span><span class="st ok">Dave's own number, same video</span></li>
+                <li><span>Large sellers holding a fixed price, then returning to it</span><span class="st ok">Dave's own example, same video</span></li>
+                <li><span>&ldquo;Twenty percent lower&rdquo;</span><span class="st no">Illustrative figure — swap for a real example or soften</span></li>
+              </ul>
+            </div>
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Copy script</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Download .txt</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="script" data-slug="script-3">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">03</span>
+          <span class="s-title">For the one who's been burned by a lead list</span>
+          <span class="s-meta">~82 sec</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+            <div class="s-part" data-part="HOOK">
+              <div class="p-label">Hook</div>
+              <p>You paid for a lead list. The leads were real. And by the time you'd bought, so had two hundred other subscribers.</p>
+              <p>That's not a bad list. That's what a list <em>is</em>. The margin was gone the moment it went out.</p>
+            </div>
+            <div class="s-part" data-part="BODY">
+              <div class="p-label">Body</div>
+              <p>I'm Dave. I've been doing online arbitrage for five years, and I don't sell leads — I teach the scan, because the scan is the only part that still works after everyone else has seen it.</p>
+              <p>Everything I source runs through one tool. Not a stack of subscriptions, one: Keepa Product Finder. What changes the results isn't the tool, it's the order you build the search in — which filters, which numbers, and which ones to leave alone. Sales rank, for instance. Everyone tells you to set it. I never touch it, because a rank of ten thousand means something completely different in grocery than it does in games.</p>
+            </div>
+            <div class="s-part" data-part="WHAT YOU'LL LEARN">
+              <div class="p-label">What you'll learn</div>
+              <p>The filter I use instead of sales rank, that means the same thing in every category. The one Keepa setting that puts the price chart under your cursor so you never open a dead listing again. And how to take a single good find and multiply it across every variation of that product.</p>
+            </div>
+            <div class="s-part" data-part="CTA">
+              <div class="p-label">Call to action</div>
+              <p>Free, live, 55 minutes, Thursday 1 PM Eastern. I'm not handing out ASINs — I'm building the searches live so you can rebuild them on your own brands. Register at the link.</p>
+            </div>
+            <div class="verify">
+              <div class="vhead">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5 15 14H1L8 1.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 6.5v3.2M8 11.6v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                Verify before running
+              </div>
+              <ul>
+                <li><span>&ldquo;You don't need any other tool besides Keepa Product Finder&rdquo;</span><span class="st ok">Dave's own words, sourcing-processes video</span></li>
+                <li><span>Not filtering on sales rank; the grocery-vs-games example</span><span class="st ok">Dave's own example, same video</span></li>
+                <li><span>The price-history-overlay setting; variations / context clues</span><span class="st ok">Dave's own, sourcing-criteria video</span></li>
+                <li><span>&ldquo;Two hundred other subscribers&rdquo;</span><span class="st no">Not verified — no list size is public; soften to &ldquo;everyone else on the list&rdquo;</span></li>
+              </ul>
+            </div>
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Copy script</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Download .txt</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="script" data-slug="script-4">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">04</span>
+          <span class="s-title">For the one who's scared of getting IP'd</span>
+          <span class="s-meta">~76 sec</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+            <div class="s-part" data-part="HOOK">
+              <div class="p-label">Hook</div>
+              <p>You've read enough suspension stories to hesitate on every listing. So you check, and re-check, and end up not buying — which costs you more than a complaint ever would.</p>
+              <p>Let me take some heat out of this, because I've had a lot of them.</p>
+            </div>
+            <div class="s-part" data-part="BODY">
+              <div class="p-label">Body</div>
+              <p>I'm Dave, five years reselling on Amazon. We've had well over forty IP complaints on our store. Every one of them got beaten with order confirmations. They're not the end of the world — you just don't want to stack them up, especially early, because they hit your account health.</p>
+              <p>So the answer isn't to be frightened of every listing. It's to stop buying the ones that were obviously going to do this. If the brand is sitting in the Buy Box, it's a ticking time bomb — maybe not this month, but it's coming. And if the offer count has already fallen off a cliff once, that history repeats. Both of those are visible on the chart before you spend a cent.</p>
+            </div>
+            <div class="s-part" data-part="WHAT YOU'LL LEARN">
+              <div class="p-label">What you'll learn</div>
+              <p>What an IP complaint actually looks like on a Keepa chart, and how to tell it apart from a normal sell-off. Why a brand in the Buy Box is a no, even when the numbers look great today. And what to do if you get one anyway, so it stops being the thing that keeps you from buying at all.</p>
+            </div>
+            <div class="s-part" data-part="CTA">
+              <div class="p-label">Call to action</div>
+              <p>Free, live, 55 minutes. Thursday, 1 PM Eastern. Bring a listing you've been too nervous to buy and we'll look at it together. Register at the link.</p>
+            </div>
+            <div class="verify">
+              <div class="vhead">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5 15 14H1L8 1.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 6.5v3.2M8 11.6v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                Verify before running
+              </div>
+              <ul>
+                <li><span>&ldquo;Well over forty IP complaints, beaten with order confirmations&rdquo;</span><span class="st ok">Dave's own account, sourcing-criteria video — near-verbatim</span></li>
+                <li><span>&ldquo;Brand in the Buy Box is a ticking time bomb&rdquo;</span><span class="st ok">Dave's own phrasing, same video</span></li>
+                <li><span>Complaints hitting account health</span><span class="st ok">Dave's own framing, same video</span></li>
+                <li><span>Any claim that complaints are always beatable</span><span class="st no">Do not run — he says &ldquo;most of the time&rdquo;. Keep the qualifier in the ad.</span></li>
+              </ul>
+            </div>
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Copy script</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Download .txt</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="script" data-slug="script-5">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">05</span>
+          <span class="s-title">For the seller who's tired of starting from zero every month</span>
+          <span class="s-meta">~80 sec</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+            <div class="s-part" data-part="HOOK">
+              <div class="p-label">Hook</div>
+              <p>Every month you start over. New scan, new leads, new gamble. And if you stop sourcing for two weeks, the business stops.</p>
+              <p>That's not a business yet. That's a job you gave yourself.</p>
+            </div>
+            <div class="s-part" data-part="BODY">
+              <div class="p-label">Body</div>
+              <p>I'm Dave. Here's something that surprises people: I rarely source for my own store anymore. I source with students every day, but for my own catalogue I'd rather go back to leads I've already tested — the ones I know sell, at prices I know I can hit.</p>
+              <p>That's the whole shift. A lead you bought once and did well on is worth more than a new lead you've never tested, because you already know how it behaves. So you don't throw it away when it gets saturated. You track it, you get alerted when the offers fall off and the price recovers, and you buy it again.</p>
+            </div>
+            <div class="s-part" data-part="WHAT YOU'LL LEARN">
+              <div class="p-label">What you'll learn</div>
+              <p>How to set a price alert on a lead so the reorder finds you instead of you hunting for it. What to record about a lead so re-buying takes thirty seconds, not a research session. And why a product that survived a wave of competition is usually the safest thing you'll ever buy again.</p>
+            </div>
+            <div class="s-part" data-part="CTA">
+              <div class="p-label">Call to action</div>
+              <p>Free, live, 55 minutes, Thursday at 1 PM Eastern. If you're sourcing constantly and still feel like you're starting over every month, this is the part you're missing. Register at the link.</p>
+            </div>
+            <div class="verify">
+              <div class="vhead">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5 15 14H1L8 1.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 6.5v3.2M8 11.6v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                Verify before running
+              </div>
+              <ul>
+                <li><span>&ldquo;I rarely source for myself; I source with students every day&rdquo;</span><span class="st ok">Dave's own words, sourcing-processes video</span></li>
+                <li><span>&ldquo;Tested, tried and true&rdquo; old leads over new ones</span><span class="st ok">Dave's own framing, same video</span></li>
+                <li><span>Track Product price alerts + a sheet with the buy link and coupon</span><span class="st ok">Dave's own workflow, same video</span></li>
+                <li><span>&ldquo;Safest thing you'll ever buy again&rdquo;</span><span class="st no">Stronger than he puts it — he says &ldquo;much less likely to get saturated&rdquo;. Match his wording.</span></li>
+              </ul>
+            </div>
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Copy script</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Download .txt</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="tag tag-c">// Next</span>
+    <h2>Point these at the landing page.</h2>
+    <p class="sub">Each script ends by sending people to the registration page in this package. Check the claims flagged in each script before you run any spend behind it.</p>
+    <a class="btn" href="index.html">Back to the package <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">Scan <em>Room</em></div>
+    <div class="fmeta">
+      <span>Prepared exclusively for Dave Mane</span>
+      <span>Built by Sales At Scale</span>
+    </div>
+    <p class="disc">These scripts are drafts written from publicly available research and Dave's own published videos. Claims flagged as unverified must be confirmed before use in paid advertising.</p>
+  </div>
+</footer>
+
+<div class="tally-toast" id="ads-toast" role="status" aria-live="polite"></div>
+<script>
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+
+  (function () {
+    var scripts = [].slice.call(document.querySelectorAll('.script'));
+    var toast = document.getElementById('ads-toast');
+    var toastTimer;
+
+    function flash(msg) {
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 2600);
+    }
+
+    // Assemble plain text from the script parts only — the verify block is
+    // internal QA, not part of what gets recorded, so it is deliberately excluded.
+    function scriptText(article) {
+      var title = article.querySelector('.s-title').textContent.trim();
+      var out = [title, ''];
+      [].slice.call(article.querySelectorAll('.s-part')).forEach(function (part) {
+        out.push('[' + (part.getAttribute('data-part') || '').toUpperCase() + ']');
+        [].slice.call(part.querySelectorAll('p')).forEach(function (p) {
+          out.push(p.textContent.trim());
+        });
+        out.push('');
+      });
+      return out.join('\n').replace(/\n{3,}/g, '\n\n').trim() + '\n';
+    }
+
+    function setOpen(article, open) {
+      var body = article.querySelector('.s-body');
+      var btn = article.querySelector('.s-head');
+      article.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      body.style.maxHeight = open ? body.scrollHeight + 'px' : null;
+    }
+
+    scripts.forEach(function (article) {
+      article.querySelector('.s-head').addEventListener('click', function () {
+        setOpen(article, !article.classList.contains('open'));
+      });
+
+      article.querySelector('.copy-script').addEventListener('click', function () {
+        var text = scriptText(article);
+        function fallback() {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); flash('Script copied'); }
+          catch (e) { flash('Copy failed — select the text manually'); }
+          document.body.removeChild(ta);
+        }
+        // navigator.clipboard needs a secure context; fall back where it is absent
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(function () { flash('Script copied'); }, fallback);
+        } else { fallback(); }
+      });
+
+      article.querySelector('.download-script').addEventListener('click', function () {
+        var blob = new Blob([scriptText(article)], { type: 'text/plain;charset=utf-8' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'fba-spark-' + (article.getAttribute('data-slug') || 'script') + '.txt';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+        flash('Downloaded');
+      });
+    });
+
+    // An open panel's pixel height goes stale when the viewport reflows.
+    var t;
+    window.addEventListener('resize', function () {
+      clearTimeout(t);
+      t = setTimeout(function () {
+        var open = document.querySelector('.script.open');
+        if (open) { var b = open.querySelector('.s-body'); b.style.maxHeight = b.scrollHeight + 'px'; }
+      }, 120);
+    });
+  })();
+</script>
