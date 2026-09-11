@@ -8,10 +8,20 @@ Prepared for a webinar-funnel sample, brand **The Scan Room**. English on every 
 
 ## Identity
 
-- **Brand:** FBA Spark (fbaspark.com). Positioning, from his own bio: *"Built a Simple
-  Cash Flowing Business on Amazon · Helping Arbitrage Sellers Build a Sustainable
-  Business."* The funnel's target destination is his existing
+- **Brand:** **AMZ Spark** — that is the wordmark on the live site (AMZ in black,
+  Spark in green), even though the domain is fbaspark.com and the Whop listing reads
+  "FBA Spark". Use *AMZ Spark* in anything the audience sees. Positioning, from his own
+  bio: *"Built a Simple Cash Flowing Business on Amazon · Helping Arbitrage Sellers Build
+  a Sustainable Business."* The funnel's target destination is his existing
   **fbaspark.com/strategy-call**.
+- **What that page actually is** (confirmed from a screenshot supplied with the brief):
+  a VSL page. Green/red urgency badge — *"QUARTER FOUR IS ALMOST HERE"* — then the
+  headline *"Get Personalized One-On-One Coaching On How To Build A **Sustainable Online
+  Arbitrage Business** And Create Predictable Cash Flow."*, the sub *"Personalized
+  coaching on all things ungating, sourcing, product analysis, & Amazon systems"*, an
+  autoplay video with an Enable Sound control, and a single pill CTA:
+  **APPLY FOR 1-ON-1 COACHING →**. So the ask is an *application*, not a booking — which
+  is a large jump straight off a YouTube video, and the gap this workshop fills.
 - **Host:** Dave Mane — Amazon FBA **online arbitrage** reseller and 1:1 coach.
   Five years reselling on Amazon. Runs his own store plus a VA who sources to feed the
   catalogue, and coaches sellers one-to-one rather than through a module library.
@@ -31,11 +41,15 @@ Prepared for a webinar-funnel sample, brand **The Scan Room**. English on every 
 fbaspark.com, instagram.com, youtube.com, whop.com and trustpilot.com are all blocked by
 this machine's network egress proxy. Everything below is built from **the two YouTube
 transcripts supplied with the brief** (which are extremely rich — the mechanism is fully
-articulated in his own words) plus **search-result summaries**. Two consequences:
+articulated in his own words), **a screenshot of fbaspark.com** supplied afterwards, and
+**search-result summaries** for the rest.
 
-1. **The palette is not extracted from his live site.** It is designed for the category
-   and the brand name (see below) and is meant to be swapped for his real brand colours.
-2. Any quote below that is not from the transcripts is marked as a summary, not verbatim.
+What that means for trust: the mechanism and the voice are first-hand. The brand name,
+palette, typography, headline, sub-headline and CTA are read off the screenshot — so the
+palette below is **extracted, not invented**, but only from the fold that screenshot
+covers. Follower counts, the Whop product name and the "first $10,000" promise are still
+search summaries of pages this environment could not open. Any quote not from the
+transcripts or the screenshot is marked as a summary, not verbatim.
 
 ---
 
@@ -231,8 +245,15 @@ locked in inventory that won't move, an account-health score they're nervous abo
 
 sourcing · leads · a lead that tanked · the Keepa chart · the pink line · Buy Box
 rotation · suppressed Buy Box · offer count · sales rank vs bought-in-past-month · IP
-complaint · account health · ROI · the 10% rule · kill criteria · replen · FBM vs FBA ·
-sell-through · variations · Product Finder · Track Product · dead stock · capital tied up
+complaint · account health · ungating · gated brand · ROI · the 10% rule · kill criteria ·
+replen · FBM vs FBA · sell-through · variations · Product Finder · Track Product ·
+dead stock · capital tied up
+
+**Ungating** is worth flagging: it is the first word in their own sub-headline
+("all things ungating, sourcing, product analysis, & Amazon systems") and it is the pain
+that stops a beginner dead — they find a profitable lead and then cannot sell the brand.
+This workshop is deliberately about sourcing only, so ungating is a natural second event
+or a Q&A topic rather than something to bolt on here.
 
 Avoid: "passive income", "dropshipping", "product research" (they say *sourcing*),
 "e-commerce store" (they say *my store* or *my catalogue*).
@@ -268,59 +289,64 @@ Write the whole funnel in that column. If a sentence would read the same on a ge
 
 ---
 
-## Palette (designed, not extracted — see the egress note above)
+## Palette (extracted from the fbaspark.com screenshot)
 
-Graphite ground + "spark" orange, which reads as the category (Amazon / Keepa chart
-territory) without copying either brand's marks.
+White ground, a vivid leaf green as the primary, near-black headlines, and a coral red
+used only as an urgency signal — the two dots either side of their "QUARTER FOUR IS
+ALMOST HERE" badge. Their headlines are a heavy geometric sans, and their CTA is a
+full-radius pill with an uppercase label.
 
 | Token | Light (`:root`) | Dark |
 |---|---|---|
-| `--paper` / `--paper-2` | `#FFFFFF` / `#F7F5F2` | `#0B0D11` / `#12151B` |
-| `--card` | `#FFFFFF` | `#171A21` |
-| `--ink` | `#16181D` | `#EFF1F5` |
-| `--ink-soft` / `--ink-faint` | `#5A6069` / `#6F757E` | `#A6ADBA` / `#79808D` |
-| `--brand` (panel colour) | `#16181D` | `#2E3440` |
-| `--on-brand` | `#FFFFFF` | `#FFFFFF` |
-| `--brand-ink` (eyebrows on paper) | `#333944` | `#C4CBD8` |
-| `--btn-bg` / `--btn-fg` | `#FF8A00` / `#16181D` | `#FF9410` / `#16181D` |
-| `--accent` (fills only) | `#FF8A00` | `#FF9410` |
-| `--accent-ink` (accent as text) | `#9A4E00` | `#FFB45C` |
-| `--on-brand-tick` | `#FFD9A8` (theme-fixed — sits on the graphite panel in both modes) | `#FFD9A8` |
+| `--paper` / `--paper-2` | `#FFFFFF` / `#F3F8F4` | `#0A0F0B` / `#0F1712` |
+| `--card` | `#FFFFFF` | `#131C16` |
+| `--ink` | `#101513` | `#EDF3EE` |
+| `--ink-soft` / `--ink-faint` | `#55605A` / `#6B776F` | `#A4B3A8` / `#77857B` |
+| `--brand` (panels + buttons) | `#137A39` | `#1A6B3A` |
+| `--brand-ink` (brand as text) | `#116B32` | `#6EE7A0` |
+| `--brand-vivid` (their literal green — fills only) | `#2FBF52` | `#2FBF52` |
+| `--btn-bg` / `--btn-fg` | `#137A39` / `#FFFFFF` | `#1A8440` / `#FFFFFF` |
+| `--accent` (urgency fills) | `#EF4444` | `#F26B6B` |
+| `--accent-ink` (urgency as text) | `#C62828` | `#FF9F9F` |
+| `--on-brand-tick` | `#D2F8DE` (theme-fixed — sits on the green panel in both modes) | `#D2F8DE` |
 
 Notes:
 
-- The brand token is the **near-black panel**, so white type on the VIP ticket, the
-  urgency band and the comparison column works with no rework. The orange lives in
-  `--btn-bg` and `--accent`, so every button and every small fill is the spark.
-- Orange as **text** never passes 4.5:1 on white (`#FF8A00` is ~2.4:1). Text uses go
-  through `--accent-ink` `#9A4E00` (6.1:1 on white, 5.6:1 on `--paper-2`).
-- Buttons are dark ink on orange: **7.5:1** light, **8.0:1** dark. White on orange would
-  be 2.4:1 — do not flip it.
-- The alert bar and the "Best value" flag hardcode `#3A1D00` on `var(--accent)` (6.6:1 /
-  7.0:1) because the fill stays orange in both themes.
-- Checked pairs, light: ink 17.8 · ink-soft 6.3 · ink-faint 4.6 · brand-ink 11.6 ·
-  accent-ink 6.1 · button 7.5. Dark: ink 17.2 · ink-soft 8.6 · ink-faint 4.9 ·
-  accent-ink 11.1 · white-on-panel 12.5.
-- One known softness: in dark mode the brand panel sits only 1.4:1 from the card behind
-  it, so the VIP ticket separates by its shadow and its orange flag rather than by
-  luminance. Same trade-off the reference sample makes.
+- Their raw green measures **2.4:1 against white**. It can never carry white text and can
+  never *be* text. It survives as `--brand-vivid` for fills that hold no type — the
+  avatar glow, the live dot, bullet pips, the pull-quote rule, the VIP ticket's edge.
+  Everything with type on it uses `--brand` / `--brand-ink`, the same hue deepened.
+  Their own live button (white on the raw green) is around 2.4:1; this sample deepens it
+  one notch rather than copying that.
+- The urgency bar on the OTO page and the "Best value" flag pin **`#C62828` with white**
+  (5.6:1) rather than routing through `--accent`, which lightens in dark mode and would
+  drop white to ~3:1. Theme-fixed, the same way `--on-brand-tick` is.
+- **Typography changed with the rebrand.** `--display` is a bold geometric sans stack
+  (Poppins → Gilroy → Avenir Next → Segoe UI Variable Display → system-ui) and headings
+  run at **700**, because their headlines are emphatically bold sans, not the house serif
+  the other samples use. No web fonts are loaded — same local-stack rule as the rest of
+  the repo. To put the serif back it is two lines in `styles.css`: the `--display` stack
+  and the `h1, h2, h3` weight, both commented where they sit.
+- Buttons are **full-radius pills with uppercase labels**, matching their
+  "APPLY FOR 1-ON-1 COACHING" CTA.
+- Checked pairs, light: ink 18.4 · ink-soft 6.6 · ink-faint 4.7 · brand-ink 6.6 ·
+  accent-ink 5.6 · button 5.4 · tick-on-brand 4.7 · white-on-urgency-bar 5.6.
+  Dark: ink 17.2 · ink-soft 8.8 · ink-faint 5.0 · brand-ink 12.5 · accent-ink 9.9 ·
+  button 4.8 · white-on-panel 6.6 · tick-on-panel 5.7. Nothing sits under 4.5:1.
+- The green panel separates from the card behind it at 2.7:1 in dark mode, which is
+  comfortably better than the first pass at this sample managed.
 
 ---
 
 ## Assets
 
-`assets/operator.jpg` (Robin Pani) is in place. **Dave's two photos are not** — the images
-supplied with the brief were pasted into the conversation rather than saved as files, so
-they could not be written to disk. Two files are referenced and currently fall back to a
-"DM" monogram via `onerror`:
+All three images are in place.
 
-| File | Used on | Crop |
+| File | Used on | Notes |
 |---|---|---|
-| `assets/prospect.jpg` | `index.html` — the hub avatar | square, face centred |
-| `assets/prospect-portrait.jpg` | `landing.html` — the host block | portrait, `object-position: center 28%` |
-
-Dropping those two files in is the only thing needed to finish the sample visually;
-nothing in the markup has to change.
+| `assets/dave-manee.jpg` | `index.html` — hub avatar | 150×150, shown in a 78px circle |
+| `assets/dave-portrait.png` | `landing.html` — host block | 405×501; the container is 4:5, so `cover` crops almost nothing |
+| `assets/operator.jpg` | `index.html` — bio card | Robin Pani |
 
 ---
 
@@ -338,10 +364,12 @@ replen model — and he does it one-to-one rather than handing over a library.
 
 - **Primary:** the two supplied YouTube transcripts (sourcing criteria video; five
   sourcing processes video). All mechanism quotes above are verbatim from these.
-- fbaspark.com and fbaspark.com/strategy-call — **blocked by this machine's egress
-  proxy**; positioning ("first $10,000 in profit", "personalised support, product checks
-  and hands-on guidance", 1:1 mentorship) is from search-result summaries of those pages,
-  not from the pages themselves.
+- **A screenshot of fbaspark.com/strategy-call supplied with the brief** — the source for
+  the AMZ Spark wordmark, the palette, the typography, the pill CTA, the headline, the
+  sub-headline and the "quarter four" urgency badge. Read from the first fold only.
+- fbaspark.com beyond that fold — **blocked by this machine's egress proxy**; positioning
+  ("first $10,000 in profit", "personalised support, product checks and hands-on
+  guidance") is from search-result summaries, not from the pages themselves.
 - instagram.com/davemanee — bio line and ~8.7K follower count, via search summary.
 - tiktok.com/@daveemane — ~54K followers, via search summary.
 - whop.com/fba-spark — "FBA Spark OA Mastery +" product name, via search summary.
@@ -366,3 +394,7 @@ replen model — and he does it one-to-one rather than handing over a library.
   are Dave's own claims from the transcripts, carried as his, not independently checked.
 - Follower counts, the Whop product name and the "first $10,000" promise come from search
   summaries of pages this environment could not open. Re-check them before spending.
+- **The brand name is genuinely ambiguous.** The live wordmark says *AMZ Spark*, the
+  domain says *fbaspark*, and Whop says *FBA Spark*. The sample uses AMZ Spark in
+  audience-facing copy and keeps `fba-spark/` as the folder slug because that matches the
+  domain and the URL in the brief. Confirm which one he wants on the funnel.

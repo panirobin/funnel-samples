@@ -17,7 +17,7 @@
     background: linear-gradient(150deg, var(--brand) 0%, var(--brand-2) 70%, var(--brand-ink) 100%);
     display: flex; align-items: center; justify-content: center;
     overflow: hidden;
-    box-shadow: 0 0 26px -2px color-mix(in srgb, var(--accent) 45%, transparent), var(--shadow);
+    box-shadow: 0 0 26px -2px color-mix(in srgb, var(--brand-vivid) 45%, transparent), var(--shadow);
     border: 1px solid var(--line);
   }
   /* initials sit underneath and show through if the photo is ever missing */
@@ -39,13 +39,13 @@
   }
   .whofor-avatar::after { animation-delay: 1.4s; }
   @keyframes avatarPulse {
-    0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 50%, transparent); }
+    0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--brand-vivid) 50%, transparent); }
     100% { box-shadow: 0 0 0 18px transparent; }
   }
   .whofor-avatar .live-dot {
     position: absolute; right: 1px; bottom: 3px; z-index: 2;
     width: 15px; height: 15px; border-radius: 50%;
-    background: var(--accent); border: 3px solid var(--paper);
+    background: var(--brand-vivid); border: 3px solid var(--paper);
     animation: badgeBlink 1.6s ease-in-out infinite;
   }
   @media (prefers-reduced-motion: reduce) {
@@ -107,7 +107,7 @@
     border-radius: 10px; overflow: hidden; min-height: 560px;
     /* Cal renders its own light chrome, so this surface stays light in both
        themes — the same reasoning as the Tally embed on the funnel. */
-    background-color: #F8F6F3;
+    background-color: #F4F8F5;
   }
   .cal-wrap > div { min-height: 560px; }
   .cal-fallback {
@@ -195,8 +195,8 @@
         <span class="whofor-avatar">
           <span class="whofor-pic">
             <span class="fb" aria-hidden="true">DM</span>
-            <!-- prospect headshot: drop it at assets/prospect.jpg; initials show until then -->
-            <img src="assets/prospect.jpg" alt="Dave Mane" onerror="this.remove()">
+            <!-- prospect headshot: at assets/dave-manee.jpg; initials show if it is ever missing -->
+            <img src="assets/dave-manee.jpg" alt="Dave Mane" onerror="this.remove()">
           </span>
           <span class="live-dot" aria-hidden="true"></span>
         </span>
@@ -296,7 +296,7 @@
     <div class="head head-c">
       <span class="tag">// The mechanism</span>
       <h2>Where this sits in what you already run</h2>
-      <p>Right now the path is a YouTube teardown → a DM → the Strategy Call at fbaspark.com. The workshop slots in as the warm step before that call — a room where people watch you source live, so the call is a decision rather than a first impression.</p>
+      <p>Right now the path is a YouTube teardown → a DM → a VSL page with an &ldquo;apply for 1-on-1 coaching&rdquo; button. That asks for a big commitment from someone who has only ever watched you. The workshop slots in between: a free, dated room where people watch you source live, so the application is a decision rather than a leap.</p>
     </div>
 
     <div class="modules">

@@ -1,81 +1,94 @@
 ﻿/* ══════════════════════════════════════════════════════════════════
-   FBA Spark — The Scan Room · shared design system
+   AMZ Spark — The Scan Room · shared design system
 
    Used by index.html, landing.html, offer.html, thanks.html, icp.html
    and ads.html. Page-specific rules live in a small inline <style> on
    each page.
 
-   Palette: graphite ground + "spark" orange. The brand token is the
-   near-black panel colour (white type on it), and the orange lives in
-   --btn-bg / --accent so every button and every small fill reads as the
-   spark. Orange as TEXT never passes 4.5:1 on white, so text uses go
-   through --accent-ink (#9A4E00, ~6.1:1 on white) instead.
+   Palette taken from fbaspark.com: white ground, a vivid leaf green as
+   the primary, near-black headlines, and a coral red used only as an
+   urgency signal (the dots either side of their "quarter four is almost
+   here" badge).
+
+   Their raw green (~#2FBF52) measures only 2.4:1 against white, so it
+   can never carry white text or be text itself. It survives as
+   --brand-vivid for fills that carry no type (glows, pips, the seat
+   meter). Anything with type on it uses --brand / --brand-ink, the same
+   hue deepened until it passes 4.5:1.
    ══════════════════════════════════════════════════════════════════ */
 
   :root {
     --paper:      #FFFFFF;
-    --paper-2:    #F7F5F2;
+    --paper-2:    #F3F8F4;
     --card:       #FFFFFF;
-    --ink:        #16181D;
-    --ink-soft:   #5A6069;
-    --ink-faint:  #6F757E;
-    --line:       rgba(22, 24, 29, 0.14);
-    --line-soft:  rgba(22, 24, 29, 0.08);
-    --brand:     #16181D;
-    --brand-2:   #262A33;
+    --ink:        #101513;
+    --ink-soft:   #55605A;
+    --ink-faint:  #6B776F;
+    --line:       rgba(16, 21, 19, 0.14);
+    --line-soft:  rgba(16, 21, 19, 0.08);
+    --brand:     #137A39;     /* panels + buttons — white on it is 5.4:1 */
+    --brand-2:   #0F6630;
     --on-brand:  #FFFFFF;
-    --brand-tint:       #FDEEDC;
-    --brand-ink:  #333944;
-    --accent:       #FF8A00;
-    --accent-ink:   #9A4E00;   /* accent where it is TEXT — orange darkened to pass 4.5:1 */
-    --btn-bg:     #FF8A00;
-    --btn-fg:     #16181D;     /* dark on orange — 7.6:1; white on orange is 2.4:1 and fails */
-    --shadow:     0 1px 2px rgba(22,24,29,.05), 0 12px 32px -18px rgba(22,24,29,.40);
+    --brand-tint:       #DCF6E4;
+    --brand-ink:  #116B32;    /* brand as TEXT on paper — 6.6:1 */
+    --brand-vivid: #2FBF52;   /* their literal green — fills only, never type */
+    --accent:       #EF4444;  /* urgency only, mirroring their badge dots */
+    --accent-ink:   #C62828;  /* accent where it is TEXT — 5.6:1 on white */
+    --btn-bg:     #137A39;
+    --btn-fg:     #FFFFFF;
+    --shadow:     0 1px 2px rgba(16,21,19,.05), 0 12px 32px -18px rgba(16,21,19,.40);
 
-    /* always sits on the graphite brand panel — constant across themes */
-    --on-brand-tick: #FFD9A8;
+    /* always sits on the green brand panel — constant across themes */
+    --on-brand-tick: #D2F8DE;
 
-    --badge-bg:       rgba(255, 138, 0, 0.07);
-    --badge-ring:     rgba(255, 138, 0, 0.30);
-    --badge-halo:     rgba(255, 138, 0, 0.06);
-    --badge-dot-halo: rgba(255, 138, 0, 0.35);
+    --badge-bg:       rgba(47, 191, 82, 0.08);
+    --badge-ring:     rgba(47, 191, 82, 0.32);
+    --badge-halo:     rgba(47, 191, 82, 0.07);
+    --badge-dot-halo: rgba(239, 68, 68, 0.35);
 
-    --display: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    /* Their headlines are a heavy geometric sans, not a serif — so --display
+       is a bold sans stack here and headings run at 700. To put the house
+       serif back, swap this line for the stack in the repo-root styles.css
+       and set the h1,h2,h3 font-weight below to 400. */
+    --display: "Poppins", "Gilroy", "Avenir Next", "Segoe UI Variable Display", "Segoe UI", system-ui, -apple-system, sans-serif;
     --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --mono: ui-monospace, "JetBrains Mono", "Cascadia Mono", "SF Mono", Consolas, "Liberation Mono", monospace;
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --paper:#0B0D11; --paper-2:#12151B; --card:#171A21; --ink:#EFF1F5;
-      --ink-soft:#A6ADBA; --ink-faint:#79808D; --line:rgba(239,241,245,.15);
-      --line-soft:rgba(239,241,245,.08); --brand:#2E3440; --brand-2:#3B4252;
-      --on-brand:#FFFFFF; --brand-tint:#2A2016; --brand-ink:#C4CBD8; --accent:#FF9410; --accent-ink:#FFB45C;
-      --btn-bg:#FF9410; --btn-fg:#16181D;
+      --paper:#0A0F0B; --paper-2:#0F1712; --card:#131C16; --ink:#EDF3EE;
+      --ink-soft:#A4B3A8; --ink-faint:#77857B; --line:rgba(237,243,238,.15);
+      --line-soft:rgba(237,243,238,.08); --brand:#1A6B3A; --brand-2:#14562F;
+      --on-brand:#FFFFFF; --brand-tint:#143024; --brand-ink:#6EE7A0; --brand-vivid:#2FBF52;
+      --accent:#F26B6B; --accent-ink:#FF9F9F;
+      --btn-bg:#1A8440; --btn-fg:#FFFFFF;
       --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 32px -18px rgba(0,0,0,.8);
-      --badge-bg:rgba(255,148,16,.12); --badge-ring:rgba(255,148,16,.34);
-      --badge-halo:rgba(255,148,16,.06); --badge-dot-halo:rgba(255,148,16,.30);
+      --badge-bg:rgba(47,191,82,.13); --badge-ring:rgba(47,191,82,.36);
+      --badge-halo:rgba(47,191,82,.07); --badge-dot-halo:rgba(242,107,107,.30);
     }
   }
   :root[data-theme="dark"] {
-    --paper:#0B0D11; --paper-2:#12151B; --card:#171A21; --ink:#EFF1F5;
-    --ink-soft:#A6ADBA; --ink-faint:#79808D; --line:rgba(239,241,245,.15);
-    --line-soft:rgba(239,241,245,.08); --brand:#2E3440; --brand-2:#3B4252;
-    --on-brand:#FFFFFF; --brand-tint:#2A2016; --brand-ink:#C4CBD8; --accent:#FF9410; --accent-ink:#FFB45C;
-    --btn-bg:#FF9410; --btn-fg:#16181D;
+    --paper:#0A0F0B; --paper-2:#0F1712; --card:#131C16; --ink:#EDF3EE;
+    --ink-soft:#A4B3A8; --ink-faint:#77857B; --line:rgba(237,243,238,.15);
+    --line-soft:rgba(237,243,238,.08); --brand:#1A6B3A; --brand-2:#14562F;
+    --on-brand:#FFFFFF; --brand-tint:#143024; --brand-ink:#6EE7A0; --brand-vivid:#2FBF52;
+    --accent:#F26B6B; --accent-ink:#FF9F9F;
+    --btn-bg:#1A8440; --btn-fg:#FFFFFF;
     --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 32px -18px rgba(0,0,0,.8);
-    --badge-bg:rgba(255,148,16,.12); --badge-ring:rgba(255,148,16,.34);
-    --badge-halo:rgba(255,148,16,.06); --badge-dot-halo:rgba(255,148,16,.30);
+    --badge-bg:rgba(47,191,82,.13); --badge-ring:rgba(47,191,82,.36);
+    --badge-halo:rgba(47,191,82,.07); --badge-dot-halo:rgba(242,107,107,.30);
   }
   :root[data-theme="light"] {
-    --paper:#FFFFFF; --paper-2:#F7F5F2; --card:#FFFFFF; --ink:#16181D;
-    --ink-soft:#5A6069; --ink-faint:#6F757E; --line:rgba(22,24,29,.14);
-    --line-soft:rgba(22,24,29,.08); --brand:#16181D; --brand-2:#262A33;
-    --on-brand:#FFFFFF; --brand-tint:#FDEEDC; --brand-ink:#333944; --accent:#FF8A00; --accent-ink:#9A4E00;
-    --btn-bg:#FF8A00; --btn-fg:#16181D;
-    --shadow:0 1px 2px rgba(22,24,29,.05), 0 12px 32px -18px rgba(22,24,29,.40);
-    --badge-bg:rgba(255,138,0,.07); --badge-ring:rgba(255,138,0,.30);
-    --badge-halo:rgba(255,138,0,.06); --badge-dot-halo:rgba(255,138,0,.35);
+    --paper:#FFFFFF; --paper-2:#F3F8F4; --card:#FFFFFF; --ink:#101513;
+    --ink-soft:#55605A; --ink-faint:#6B776F; --line:rgba(16,21,19,.14);
+    --line-soft:rgba(16,21,19,.08); --brand:#137A39; --brand-2:#0F6630;
+    --on-brand:#FFFFFF; --brand-tint:#DCF6E4; --brand-ink:#116B32; --brand-vivid:#2FBF52;
+    --accent:#EF4444; --accent-ink:#C62828;
+    --btn-bg:#137A39; --btn-fg:#FFFFFF;
+    --shadow:0 1px 2px rgba(16,21,19,.05), 0 12px 32px -18px rgba(16,21,19,.40);
+    --badge-bg:rgba(47,191,82,.08); --badge-ring:rgba(47,191,82,.32);
+    --badge-halo:rgba(47,191,82,.07); --badge-dot-halo:rgba(239,68,68,.35);
   }
 
   * { box-sizing: border-box; }
@@ -100,7 +113,9 @@
 
   h1, h2, h3 {
     font-family: var(--display);
-    font-weight: 400;
+    /* 700, not 400 — --display is a bold geometric sans here to match their
+       brand. Reset to 400 if the serif stack is put back. */
+    font-weight: 700;
     letter-spacing: -0.02em;
     line-height: 1.06;
     text-wrap: balance;
@@ -135,9 +150,12 @@
        a 24px line box, which left the icon on a half-pixel. Padding is raised to
        hold the previous button height. */
     line-height: 1;
-    padding: 20px 30px;
+    /* pill + uppercase to match their "APPLY FOR 1-ON-1 COACHING" CTA */
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 20px 34px;
     border: 1px solid transparent;
-    border-radius: 4px;
+    border-radius: 999px;
     background: var(--btn-bg);
     color: var(--btn-fg);
     text-decoration: none;
@@ -221,7 +239,7 @@
   }
   .hero .inner { max-width: 780px; margin: 0 auto; }
   .hero h1 { margin: 22px 0 26px; }
-  .hero h1 .mark-green { color: var(--accent-ink); font-style: italic; }
+  .hero h1 .mark-green { color: var(--brand-ink); font-style: normal; }
   .hero .lede {
     font-size: 18px; color: var(--ink-soft);
     max-width: 50ch; margin: 0 auto 38px;
@@ -396,7 +414,7 @@
   .host-body .bio { color: var(--ink-soft); font-size: 16px; }
   .pull {
     font-family: var(--display); font-size: 24px; line-height: 1.34;
-    color: var(--ink); border-left: 2px solid var(--accent);
+    color: var(--ink); border-left: 2px solid var(--brand-vivid);
     padding: 4px 0 4px 22px; margin: 30px 0;
   }
   .creds { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding-top: 28px; border-top: 1px solid var(--line); }
