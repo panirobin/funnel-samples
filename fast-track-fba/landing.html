@@ -120,6 +120,15 @@
     position: absolute; inset: 0;
     width: 100%; height: 100%; object-fit: cover; display: block;
   }
+  /* Tom's photo is a tall half-length shot with his face in the top third.
+     Anchor the crop to the top so his head is never cut, and on phones use the
+     desktop 4:5 box instead of the template's wide 16:10 strip, which only had
+     room for his torso. Same below 900px: on tablets the 16:10 strip cut at
+     his chin. Capped in width so the tall box doesn't dominate a tablet. */
+  .portrait img { object-position: 50% 0%; }
+  @media (max-width: 900px) {
+    .portrait { aspect-ratio: 4 / 5; max-width: 440px; }
+  }
 
   /* TEMPORARY: lets the prospect reach the offer page without entering data.
      Remove this button (and #skip-reg) before the funnel goes live. */
