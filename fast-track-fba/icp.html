@@ -1,0 +1,324 @@
+<title>ICP avatar research | The Cash Turn Masterclass</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- page-specific: ICP research ---------- */
+
+  .doc-hero { padding: 76px 0 40px; }
+  .doc-hero .inner { max-width: 760px; }
+  .doc-hero h1 { font-size: clamp(30px, 5vw, 46px); margin: 18px 0 18px; }
+  .doc-hero .lede { font-size: 17px; color: var(--ink-soft); max-width: 58ch; }
+  .backbar { padding-top: 26px; }
+  .backlink {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .backlink:hover { color: var(--ink-soft); }
+  .backlink svg { width: 1em; height: 1em; transform: rotate(180deg); flex: none; }
+
+  /* short profile card — replaces the old full-bleed four-column strip so the
+     summary sits in the same narrow column, and reads in the same card
+     language as the .ritem and .evidence blocks below it */
+  .profile-sec { padding: 0 0 8px; }
+  .profile {
+    background: var(--card);
+    border: 1px solid var(--line-soft); border-left: 2px solid var(--brand-ink);
+    border-radius: 0 10px 10px 0; padding: 8px 28px;
+  }
+  .profile .prow {
+    display: grid; grid-template-columns: 168px 1fr; gap: 20px;
+    align-items: baseline; padding: 15px 0;
+    border-top: 1px solid var(--line-soft);
+  }
+  .profile .prow:first-child { border-top: 0; }
+  .profile .pk {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .13em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+  .profile .pv { font-size: 15.5px; line-height: 1.5; color: var(--ink); }
+
+  /* research blocks */
+  .rblock { margin-bottom: 20px; }
+  .rblock > .rhead {
+    display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px;
+  }
+  .rblock .rnum {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent-ink);
+  }
+  .rblock h2 { font-size: clamp(23px, 3.2vw, 30px); }
+  .rblock .rintro { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 22px; max-width: 62ch; }
+
+  .rlist { display: flex; flex-direction: column; gap: 14px; }
+  .ritem {
+    background: var(--card); border: 1px solid var(--line-soft);
+    border-radius: 10px; padding: 24px 26px;
+  }
+  .ritem h3 { font-size: 17.5px; margin-bottom: 9px; }
+  .ritem p { color: var(--ink-soft); font-size: 15px; line-height: 1.65; }
+
+  /* the thing that makes this not a generic persona doc */
+  .evidence {
+    margin-top: 16px; padding: 14px 18px;
+    background: var(--paper-2); border-left: 2px solid var(--brand-ink);
+    border-radius: 0 6px 6px 0;
+  }
+  .evidence .elabel {
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: .13em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 7px;
+  }
+  .evidence q {
+    display: block; font-family: var(--display); font-size: 16px;
+    line-height: 1.5; color: var(--ink); quotes: none;
+  }
+  .evidence .src {
+    display: block; margin-top: 9px;
+    font-family: var(--mono); font-size: 10.5px; color: var(--ink-faint);
+  }
+
+  /* vocabulary */
+  .vocab { display: flex; flex-wrap: wrap; gap: 10px; }
+  .vword {
+    font-family: var(--mono); font-size: 12.5px; letter-spacing: .03em;
+    background: var(--brand); color: var(--on-brand);
+    padding: 9px 15px; border-radius: 999px;
+  }
+  .vword.avoid {
+    background: transparent; color: var(--ink-faint);
+    border: 1px dashed var(--line); text-decoration: line-through;
+  }
+  .vocab-note { margin-top: 18px; color: var(--ink-soft); font-size: 14.5px; max-width: 62ch; }
+
+  @media (max-width: 640px) {
+    .doc-hero { padding: 52px 0 32px; }
+    .profile { padding: 6px 20px; }
+    .profile .prow { grid-template-columns: 1fr; gap: 5px; padding: 14px 0; }
+    .ritem { padding: 22px 20px; }
+  }
+</style>
+
+<div class="wrap backbar">
+  <a class="backlink" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back to the package
+  </a>
+</div>
+
+<header class="doc-hero">
+  <div class="wrap">
+    <div class="inner">
+      <span class="tag">// 04 · ICP avatar research</span>
+      <h1>Who's actually downloading your Top 100 list</h1>
+      <p class="lede">Built from what resellers say in public — Trustpilot reviews of leads services, industry write-ups, your Instagram comments and your own best-performing videos. Every claim below has a source. Use it for reels, emails and coaching calls, not just this funnel.</p>
+    </div>
+  </div>
+</header>
+
+<section class="profile-sec">
+  <div class="wrap narrow">
+    <div class="profile">
+      <div class="prow"><span class="pk">Who they are</span><span class="pv">UK/US Amazon resellers doing OA &amp; wholesale</span></div>
+      <div class="prow"><span class="pk">Stuck at</span><span class="pv">Under 10k/month, cash tied up in slow stock</span></div>
+      <div class="prow"><span class="pk">Already tried</span><span class="pv">More leads, more lists, higher ROI targets</span></div>
+      <div class="prow"><span class="pk">Actually want</span><span class="pv">Real net profit and time back, not revenue</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap narrow">
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">01</span><h2>Fears</h2></div>
+      <p class="rintro">What they're privately worried about. These never get said out loud in a comment — so the copy has to answer them before they're raised.</p>
+      <div class="rlist">
+
+        <div class="ritem">
+          <h3>Buying the deal twenty other people bought</h3>
+          <p>The fear behind every leads list and supplier list: by the time the stock checks in, the price has tanked because the same lead went to everyone. It makes them hesitate on good deals and overbuy "safe" ones that sit for months.</p>
+          <div class="evidence">
+            <div class="elabel">Heard in the wild</div>
+            <q>Too many sellers on the listing… everyone want to win the Buybox.</q>
+            <span class="src">Source — Trustpilot, 1★ review of Arbitrage Hero (a competing OA leads service)</span>
+          </div>
+        </div>
+
+        <div class="ritem">
+          <h3>Paying for sourcing that finds nothing buyable</h3>
+          <p>They've paid for lists, tools or a VA and ended up with hours of scrolling and nothing that clears their numbers. So anything promising "more deals" gets met with suspicion — which is exactly why a webinar about the cash, not the deals, stands out.</p>
+          <div class="evidence">
+            <div class="elabel">Heard in the wild</div>
+            <q>Not enough good selling deals to make actual money.</q>
+            <span class="src">Source — review of an OA lead list, surfaced in search results</span>
+          </div>
+        </div>
+
+        <div class="ritem">
+          <h3>Getting stuck with stock they can't sell</h3>
+          <p>Gated categories, IP complaints and listings that go wrong after the order's placed. The worry isn't losing a deal — it's the money sitting in a box in the spare room.</p>
+          <div class="evidence">
+            <div class="elabel">Heard in the wild</div>
+            <q>They were gated in too many of the products.</q>
+            <span class="src">Source — OAHunt, "Online Arbitrage Lead List Expectations"</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">02</span><h2>Desires</h2></div>
+      <p class="rintro">What they'd actually pay for — stated the way they'd state it. More modest and more specific than a brochure would guess.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Profit they can see in the bank</h3>
+          <p>Not a bigger revenue number in Seller Central. The real want is a payout that matches the effort, and knowing which SKUs are actually making it.</p>
+          <div class="evidence">
+            <div class="elabel">Heard in the wild</div>
+            <q>The business is about making money not winning the box.</q>
+            <span class="src">Source — comment on your Instagram reel, 18 Aug 2026</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>Getting past 10k a month</h3>
+          <p>The number your coaching page already leads with. Below it, Amazon is still a side hustle; above it, they start thinking of it as a business. The block is rarely effort — it's capital and time.</p>
+          <div class="evidence">
+            <div class="elabel">Heard on your channel</div>
+            <q>They'd like to scale it, but they have really two big constraints… capital… and the other one is about the time.</q>
+            <span class="src">Source — you, "How to Scale Amazon FBA: 10k to 100k" (auto-captions)</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>Their evenings back</h3>
+          <p>Most are sourcing around a job and a family. They don't want to work harder at Amazon — they want the hours they already give it to pay more.</p>
+          <div class="evidence">
+            <div class="elabel">Heard on your channel</div>
+            <q>Maybe they've got a family, and they're doing it on maybe a Saturday afternoon when they've got a few hours.</q>
+            <span class="src">Source — Eamon Kennedy, on your "10k to 100k" episode (auto-captions)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">03</span><h2>Objections</h2></div>
+      <p class="rintro">Why they don't buy. Taken deliberately from critical reviews and sceptical write-ups — the negative material is the most useful research in this document.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>"It's just another list."</h3>
+          <p>They've bought lists. Answer it by never selling the webinar as a list: it's the maths on stock they already own. The Top 500 only appears on the upsell, framed as "now you know which suppliers turn fast".</p>
+          <div class="evidence">
+            <div class="elabel">Heard in the wild</div>
+            <q>Every lead will meet my criteria.</q>
+            <span class="src">Source — OAHunt, listing it as the most common unrealistic expectation of lead lists</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>"OA is dead."</h3>
+          <p>A question common enough that tool companies title articles with it. The honest answer is yours to give: you still buy OA every week, and thinner margins work fine when the stock turns monthly.</p>
+          <div class="evidence">
+            <div class="elabel">Heard in the wild</div>
+            <q>Is Online Arbitrage Dead for New Sellers in 2025?</q>
+            <span class="src">Source — Seller Assistant blog headline</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>"I don't have the capital to scale."</h3>
+          <p>The objection that is really the whole pitch. Don't argue with it — agree, then show that the same capital turned three times does the work of three times the capital.</p>
+          <div class="evidence">
+            <div class="elabel">Heard on your channel</div>
+            <q>At the end of the day, we're all limited by capital, how much cash we've got.</q>
+            <span class="src">Source — you, "Your top-selling SKU might be your worst business decision" (auto-captions)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">04</span><h2>Buying triggers</h2></div>
+      <p class="rintro">The moment the problem stops being tolerable. Ads that name the trigger beat ads that name the solution, because the trigger is what they're already thinking about.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>A disbursement smaller than the sales report</h3>
+          <p>Sales look great, the payout doesn't. It's the moment "revenue doesn't count" stops being a slogan and starts being their bank balance.</p>
+        </div>
+        <div class="ritem">
+          <h3>A lead that tanked before it checked in</h3>
+          <p>They bought it at a good price, it arrived at Amazon, and ten other sellers had got there first. Right after this, they're open to anything that isn't "buy more leads".</p>
+        </div>
+        <div class="ritem">
+          <h3>Deciding how hard to go on Q4</h3>
+          <p>September and October are when they decide how much cash to commit to the busy season. A webinar about capital in September catches that decision while it's still being made.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">05</span><h2>Their vocabulary</h2></div>
+      <p class="rintro">The words this market uses for its own problem. Copy written in these words reads as insider; copy written around them reads as an outsider guessing.</p>
+      <div class="vocab">
+        <span class="vword">OA</span>
+        <span class="vword">leads</span>
+        <span class="vword">ROI</span>
+        <span class="vword">sell-through</span>
+        <span class="vword">price tank</span>
+        <span class="vword">gated</span>
+        <span class="vword">Buy Box</span>
+        <span class="vword">10k a month</span>
+        <span class="vword">capital</span>
+        <span class="vword">refunds</span>
+        <span class="vword avoid">passive income</span>
+        <span class="vword avoid">dropshipping</span>
+        <span class="vword avoid">financial freedom</span>
+      </div>
+      <p class="vocab-note">Struck-through terms are ones to avoid — they belong to a different corner of ecommerce, or read as get-rich-quick to a reseller who counts every pound of stock.</p>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">06</span><h2>Where they are</h2></div>
+      <p class="rintro">Where this audience already gathers — useful for targeting, and for knowing which references will land.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>YouTube, long-form</h3>
+          <p>They watch 15–50 minute screen-share walkthroughs of SellerBoard, Keepa and Seller Central. Your profit-leak and top-SKU videos outperform your tool reviews — the webinar is that format, live.</p>
+        </div>
+        <div class="ritem">
+          <h3>Skool and Facebook seller groups</h3>
+          <p>Where they ask "is this a good deal?" before buying. The tone is peer-to-peer and suspicious of gurus — plain numbers beat hype there, which suits how you already talk.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="tag tag-c">// Next</span>
+    <h2>This research wrote the funnel.</h2>
+    <p class="sub">Every headline, objection and FAQ in the pages came from what's above — which is why it reads like it was written by someone inside your market.</p>
+    <a class="btn" href="index.html">Back to the package <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">Cash <em>Turn</em></div>
+    <div class="fmeta">
+      <span>Prepared exclusively for Thomas Parkinson</span>
+      <span>Built by Sales At Scale</span>
+    </div>
+    <p class="disc">Research compiled from publicly available sources. Quotes are reproduced from public reviews, articles, comments and video captions and are attributed to their source. Auto-caption quotes are approximate.</p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+</script>
