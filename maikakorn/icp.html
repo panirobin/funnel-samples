@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="de">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICP-Recherche | Der Optimalbereich</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- page-specific: ICP research ---------- */
+
+  .doc-hero { padding: 76px 0 40px; }
+  .doc-hero .inner { max-width: 760px; }
+  .doc-hero h1 { font-size: clamp(30px, 5vw, 46px); margin: 18px 0 18px; }
+  .doc-hero .lede { font-size: 17px; color: var(--ink-soft); max-width: 58ch; }
+  .backbar { padding-top: 26px; }
+  .backlink {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .backlink:hover { color: var(--ink-soft); }
+  .backlink svg { width: 1em; height: 1em; transform: rotate(180deg); flex: none; }
+
+  .profile-sec { padding: 0 0 8px; }
+  .profile {
+    background: var(--card);
+    border: 1px solid var(--line-soft); border-left: 2px solid var(--brand-ink);
+    border-radius: 0 10px 10px 0; padding: 8px 28px;
+  }
+  .profile .prow {
+    display: grid; grid-template-columns: 168px 1fr; gap: 20px;
+    align-items: baseline; padding: 15px 0;
+    border-top: 1px solid var(--line-soft);
+  }
+  .profile .prow:first-child { border-top: 0; }
+  .profile .pk {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .13em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+  .profile .pv { font-size: 15.5px; line-height: 1.5; color: var(--ink); }
+
+  .rblock { margin-bottom: 20px; }
+  .rblock > .rhead {
+    display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px;
+  }
+  .rblock .rnum {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent-ink);
+  }
+  .rblock h2 { font-size: clamp(23px, 3.2vw, 30px); }
+  .rblock .rintro { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 22px; max-width: 62ch; }
+
+  .rlist { display: flex; flex-direction: column; gap: 14px; }
+  .ritem {
+    background: var(--card); border: 1px solid var(--line-soft);
+    border-radius: 10px; padding: 24px 26px;
+  }
+  .ritem h3 { font-size: 17.5px; margin-bottom: 9px; }
+  .ritem p { color: var(--ink-soft); font-size: 15px; line-height: 1.65; }
+
+  .evidence {
+    margin-top: 16px; padding: 14px 18px;
+    background: var(--paper-2); border-left: 2px solid var(--brand-ink);
+    border-radius: 0 6px 6px 0;
+  }
+  .evidence .elabel {
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: .13em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 7px;
+  }
+  .evidence q {
+    display: block; font-family: var(--display); font-size: 16px;
+    line-height: 1.5; color: var(--ink); quotes: none;
+  }
+  .evidence .src {
+    display: block; margin-top: 9px;
+    font-family: var(--mono); font-size: 10.5px; color: var(--ink-faint);
+  }
+
+  .vocab { display: flex; flex-wrap: wrap; gap: 10px; }
+  .vword {
+    font-family: var(--mono); font-size: 12.5px; letter-spacing: .03em;
+    background: var(--brand); color: var(--on-brand);
+    padding: 9px 15px; border-radius: 999px;
+  }
+  .vword.avoid {
+    background: transparent; color: var(--ink-faint);
+    border: 1px dashed var(--line); text-decoration: line-through;
+  }
+  .vocab-note { margin-top: 18px; color: var(--ink-soft); font-size: 14.5px; max-width: 62ch; }
+
+  @media (max-width: 640px) {
+    .doc-hero { padding: 52px 0 32px; }
+    .profile { padding: 6px 20px; }
+    .profile .prow { grid-template-columns: 1fr; gap: 5px; padding: 14px 0; }
+    .ritem { padding: 22px 20px; }
+  }
+</style>
+
+<div class="wrap backbar">
+  <a class="backlink" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Zurück zum Paket
+  </a>
+</div>
+
+<header class="doc-hero">
+  <div class="wrap">
+    <div class="inner">
+      <span class="tag">// 04 · ICP-Recherche</span>
+      <h1>Wen du wirklich ansprichst</h1>
+      <p class="lede">Aus dem, was deine Zielgruppe öffentlich schreibt — Gesundheitsforen, Fragen-Portale, Fachartikel — und aus deiner eigenen Seite. Jede Aussage hat eine Quelle. Nutzbar für Posts, Hooks und Gespräche, nicht nur für diesen Funnel.</p>
+    </div>
+  </div>
+</header>
+
+<section class="profile-sec">
+  <div class="wrap narrow">
+    <div class="profile">
+      <div class="prow"><span class="pk">Wer sie sind</span><span class="pv">Berufstätige 40–60, beruflich voll ausgelastet</span></div>
+      <div class="prow"><span class="pk">Wo sie feststecken</span><span class="pv">&bdquo;Alles im Normbereich&ldquo; — und trotzdem platt</span></div>
+      <div class="prow"><span class="pk">Schon versucht</span><span class="pv">Mehr Schlaf, Kaffee, Nahrungsergänzung auf Verdacht</span></div>
+      <div class="prow"><span class="pk">Was sie wollen</span><span class="pv">Wissen, welcher Wert es ist — und was hilft</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap narrow">
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">01</span><h2>Ängste</h2></div>
+      <p class="rintro">Was sie still beschäftigt. Das sind die Einwände, die nie laut ausgesprochen werden — also muss die Copy sie beantworten, bevor sie gestellt werden.</p>
+      <div class="rlist">
+
+        <div class="ritem">
+          <h3>Nicht ernst genommen zu werden</h3>
+          <p>Der Arzttermin endet mit &bdquo;alles gut&ldquo;, und zurück bleibt das Gefühl, als eingebildet abgestempelt zu sein. Deshalb gehen viele gar nicht mehr hin — und suchen nachts in Foren weiter.</p>
+          <div class="evidence">
+            <div class="elabel">So wörtlich gelesen</div>
+            <q>Ich habe das Gefühl dass mich mein Arzt nicht ganz ernst nimmt</q>
+            <span class="src">medizin-forum.de — Thread &bdquo;Immer extrem müde und erschöpft&ldquo;, 2015</span>
+          </div>
+        </div>
+
+        <div class="ritem">
+          <h3>Selbst schuld zu sein</h3>
+          <p>Wenn der Befund nichts zeigt, liegt der Schluss nahe: zu wenig Disziplin, zu faul, zu alt. Das Umfeld sagt es manchmal laut. Die Copy muss entlasten, ohne zu verharmlosen.</p>
+          <div class="evidence">
+            <div class="elabel">So wörtlich gelesen</div>
+            <q>ich fühle mich schon mit 20 alt und grau</q>
+            <span class="src">gutefrage.net — &bdquo;auch nach 12 std schlaf nicht ausgeschlafen&ldquo;</span>
+          </div>
+        </div>
+
+        <div class="ritem">
+          <h3>Dass es einfach so bleibt</h3>
+          <p>Resignation vor dem nächsten Test: Man rechnet schon damit, dass wieder nichts herauskommt. Genau diese Menschen melden sich nicht für einen weiteren Check an — aber für eine Erklärung, warum die bisherigen nichts gefunden haben.</p>
+          <div class="evidence">
+            <div class="elabel">So wörtlich gelesen</div>
+            <q>aber ich weiß genau dass da auch nichts rauskommt.</q>
+            <span class="src">gutefrage.net — &bdquo;Ständige Müdigkeit und Erschöpfung trotz gesundem Blutbild&ldquo;, 2010</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">02</span><h2>Wünsche</h2></div>
+      <p class="rintro">Was sie tatsächlich kaufen würden — in ihren Worten, nicht in Broschürensprache. Meist bescheidener und konkreter als erwartet.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Eine Erklärung, keine Pille</h3>
+          <p>Zuerst wollen sie verstehen, <em>was</em> los ist. Das deckt sich fast wörtlich mit deinem Satz &bdquo;warum du dich fühlst, wie du dich fühlst&ldquo; — deshalb verkauft das Webinar Verständnis, nicht Supplemente.</p>
+          <div class="evidence">
+            <div class="elabel">So wörtlich gelesen</div>
+            <q>was kann man noch machen oder was könnte es sein?</q>
+            <span class="src">gutefrage.net — &bdquo;Ständige Müdigkeit und Erschöpfung trotz gesundem Blutbild&ldquo;, 2010</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>Ein normaler Arbeitstag, ohne danach umzukippen</h3>
+          <p>Kein Marathon, kein Biohacking-Rekord. Sie wollen nach der Arbeit noch etwas vom Abend haben. Deshalb verspricht die Headline &bdquo;Energie bis zum Abend&ldquo; und nicht &bdquo;Peak Performance&ldquo;.</p>
+          <div class="evidence">
+            <div class="elabel">So wörtlich gelesen</div>
+            <q>8 Std am Tag Bürotätigkeiten sollen ja einen nicht so umhauen</q>
+            <span class="src">gutefrage.net — &bdquo;auch nach 12 std schlaf nicht ausgeschlafen&ldquo;</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>Mit etwas Konkretem zurück zum Arzt</h3>
+          <p>Die meisten wollen ihren Hausarzt nicht ersetzen, sondern mit einer besseren Frage wiederkommen. Die Checkliste mit neun Werten bedient genau das — und hält das Webinar rechtlich sauber auf der Seite von Prävention.</p>
+          <div class="evidence">
+            <div class="elabel">So wörtlich gelesen</div>
+            <q>zwischen &bdquo;nicht krank&ldquo; und &bdquo;wirklich fit&ldquo; liegt ein großer Bereich</q>
+            <span class="src">Fachartikel der Kategorie, heilpraxis-carsten-jung.de, 2026</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">03</span><h2>Einwände</h2></div>
+      <p class="rintro">Warum sie nicht kaufen. Bewusst aus skeptischen Antworten und Moderatoren-Kommentaren gezogen — das kritische Material ist das nützlichste im ganzen Dokument.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>&bdquo;Warum sollte ich jemand anderem mehr glauben als meinem Arzt?&ldquo;</h3>
+          <p>Berechtigt, und der stärkste Einwand. Die ehrliche Antwort: gar nicht. Das Webinar widerspricht dem Hausarzt nicht, es ergänzt die Frage. Genau hier zieht deine Approbation — gegenüber Heilpraktikern, die dieses Suchfeld heute besetzen, ist sie ein echter Vorsprung.</p>
+          <div class="evidence">
+            <div class="elabel">So wörtlich gelesen</div>
+            <q>Warum hoeren Sie eher auf einen voellig Unbekannten im Internet als auf ihren Arzt?</q>
+            <span class="src">medizin-forum.de — Antwort der Moderation, 2015</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>&bdquo;Das ist doch psychisch.&ldquo;</h3>
+          <p>Kommt von außen oder aus dem eigenen Kopf. Die Antwort ist nicht &bdquo;nein&ldquo;, sondern: Schlaf, Stress und Hormone hängen zusammen — dein Satz &bdquo;Körper, Geist, Schlaf, Ernährung und Hormone hängen zusammen&ldquo; trägt das. Messen schließt das eine nicht aus und das andere nicht ein.</p>
+          <div class="evidence">
+            <div class="elabel">So wörtlich gelesen</div>
+            <q>Hast du vielleicht irgendwelche privaten Probleme oder vielleicht Depressionen</q>
+            <span class="src">gutefrage.net — Antwort, 2012</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>&bdquo;Ich habe schon Eisen genommen, hat nichts gebracht.&ldquo;</h3>
+          <p>Einzelmaßnahmen enttäuschen, weil selten ein einzelner Wert die ganze Antwort ist. Das ist das Argument für Teil 02 im Webinar: die Kette statt des Einzelwerts.</p>
+          <div class="evidence">
+            <div class="elabel">So wörtlich gelesen</div>
+            <q>gegen die Müdigkeit hat es nicht geholfen.</q>
+            <span class="src">gutefrage.net — &bdquo;Ständige Müdigkeit trotz Eiseninfusion!?&ldquo;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">04</span><h2>Kaufauslöser</h2></div>
+      <p class="rintro">Der Moment, in dem das Problem nicht mehr tragbar ist. Ads, die den Auslöser benennen, schlagen Ads, die die Lösung benennen — der Auslöser ist das, woran sie gerade denken.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Der Befund kommt zurück: &bdquo;alles in Ordnung&ldquo;</h3>
+          <p>Die Tage direkt nach dem Arzttermin. Die Enttäuschung ist frisch, die Suche beginnt am selben Abend. Das ist der Hook von Skript 01.</p>
+        </div>
+        <div class="ritem">
+          <h3>Das Wochenende wurde komplett verschlafen</h3>
+          <p>Wenn zwölf Stunden Schlaf am Samstag nichts ändern, ist &bdquo;einfach mehr schlafen&ldquo; als Erklärung verbraucht.</p>
+        </div>
+        <div class="ritem">
+          <h3>Leistungsknick im Job ab Mitte 40</h3>
+          <p>Das Mittagstief wird sichtbar — im Meeting, beim Autofahren, vor dem Team. Aus privatem Ärger wird ein berufliches Risiko.</p>
+        </div>
+        <div class="ritem">
+          <h3>Die Uhr zeigt schlechte Schlafwerte</h3>
+          <p>Wer einen Ring oder eine Uhr trägt, sieht jeden Morgen eine Zahl, die nicht zum Gefühl passt — und niemanden, der sie erklärt.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">05</span><h2>Ihr Vokabular</h2></div>
+      <p class="rintro">Die Wörter, mit denen diese Zielgruppe ihr eigenes Problem beschreibt. Copy in diesen Wörtern klingt nach Insider; Copy um sie herum klingt nach jemandem, der rät.</p>
+      <div class="vocab">
+        <span class="vword">alles im Normbereich</span>
+        <span class="vword">gerädert</span>
+        <span class="vword">platt</span>
+        <span class="vword">Mittagstief</span>
+        <span class="vword">durchchecken lassen</span>
+        <span class="vword">Blutbild</span>
+        <span class="vword">Ferritin</span>
+        <span class="vword">Schilddrüse</span>
+        <span class="vword">Hausarzt</span>
+        <span class="vword">Tiefschlaf</span>
+        <span class="vword avoid">Peak Performance</span>
+        <span class="vword avoid">Level up</span>
+        <span class="vword avoid">Heilung</span>
+        <span class="vword avoid">garantiert</span>
+      </div>
+      <p class="vocab-note">Durchgestrichen: Begriffe, die die Zielgruppe nicht selbst benutzt oder die nach Influencer klingen — und bei &bdquo;Heilung&ldquo; und &bdquo;garantiert&ldquo; zusätzlich ein Risiko nach Heilmittelwerbegesetz.</p>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">06</span><h2>Wo sie sind</h2></div>
+      <p class="rintro">Wo diese Zielgruppe sich schon aufhält — nützlich fürs Targeting und dafür, welche Bezüge ankommen.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Gesundheitsforen und Fragen-Portale</h3>
+          <p>gutefrage.net, medizin-forum.de: lange, sehr konkrete Beiträge mit Laborwerten, Ton zwischen verzweifelt und skeptisch. Die Antworten kommen oft von Laien — das Feld ist offen für eine ärztliche Stimme.</p>
+        </div>
+        <div class="ritem">
+          <h3>Die Suche &bdquo;Blutwerte normal, trotzdem müde&ldquo;</h3>
+          <p>Die Trefferliste wird heute von Heilpraxen, Supplement-Shops und Selbsttest-Anbietern besetzt. Eine Ärztin mit Charité-Hintergrund hebt sich dort sofort ab.</p>
+        </div>
+        <div class="ritem">
+          <h3>Instagram — dein Kanal</h3>
+          <p>Dein Profil fasst es schon zusammen: &bdquo;Hormone • Darm • Energie&ldquo;. Die Ad-Skripte in Teil 05 sind für genau dieses Format geschrieben.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="tag tag-c">// Weiter</span>
+    <h2>Diese Recherche hat den Funnel geschrieben.</h2>
+    <p class="sub">Jede Headline, jeder Einwand und jede FAQ auf den Seiten kommt aus dem, was oben steht — deshalb klingt es, als hätte es jemand aus deinem Markt geschrieben.</p>
+    <a class="btn" href="index.html">Zurück zum Paket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">Optimal <em>Bereich</em></div>
+    <div class="fmeta">
+      <span>Exklusiv für Dr. Maika Korn erstellt</span>
+      <span>Gebaut von Sales At Scale</span>
+    </div>
+    <p class="disc">Recherche aus öffentlich zugänglichen Quellen. Zitate stammen aus öffentlichen Foren und Fachartikeln und werden der Quelle zugeordnet, nicht einzelnen Personen.</p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+</script>
+</html>

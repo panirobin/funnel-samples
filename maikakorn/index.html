@@ -2,121 +2,355 @@
 <html lang="de">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Der Longevity-Code — kostenloses Live-Webinar mit Dr. Maika Korn</title>
-<meta name="description" content="45 Minuten live: warum „alles im Normbereich“ nicht heißt, dass alles optimal ist — und welche drei Biomarker-Fenster Ihre Energie erklären.">
+<title>Dr. Maika Korn — Webinar-Funnel von Sales At Scale</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap">
 <link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- page-specific: hub ---------- */
 
-<div class="topbar">
-  <div class="wrap">
-    <span class="cd-label">Anmeldung schließt in</span>
-    <div class="cd" id="cd" aria-label="Verbleibende Zeit bis zum Anmeldeschluss">
-      <span class="seg" id="cd-d">00<span>T</span></span><span class="colon">:</span>
-      <span class="seg" id="cd-h">00<span>Std</span></span><span class="colon">:</span>
-      <span class="seg" id="cd-m">00<span>Min</span></span><span class="colon">:</span>
-      <span class="seg" id="cd-s">00<span>Sek</span></span>
-    </div>
-  </div>
-</div>
+  .hub-hero { padding: 34px 0 26px; text-align: center; }
+  .hub-hero .inner { max-width: 760px; margin: 0 auto; }
 
-<header class="hero">
+  /* prospect identity row — avatar beside the "exclusively for" plate */
+  .whofor-row {
+    display: flex; align-items: center; justify-content: center;
+    gap: 18px; margin-bottom: 20px; text-align: left;
+  }
+  .whofor-pic {
+    position: relative; z-index: 1;
+    width: 100%; height: 100%; border-radius: 50%;
+    background: linear-gradient(150deg, var(--brand) 0%, var(--brand-2) 70%, var(--brand-ink) 100%);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 0 26px -2px color-mix(in srgb, var(--brand) 55%, transparent), var(--shadow);
+    border: 1px solid var(--line);
+  }
+  /* initials sit underneath and show through if the photo is ever missing */
+  .whofor-pic .fb {
+    font-family: var(--display); font-size: 26px; color: var(--on-brand);
+    letter-spacing: -0.02em; line-height: 1;
+  }
+  .whofor-pic img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    /* the headshot is a seated half-length shot — zoom toward the face so it
+       reads at 78px instead of showing a whole sofa */
+    object-position: 48% 15%;
+    transform: scale(2.3); transform-origin: 48% 15%;
+  }
+  /* live element — soft brand glow, a slow ring pulsing outward, and a blinking
+     status dot, so the prospect's name reads as "on air" rather than static */
+  .whofor-avatar { position: relative; flex: none; width: 78px; height: 78px; }
+  .whofor-avatar::before,
+  .whofor-avatar::after {
+    content: ""; position: absolute; inset: 0; border-radius: 50%;
+    animation: avatarPulse 2.8s ease-out infinite;
+  }
+  .whofor-avatar::after { animation-delay: 1.4s; }
+  @keyframes avatarPulse {
+    0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--brand) 50%, transparent); }
+    100% { box-shadow: 0 0 0 18px transparent; }
+  }
+  .whofor-avatar .live-dot {
+    position: absolute; right: 1px; bottom: 3px; z-index: 2;
+    width: 15px; height: 15px; border-radius: 50%;
+    background: var(--brand); border: 3px solid var(--paper);
+    animation: badgeBlink 1.6s ease-in-out infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .whofor-avatar::before, .whofor-avatar::after, .whofor-avatar .live-dot { animation: none; }
+  }
+  .hub-hero .foronly {
+    display: block;
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 6px;
+  }
+  .hub-hero .whofor {
+    font-family: var(--display); font-size: clamp(24px, 3.6vw, 32px);
+    letter-spacing: -0.02em; color: var(--brand-ink); line-height: 1.1;
+  }
+  .hub-hero h1 { font-size: clamp(27px, 4.1vw, 40px); margin-bottom: 14px; }
+  .hub-hero .lede {
+    font-size: 16.5px; color: var(--ink-soft); max-width: 52ch; margin: 0 auto 12px;
+  }
+  .hub-hero + .sec { padding-top: 42px; }
+  .hub-hero + .sec .head { margin-bottom: 32px; }
+
+  /* ---------- deliverable cards ---------- */
+  .deliverables { display: flex; flex-direction: column; gap: 16px; }
+  .dcard {
+    display: grid; grid-template-columns: 64px 1fr auto;
+    gap: 26px; align-items: center;
+    background: var(--card); border: 1px solid var(--line-soft);
+    border-radius: 10px; padding: 28px 30px;
+    text-decoration: none; color: inherit;
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  .dcard:hover { transform: translateY(-2px); box-shadow: var(--shadow); border-color: var(--line); }
+  .dcard:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .dcard .num {
+    font-family: var(--display); font-size: 34px; line-height: 1;
+    color: var(--brand-ink); opacity: .55; letter-spacing: -0.02em;
+  }
+  .dcard .kind {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent-ink); margin-bottom: 8px;
+  }
+  .dcard h3 { font-size: 20px; margin-bottom: 7px; }
+  .dcard p { color: var(--ink-soft); font-size: 14.5px; line-height: 1.6; max-width: 60ch; }
+  .dcard .go {
+    font-family: var(--sans); font-size: 13px; font-weight: 600;
+    color: var(--brand-ink); white-space: nowrap;
+    display: inline-flex; align-items: center; gap: 8px; line-height: 1;
+  }
+  .dcard .go svg { width: 1em; height: 1em; flex: none; transition: transform .18s ease; }
+  .dcard:hover .go svg { transform: translateX(4px); }
+
+  /* ---------- booking ---------- */
+  .cal-wrap {
+    background: var(--card); border: 1px solid var(--line-soft);
+    border-radius: 10px; overflow: hidden; min-height: 560px;
+    /* Cal renders its own light chrome, so this surface stays light in both themes */
+    background-color: #FCFCFC;
+  }
+  .cal-wrap > div { min-height: 560px; }
+  .cal-fallback {
+    margin-top: 18px; text-align: center;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+  .cal-fallback a { color: var(--brand-ink); text-underline-offset: 3px; }
+
+  /* ---------- timeline ---------- */
+  .timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .tstep {
+    background: var(--card); border: 1px solid var(--line-soft);
+    border-radius: 10px; padding: 24px 22px;
+  }
+  .tstep .when {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .13em;
+    text-transform: uppercase; color: var(--accent-ink);
+    padding-bottom: 12px; margin-bottom: 12px; border-bottom: 1px solid var(--line-soft);
+  }
+  .tstep h3 { font-size: 17px; margin-bottom: 7px; }
+  .tstep p { color: var(--ink-soft); font-size: 14px; line-height: 1.6; }
+
+  /* ---------- bio ---------- */
+  .biocard {
+    display: grid; grid-template-columns: 210px 1fr; gap: 0;
+    align-items: stretch; max-width: 700px; margin: 0 auto; overflow: hidden;
+    background: var(--card); border: 1px solid var(--line-soft);
+    border-radius: 10px; padding: 0;
+  }
+  .biocard .avatar {
+    position: relative; overflow: hidden;
+    width: 100%; height: 100%; min-height: 260px; border-radius: 0;
+    background: linear-gradient(150deg, var(--brand) 0%, var(--brand-2) 70%, var(--brand-ink) 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--display); font-size: 30px; color: var(--on-brand);
+    letter-spacing: -0.02em;
+  }
+  .biocard .avatar img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    object-position: center 28%;
+  }
+  .biocard .bio-text { padding: 30px 32px; }
+  .biocard .nm { font-family: var(--display); font-size: 21px; letter-spacing: -0.01em; }
+  .biocard .rl {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .13em;
+    text-transform: uppercase; color: var(--ink-faint); margin-top: 3px;
+  }
+  .biocard p { color: var(--ink-soft); font-size: 15px; line-height: 1.65; margin: 14px 0 16px; }
+  .contact { display: flex; flex-direction: column; gap: 9px; }
+  .contact a {
+    font-family: var(--mono); font-size: 12px; letter-spacing: .04em;
+    color: var(--brand-ink); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 9px;
+  }
+  .contact a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .contact .lbl { color: var(--ink-faint); }
+
+  @media (max-width: 900px) {
+    .timeline { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .hub-hero { padding: 34px 0 28px; }
+    .hub-hero + .sec { padding-top: 40px; }
+    .whofor-row { gap: 14px; margin-bottom: 22px; }
+    .whofor-avatar { width: 64px; height: 64px; }
+    .whofor-pic .fb { font-size: 22px; }
+    .dcard { grid-template-columns: 44px 1fr; gap: 18px; padding: 24px 22px; }
+    .dcard .num { font-size: 26px; }
+    .dcard .go { grid-column: 2; margin-top: 4px; }
+    .timeline { grid-template-columns: 1fr; }
+    .biocard { grid-template-columns: 1fr; }
+    .biocard .avatar { height: 300px; min-height: 0; }
+    .biocard .bio-text { padding: 24px 22px 26px; }
+    .cal-wrap, .cal-wrap > div { min-height: 620px; }
+  }
+</style>
+
+<header class="hub-hero">
   <div class="wrap">
     <div class="inner">
-      <span class="badge">
-        <span class="dot" aria-hidden="true"></span>
-        <span class="badge-label">Kostenloses Live-Webinar:</span>
-        <span class="badge-date">Do., 20. Aug &middot; 19 Uhr</span>
-      </span>
-      <h1>Aus <span class="mark-green">&bdquo;Ihre Werte sind alle im Normbereich&ldquo;</span> wird endlich ein Plan.</h1>
-      <p class="lede">45 Minuten live: die drei Biomarker-Fenster, die ein Standard-Blutbild nicht zeigt — und warum Sie trotz acht Stunden Schlaf um 14 Uhr im Loch sitzen.</p>
-      <button type="button" class="btn tally-trigger">Kostenlosen Platz sichern <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      <p class="microcopy">Kostenlos &middot; Ohne Kreditkarte</p>
+      <div class="whofor-row">
+        <span class="whofor-avatar">
+          <span class="whofor-pic">
+            <span class="fb" aria-hidden="true">MK</span>
+            <img src="assets/prospect.jpg" alt="Dr. Maika Korn" onerror="this.remove()">
+          </span>
+          <span class="live-dot" aria-hidden="true"></span>
+        </span>
+        <div>
+          <span class="foronly">Exklusiv für</span>
+          <div class="whofor">Dr. Maika Korn</div>
+        </div>
+      </div>
+
+      <h1>Ich habe dir einen kompletten Webinar-Funnel gebaut.</h1>
+      <p class="lede">Kostenlos, und er gehört dir. Fünf fertige Teile — live, mobil, in den Worten deiner Zielgruppe. Gebaut, um vor deinem Kennenlerngespräch zu laufen.</p>
+      <p class="microcopy">Von Sales At Scale · Unverbindlich</p>
     </div>
   </div>
 </header>
 
-<div class="band">
+<section class="sec sec-alt">
   <div class="wrap">
-    <div class="cell">
-      <div class="fig">+12 Jahre</div>
-      <div class="cap">Lebenszeit ab 50 — Li et&nbsp;al., Circulation 2018</div>
+    <div class="head head-c">
+      <span class="tag">// Das Paket</span>
+      <h2>Das habe ich gebaut</h2>
     </div>
-    <div class="cell">
-      <div class="fig">68 &rarr; 57</div>
-      <div class="cap">Ruhepuls nach 14 Wochen (Beispielverlauf)</div>
-    </div>
-    <div class="cell">
-      <div class="fig">10+ Jahre</div>
-      <div class="cap">Forschung an Charité &amp; Instituten</div>
+
+    <div class="deliverables">
+
+      <a class="dcard" href="landing.html">
+        <span class="num">01</span>
+        <div>
+          <div class="kind">Landingpage</div>
+          <h3>Die Anmeldeseite</h3>
+          <p>Wo sich deine Zielgruppe für das Live-Webinar anmeldet. Countdown, mobil, in ihren Worten — &bdquo;alles im Normbereich&ldquo;, Mittagstief, gerädert.</p>
+        </div>
+        <span class="go">Ansehen <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+
+      <a class="dcard" href="offer.html">
+        <span class="num">02</span>
+        <div>
+          <div class="kind">Upsell-Seite</div>
+          <h3>Das einmalige Angebot</h3>
+          <p>Erscheint direkt nach der Anmeldung, wenn die Absicht am höchsten ist — und holt Werbebudget zurück, bevor das Webinar überhaupt läuft.</p>
+        </div>
+        <span class="go">Ansehen <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+
+      <a class="dcard" href="thanks.html">
+        <span class="num">03</span>
+        <div>
+          <div class="kind">Bestätigungsseite</div>
+          <h3>Die Show-up-Seite</h3>
+          <p>Anmeldungen ohne Teilnahme sind wertlos. Kalendereintrag per Klick — und die eine Sache, die sie mitbringen sollen: ihr letztes Blutbild.</p>
+        </div>
+        <span class="go">Ansehen <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+
+      <a class="dcard" href="icp.html">
+        <span class="num">04</span>
+        <div>
+          <div class="kind">ICP-Recherche</div>
+          <h3>Wen du wirklich ansprichst</h3>
+          <p>Ängste, Wünsche, Einwände und Kaufauslöser — mit Quelle, in ihren eigenen Worten. Nutzbar für Posts, Hooks und Gespräche, nicht nur hier.</p>
+        </div>
+        <span class="go">Lesen <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+
+      <a class="dcard" href="ads.html">
+        <span class="num">05</span>
+        <div>
+          <div class="kind">5 Ad-Skripte</div>
+          <h3>Fertig zum Aufnehmen</h3>
+          <p>Fünf Winkel, fünf verschiedene Menschen. In deiner Stimme, Hook–Hauptteil–Lerninhalt–CTA, mit Kopier-Button für den Cutter.</p>
+        </div>
+        <span class="go">Lesen <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+
     </div>
   </div>
-</div>
+</section>
 
-<section class="sec" id="curriculum">
+<section class="sec" id="book">
+  <div class="wrap narrow">
+    <div class="head head-c">
+      <span class="tag tag-c">// Wenn's nützlich ist</span>
+      <h2>Such dir einen Termin</h2>
+      <p>Kein Pitch. Ich zeige dir, was ich ändern würde und was ein Launch braucht.</p>
+    </div>
+
+    <div class="cal-wrap"><div id="cal-inline"></div></div>
+    <p class="cal-fallback">
+      Kalender lädt nicht? <a href="https://cal.com/panirobin/book" target="_blank" rel="noopener noreferrer">Zur Buchungsseite →</a>
+    </p>
+  </div>
+</section>
+
+<section class="sec sec-alt">
   <div class="wrap">
-    <div class="lead-grid">
-      <div class="head">
-        <span class="tag">// Der Ablauf</span>
-        <h2>Drei Schritte. Eine Reihenfolge.</h2>
-        <p>Müdigkeit ohne Befund hat fast immer dieselbe Struktur: falsch gemessen, Ursachenkette nie zu Ende gedacht, Maßnahmen nie überprüft. Wir gehen alle drei live durch — an einem echten Verlauf.</p>
-      </div>
-
-      <div class="panel">
-        <div class="panel-head">
-          <span class="rec">Live-Analyse — 00:16:40</span>
-          <span>Fall #218</span>
-        </div>
-
-        <p class="said">
-          <span class="who">Teilnehmerin, 47</span>
-          &bdquo;Ich schlafe acht Stunden und wache trotzdem gerädert auf.&ldquo;
-        </p>
-
-        <div class="steps">
-          <div class="step">
-            <span class="n">01</span>
-            <span class="lbl">Messen</span>
-            <span class="val">Cortisol-Tagesprofil</span>
-          </div>
-          <div class="step">
-            <span class="n">02</span>
-            <span class="lbl">Ursache</span>
-            <span class="val">Abendlicht &amp; Wein 21 Uhr</span>
-          </div>
-          <div class="step">
-            <span class="n">03</span>
-            <span class="lbl">Prüfen</span>
-            <span class="val">Ferritin 24 &middot; fT3 unten</span>
-          </div>
-        </div>
-
-        <div class="panel-foot">
-          <span>Nach 9 Wochen</span>
-          <span class="won">Tiefschlaf 42 &rarr; 71 Min</span>
-        </div>
-      </div>
+    <div class="head head-c">
+      <span class="tag">// Der Mechanismus</span>
+      <h2>Was ein Webinar-Funnel leistet</h2>
+      <p>Heute führt jeder Weg direkt ins 15-Minuten-Gespräch. Wer dafür noch nicht bereit ist, geht mit nichts.</p>
     </div>
 
     <div class="modules">
       <article class="mod">
-        <div class="idx">Schritt 01 — Messen</div>
-        <h3>Normbereich ist nicht Optimalbereich</h3>
-        <p>Welche neun Werte über Ihr Energielevel entscheiden — und warum Ferritin 24, TSH 3,8 und HbA1c 5,6 im Laborbericht unauffällig aussehen und trotzdem erklären, warum Sie platt sind.</p>
+        <div class="idx">Schritt 01</div>
+        <h3>Ein Einstieg vor dem Gespräch</h3>
+        <p>Statt direkt einen Termin zu verlangen, lädst du zu 45 kostenlosen Minuten ein. Kleine Hürde, günstige Anmeldung, und du hast die E-Mail-Adresse.</p>
       </article>
-
       <article class="mod">
-        <div class="idx">Schritt 02 — Ursachenkette</div>
-        <h3>Schlaf, Cortisol, Blutzucker, Energie</h3>
-        <p>Diese vier hängen in genau dieser Reihenfolge zusammen. Sie sehen live, wie ein später Espresso den Tiefschlaf halbiert, das Cortisol am Morgen flach bleibt und daraus das Mittagstief entsteht.</p>
+        <div class="idx">Schritt 02</div>
+        <h3>Das Webinar erklärt, du musst nicht überzeugen</h3>
+        <p>Wer live gesehen hat, warum &bdquo;Normbereich&ldquo; nicht &bdquo;optimal&ldquo; ist, bucht dein Kennenlerngespräch mit einer konkreten Frage — nicht aus Neugier.</p>
       </article>
-
       <article class="mod">
-        <div class="idx">Schritt 03 — 90-Tage-Fahrplan</div>
-        <h3>Vier Hebel, wöchentlich messbar</h3>
-        <p>Licht, Protein, Bewegung, Regeneration — in der Dosis, die im Alltag zwischen Terminen und Familie standhält. Mit den drei Zahlen, an denen Sie nach vier Wochen sehen, ob es wirkt.</p>
+        <div class="idx">Schritt 03</div>
+        <h3>Der Funnel zahlt früh</h3>
+        <p>Das 97-€-VIP-Ticket läuft direkt nach der Anmeldung. Ein Teil des Budgets kommt zurück, bevor das Webinar stattfindet.</p>
       </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="head head-c">
+      <span class="tag">// Wenn wir zusammenarbeiten</span>
+      <h2>Von hier bis live: rund zwei Wochen</h2>
+    </div>
+
+    <div class="timeline">
+      <div class="tstep">
+        <div class="when">Tag 1–2</div>
+        <h3>Positionierung</h3>
+        <p>Offer, Versprechen und Ablauf stehen. Die Recherche liegt schon vor.</p>
+      </div>
+      <div class="tstep">
+        <div class="when">Tag 3–6</div>
+        <h3>Aufbau</h3>
+        <p>Seiten final, Formulare und Zahlung angebunden, Mails eingerichtet.</p>
+      </div>
+      <div class="tstep">
+        <div class="when">Tag 7–10</div>
+        <h3>Traffic</h3>
+        <p>Ads aus den Skripten, rechtlich geprüft, Tracking installiert, erstes Budget läuft.</p>
+      </div>
+      <div class="tstep">
+        <div class="when">Ab Tag 11</div>
+        <h3>Live &amp; optimieren</h3>
+        <p>Wir laufen das Webinar und fixen die Stelle, an der Leute abspringen.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -124,219 +358,79 @@
 <section class="sec sec-alt">
   <div class="wrap">
     <div class="head head-c">
-      <span class="tag">// Ehrlicher Filter</span>
-      <h2>Die 45 Minuten lohnen sich, wenn&hellip;</h2>
+      <span class="tag">// Ehrlicher Vergleich</span>
+      <h2>Was du heute hast — und was dazukommt</h2>
     </div>
 
     <div class="fit">
-      <div class="fit-col fit-yes">
-        <h3>Kommen Sie, wenn Sie</h3>
-        <ul>
-          <li>
-            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span>Ein Blutbild ohne Befund haben und sich trotzdem müde fühlen</span>
-          </li>
-          <li>
-            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span>Zwischen 40 und 60 sind und das Mittagstief zur Gewohnheit wurde</span>
-          </li>
-          <li>
-            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span>Schon Ring oder Uhr tragen, aber nichts mit den Daten anfangen</span>
-          </li>
-          <li>
-            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span>Wissen wollen, welche Werte Sie beim nächsten Termin anfordern sollten</span>
-          </li>
-        </ul>
-      </div>
-
       <div class="fit-col fit-no">
-        <h3>Lassen Sie es, wenn Sie</h3>
+        <h3>Heute, kostenlos</h3>
         <ul>
           <li>
-            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-            <span>Ein Präparat suchen, das die Gewohnheit ersetzt — das gibt es nicht</span>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Drei fertige Funnel-Seiten</span>
           </li>
           <li>
-            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-            <span>Akut erkrankt sind — das gehört in ärztliche Behandlung, nicht in ein Webinar</span>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>ICP-Recherche, überall nutzbar</span>
           </li>
           <li>
-            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-            <span>Keine Werte erheben und nichts über 12 Wochen mitschreiben wollen</span>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Fünf Ad-Skripte zum Aufnehmen</span>
           </li>
           <li>
-            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-            <span>Den neuesten Biohacking-Trend erwarten statt Evidenz und Wiederholbarkeit</span>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Kein Call nötig, um es zu behalten</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="fit-col fit-yes">
+        <h3>Mit Zusammenarbeit</h3>
+        <ul>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Formulare, Zahlung und Mail-Strecken angebunden</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Erinnerungs- und No-Show-Sequenzen</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Ads produziert, getrackt und optimiert</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Jemand, der für die Zahl am Ende geradesteht</span>
           </li>
         </ul>
       </div>
     </div>
-  </div>
-</section>
 
-<section class="sec">
-  <div class="wrap host">
-    <div class="portrait">
-      <span class="initials">MK</span>
-      <div class="plate">
-        <div class="nm">Dr. Maika Korn</div>
-        <div class="rl">Ihre Referentin</div>
-      </div>
-    </div>
-
-    <div class="host-body">
-      <span class="tag">// Wer unterrichtet</span>
-      <h2>Zehn Jahre Zellbiologie, bevor die erste Empfehlung fiel.</h2>
-      <p class="bio">Dr. Maika Korn ist Ärztin und Beraterin für Mensch und Tier (HU und FU Berlin), promoviert und Post-Doc an der Charité in der Herz-Kreislauf-Forschung. Sie liest biologische Systeme aus zwei medizinischen Perspektiven — und übersetzt sie in etwas, das am Dienstagmorgen im Alltag funktioniert.</p>
-
-      <p class="pull">&bdquo;Der Normbereich ist ein statistischer Durchschnitt einer Bevölkerung, die überwiegend schlecht schläft. Ihr Ziel ist nicht normal. Ihr Ziel ist optimal.&ldquo;</p>
-
-      <div class="creds">
-        <div>
-          <div class="fig">2 Fächer</div>
-          <div class="cap">Human- und Veterinärmedizin</div>
-        </div>
-        <div>
-          <div class="fig">Charité</div>
-          <div class="cap">Promotion &amp; Post-Doc, Kardioprotektion</div>
-        </div>
-        <div>
-          <div class="fig">10+ Jahre</div>
-          <div class="cap">Von Neurobiologie bis translationale Medizin</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec sec-alt">
-  <div class="wrap narrow">
-    <div class="head head-c">
-      <span class="tag">// Im Platz enthalten</span>
-      <h2>Alles davon bekommen Sie.</h2>
-    </div>
-
-    <div class="ledger">
-      <div class="lrow">
-        <div>
-          <div class="nm">Das 45-minütige Live-Webinar</div>
-          <div class="ds">Messen &rarr; Ursachenkette &rarr; 90-Tage-Fahrplan, an einem echten Verlauf</div>
-        </div>
-        <div class="vl">149&nbsp;&euro;</div>
-      </div>
-      <div class="lrow">
-        <div>
-          <div class="nm">Biomarker-Checkliste (PDF)</div>
-          <div class="ds">Die neun Werte inkl. Optimalbereich — zum Mitnehmen zum nächsten Termin</div>
-        </div>
-        <div class="vl">39&nbsp;&euro;</div>
-      </div>
-      <div class="lrow">
-        <div>
-          <div class="nm">90-Tage-Protokoll</div>
-          <div class="ds">Wochenraster für Licht, Protein, Bewegung, Regeneration</div>
-        </div>
-        <div class="vl">89&nbsp;&euro;</div>
-      </div>
-      <div class="lrow">
-        <div>
-          <div class="nm">Offene Fragerunde mit Dr. Korn</div>
-          <div class="ds">Ihre Werte, Ihre Situation — beantwortet im Live-Chat</div>
-        </div>
-        <div class="vl">120&nbsp;&euro;</div>
-      </div>
-
-      <div class="ltotal">
-        <span class="lbl">Gesamtwert</span>
-        <span class="amt">
-          <span class="old">397&nbsp;&euro;</span>
-          <span class="new">Kostenlos</span>
-        </span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec">
-  <div class="wrap">
-    <div class="head head-c">
-      <span class="tag">// Aus früheren Sessions</span>
-      <h2>Was Teilnehmer danach berichtet haben</h2>
-    </div>
-
-    <div class="quotes">
-      <figure class="q">
-        <blockquote>Ich hatte vorher drei Ärzte gefragt und dreimal &bdquo;alles gut&ldquo; gehört. Nach der Session habe ich Ferritin und fT3 nachfordern lassen — Ferritin lag bei 19. Das erklärte zwei Jahre.</blockquote>
-        <figcaption class="by">
-          <span class="nm">Andrea M.</span>
-          <span class="rl">Geschäftsführerin, 52</span>
-        </figcaption>
-      </figure>
-
-      <figure class="q">
-        <blockquote>Zwei Dinge geändert: kein Alkohol nach 20 Uhr, morgens zehn Minuten raus. Mein Tiefschlaf ist laut Uhr von 48 auf 79 Minuten hoch — nach drei Wochen, ohne ein einziges Präparat.</blockquote>
-        <figcaption class="by">
-          <span class="nm">Thomas K.</span>
-          <span class="rl">Ingenieur, 46</span>
-        </figcaption>
-      </figure>
-
-      <figure class="q">
-        <blockquote>Endlich hat mir jemand erklärt, warum ich um 14 Uhr wegsacke. Die Reihenfolge Schlaf &rarr; Cortisol &rarr; Blutzucker hat bei mir zum ersten Mal Sinn ergeben.</blockquote>
-        <figcaption class="by">
-          <span class="nm">Sabine L.</span>
-          <span class="rl">Lehrerin, 41</span>
-        </figcaption>
-      </figure>
-
-      <figure class="q">
-        <blockquote>Kein Hype, keine Nahrungsergänzungs-Verkaufsshow. Ich bin mit einer Liste von neun Werten rausgegangen und wusste, was ich beim nächsten Termin anfordere.</blockquote>
-        <figcaption class="by">
-          <span class="nm">Michael R.</span>
-          <span class="rl">Selbstständig, 58</span>
-        </figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<section class="urgent">
-  <div class="wrap">
-    <span class="tag">// Plätze begrenzt</span>
-    <h2>Der Raum schließt, wenn der Zähler steht.</h2>
-    <button type="button" class="btn btn-light tally-trigger">Kostenlosen Platz sichern <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-    <div class="meter">
-      <div class="track"><div class="fill"></div></div>
-      <div class="cap"><span>438 angemeldet</span><span>62 Plätze frei</span></div>
+    <div style="text-align:center; margin-top:38px">
+      <a class="btn" href="#book">Termin buchen <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
   </div>
 </section>
 
 <section class="sec sec-handoff">
-  <div class="wrap narrow">
+  <div class="wrap">
     <div class="head head-c">
-      <span class="tag">// Vor der Anmeldung</span>
-      <h2>Was am häufigsten gefragt wird</h2>
+      <span class="tag">// Wer das gemacht hat</span>
+      <h2>Kurz zu mir</h2>
     </div>
 
-    <div class="faq" id="faq">
-      <div class="fitem">
-        <button class="fq" aria-expanded="false"><span>Ist das wirklich kostenlos?</span><span class="sign">+</span></button>
-        <div class="fa"><p>Ja. Die Anmeldung fragt Name und E-Mail ab, sonst nichts. Weder für das Webinar noch für die Fragerunde fällt etwas an, und es wird keine Zahlungsmethode hinterlegt.</p></div>
-      </div>
-      <div class="fitem">
-        <button class="fq" aria-expanded="false"><span>Ich kann am Donnerstag nicht live dabei sein.</span><span class="sign">+</span></button>
-        <div class="fa"><p>Melden Sie sich trotzdem an. Die Aufzeichnung geht an alle Angemeldeten und bleibt sieben Tage abrufbar. Die offene Fragerunde findet allerdings nur live statt — und für die meisten ist genau das der nützlichste Teil.</p></div>
-      </div>
-      <div class="fitem">
-        <button class="fq" aria-expanded="false"><span>Gilt das auch für meine Situation?</span><span class="sign">+</span></button>
-        <div class="fa"><p>Die drei Schritte gelten für Frauen und Männer zwischen etwa 35 und 65. Hormonelle Ausgangslagen unterscheiden sich, deshalb zeigt Dr. Korn zu jedem Marker, wo die Optimalbereiche auseinandergehen. Bei bestehenden Diagnosen oder Medikation bleibt Ihre behandelnde Ärztin oder Ihr Arzt zuständig — das Webinar ersetzt keine Behandlung.</p></div>
-      </div>
-      <div class="fitem">
-        <button class="fq" aria-expanded="false"><span>Brauche ich vorher Blutwerte?</span><span class="sign">+</span></button>
-        <div class="fa"><p>Nein. Wenn Sie ein Blutbild aus den letzten zwölf Monaten haben, legen Sie es daneben — dann können Sie live mitlesen. Wenn nicht, gehen Sie mit der Checkliste raus und wissen, welche neun Werte Sie anfordern.</p></div>
+    <div class="biocard">
+      <div class="avatar">RP<img src="assets/operator.jpg" alt="Robin Pani" onerror="this.remove()"></div>
+      <div class="bio-text">
+        <div class="nm">Robin Pani</div>
+        <div class="rl">CEO, Sales At Scale</div>
+        <p>Ich baue Event-Funnels für Leute, die ihr Thema beherrschen und das Marketing sauber gelöst haben wollen. Diesen hier habe ich gebaut, bevor wir gesprochen haben — zeigen geht schneller als erklären.</p>
+        <div class="contact">
+          <a href="https://cal.com/panirobin/book" target="_blank" rel="noopener noreferrer"><span class="lbl">Termin</span> cal.com/panirobin/book</a>
+          <a href="https://instagram.com/robinpanibiz" target="_blank" rel="noopener noreferrer"><span class="lbl">Instagram</span> @robinpanibiz</a>
+        </div>
       </div>
     </div>
   </div>
@@ -344,97 +438,27 @@
 
 <section class="final">
   <div class="wrap">
-    <span class="tag tag-c">// Donnerstag, 20. August · 19:00 Uhr</span>
-    <h2>Legen Sie Ihr letztes Blutbild bereit.</h2>
-    <p class="sub">45 Minuten, live, kostenlos. Sie gehen mit neun Werten und einer Reihenfolge raus — nicht mit einem guten Gefühl.</p>
-    <button type="button" class="btn tally-trigger">Kostenlosen Platz sichern <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-    <p class="microcopy">Zugangslink per E-Mail &middot; Aufzeichnung nur für Angemeldete</p>
+    <span class="tag tag-c">// Dr. Maika Korn</span>
+    <h2>Es gehört dir — so oder so.</h2>
+    <p class="sub">Wenn's nützlich ist, sind 15 Minuten der schnellste nächste Schritt.</p>
+    <a class="btn" href="#book">Termin buchen <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <p class="microcopy">Exklusiv für Dr. Maika Korn erstellt</p>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <div class="wordmark">Longevity <em>Code</em></div>
+    <div class="wordmark">Optimal <em>Bereich</em></div>
     <div class="fmeta">
-      <span>© 2026 — Beispielseite</span>
-      <span>Datenschutz · Impressum · Kontakt</span>
+      <span>Exklusiv für Dr. Maika Korn erstellt</span>
+      <span>Gebaut von Sales At Scale</span>
     </div>
-    <p class="disc">Diese Seite ist ein Design- und Text-Muster für ein kostenloses Webinar. Referentin, Stimmen, Zahlen und Verläufe sind illustrative Platzhalter und keine Aussagen über eine reale Person, ein Unternehmen oder ein Produkt. Es werden keine Heilversprechen gemacht und keine Ergebnisse zugesichert. Ein Webinar ersetzt weder Diagnose noch ärztliche Behandlung — bei Beschwerden wenden Sie sich an Ihre Ärztin oder Ihren Arzt.</p>
+    <p class="disc">Demonstrationspaket für Design und Copywriting eines Webinar-Funnels. Testimonials, Kennzahlen und Event-Angaben in den Funnel-Seiten sind illustrative Platzhalter. Angaben zu Dr. Maika Korn stammen von maikakorn.de und wurden nicht unabhängig geprüft.</p>
   </div>
 </footer>
 
-<div class="mobile-cta">
-  <button type="button" class="btn tally-trigger">Kostenlosen Platz sichern <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-</div>
-
-<div class="tally-toast" id="tally-toast" role="status" aria-live="polite"></div>
-
 <script>
-  /* ════════════════════════════════════════════════════════════════════
-     TALLY FORM ID — diesen einen Wert durch die eigene Formular-ID ersetzen.
-
-     Die Tally-URL sieht so aus:  https://tally.so/r/wAbCdE
-     Die ID ist der Teil nach /r/  →  "wAbCdE"
-
-     Jeder "Kostenlosen Platz sichern"-Button öffnet dieses Formular als
-     Popup — keiner scrollt oder navigiert. Solange nichts gesetzt ist,
-     zeigt ein Klick einen Hinweis statt still nichts zu tun.
-     ════════════════════════════════════════════════════════════════════ */
-  const TALLY_FORM_ID = "XxAzXz";
-
-  // Die Muster teilen sich ein Tally-Formular; ein verstecktes Feld ordnet
-  // eine Anmeldung dem jeweiligen Interessenten zu. Im Tally-Builder muss
-  // dafür ein Hidden Field mit der Field-ID "source" existieren — sonst
-  // verwirft Tally den Query-Parameter still.
-  var TALLY_SOURCE = "maikakorn";
-
-  (function () {
-    var triggers = document.querySelectorAll('.tally-trigger');
-    if (!triggers.length) return;
-
-    var configured = TALLY_FORM_ID && !/^REPLACE_ME$/i.test(TALLY_FORM_ID);
-
-    if (configured) {
-      // Am window benannt, weil Tallys Embed data-tally-on-submit als
-      // globalen Funktionsnamen auflöst.
-      window.onRegistrationComplete = function () {
-        window.location.href = 'offer.html';
-      };
-
-      // Attribute werden gesetzt, bevor embed.js lädt — so sieht das Skript
-      // sie direkt beim DOM-Scan und es entsteht kein Race.
-      triggers.forEach(function (btn) {
-        btn.setAttribute('data-tally-open', TALLY_FORM_ID + '?source=' + encodeURIComponent(TALLY_SOURCE));
-        btn.setAttribute('data-tally-layout', 'modal');
-        btn.setAttribute('data-tally-width', '560');
-        btn.setAttribute('data-tally-on-submit', 'onRegistrationComplete');
-        btn.setAttribute('data-tally-auto-close', '0');
-      });
-
-      var s = document.createElement('script');
-      s.src = 'https://tally.so/widgets/embed.js';
-      s.async = true;
-      document.body.appendChild(s);
-      return;
-    }
-
-    // Noch nicht verbunden: jedem Klick echtes Feedback geben statt eines toten Buttons.
-    var toast = document.getElementById('tally-toast');
-    var toastTimer;
-    triggers.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        if (!toast) return;
-        toast.textContent = 'Anmeldeformular nicht verbunden — TALLY_FORM_ID in index.html setzen';
-        toast.classList.add('show');
-        clearTimeout(toastTimer);
-        toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 3200);
-      });
-    });
-  })();
-
-  // Die Seite kann in einem Wrapper veröffentlicht werden, der <head> stellt;
-  // sicherstellen, dass ein Viewport-Tag da ist, damit Telefone auf Gerätebreite
-  // layouten statt auf 980px.
+  // Wrapper may supply <head>; ensure phones lay out at device width.
   (function () {
     if (!document.querySelector('meta[name="viewport"]')) {
       var mv = document.createElement('meta');
@@ -444,63 +468,32 @@
     }
   })();
 
-  // Countdown auf den nächsten Donnerstag, 19:00 Uhr lokal.
-  // EVENT_WEEKDAY ist 0=So..6=Sa und muss zur .ics auf thanks.html passen,
-  // sonst widersprechen sich Countdown und Kalendereintrag.
-  (function () {
-    var t = new Date();
-    t.setDate(t.getDate() + ((4 - t.getDay() + 7) % 7 || 7));
-    t.setHours(19, 0, 0, 0);
+  // Cal.com inline embed. The fallback link below the container stays visible
+  // if this never loads, so the section is never a dead end.
+  (function (C, A, L) {
+    var p = function (a, ar) { a.q.push(ar); };
+    var d = C.document;
+    C.Cal = C.Cal || function () {
+      var cal = C.Cal; var ar = arguments;
+      if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement('script')).src = A; cal.loaded = true; }
+      if (ar[0] === L) {
+        var api = function () { p(api, arguments); };
+        var namespace = ar[1];
+        api.q = api.q || [];
+        if (typeof namespace === 'string') { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ['initNamespace', namespace]); }
+        else p(cal, ar);
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, 'https://app.cal.com/embed/embed.js', 'init');
 
-    var d = document.getElementById('cd-d'),
-        h = document.getElementById('cd-h'),
-        m = document.getElementById('cd-m'),
-        s = document.getElementById('cd-s');
-
-    function set(el, n) { el.firstChild.nodeValue = String(n).padStart(2, '0'); }
-
-    function tick() {
-      var diff = Math.max(0, t - new Date());
-      set(d, Math.floor(diff / 864e5));
-      set(h, Math.floor(diff % 864e5 / 36e5));
-      set(m, Math.floor(diff % 36e5 / 6e4));
-      set(s, Math.floor(diff % 6e4 / 1e3));
-    }
-    tick();
-    setInterval(tick, 1000);
-  })();
-
-  // FAQ-Akkordeon
-  (function () {
-    var items = document.querySelectorAll('.fitem');
-
-    items.forEach(function (item) {
-      var btn = item.querySelector('.fq'), panel = item.querySelector('.fa');
-      btn.addEventListener('click', function () {
-        var wasOpen = item.classList.contains('open');
-        items.forEach(function (o) {
-          o.classList.remove('open');
-          o.querySelector('.fq').setAttribute('aria-expanded', 'false');
-          o.querySelector('.fa').style.maxHeight = null;
-        });
-        if (!wasOpen) {
-          item.classList.add('open');
-          btn.setAttribute('aria-expanded', 'true');
-          panel.style.maxHeight = panel.scrollHeight + 'px';
-        }
-      });
-    });
-
-    // Die Höhe einer offenen Antwort ist in Pixeln gemessen und veraltet,
-    // sobald sich die Viewport-Breite ändert (Drehung, Resize). Neu messen.
-    var t;
-    window.addEventListener('resize', function () {
-      clearTimeout(t);
-      t = setTimeout(function () {
-        var open = document.querySelector('.fitem.open .fa');
-        if (open) open.style.maxHeight = open.scrollHeight + 'px';
-      }, 120);
-    });
-  })();
+  Cal('init', { origin: 'https://cal.com' });
+  Cal('inline', {
+    elementOrSelector: '#cal-inline',
+    calLink: 'panirobin/book',
+    layout: 'month_view'
+  });
+  Cal('ui', { hideEventTypeDetails: false, layout: 'month_view' });
 </script>
 </html>
