@@ -1,0 +1,334 @@
+<title>ICP-Recherche | GameChanger Live-Workshop</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- page-specific: ICP research ---------- */
+
+  .doc-hero { padding: 72px 0 34px; }
+  .doc-hero .inner { max-width: 760px; }
+  .doc-hero h1 { font-size: clamp(30px, 5vw, 46px); margin: 18px 0 16px; }
+  .doc-hero .lede { font-size: 17px; color: var(--ink-soft); max-width: 56ch; }
+  .backbar { padding-top: 26px; }
+  .backlink {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .backlink:hover { color: var(--ink-soft); }
+  .backlink svg { width: 1em; height: 1em; transform: rotate(180deg); flex: none; }
+
+  /* short profile card — replaces the old full-bleed four-column strip so the
+     summary sits in the same narrow column, and reads in the same card
+     language as the .ritem and .evidence blocks below it */
+  .profile-sec { padding: 0 0 8px; }
+  .profile {
+    background: var(--card);
+    border: 1px solid var(--line-soft); border-left: 2px solid var(--brand-ink);
+    border-radius: 0 10px 10px 0; padding: 8px 28px;
+  }
+  .profile .prow {
+    display: grid; grid-template-columns: 168px 1fr; gap: 20px;
+    align-items: baseline; padding: 15px 0;
+    border-top: 1px solid var(--line-soft);
+  }
+  .profile .prow:first-child { border-top: 0; }
+  .profile .pk {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .13em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+  .profile .pv { font-size: 15.5px; line-height: 1.5; color: var(--ink); }
+
+  /* research blocks */
+  .rblock { margin-bottom: 20px; }
+  .rblock > .rhead {
+    display: flex; align-items: baseline; gap: 14px; margin-bottom: 14px;
+  }
+  .rblock .rnum {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent-ink);
+  }
+  .rblock h2 { font-size: clamp(23px, 3.2vw, 30px); }
+  .rblock .rintro { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 20px; max-width: 60ch; }
+
+  .rlist { display: flex; flex-direction: column; gap: 14px; }
+  .ritem {
+    background: var(--card); border: 1px solid var(--line-soft);
+    border-radius: 10px; padding: 24px 26px;
+  }
+  .ritem h3 { font-size: 17.5px; margin-bottom: 9px; }
+  .ritem p { color: var(--ink-soft); font-size: 15px; line-height: 1.65; }
+
+  /* the thing that makes this not a generic persona doc */
+  .evidence {
+    margin-top: 16px; padding: 14px 18px;
+    background: var(--paper-2); border-left: 2px solid var(--brand-ink);
+    border-radius: 0 6px 6px 0;
+  }
+  .evidence .elabel {
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: .13em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 7px;
+  }
+  .evidence q {
+    display: block; font-family: var(--display); font-size: 16px;
+    line-height: 1.5; color: var(--ink); quotes: none;
+  }
+  .evidence .src {
+    display: block; margin-top: 9px;
+    font-family: var(--mono); font-size: 10.5px; color: var(--ink-faint);
+  }
+
+  /* vocabulary */
+  .vocab { display: flex; flex-wrap: wrap; gap: 10px; }
+  .vword {
+    font-family: var(--mono); font-size: 12.5px; letter-spacing: .03em;
+    background: var(--brand); color: var(--on-brand);
+    padding: 9px 15px; border-radius: 999px;
+  }
+  .vword.avoid {
+    background: transparent; color: var(--ink-faint);
+    border: 1px dashed var(--line); text-decoration: line-through;
+  }
+  .vocab-note { margin-top: 18px; color: var(--ink-soft); font-size: 14.5px; max-width: 60ch; }
+
+  @media (max-width: 640px) {
+    .doc-hero { padding: 52px 0 28px; }
+    .profile { padding: 6px 20px; }
+    .profile .prow { grid-template-columns: 1fr; gap: 5px; padding: 14px 0; }
+    .ritem { padding: 22px 20px; }
+  }
+</style>
+
+<div class="wrap backbar">
+  <a class="backlink" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Zurück zum Paket
+  </a>
+</div>
+
+<header class="doc-hero">
+  <div class="wrap">
+    <div class="inner">
+      <span class="tag">// 04 · ICP-Recherche</span>
+      <h1>Wen du wirklich ansprichst</h1>
+      <p class="lede">Aus öffentlichen Quellen: deine Trustpilot-Bewertungen — auch die kritischen —, Stimmen auf deiner Website und deine eigenen Videos. Jede Aussage hat eine Quelle.</p>
+    </div>
+  </div>
+</header>
+
+<section class="profile-sec">
+  <div class="wrap narrow">
+    <div class="profile">
+      <div class="prow">
+        <span class="pk">Wer</span>
+        <span class="pv">Selbstständige und Führungskräfte</span>
+      </div>
+      <div class="prow">
+        <span class="pk">Festgefahren bei</span>
+        <span class="pv">Wissen, was zu tun wäre – und es nicht tun</span>
+      </div>
+      <div class="prow">
+        <span class="pk">Schon versucht</span>
+        <span class="pv">Bücher, Seminare, Vorsätze zum Jahresstart</span>
+      </div>
+      <div class="prow">
+        <span class="pk">Will wirklich</span>
+        <span class="pv">Dranbleiben, auch wenn der Tag entgleist</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap narrow">
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">01</span><h2>Ängste</h2></div>
+      <p class="rintro">Was sie insgeheim beschäftigt und im Gespräch nie aussprechen. Die Copy muss das beantworten, bevor es gesagt wird.</p>
+      <div class="rlist">
+
+        <div class="ritem">
+          <h3>Wieder ein Anlauf, der nicht hält</h3>
+          <p>Sie haben den Neustart schon oft gemacht — im Januar, nach dem Urlaub, nach dem Seminar. Die Angst ist nicht, dass es nicht funktioniert. Die Angst ist, dass es wieder nur bis Dienstag hält und sie sich danach noch schlechter fühlen.</p>
+          <div class="evidence">
+            <div class="elabel">So spricht es dein Publikum an — in deinen Worten</div>
+            <q>Und jetzt wirst du vielleicht sagen: ja, aber wenn das so einfach wäre …</q>
+            <span class="src">Quelle — Jörg Löhr, Vortrag beim Greator Festival 2024 (eigener YouTube-Kanal)</span>
+          </div>
+        </div>
+
+        <div class="ritem">
+          <h3>Nach der Anmeldung nie wieder Ruhe</h3>
+          <p>Eine kostenlose Anmeldung fühlt sich an wie das Unterschreiben eines Newsletters, den man nicht mehr loswird. Wer das schon erlebt hat, zögert beim nächsten Formular.</p>
+          <div class="evidence">
+            <div class="elabel">So gesagt</div>
+            <q>Einmal im 'System' kommst du nie mehr raus. Zugespammt ohne Ende.</q>
+            <span class="src">Quelle — Trustpilot, joerg-loehr.com (RT, 1 Stern, 2023)</span>
+          </div>
+        </div>
+
+        <div class="ritem">
+          <h3>Zeit und Geld verplempern</h3>
+          <p>Ihr Kalender ist voll. Ein Abend, der sich am Ende als Werbeveranstaltung entpuppt, kostet sie mehr als die 52 Minuten — er kostet das Vertrauen in die nächste Einladung.</p>
+          <div class="evidence">
+            <div class="elabel">So gesagt</div>
+            <q>Ich habe am Wochenende viel Geld und Zeit verplempert.</q>
+            <span class="src">Quelle — Trustpilot, joerg-loehr.com (Gisela S., 1 Stern, 2022)</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">02</span><h2>Wünsche</h2></div>
+      <p class="rintro">Was sie tatsächlich kaufen würden — in ihren Worten. Meist bescheidener und konkreter, als man erwartet.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Mit Klarheit rausgehen, nicht mit Notizen</h3>
+          <p>Kein neuer Ordner voller Ideen, sondern eine klare nächste Handlung — und der Mut, sie am nächsten Morgen wirklich zu tun.</p>
+          <div class="evidence">
+            <div class="elabel">So gesagt</div>
+            <q>Ich reiste mit einer Idee an und verließ das Seminar mit Klarheit, neuem Mut</q>
+            <span class="src">Quelle — Trustpilot, joerg-loehr.com (Nicole, 5 Sterne, 2026)</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>Eine Initialzündung, die bleibt</h3>
+          <p>Den Moment, in dem es klick macht, kennen sie aus deinen Seminaren. Was sie wollen, ist, dass dieser Moment nicht nach drei Wochen verpufft.</p>
+          <div class="evidence">
+            <div class="elabel">So gesagt</div>
+            <q>Diese Tage war eine absolute Initialzündung.</q>
+            <span class="src">Quelle — Teilnehmerstimme auf joerg-loehr.com (Laxana)</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>Impulse, die ins Handeln bringen</h3>
+          <p>Wissen haben sie genug. Gesucht wird der Anstoß, der aus dem Wissen eine tägliche Handlung macht — genau das Versprechen der 18 Minuten.</p>
+          <div class="evidence">
+            <div class="elabel">So gesagt</div>
+            <q>Sie vermitteln nicht nur jede Menge Wissen, sondern Impulse […], die dich zum Handeln bewegen</q>
+            <span class="src">Quelle — Teilnehmerstimme auf joerg-loehr.com (Johannes)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">03</span><h2>Einwände</h2></div>
+      <p class="rintro">Warum sie nicht kaufen. Bewusst aus kritischen Rezensionen gezogen — das negative Material ist die nützlichste Recherche hier.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>„Das ist doch wieder eine Verkaufsshow“</h3>
+          <p>Der mit Abstand häufigste Einwand gegen kostenlose Events. Antwort im Funnel: Die Fragerunde kommt vor jedem Angebot — sichtbar versprochen im Ablauf, in der FAQ und im Werte-Stack.</p>
+          <div class="evidence">
+            <div class="elabel">So gesagt</div>
+            <q>Man bekommt ständig Emails mit kostenlosen Webinaren, die sich dann als die reinsten Verkaufsshows entpuppen.</q>
+            <span class="src">Quelle — Trustpilot, joerg-loehr.com (Stefanie B., 2 Sterne, 2023)</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>„Das läuft doch vom Band“</h3>
+          <p>Wer einmal ein vorproduziertes Webinar erkannt hat, traut dem nächsten nicht. Antwort: Live mit Chat, echte Wochen aus dem Raum, und die Fragerunde gibt es nur live.</p>
+          <div class="evidence">
+            <div class="elabel">So gesagt</div>
+            <q>Fake Webinar ist halt vorgefertigt, habe ich auch getestet, ist immer das Gleiche.</q>
+            <span class="src">Quelle — Trustpilot, joerg-loehr.com (2 Sterne, 2022)</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>„Das steht alles in Atomic Habits“</h3>
+          <p>Die Belesenen sagen: Das Buch kostet 20 Euro. Antwort: Der Workshop verkauft kein neues Wissen, sondern baut eine einzige Gewohnheit in die eigene Woche — das kann kein Buch.</p>
+          <div class="evidence">
+            <div class="elabel">So gesagt</div>
+            <q>Von den Büchern 'Rich Dad, Poor Dad', 'Atomic Habits' etc. konnte ich für geringeres Geld viel mehr lernen</q>
+            <span class="src">Quelle — Trustpilot, joerg-loehr.com (Ricarda C., 2 Sterne, 2023)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">04</span><h2>Kaufauslöser</h2></div>
+      <p class="rintro">Der Moment, in dem das Problem untragbar wird. Ads, die den Auslöser benennen, schlagen Ads, die die Lösung benennen.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Ein Neustart-Moment</h3>
+          <p>Jahreswechsel, ein runder Geburtstag, das Ende des Sommerurlaubs — der Moment, in dem man sich vornimmt, dass es diesmal anders wird. Ads, die diesen Moment benennen, treffen ihn.</p>
+        </div>
+        <div class="ritem">
+          <h3>Ein gesundheitlicher Warnschuss</h3>
+          <p>Der Rücken, der Schlaf, ein Check-up mit schlechten Werten. Gesundheit ist auch auf deinem Kanal eines der Themen mit dem meisten Zuspruch.</p>
+        </div>
+        <div class="ritem">
+          <h3>Der zehnte gekippte Vorsatz</h3>
+          <p>Wenn der Vorsatz zum zehnten Mal an derselben Stelle gekippt ist — und die Erklärung „keine Zeit“ nicht einmal sie selbst mehr überzeugt.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">05</span><h2>Ihr Vokabular</h2></div>
+      <p class="rintro">Die Worte, die dieser Markt für sein eigenes Problem benutzt. Copy in diesen Worten liest sich wie von innen.</p>
+      <div class="vocab">
+        <span class="vword">dranbleiben</span>
+        <span class="vword">Gewohnheit</span>
+        <span class="vword">Auslöser</span>
+        <span class="vword">Tagesgeschäft</span>
+        <span class="vword">18 Minuten</span>
+        <span class="vword">Lebensbereiche</span>
+        <span class="vword">Initialzündung</span>
+        <span class="vword">dein Warum</span>
+        <span class="vword avoid">Tschaka</span>
+        <span class="vword avoid">Traumleben</span>
+        <span class="vword avoid">Motivations-Feuerwerk</span>
+      </div>
+      <p class="vocab-note">Durchgestrichenes ist genau das, was deine kritischen Bewertungen als Hype abtun — bei diesem Publikum kosten diese Worte Vertrauen. Im Zweifel das kleine, konkrete Wort („18 Minuten“) statt des großen („Transformation“).</p>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">06</span><h2>Wo sie sind</h2></div>
+      <p class="rintro">Wo diese Zielgruppe ohnehin schon zusammenkommt — nützlich fürs Targeting und für die Frage, welche Referenzen zünden.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Deine Seminare, Webinare und Bewertungsseiten</h3>
+          <p>Viele, die zu dir kommen, waren schon in einem Seminar oder Webinar. Die Trustpilot-Bewertungen zeigen: Sie vergleichen jede neue Einladung mit der letzten — deshalb verspricht dieser Funnel ausdrücklich, was anders läuft.</p>
+        </div>
+        <div class="ritem">
+          <h3>YouTube, Podcast und Greator</h3>
+          <p>Dein eigener Kanal, der Podcast „Einfach mehr ERFOLG!“ und deine Auftritte bei Greator erreichen das breite Persönlichkeitsentwicklungs-Publikum. Deine meistgesehenen eigenen Themen: Gewohnheiten, Motivation, Selbstliebe.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="tag tag-c">// Weiter</span>
+    <h2>Diese Recherche hat den Funnel geschrieben.</h2>
+    <p class="sub">Jede Headline, jeder Einwand und jede FAQ in den Seiten kommt von oben — auch die Entscheidung, die Fragerunde vor das Angebot zu legen.</p>
+    <a class="btn" href="index.html">Zurück zum Paket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">Game <em>Changer</em></div>
+    <div class="fmeta">
+      <span>Exklusiv für Jörg Löhr erstellt</span>
+      <span>Gebaut von Sales At Scale</span>
+    </div>
+    <p class="disc">Recherche aus öffentlich zugänglichen Quellen. Zitate stammen aus öffentlichen Rezensionen, Teilnehmerstimmen und Video-Transkripten und sind der Quelle zugeordnet, nicht als Empfehlung dargestellt. Namen sind die öffentlich sichtbaren Angaben der jeweiligen Bewertung.</p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+</script>

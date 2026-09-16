@@ -1,11 +1,4 @@
-﻿<!doctype html>
-<html lang="de">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Du bist dabei | GameChanger Workshop</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap">
+<title>Du bist dabei | GameChanger Live-Workshop</title>
 <link rel="stylesheet" href="styles.css">
 <style>
   /* ---------- page-specific: thanks ---------- */
@@ -70,7 +63,7 @@
     <div class="inner">
       <span class="tag">// Anmeldung bestätigt</span>
       <h1>Du bist dabei.</h1>
-      <p class="lede">Drei Dinge vor Donnerstag — zehn Minuten jetzt, damit später nichts untergeht.</p>
+      <p class="lede">Drei Dinge vor Donnerstag — nimm dir jetzt zehn Minuten, damit später nichts untergeht.</p>
     </div>
   </div>
 </header>
@@ -82,38 +75,38 @@
       <div class="stepcard">
         <div class="s-head">
           <span class="s-num">1</span>
-          <h2>Trag dir den Termin ein</h2>
+          <h2>In den Kalender eintragen</h2>
         </div>
-        <p>Ein Klick, damit der Workshop nicht unter allem anderen verschwindet, was diese Woche noch dazwischenkommt.</p>
+        <p>Ein Klick, damit es diese Woche nicht unter allem anderen verschwindet.</p>
         <button type="button" class="btn-sm-cta" id="add-to-calendar">
-          Termin eintragen
+          Zum Kalender hinzufügen
           <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <p class="note">Lädt eine .ics-Datei, die mit Google Kalender, Outlook und Apple Kalender funktioniert.</p>
         <div class="details">
-          <b>Donnerstag, 20. August · 19:00 Uhr</b> — GameChanger, kostenloser Live-Workshop. Den Zugangslink bekommst du am Morgen des Workshops per E-Mail.
+          <b><span data-event-date="long">Donnerstag, 17. September · 19:00 Uhr</span></b> — GameChanger Live-Workshop mit Jörg Löhr. Der Zugangslink kommt am Morgen des Tages per E-Mail.
         </div>
       </div>
 
       <div class="stepcard">
         <div class="s-head">
           <span class="s-num">2</span>
-          <h2>Halt nach dem Zugangslink Ausschau</h2>
+          <h2>Auf den Zugangslink achten</h2>
         </div>
-        <p>Er kommt von derselben Adresse, die deine Anmeldung bestätigt hat, ungefähr eine Stunde vor dem Start. Wenn er bis dahin nicht im Posteingang liegt: erst in den Spam-Ordner schauen, dort landet er am häufigsten.</p>
+        <p>Er kommt von derselben Adresse, die deine Anmeldung bestätigt hat — etwa eine Stunde vor Beginn. Wenn er bis dann nicht im Postfach ist, schau in den Spam-Ordner, bevor du den Support anschreibst. Dort landet er am häufigsten.</p>
         <div class="details">
-          Hier musst du nichts weiter tun — das läuft automatisch, sobald du angemeldet bist.
+          Hier musst du nichts tun — das passiert automatisch, sobald du angemeldet bist.
         </div>
       </div>
 
       <div class="stepcard">
         <div class="s-head">
           <span class="s-num">3</span>
-          <h2>Bring 18 Minuten mit</h2>
+          <h2>Bring den einen Bereich mit</h2>
         </div>
-        <p>Schau vorher einmal in deinen Kalender für nächste Woche und such die achtzehn Minuten, die du am ehesten freiräumen könntest. Mit dieser Uhrzeit im Kopf arbeiten wir live weiter — der Workshop bringt am meisten, wenn du eine echte Lücke mitbringst statt einer guten Absicht.</p>
+        <p>Der Workshop wirkt am besten an einer echten Woche, nicht an einer gedachten. Überleg dir den einen Lebensbereich, der gerade zieht — Gesundheit, Familie, Finanzen, Beruf — und die Uhrzeit, zu der dein Tag meistens kippt. Damit baust du am Donnerstag deine 18 Minuten.</p>
         <div class="details">
-          Wenn du auf VIP aufgestockt hast: Diese Woche ist auch die, die du zur schriftlichen Analyse einschickst.
+          Wenn du das Umsetzungs-Paket genommen hast, ist das auch die Woche für deinen schriftlichen Wochen-Check.
         </div>
       </div>
 
@@ -128,12 +121,12 @@
       <span>© 2026 — Beispielseite</span>
       <span>Datenschutz · Impressum · Kontakt</span>
     </div>
-    <p class="disc">Diese Seite ist ein Design- und Text-Beispiel für einen Webinar-Funnel. Referent, Stimmen und Angaben sind illustrative Platzhalter und keine Aussagen über eine reale Person, ein Unternehmen oder ein Produkt.</p>
+    <p class="disc">Dies ist eine Demonstrationsseite, erstellt von Sales At Scale, um Design und Copywriting für einen Workshop-Funnel zu zeigen — kein Angebot der Jörg Löhr Akademie. Termin und Angaben sind illustrative Platzhalter.</p>
   </div>
 </footer>
 
 <div class="back-wrap">
-  <a class="back-link" href="offer.html">Doch noch überlegt? Hier ist das VIP-Ticket →</a>
+  <a class="back-link" href="offer.html">Anders überlegt? Sieh dir das Umsetzungs-Paket noch einmal an →</a>
 </div>
 
 <script>
@@ -145,6 +138,19 @@
       mv.content = 'width=device-width, initial-scale=1';
       document.head.appendChild(mv);
     }
+  })();
+
+  /* Keep the visible date in step 1 in sync with the countdown on landing.html and
+     the .ics below — all three compute "next Thursday", so a hardcoded
+     label would drift a week the moment the build day passed. */
+  (function () {
+    var d = new Date();
+    d.setDate(d.getDate() + ((4 - d.getDay() + 7) % 7 || 7));
+    d.setHours(19, 0, 0, 0);
+    var longD = d.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long' });
+    document.querySelectorAll('[data-event-date]').forEach(function (el) {
+      el.textContent = longD + ' · 19:00 Uhr';
+    });
   })();
 
   // Client-side .ics generation — no backend, works offline.
@@ -162,7 +168,7 @@
     btn.addEventListener('click', function () {
       // Next Thursday, 19:00 Uhr in the browser's local
       // time zone. EVENT_WEEKDAY and EVENT_HOUR_24 must match the countdown on
-      // index.html — if they drift, the invite lands on a different day than the
+      // landing.html — if they drift, the invite lands on a different day than the
       // page promises, and nobody notices until someone misses the session.
       var start = new Date();
       start.setDate(start.getDate() + ((4 - start.getDay() + 7) % 7 || 7));
@@ -173,20 +179,20 @@
       var lines = [
         'BEGIN:VCALENDAR',
         'VERSION:2.0',
-        'PRODID:-//GameChanger//Workshop//EN',
+        'PRODID:-//GameChanger Live-Workshop//Workshop//EN',
         'CALSCALE:GREGORIAN',
         'METHOD:PUBLISH',
         'BEGIN:VEVENT',
-        'UID:gamechanger-event-' + start.getTime() + '@closersframework.netlify.app',
+        'UID:gamechanger-event-' + start.getTime() + '@salesatscale.netlify.app',
         'DTSTAMP:' + stamp,
         'DTSTART:' + toICSDate(start),
         'DTEND:' + toICSDate(end),
-        "SUMMARY:GameChanger Workshop — Live mit Jörg Löhr",
-        'DESCRIPTION:52 Minuten live: die 18-Minuten-Methode. Den Zugangslink bekommst du per E-Mail vor dem Start.',
+        "SUMMARY:GameChanger Live-Workshop mit Jörg Löhr",
+        'DESCRIPTION:52 Minuten live mit Jörg Löhr. Den Zugangslink bekommst du vorher per E-Mail.',
         'STATUS:CONFIRMED',
         'BEGIN:VALARM',
         'ACTION:DISPLAY',
-        "DESCRIPTION:GameChanger Workshop beginnt in 30 Minuten",
+        "DESCRIPTION:GameChanger Live-Workshop beginnt in 30 Minuten",
         'TRIGGER:-PT30M',
         'END:VALARM',
         'END:VEVENT',
