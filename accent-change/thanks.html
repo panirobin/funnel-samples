@@ -49,19 +49,10 @@
     text-decoration: underline; text-underline-offset: 3px;
   }
   .back-link:hover { color: var(--ink-soft); }
-  .back-wrap { text-align: center; padding-bottom: 60px; }
-
-  /* TEMPORARY: preview-only shortcut back to the hub, so someone walking the
-     sample doesn't have to use the browser back button. Remove this rule and
-     the #preview-home link before the funnel goes live. */
-  .preview-home {
-    display: inline-flex; align-items: center; gap: 8px; margin-top: 6px;
-    font-family: var(--sans); font-size: 13px; font-weight: 600;
-    padding: 11px 18px; border-radius: 4px;
-    border: 1px solid var(--line); color: var(--ink-soft); text-decoration: none;
-  }
-  .preview-home:hover { background: var(--paper-2); color: var(--ink); }
-  .preview-home:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; }
+  /* end of the funnel walk-through: back to the package, with the quiet offer
+     link underneath — both above the footer so the page ends in one place */
+  .back-wrap { text-align: center; padding: 8px 0 76px; }
+  .back-wrap .back-offer { margin-top: 18px; }
 
   @media (max-width: 640px) {
     .confirm-hero { padding: 52px 0 16px; }
@@ -122,15 +113,16 @@
         </div>
       </div>
 
-      <!-- TEMPORARY preview shortcut — lets someone walking the sample return to the hub
-           without the browser back button. Delete this block before the funnel goes live. -->
-      <div style="text-align:center">
-        <a class="preview-home" id="preview-home" href="index.html">← Back to the hub (preview only)</a>
-      </div>
-
     </div>
   </div>
 </section>
+
+<div class="back-wrap">
+  <a class="btn" href="index.html">Back to the package <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  <div class="back-offer">
+    <a class="back-link" href="offer.html">Changed your mind? See the Simulation Vault again →</a>
+  </div>
+</div>
 
 <footer>
   <div class="wrap">
@@ -142,10 +134,6 @@
     <p class="disc">This is a demonstration page built to showcase design and copywriting for a training webinar funnel. The host, testimonials, and details shown are illustrative placeholders and are not claims about any real person, company, or product.</p>
   </div>
 </footer>
-
-<div class="back-wrap">
-  <a class="back-link" href="offer.html">Changed your mind? See the Simulation Vault again →</a>
-</div>
 
 <script>
   // Wrapper supplies <head>; ensure phones lay out at device width.
