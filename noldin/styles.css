@@ -1,81 +1,74 @@
 ﻿/* ══════════════════════════════════════════════════════════════════
-   Das Vollgas-System — gemeinsames Design-System
+   The Closer's Framework — shared design system
 
-   Genutzt von index.html, offer.html und thanks.html. Seiten-eigene
-   Regeln stehen in einem kleinen <style>-Block je Seite.
-
-   Farben aus noldin-consulting.com: Limette #CFD92B (Buttons/Akzent),
-   Navy #122635 (Text und dunkle Panels), Waldgrün #3D5427 (Eyebrows).
-   Limette trägt nie Text — auf Weiß liegt sie bei 1.4:1.
+   Used by index.html, offer.html and thanks.html. Page-specific rules
+   live in a small inline <style> on each page.
    ══════════════════════════════════════════════════════════════════ */
 
   :root {
     --paper:      #FFFFFF;
-    --paper-2:    #F4F6EC;
+    --paper-2:    #F5F6F2;
     --card:       #FFFFFF;
     --ink:        #122635;
-    --ink-soft:   #47596B;
-    --ink-faint:  #61738A;
+    --ink-soft:   #4A5A66;
+    --ink-faint:  #626F79;
     --line:       rgba(18, 38, 53, 0.14);
     --line-soft:  rgba(18, 38, 53, 0.07);
     --brand:     #122635;
-    --brand-2:   #0B1926;
+    --brand-2:   #0B1A25;
     --on-brand:  #FFFFFF;
-    --brand-tint:       #E4EAB4;
-    --brand-ink:  #3D5427;
+    --brand-tint:       #2C3E4B;
+    --brand-ink:  #122635;
     --accent:       #CFD92B;
-    --accent-ink:   #5F6D0C;
-    --btn-bg:     #CFD92B;
-    --btn-fg:     #122635;
-    --shadow:     0 1px 2px rgba(18,38,53,.06), 0 12px 32px -18px rgba(18,38,53,.40);
+    --accent-ink:   #587A38;   /* accent where it is TEXT — darken per palette */
+    --btn-bg:     #122635;
+    --btn-fg:     #FFFFFF;
+    --shadow:     0 1px 2px rgba(18,38,53,.05), 0 12px 32px -18px rgba(18,38,53,.35);
 
-    /* liegt immer auf dem Navy-Panel — in beiden Themes identisch */
+    /* sits on the navy brand panel in BOTH themes — never theme-reactive */
     --on-brand-tick: #CFD92B;
 
-    --badge-bg:       rgba(207, 217, 43, 0.12);
-    --badge-ring:     rgba(61, 84, 39, 0.28);
-    --badge-halo:     rgba(207, 217, 43, 0.08);
-    --badge-dot-halo: rgba(207, 217, 43, 0.35);
+    --badge-bg:       rgba(18, 38, 53, 0.05);
+    --badge-ring:     rgba(18, 38, 53, 0.22);
+    --badge-halo:     rgba(18, 38, 53, 0.045);
+    --badge-dot-halo: rgba(207, 217, 43, 0.30);
 
-    --display: "Playfair Display", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-    --sans: Figtree, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --display: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --mono: ui-monospace, "JetBrains Mono", "Cascadia Mono", "SF Mono", Consolas, "Liberation Mono", monospace;
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --paper:#0B1926; --paper-2:#112434; --card:#14293A; --ink:#EDF1F3;
-      --ink-soft:#A3B2BE; --ink-faint:#7E8E9B; --line:rgba(237,241,243,.14);
-      --line-soft:rgba(237,241,243,.07); --brand:#17324A; --brand-2:#0B1926;
-      --on-brand:#FFFFFF; --brand-tint:#2C3A18; --brand-ink:#C3D06A;
-      --accent:#CFD92B; --accent-ink:#C3D06A;
+      --paper:#0D1A24; --paper-2:#132430; --card:#162936; --ink:#E6EDF2;
+      --ink-soft:#A3B2BD; --ink-faint:#8695A1; --line:rgba(230,237,242,.15);
+      --line-soft:rgba(230,237,242,.08); --brand:#1D3444; --brand-2:#142838;
+      --on-brand:#FFFFFF; --brand-tint:#2A4354; --brand-ink:#CFD92B; --accent:#CFD92B; --accent-ink:#CFD92B;
       --btn-bg:#CFD92B; --btn-fg:#122635;
       --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 32px -18px rgba(0,0,0,.8);
-      --badge-bg:rgba(207,217,43,.10); --badge-ring:rgba(207,217,43,.32);
+      --badge-bg:rgba(207,217,43,.10); --badge-ring:rgba(207,217,43,.34);
       --badge-halo:rgba(207,217,43,.06); --badge-dot-halo:rgba(207,217,43,.28);
     }
   }
   :root[data-theme="dark"] {
-    --paper:#0B1926; --paper-2:#112434; --card:#14293A; --ink:#EDF1F3;
-    --ink-soft:#A3B2BE; --ink-faint:#7E8E9B; --line:rgba(237,241,243,.14);
-    --line-soft:rgba(237,241,243,.07); --brand:#17324A; --brand-2:#0B1926;
-    --on-brand:#FFFFFF; --brand-tint:#2C3A18; --brand-ink:#C3D06A;
-    --accent:#CFD92B; --accent-ink:#C3D06A;
+    --paper:#0D1A24; --paper-2:#132430; --card:#162936; --ink:#E6EDF2;
+    --ink-soft:#A3B2BD; --ink-faint:#8695A1; --line:rgba(230,237,242,.15);
+    --line-soft:rgba(230,237,242,.08); --brand:#1D3444; --brand-2:#142838;
+    --on-brand:#FFFFFF; --brand-tint:#2A4354; --brand-ink:#CFD92B; --accent:#CFD92B; --accent-ink:#CFD92B;
     --btn-bg:#CFD92B; --btn-fg:#122635;
     --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 32px -18px rgba(0,0,0,.8);
-    --badge-bg:rgba(207,217,43,.10); --badge-ring:rgba(207,217,43,.32);
+    --badge-bg:rgba(207,217,43,.10); --badge-ring:rgba(207,217,43,.34);
     --badge-halo:rgba(207,217,43,.06); --badge-dot-halo:rgba(207,217,43,.28);
   }
   :root[data-theme="light"] {
-    --paper:#FFFFFF; --paper-2:#F4F6EC; --card:#FFFFFF; --ink:#122635;
-    --ink-soft:#47596B; --ink-faint:#61738A; --line:rgba(18,38,53,.14);
-    --line-soft:rgba(18,38,53,.07); --brand:#122635; --brand-2:#0B1926;
-    --on-brand:#FFFFFF; --brand-tint:#E4EAB4; --brand-ink:#3D5427;
-    --accent:#CFD92B; --accent-ink:#5F6D0C;
-    --btn-bg:#CFD92B; --btn-fg:#122635;
-    --shadow:0 1px 2px rgba(18,38,53,.06), 0 12px 32px -18px rgba(18,38,53,.40);
-    --badge-bg:rgba(207,217,43,.12); --badge-ring:rgba(61,84,39,.28);
-    --badge-halo:rgba(207,217,43,.08); --badge-dot-halo:rgba(207,217,43,.35);
+    --paper:#FFFFFF; --paper-2:#F5F6F2; --card:#FFFFFF; --ink:#122635;
+    --ink-soft:#4A5A66; --ink-faint:#626F79; --line:rgba(18,38,53,.14);
+    --line-soft:rgba(18,38,53,.07); --brand:#122635; --brand-2:#0B1A25;
+    --on-brand:#FFFFFF; --brand-tint:#2C3E4B; --brand-ink:#122635; --accent:#CFD92B; --accent-ink:#587A38;
+    --btn-bg:#122635; --btn-fg:#FFFFFF;
+    --shadow:0 1px 2px rgba(20,24,15,.05), 0 12px 32px -18px rgba(20,24,15,.35);
+    --badge-bg:rgba(18,38,53,.05); --badge-ring:rgba(18,38,53,.22);
+    --badge-halo:rgba(18,38,53,.045); --badge-dot-halo:rgba(207,217,43,.30);
   }
 
   * { box-sizing: border-box; }

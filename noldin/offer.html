@@ -1,16 +1,10 @@
-<!doctype html>
-<html lang="de">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Einmaliges Angebot — VIP-Ticket | Das Vollgas-System</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap">
+<title>Einmaliges Angebot — Umsetzungs-Paket | Das Vollgas-System</title>
 <link rel="stylesheet" href="styles.css">
 <style>
-  /* ---------- seiten-eigen: Angebot ---------- */
+  /* ---------- page-specific: offer ---------- */
 
-  /* Urgency-Leiste — Limette mit Navy-Text, wie die CTAs auf noldin-consulting.com */
+  /* urgency bar — lime accent; text is navy because white on #CFD92B is
+     ~1.5:1 (see reference/palettes.md) */
   .alertbar {
     position: sticky; top: 0; z-index: 40;
     background: var(--accent);
@@ -29,7 +23,7 @@
   }
   @keyframes alertBlink { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
 
-  /* Fortschritt — "Schritt 2 von 2" */
+  /* progress — "step 2 of 2", mirrors both reference samples */
   .progress { padding: 34px 0 0; }
   .progress .inner { max-width: 460px; margin: 0 auto; }
   .progress .meta {
@@ -55,7 +49,7 @@
     max-width: 52ch; margin: 0 auto;
   }
 
-  /* CTA-Block: Button plus leiser Nein-danke-Link darunter, mehrfach auf der Seite */
+  /* CTA cluster: primary button + quiet decline beneath, repeated down the page */
   .cta-block { text-align: center; margin: 40px auto 0; }
   .cta-block .price-note {
     margin-top: 14px;
@@ -71,10 +65,11 @@
   .decline:hover { color: var(--ink-soft); }
   .decline:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-  /* Bonus-Zeilen — abwechselnd Medien-/Textspalte */
+  /* bonus rows — alternating, per reference sample 2 */
   .bonus { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
   .bonus + .bonus { margin-top: 56px; }
   .bonus:nth-child(even) .bonus-media { order: 2; }
+  /* accent-ink, not accent: raw lime is 1.5:1 on white at 10px */
   .bonus .kicker {
     font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
     text-transform: uppercase; color: var(--accent-ink); margin-bottom: 12px;
@@ -95,26 +90,26 @@
   }
   .bonus-media .m-label {
     font-family: var(--mono); font-size: 10px; letter-spacing: .12em;
-    text-transform: uppercase; opacity: .6; margin-bottom: 14px;
+    text-transform: uppercase; opacity: .72; margin-bottom: 14px;
   }
   .bonus-media .m-row {
     display: flex; justify-content: space-between; align-items: center;
     gap: 14px; padding: 11px 0;
-    border-bottom: 1px solid rgba(239,243,233,.14);
+    border-bottom: 1px solid rgba(255,255,255,.16);
     font-family: var(--mono); font-size: 11.5px;
   }
   .bonus-media .m-row:last-child { border-bottom: 0; }
-  .bonus-media .m-row .v { color: var(--on-brand-tick); }
+  .bonus-media .m-row .v { color: var(--on-brand-tick); text-align: right; }
   .bonus-media .m-big {
     font-family: var(--display); font-size: 40px; line-height: 1;
     letter-spacing: -0.02em; margin-bottom: 6px;
   }
   .bonus-media .m-sub {
     font-family: var(--mono); font-size: 10px; letter-spacing: .1em;
-    text-transform: uppercase; opacity: .65;
+    text-transform: uppercase; opacity: .78;
   }
 
-  /* Ticket-Vergleich — freier Platz gegen VIP, in unserer Palette */
+  /* ticket comparison — reference sample 2's selector, in our palette */
   .tickets { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
   .ticket { border-radius: 10px; padding: 32px 30px; }
   .ticket-free { background: var(--card); border: 1px solid var(--line-soft); }
@@ -140,7 +135,7 @@
     text-transform: uppercase; margin-bottom: 24px;
   }
   .ticket-free .t-cap { color: var(--ink-faint); }
-  .ticket-vip .t-cap { color: rgba(239,243,233,.6); }
+  .ticket-vip .t-cap { color: rgba(255,255,255,.7); }
   .ticket ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
   .ticket li {
     display: grid; grid-template-columns: 20px 1fr; gap: 13px;
@@ -150,7 +145,7 @@
   .ticket li .ic svg { width: 20px; height: 20px; }
   .ticket-free li { color: var(--ink-soft); }
   .ticket-free li .ic { color: var(--ink-faint); }
-  .ticket-vip li { color: rgba(239,243,233,.9); }
+  .ticket-vip li { color: rgba(255,255,255,.92); }
   .ticket-vip li .ic { color: var(--on-brand-tick); }
   .ticket .t-foot {
     margin-top: 26px; padding-top: 20px;
@@ -158,7 +153,7 @@
     text-transform: uppercase;
   }
   .ticket-free .t-foot { border-top: 1px solid var(--line-soft); color: var(--ink-faint); }
-  .ticket-vip .t-foot { border-top: 1px solid rgba(239,243,233,.18); color: rgba(239,243,233,.65); }
+  .ticket-vip .t-foot { border-top: 1px solid rgba(255,255,255,.22); color: rgba(255,255,255,.72); }
   .ticket-vip .flag {
     position: absolute; top: -1px; right: 24px;
     background: var(--accent); color: #122635;
@@ -211,14 +206,14 @@
 <div class="alertbar">
   <div class="wrap">
     <span class="pip" aria-hidden="true"></span>
-    <span>Moment — dein Platz ist noch nicht fertig</span>
+    <span>Warte — dein Platz ist noch nicht abgeschlossen</span>
   </div>
 </div>
 
 <div class="progress">
   <div class="wrap">
     <div class="inner">
-      <div class="meta"><span>Schritt 2 von 2</span><span>Fast geschafft</span></div>
+      <div class="meta"><span>Schritt 2 von 2</span><span>Fast fertig</span></div>
       <div class="track"><div class="fill"></div></div>
     </div>
   </div>
@@ -228,8 +223,8 @@
   <div class="wrap">
     <div class="inner">
       <span class="tag tag-c">// Einmaliges Angebot · nur auf dieser Seite</span>
-      <h1>Dein Platz steht. Jetzt <em>nimm ihn mit.</em></h1>
-      <p class="lede">Du bist für Donnerstag angemeldet. Bevor du weitergehst: Es gibt eine Variante, in der du die drei Schritte nicht nur zusiehst, sondern sie an deinem eigenen Betrieb durchgespielt bekommst.</p>
+      <h1>Dein Platz steht. Jetzt <em>mach ihn wertvoll.</em></h1>
+      <p class="lede">Du bist für Mittwoch angemeldet. Bevor du gehst — es gibt eine Version dieses Workshops, in der du die Übergabe nicht nur siehst, sondern sie an deinem eigenen Team angewendet bekommst.</p>
     </div>
   </div>
 </header>
@@ -237,64 +232,64 @@
 <section class="sec sec-alt">
   <div class="wrap">
     <div class="head head-c">
-      <span class="tag">// Was dazukommt</span>
-      <h2>Drei Dinge, die im freien Platz nicht drin sind.</h2>
-      <p>Der Workshop zeigt die Reihenfolge. VIP ist der Teil, in dem sie auf deine Leute, deine Rollen und deinen Montagmorgen angewendet wird.</p>
+      <span class="tag">// Was das Upgrade dazugibt</span>
+      <h2>Drei Dinge, die der kostenlose Platz nicht enthält.</h2>
+      <p>Der Workshop zeigt das System. Das Umsetzungs-Paket ist, wo es auf dein Team trifft — mit Live-Zeit, fertigen Formulierungen und einem Blick auf deinen Fall.</p>
     </div>
 
     <div class="bonus">
       <div class="bonus-media">
-        <div class="m-label">VIP-Runde — 45 Min, direkt im Anschluss</div>
-        <div class="m-row"><span>Fall 01</span><span class="v">Meisterin fragt alles ab</span></div>
-        <div class="m-row"><span>Fall 02</span><span class="v">Regel nach 3 Wochen tot</span></div>
-        <div class="m-row"><span>Fall 03</span><span class="v">Nachfolger im Familienbetrieb</span></div>
-        <div class="m-row"><span>Plätze</span><span class="v">begrenzt auf 40</span></div>
+        <div class="m-label">Umsetzungs-Runde — 45 Min., direkt nach dem Workshop</div>
+        <div class="m-row"><span>Hotseat 01</span><span class="v">Projektleiter fragt alles nach</span></div>
+        <div class="m-row"><span>Hotseat 02</span><span class="v">Chef und Freund zugleich</span></div>
+        <div class="m-row"><span>Hotseat 03</span><span class="v">„Wird gemacht" — und dann nichts</span></div>
+        <div class="m-row"><span>Plätze</span><span class="v">auf 40 begrenzt</span></div>
       </div>
       <div>
         <div class="kicker">Bonus 01</div>
-        <h3>Die VIP-Runde direkt im Anschluss</h3>
-        <p>Der Hauptraum schließt, der VIP-Raum geht auf. Vierzig Geschäftsführer, fünfundvierzig Minuten, und Tim nimmt echte Fälle live auseinander — auch die unangenehmen, die man ungern vor 400 Leuten erzählt. Dieser Teil wird für die öffentliche Aufzeichnung nicht mitgeschnitten.</p>
-        <span class="worth">Einzeln nicht buchbar</span>
+        <h3>Die Umsetzungs-Runde, direkt im Anschluss</h3>
+        <p>Der Hauptraum endet, die Umsetzungs-Runde öffnet. 40 Leute, 45 Minuten, und Tim formuliert live echte Übergaben um — auch die unangenehmen, bei denen du den Mitarbeiter privat kennst. Dieser Teil wird nicht für die öffentliche Aufzeichnung mitgeschnitten.</p>
+        <span class="worth">Nicht einzeln erhältlich</span>
       </div>
     </div>
 
     <div class="bonus">
       <div class="bonus-media">
-        <div class="m-big">40</div>
-        <div class="m-sub">Situationen, wörtlich ausformuliert</div>
-        <div class="m-row" style="margin-top:18px"><span>Rückfragen abwehren</span><span class="v">12 Sätze</span></div>
-        <div class="m-row"><span>Aufgaben übergeben</span><span class="v">10 Sätze</span></div>
-        <div class="m-row"><span>Regel eingefordert</span><span class="v">11 Sätze</span></div>
-        <div class="m-row"><span>Konflikt im Team</span><span class="v">7 Sätze</span></div>
+        <div class="m-big">30</div>
+        <div class="m-sub">Übergabe-Formulierungen (PDF)</div>
+        <div class="m-row" style="margin-top:18px"><span>Rolle klären</span><span class="v">8 Sätze</span></div>
+        <div class="m-row"><span>„Fertig" definieren</span><span class="v">10 Sätze</span></div>
+        <div class="m-row"><span>Nachfassen ohne Kontrolle</span><span class="v">7 Sätze</span></div>
+        <div class="m-row"><span>Grenzen ziehen, fair</span><span class="v">5 Sätze</span></div>
       </div>
       <div>
         <div class="kicker">Bonus 02</div>
-        <h3>Der Formulierungs-Ordner</h3>
-        <p>Vierzig Situationen aus dem Führungsalltag, jede einzelne Wort für Wort ausgeschrieben — nicht als Prinzip, sondern als Satz, den du so sagen kannst. Sortiert nach Situation, damit du am Dienstagmorgen nicht suchst, sondern nachliest und loslegst.</p>
-        <span class="worth">Wert 180 €</span>
+        <h3>Die Übergabe-Bibliothek</h3>
+        <p>Dreißig Formulierungen für genau die Momente, in denen Aufgaben sonst zurückkommen — sortiert nach Situation. Wenn am Dienstag wieder ein „Wird gemacht, Chef" im Raum steht, hast du den nächsten Satz schon parat.</p>
+        <span class="worth">Wert: 49 €</span>
       </div>
     </div>
 
     <div class="bonus">
       <div class="bonus-media">
-        <div class="m-label">Fall-Analyse — schriftlich, 48 Std.</div>
-        <div class="m-row"><span>Du schickst</span><span class="v">Situation + Wortlaut</span></div>
-        <div class="m-row"><span>Du bekommst</span><span class="v">Ursache + Diagnose</span></div>
-        <div class="m-row"><span>Dazu</span><span class="v">die nächsten drei Sätze</span></div>
-        <div class="m-row"><span>Dauer</span><span class="v">48 Stunden</span></div>
+        <div class="m-label">Übergabe-Check — schriftlich, in 48 Std.</div>
+        <div class="m-row"><span>Du schickst</span><span class="v">eine Aufgabe, die zurückkam</span></div>
+        <div class="m-row"><span>Du bekommst</span><span class="v">wo die Klarheit fehlte</span></div>
+        <div class="m-row"><span>Plus</span><span class="v">die Übergabe, neu formuliert</span></div>
+        <div class="m-row"><span>Rückmeldung</span><span class="v">innerhalb von 48 Std.</span></div>
       </div>
       <div>
         <div class="kicker">Bonus 03</div>
-        <h3>Ein Fall, schriftlich auseinandergenommen</h3>
-        <p>Schick eine Situation, die bei dir hängt — den Zusammenhang und das, was tatsächlich gesagt wurde. Du bekommst eine schriftliche Diagnose, die benennt, woran es wirklich liegt, plus die Sätze für das nächste Gespräch. Keine Vorlage. Dein Fall, deine Leute, deine Sprache.</p>
-        <span class="worth">Wert 150 €</span>
+        <h3>Deine Übergabe, schriftlich durchgesehen</h3>
+        <p>Schick eine Aufgabe, die wieder auf deinem Tisch gelandet ist — wer, was und was damals gesagt wurde. Zurück kommt, an welcher Stelle Rolle, Standard oder Übergabe unklar war, plus die Übergabe neu formuliert. Keine Vorlage. Dein Team.</p>
+        <span class="worth">Wert: 90 €</span>
       </div>
     </div>
 
     <div class="cta-block">
-      <button type="button" class="btn checkout-trigger">Ja — VIP dazunehmen <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      <p class="price-note">47 € einmalig · danach nicht mehr zu diesem Preis</p>
-      <a class="decline" href="thanks.html">Nein danke — ich behalte meinen freien Platz</a>
+      <button type="button" class="btn checkout-trigger">Ja — ich nehme das Umsetzungs-Paket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="price-note">27 € einmalig · danach nicht mehr zu diesem Preis</p>
+      <a class="decline" href="thanks.html">Nein danke — ich behalte meinen kostenlosen Platz</a>
     </div>
   </div>
 </section>
@@ -302,91 +297,48 @@
 <section class="sec">
   <div class="wrap">
     <div class="head head-c">
-      <span class="tag">// Platz wählen</span>
-      <h2>Was du hast — und was dazukäme.</h2>
+      <span class="tag">// Wähle deinen Platz</span>
+      <h2>Was du hast — und was du dazunimmst.</h2>
     </div>
 
     <div class="tickets">
       <div class="ticket ticket-free">
-        <div class="t-name">Freier Platz — gehört dir schon</div>
+        <div class="t-name">Kostenloser Platz — schon deiner</div>
         <div class="t-price">0 €</div>
-        <div class="t-cap">Für Donnerstag bestätigt</div>
+        <div class="t-cap">Für Mittwoch bestätigt</div>
         <ul>
-          <li>
-            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span>Der 45-Minuten-Live-Workshop</span>
-          </li>
-          <li>
-            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span>Die Übergabe-Formulierungen</span>
-          </li>
-          <li>
-            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span>Offene Fragerunde im Hauptraum</span>
-          </li>
-          <li>
-            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span>Aufzeichnung für sieben Tage</span>
-          </li>
-          <li>
-            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-            <span>Keine VIP-Runde</span>
-          </li>
-          <li>
-            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-            <span>Kein Formulierungs-Ordner</span>
-          </li>
-          <li>
-            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-            <span>Keine schriftliche Fall-Analyse</span>
-          </li>
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Der 45-Minuten-Live-Workshop</span></li>
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Zwölf Übergabe-Formulierungen</span></li>
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Fragerunde im Hauptraum</span></li>
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>7 Tage Aufzeichnung</span></li>
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span>Keine Umsetzungs-Runde</span></li>
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span>Keine Übergabe-Bibliothek</span></li>
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span>Kein schriftlicher Übergabe-Check</span></li>
         </ul>
-        <div class="t-foot">Nichts zu tun — du bist bereits dabei</div>
+        <div class="t-foot">Nichts zu tun — du bist schon dabei</div>
       </div>
 
       <div class="ticket ticket-vip">
-        <span class="flag">Empfohlen</span>
-        <div class="t-name">VIP-Ticket</div>
-        <div class="t-price">47 €</div>
+        <span class="flag">Bester Wert</span>
+        <div class="t-name">Umsetzungs-Paket</div>
+        <div class="t-price">27 €</div>
         <div class="t-cap">Einmalig · nur auf dieser Seite</div>
         <ul>
-          <li>
-            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span><strong>Alles aus dem freien Platz</strong></span>
-          </li>
-          <li>
-            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span>VIP-Runde direkt nach dem Workshop</span>
-          </li>
-          <li>
-            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span>Der Formulierungs-Ordner — 40 Situationen</span>
-          </li>
-          <li>
-            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span>Ein eigener Fall, schriftlich analysiert</span>
-          </li>
-          <li>
-            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span>Rollen- und Regel-Vorlagen zum Ausfüllen</span>
-          </li>
-          <li>
-            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span>Aufzeichnung ein Jahr statt sieben Tage</span>
-          </li>
-          <li>
-            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span>Sieben Tage Geld-zurück-Garantie</span>
-          </li>
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><strong>Alles aus dem kostenlosen Platz</strong></span></li>
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Umsetzungs-Runde direkt nach dem Workshop</span></li>
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Die Übergabe-Bibliothek — 30 Formulierungen</span></li>
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Schriftlicher Übergabe-Check in 48 Std.</span></li>
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Aufzeichnung 12 Monate statt 7 Tage</span></li>
+          <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>14 Tage Geld-zurück-Garantie</span></li>
         </ul>
-        <div class="t-foot">Begrenzt auf 40 Plätze</div>
+        <div class="t-foot">Auf 40 Plätze begrenzt</div>
       </div>
     </div>
 
     <div class="cta-block">
-      <button type="button" class="btn checkout-trigger">Ja — VIP dazunehmen <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      <p class="price-note">47 € einmalig · danach nicht mehr zu diesem Preis</p>
-      <a class="decline" href="thanks.html">Nein danke — ich behalte meinen freien Platz</a>
+      <button type="button" class="btn checkout-trigger">Ja — ich nehme das Umsetzungs-Paket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="price-note">27 € einmalig · danach nicht mehr zu diesem Preis</p>
+      <a class="decline" href="thanks.html">Nein danke — ich behalte meinen kostenlosen Platz</a>
     </div>
   </div>
 </section>
@@ -401,46 +353,46 @@
     <div class="ledger">
       <div class="lrow">
         <div>
-          <div class="nm">Die VIP-Runde</div>
-          <div class="ds">45 Minuten, 40 Plätze, echte Fälle live</div>
+          <div class="nm">Umsetzungs-Runde</div>
+          <div class="ds">45 Minuten, auf 40 Plätze begrenzt, Live-Arbeit an echten Übergaben</div>
         </div>
         <div class="vl">120 €</div>
       </div>
       <div class="lrow">
         <div>
-          <div class="nm">Der Formulierungs-Ordner</div>
-          <div class="ds">40 Situationen, Wort für Wort ausgeschrieben</div>
+          <div class="nm">Die Übergabe-Bibliothek</div>
+          <div class="ds">30 Formulierungen, sortiert nach Situation</div>
         </div>
-        <div class="vl">180 €</div>
+        <div class="vl">49 €</div>
       </div>
       <div class="lrow">
         <div>
-          <div class="nm">Schriftliche Fall-Analyse</div>
-          <div class="ds">Ein Fall aus deinem Betrieb, in 48 Stunden zurück</div>
+          <div class="nm">Schriftlicher Übergabe-Check</div>
+          <div class="ds">Dein Fall, durchgesehen innerhalb von 48 Stunden</div>
         </div>
-        <div class="vl">150 €</div>
+        <div class="vl">90 €</div>
       </div>
       <div class="lrow">
         <div>
-          <div class="nm">Rollen- und Regel-Vorlagen</div>
-          <div class="ds">Vier Dokumente zum Ausfüllen, nicht zum Lesen</div>
+          <div class="nm">Aufzeichnung, 12 Monate</div>
+          <div class="ds">Statt 7 Tage — jederzeit wieder ansehen</div>
         </div>
-        <div class="vl">60 €</div>
+        <div class="vl">29 €</div>
       </div>
 
       <div class="ltotal">
         <span class="lbl">Gesamtwert</span>
         <span class="amt">
-          <span class="old">510 €</span>
-          <span class="new">47 €</span>
+          <span class="old">288 €</span>
+          <span class="new">27 €</span>
         </span>
       </div>
     </div>
 
     <div class="cta-block">
-      <button type="button" class="btn checkout-trigger">Ja — VIP dazunehmen <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      <p class="price-note">47 € einmalig · danach nicht mehr zu diesem Preis</p>
-      <a class="decline" href="thanks.html">Nein danke — ich behalte meinen freien Platz</a>
+      <button type="button" class="btn checkout-trigger">Ja — ich nehme das Umsetzungs-Paket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="price-note">27 € einmalig · danach nicht mehr zu diesem Preis</p>
+      <a class="decline" href="thanks.html">Nein danke — ich behalte meinen kostenlosen Platz</a>
     </div>
   </div>
 </section>
@@ -449,16 +401,16 @@
   <div class="wrap">
     <div class="guarantee">
       <div class="seal" aria-hidden="true">
-        <span class="n">7</span>
+        <span class="n">14</span>
         <span class="d">Tage</span>
       </div>
-      <span class="tag">// Garantie ohne Diskussion</span>
-      <h2 style="margin:14px 0 18px">Bringt es die 47 € nicht, holst du sie dir zurück.</h2>
-      <p>Komm in die VIP-Runde, nimm den Formulierungs-Ordner mit, schick deinen Fall zur Analyse. Wenn du sieben Tage nach dem Workshop findest, dass es das nicht wert war, antworte auf irgendeine E-Mail und bekommst die vollen 47 € zurück. Die Unterlagen behältst du. Kein Formular, keine Begründung, keine Rückfragen.</p>
+      <span class="tag">// Ohne-Diskussion-Garantie</span>
+      <h2 style="margin:14px 0 18px">Wenn es die 27 € nicht wert war, nimm sie zurück.</h2>
+      <p>Komm in die Umsetzungs-Runde, nimm die Bibliothek, schick deinen Fall ein. Wenn du 14 Tage nach dem Workshop findest, es hat sich nicht gelohnt, antworte auf irgendeine E-Mail und du bekommst die vollen 27 € zurück. Das Material behältst du. Kein Formular, kein Grund nötig, keine Rückfragen.</p>
       <div class="cta-block">
-        <button type="button" class="btn checkout-trigger">Ja — VIP dazunehmen <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <p class="price-note">47 € einmalig · danach nicht mehr zu diesem Preis</p>
-        <a class="decline" href="thanks.html">Nein danke — ich behalte meinen freien Platz</a>
+        <button type="button" class="btn checkout-trigger">Ja — ich nehme das Umsetzungs-Paket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <p class="price-note">27 € einmalig · danach nicht mehr zu diesem Preis</p>
+        <a class="decline" href="thanks.html">Nein danke — ich behalte meinen kostenlosen Platz</a>
       </div>
     </div>
   </div>
@@ -467,30 +419,30 @@
 <section class="sec sec-handoff">
   <div class="wrap narrow">
     <div class="head head-c">
-      <span class="tag">// Bevor du entscheidest</span>
-      <h2>Berechtigte Fragen</h2>
+      <span class="tag">// Bevor du dich entscheidest</span>
+      <h2>Faire Fragen</h2>
     </div>
 
     <div class="faq" id="faq">
       <div class="fitem">
         <button class="fq" aria-expanded="false"><span>Ich habe mich gerade kostenlos angemeldet. Warum jetzt etwas Bezahltes?</span><span class="sign">+</span></button>
-        <div class="fa"><p>Der Workshop ist wirklich kostenlos und für sich vollständig — die drei Schritte bekommst du so oder so. VIP gibt es, weil der häufigste Satz danach lautet: &bdquo;Verstanden, aber wie mache ich das bei <em>meinen</em> Leuten?&ldquo; Das braucht Live-Zeit und schriftliche Arbeit, und beides lässt sich einem unbegrenzten Raum nicht schenken.</p></div>
+        <div class="fa"><p>Der Workshop ist wirklich kostenlos und für sich vollständig — du bekommst das ganze System, ob du aufrüstest oder nicht. Das Paket gibt es, weil der häufigste Satz danach lautet: „Schön — aber wie sag ich das <em>meinem</em> Projektleiter?" Das braucht Live-Zeit und einen Blick auf deinen Fall, und beides lässt sich nicht an einen unbegrenzten Raum verschenken.</p></div>
       </div>
       <div class="fitem">
-        <button class="fq" aria-expanded="false"><span>Kann ich später aufstocken?</span><span class="sign">+</span></button>
-        <div class="fa"><p>Nicht für 47 €. Die VIP-Runde ist auf 40 Plätze begrenzt, weil dort an echten Fällen gearbeitet wird, und diese Seite ist die einzige Stelle mit diesem Preis. Falls danach noch Plätze frei sind, gilt wieder der reguläre Preis.</p></div>
+        <button class="fq" aria-expanded="false"><span>Kann ich auch später upgraden?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Nicht zu 27 €. Die Umsetzungs-Runde ist auf 40 Plätze begrenzt, weil live an echten Übergaben gearbeitet wird, und nur auf dieser Seite gilt dieser Preis. Falls danach Plätze frei bleiben, geht es zum regulären Preis.</p></div>
       </div>
       <div class="fitem">
-        <button class="fq" aria-expanded="false"><span>Was, wenn ich bei der VIP-Runde nicht live dabei sein kann?</span><span class="sign">+</span></button>
-        <div class="fa"><p>Du bekommst trotzdem die Aufzeichnung, den Formulierungs-Ordner, die Vorlagen und deine schriftliche Fall-Analyse — die läuft ohnehin unabhängig, du kannst deinen Fall einschicken, wann es passt. Nur für die Fälle im Raum musst du live dabei sein.</p></div>
+        <button class="fq" aria-expanded="false"><span>Was, wenn ich bei der Umsetzungs-Runde nicht live dabei sein kann?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Du bekommst trotzdem die Aufzeichnung, die Bibliothek und deinen schriftlichen Übergabe-Check — den schickst du ein, wann es dir passt. Nur die Live-Hotseats brauchen dich im Raum.</p></div>
       </div>
       <div class="fitem">
         <button class="fq" aria-expanded="false"><span>Ist das ein Abo?</span><span class="sign">+</span></button>
-        <div class="fa"><p>Nein. Einmalig 47 €, nichts Wiederkehrendes, keine hinterlegte Karte, von der später noch einmal abgebucht wird.</p></div>
+        <div class="fa"><p>Nein. Einmalig 27 €, nichts Wiederkehrendes, keine hinterlegte Karte für eine spätere Abbuchung.</p></div>
       </div>
       <div class="fitem">
         <button class="fq" aria-expanded="false"><span>Was passiert, wenn ich Nein sage?</span><span class="sign">+</span></button>
-        <div class="fa"><p>Nichts Schlimmes. Dein freier Platz ist bestätigt und bleibt bestätigt. Klick auf den Nein-danke-Link und du landest direkt bei deinen Zugangsdaten für Donnerstag.</p></div>
+        <div class="fa"><p>Nichts Schlimmes. Dein kostenloser Platz ist bestätigt und bleibt bestätigt — klick auf den Ablehnen-Link und du landest direkt bei deiner Bestätigung.</p></div>
       </div>
     </div>
   </div>
@@ -499,12 +451,12 @@
 <section class="final">
   <div class="wrap">
     <span class="tag tag-c">// Letzter Aufruf auf dieser Seite</span>
-    <h2>Vierzig Plätze. Einmal zahlen. Dann ist es weg.</h2>
-    <p class="sub">Dein freier Platz bleibt so oder so. Hier geht es nur darum, ob Donnerstag mit einer Methode endet — oder mit deinen eigenen Fällen, durchgearbeitet.</p>
+    <h2>Vierzig Plätze. Einmal 27 €. Dann ist es weg.</h2>
+    <p class="sub">Dein kostenloser Platz ist so oder so sicher. Hier geht es nur darum, ob Mittwoch mit einem System endet — oder mit deiner eigenen Übergabe, durchgearbeitet.</p>
     <div class="cta-block" style="margin-top:0">
-      <button type="button" class="btn checkout-trigger">Ja — VIP dazunehmen <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      <p class="price-note">47 € einmalig · 7 Tage Geld-zurück-Garantie</p>
-      <a class="decline" href="thanks.html">Nein danke — ich behalte meinen freien Platz</a>
+      <button type="button" class="btn checkout-trigger">Ja — ich nehme das Umsetzungs-Paket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="price-note">27 € einmalig · 14 Tage Geld-zurück-Garantie</p>
+      <a class="decline" href="thanks.html">Nein danke — ich behalte meinen kostenlosen Platz</a>
     </div>
   </div>
 </section>
@@ -516,7 +468,7 @@
       <span>© 2026 — Beispielseite</span>
       <span>Datenschutz · Impressum · Kontakt</span>
     </div>
-    <p class="disc">Dies ist eine Demonstrationsseite, die Design und Text für einen Webinar-Funnel zeigt. Gastgeber, Stimmen, Zahlen, Preise und Ergebnisse sind beispielhafte Platzhalter und keine Aussagen über eine reale Person, ein reales Unternehmen oder ein reales Produkt. Es werden keine Einkommen oder Ergebnisse versprochen.</p>
+    <p class="disc">Dies ist eine Demonstrationsseite, erstellt von Sales At Scale, um Design und Copywriting für einen Workshop-Funnel zu zeigen — kein Angebot von Noldin Consulting. Paket, Preise, Plätze und Garantie sind illustrative Platzhalter. Es werden keine Ergebnisversprechen gemacht.</p>
   </div>
 </footer>
 
@@ -524,12 +476,12 @@
 
 <script>
   /* ════════════════════════════════════════════════════════════════════
-     CHECKOUT-URL — nur dieser eine Wert verbindet die Zahlung.
+     CHECKOUT URL — replace this one value to connect payment.
 
-     Hier die vollständige URL eintragen, auf die die "Ja"-Buttons zeigen
-     sollen, z. B. ein Stripe Payment Link: https://buy.stripe.com/xxxxxxxx
+     Paste the full URL your "Yes" buttons should go to, e.g. a Stripe
+     Payment Link:  https://buy.stripe.com/xxxxxxxx
 
-     Solange der Wert fehlt, zeigt ein Klick einen Hinweis statt ins Leere zu laufen.
+     Until this is set, clicking shows a toast instead of dead-ending.
      ════════════════════════════════════════════════════════════════════ */
   const CHECKOUT_URL = "REPLACE_ME";
 
@@ -543,7 +495,7 @@
       btn.addEventListener('click', function () {
         if (configured) { window.location.href = CHECKOUT_URL; return; }
         if (!toast) return;
-        toast.textContent = 'Hier würde die Zahlung starten. Klick solange auf "Nein danke" :)';
+        toast.textContent = 'Hier würdest du bezahlt werden — klick für jetzt auf „Nein danke“ :)';
         toast.classList.add('show');
         clearTimeout(timer);
         timer = setTimeout(function () { toast.classList.remove('show'); }, 3200);
@@ -551,7 +503,7 @@
     });
   })();
 
-  // Der Wrapper liefert den <head>; sicherstellen, dass Handys auf Gerätebreite layouten.
+  // Wrapper supplies <head>; ensure phones lay out at device width.
   (function () {
     if (!document.querySelector('meta[name="viewport"]')) {
       var mv = document.createElement('meta');
@@ -561,7 +513,7 @@
     }
   })();
 
-  // FAQ-Akkordeon — gleiches Verhalten wie auf der Landingpage.
+  // FAQ accordion — same behaviour as the landing page.
   (function () {
     var items = document.querySelectorAll('.fitem');
     items.forEach(function (item) {

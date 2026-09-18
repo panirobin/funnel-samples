@@ -1,0 +1,321 @@
+<title>ICP-Recherche | Das Vollgas-System</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- page-specific: ICP research ---------- */
+
+  .doc-hero { padding: 72px 0 34px; }
+  .doc-hero .inner { max-width: 760px; }
+  .doc-hero h1 { font-size: clamp(30px, 5vw, 46px); margin: 18px 0 16px; }
+  .doc-hero .lede { font-size: 17px; color: var(--ink-soft); max-width: 56ch; }
+  .backbar { padding-top: 26px; }
+  .backlink {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .backlink:hover { color: var(--ink-soft); }
+  .backlink svg { width: 1em; height: 1em; transform: rotate(180deg); flex: none; }
+
+  /* short profile card — replaces the old full-bleed four-column strip so the
+     summary sits in the same narrow column, and reads in the same card
+     language as the .ritem and .evidence blocks below it */
+  .profile-sec { padding: 0 0 8px; }
+  .profile {
+    background: var(--card);
+    border: 1px solid var(--line-soft); border-left: 2px solid var(--brand-ink);
+    border-radius: 0 10px 10px 0; padding: 8px 28px;
+  }
+  .profile .prow {
+    display: grid; grid-template-columns: 168px 1fr; gap: 20px;
+    align-items: baseline; padding: 15px 0;
+    border-top: 1px solid var(--line-soft);
+  }
+  .profile .prow:first-child { border-top: 0; }
+  .profile .pk {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .13em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+  .profile .pv { font-size: 15.5px; line-height: 1.5; color: var(--ink); }
+
+  /* research blocks */
+  .rblock { margin-bottom: 20px; }
+  .rblock > .rhead {
+    display: flex; align-items: baseline; gap: 14px; margin-bottom: 14px;
+  }
+  .rblock .rnum {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent-ink);
+  }
+  .rblock h2 { font-size: clamp(23px, 3.2vw, 30px); }
+  .rblock .rintro { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 20px; max-width: 60ch; }
+
+  .rlist { display: flex; flex-direction: column; gap: 14px; }
+  .ritem {
+    background: var(--card); border: 1px solid var(--line-soft);
+    border-radius: 10px; padding: 24px 26px;
+  }
+  .ritem h3 { font-size: 17.5px; margin-bottom: 9px; }
+  .ritem p { color: var(--ink-soft); font-size: 15px; line-height: 1.65; }
+
+  /* the thing that makes this not a generic persona doc */
+  .evidence {
+    margin-top: 16px; padding: 14px 18px;
+    background: var(--paper-2); border-left: 2px solid var(--brand-ink);
+    border-radius: 0 6px 6px 0;
+  }
+  .evidence .elabel {
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: .13em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 7px;
+  }
+  .evidence q {
+    display: block; font-family: var(--display); font-size: 16px;
+    line-height: 1.5; color: var(--ink); quotes: none;
+  }
+  .evidence .src {
+    display: block; margin-top: 9px;
+    font-family: var(--mono); font-size: 10.5px; color: var(--ink-faint);
+  }
+
+  /* vocabulary */
+  .vocab { display: flex; flex-wrap: wrap; gap: 10px; }
+  .vword {
+    font-family: var(--mono); font-size: 12.5px; letter-spacing: .03em;
+    background: var(--brand); color: var(--on-brand);
+    padding: 9px 15px; border-radius: 999px;
+  }
+  .vword.avoid {
+    background: transparent; color: var(--ink-faint);
+    border: 1px dashed var(--line); text-decoration: line-through;
+  }
+  .vocab-note { margin-top: 18px; color: var(--ink-soft); font-size: 14.5px; max-width: 60ch; }
+
+  @media (max-width: 640px) {
+    .doc-hero { padding: 52px 0 28px; }
+    .profile { padding: 6px 20px; }
+    .profile .prow { grid-template-columns: 1fr; gap: 5px; padding: 14px 0; }
+    .ritem { padding: 22px 20px; }
+  }
+</style>
+
+<div class="wrap backbar">
+  <a class="backlink" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Zurück zum Paket
+  </a>
+</div>
+
+<header class="doc-hero">
+  <div class="wrap">
+    <div class="inner">
+      <span class="tag">// 04 · ICP-Recherche</span>
+      <h1>Wen du wirklich ansprichst</h1>
+      <p class="lede">Aus öffentlichen Quellen: Mittelstands-Portale, Coaching-Kritiken und deine eigenen stärksten Videos. Jede Aussage hat eine Quelle.</p>
+    </div>
+  </div>
+</header>
+
+<section class="profile-sec">
+  <div class="wrap narrow">
+    <div class="profile">
+      <div class="prow"><span class="pk">Wer</span><span class="pv">Geschäftsführer im Mittelstand, 5–50 Mitarbeitende</span></div>
+      <div class="prow"><span class="pk">Festgefahren bei</span><span class="pv">Abgegebene Aufgaben landen wieder am eigenen Tisch</span></div>
+      <div class="prow"><span class="pk">Schon versucht</span><span class="pv">Tools, To-do-Listen, Meetings, mehr Nachfragen</span></div>
+      <div class="prow"><span class="pk">Will wirklich</span><span class="pv">Klarheit — ohne zum Kontrolleur zu werden</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap narrow">
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">01</span><h2>Ängste</h2></div>
+      <p class="rintro">Was sie insgeheim beschäftigt und im Gespräch nie aussprechen. Die Copy muss das beantworten, bevor es gesagt wird.</p>
+      <div class="rlist">
+
+        <div class="ritem">
+          <h3>Ich bin der Engpass — ohne mich läuft nichts</h3>
+          <p>Sie ahnen, dass das Unternehmen an ihnen hängt. Jede Rückfrage, jede halbfertige Aufgabe bestätigt es — und deshalb machen sie noch mehr selbst.</p>
+          <div class="evidence">
+            <div class="elabel">So gesagt</div>
+            <q>Fast jeder Geschäftsführer hat das Gefühl, viel zu viel selbst machen zu müssen.</q>
+            <span class="src">Quelle — lokaler-mittelstand.de</span>
+          </div>
+        </div>
+
+        <div class="ritem">
+          <h3>Wenn ich klar werde, verliere ich die Beziehung</h3>
+          <p>Im Mittelstand kennt man die Leute privat. Klarheit fühlt sich an wie Härte — also wird es freundlich, vage und unverbindlich. Genau das ist die Nettigkeitsfalle.</p>
+          <div class="evidence">
+            <div class="elabel">So erzählt es Tim</div>
+            <q>Die sind nicht zu nett, die sind zu unklar.</q>
+            <span class="src">Quelle — Tim Noldin, eigener YouTube-Kanal (Auto-Untertitel)</span>
+          </div>
+        </div>
+
+        <div class="ritem">
+          <h3>Vielleicht bin ich einfach kein Chef</h3>
+          <p>Viele wurden befördert, weil sie fachlich die Besten waren. Wenn Delegieren nicht klappt, fühlt es sich nach persönlichem Versagen an — nicht nach einem fehlenden System.</p>
+          <div class="evidence">
+            <div class="elabel">So gesagt</div>
+            <q>Das Unvermögen zu delegieren ist einer der häufigsten Gründe, warum gute Handwerker schlechte Unternehmer werden.</q>
+            <span class="src">Quelle — mes-partner.de</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">02</span><h2>Wünsche</h2></div>
+      <p class="rintro">Was sie tatsächlich kaufen würden — in ihren Worten. Meist bescheidener und konkreter, als man erwartet.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Aufgaben, die abgegeben bleiben</h3>
+          <p>Nicht „mehr Zeit" im Abstrakten — sondern dass <em>diese</em> Aufgabe nicht wieder zurückkommt. Das ist auch das Thema deines meistgesehenen Videos.</p>
+          <div class="evidence">
+            <div class="elabel">So formuliert es dein stärkstes Video</div>
+            <q>Aufgaben so abgeben, dass du sie am Ende nicht doch selbst machst</q>
+            <span class="src">Quelle — Videotitel, eigener YouTube-Kanal (meistgesehen)</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>Konsequent sein und trotzdem gemocht werden</h3>
+          <p>Sie wollen der Chef bleiben, mit dem man gern arbeitet — und trotzdem eine Linie halten.</p>
+          <div class="evidence">
+            <div class="elabel">So formuliert es dein Kanal</div>
+            <q>Wie du konsequent führst, ohne dich unbeliebt zu machen</q>
+            <span class="src">Quelle — Videotitel, eigener YouTube-Kanal (Platz 2)</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>Ein System statt einer neuen Persönlichkeit</h3>
+          <p>Sie wollen nicht „ein anderer Mensch werden", sondern etwas, das auch an einem stressigen Dienstag funktioniert.</p>
+          <div class="evidence">
+            <div class="elabel">So erzählt es Tim</div>
+            <q>Führung ist kein Sprint, sondern ein System.</q>
+            <span class="src">Quelle — Tim Noldin, eigener YouTube-Kanal (Auto-Untertitel)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">03</span><h2>Einwände</h2></div>
+      <p class="rintro">Warum sie nicht kaufen. Bewusst aus kritischem Material gezogen — das negative Material ist die nützlichste Recherche hier.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>„Coaching ist leeres Gerede"</h3>
+          <p>Sie haben Ratgeber-Floskeln satt. Antwort im Funnel: ein konkreter Satz zum Mitschreiben, live an echten Fällen — kein Motivationsvortrag.</p>
+          <div class="evidence">
+            <div class="elabel">So gesagt</div>
+            <q>Der Mittelstand braucht keine leeren Floskeln oder unqualifizierten Ratgeber.</q>
+            <span class="src">Quelle — mittelstand-nachrichten.de</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>„Das bringt nur unter Idealbedingungen etwas"</h3>
+          <p>Coaching gilt als Allheilmittel, das nur wirkt, wenn alles passt. Antwort: der Workshop arbeitet mit dem Chaos im Tagesgeschäft, nicht mit Laborbedingungen.</p>
+          <div class="evidence">
+            <div class="elabel">So gesagt</div>
+            <q>Führungskräfte Coaching gilt oft als Allheilmittel … ansonsten bringt es nichts.</q>
+            <span class="src">Quelle — zirbik-business-coaching.de</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>„Zu teuer und zu weit weg vom Alltag"</h3>
+          <p>Klassisches Executive Coaching wirkt exklusiv und abgehoben. Antwort: kostenloser Einstieg, 45 Minuten, am Mittwochabend nach Feierabend.</p>
+          <div class="evidence">
+            <div class="elabel">So gesagt</div>
+            <q>Executive Coaching hat lange den Ruf gehabt, teuer und exklusiv zu sein, weit entfernt vom unternehmerischen Alltag im Mittelstand.</q>
+            <span class="src">Quelle — myconsult-unternehmensberatung.de</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">04</span><h2>Kaufauslöser</h2></div>
+      <p class="rintro">Der Moment, in dem das Problem untragbar wird. Ads, die den Auslöser benennen, schlagen Ads, die die Lösung benennen.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Das Team knackt die 10 Mitarbeitenden</h3>
+          <p>Neu ernannter Geschäftsführer, oder das Team ist gerade über zehn Leute gewachsen — und die informelle Abstimmung auf Zuruf funktioniert nicht mehr.</p>
+        </div>
+        <div class="ritem">
+          <h3>Ein Abend, an dem sie Erledigtes neu machen</h3>
+          <p>21 Uhr, Büro, und sie korrigieren eine Aufgabe, die längst abgegeben war. Genau diesen Abend benennen die stärksten Hooks.</p>
+        </div>
+        <div class="ritem">
+          <h3>Eine Schlüsselperson kündigt</h3>
+          <p>Plötzlich wird sichtbar, wie viel nur eine Person wusste — und dass nichts davon je sauber übergeben wurde.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">05</span><h2>Ihr Vokabular</h2></div>
+      <p class="rintro">Die Worte, die dieser Markt für sein eigenes Problem benutzt. Copy in diesen Worten liest sich wie von innen.</p>
+      <div class="vocab">
+        <span class="vword">Klarheit</span>
+        <span class="vword">Tagesgeschäft</span>
+        <span class="vword">Rollenkonflikt</span>
+        <span class="vword">Standards</span>
+        <span class="vword">eigenverantwortlich</span>
+        <span class="vword">konsequent</span>
+        <span class="vword">Nettigkeitsfalle</span>
+        <span class="vword avoid">Empowerment</span>
+        <span class="vword avoid">Change-Prozess</span>
+        <span class="vword avoid">Leadership-Journey</span>
+      </div>
+      <p class="vocab-note">Durchgestrichenes ist Berater-Sprache — du benutzt es in deinen Videos nicht, die Zielgruppe auch nicht. Im Zweifel das konkrete Wort („Übergabe") statt des abstrakten („Delegationsprozess").</p>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">06</span><h2>Wo sie sind</h2></div>
+      <p class="rintro">Wo diese Zielgruppe ohnehin schon zusammenkommt — nützlich fürs Targeting und für die Frage, welche Referenzen zünden.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>LinkedIn und dein eigener Kanal</h3>
+          <p>DACH-Führungskreise auf LinkedIn, dazu deine Videos: Delegation und Abhängigkeit vom Chef sind die Themen, die bei dir die meisten Aufrufe holen — genau das Versprechen des Workshops.</p>
+        </div>
+        <div class="ritem">
+          <h3>Mittelstands-Netzwerke vor Ort</h3>
+          <p>Mittelstand Cafe, KMU-Berater-Portale, Veranstaltungen von Wirtschaftskammer und IHK — dort läuft die „ich mach eh alles selbst"-Sprache.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="tag tag-c">// Weiter</span>
+    <h2>Diese Recherche hat den Funnel geschrieben.</h2>
+    <p class="sub">Jede Headline, jeder Einwand und jede FAQ in den Seiten kommt von oben.</p>
+    <a class="btn" href="index.html">Zurück zum Paket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">Vollgas <em>System</em></div>
+    <div class="fmeta">
+      <span>Exklusiv für Tim Noldin erstellt</span>
+      <span>Gebaut von Sales At Scale</span>
+    </div>
+    <p class="disc">Recherche aus öffentlich zugänglichen Quellen. Zitate stammen aus öffentlichen Fachportalen, Videotiteln und Video-Transkripten (automatische Untertitel, vor Verwendung als wörtliches Zitat prüfen) und sind der Quelle zugeordnet.</p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+</script>

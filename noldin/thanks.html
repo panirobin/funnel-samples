@@ -1,14 +1,7 @@
-<!doctype html>
-<html lang="de">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Du bist dabei | Das Vollgas-System</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap">
 <link rel="stylesheet" href="styles.css">
 <style>
-  /* ---------- seiten-eigen: Bestätigung ---------- */
+  /* ---------- page-specific: thanks ---------- */
 
   .confirm-hero { padding: 72px 0 20px; text-align: center; }
   .confirm-hero .inner { max-width: 620px; margin: 0 auto; }
@@ -56,7 +49,10 @@
     text-decoration: underline; text-underline-offset: 3px;
   }
   .back-link:hover { color: var(--ink-soft); }
-  .back-wrap { text-align: center; padding-bottom: 60px; }
+  /* end of the funnel walk-through: back to the package, with the quiet offer
+     link underneath — both above the footer so the page ends in one place */
+  .back-wrap { text-align: center; padding: 8px 0 76px; }
+  .back-wrap .back-offer { margin-top: 18px; }
 
   @media (max-width: 640px) {
     .confirm-hero { padding: 52px 0 16px; }
@@ -70,7 +66,7 @@
     <div class="inner">
       <span class="tag">// Anmeldung bestätigt</span>
       <h1>Du bist dabei.</h1>
-      <p class="lede">Drei Dinge vor Donnerstag — zehn Minuten jetzt, damit später nichts untergeht.</p>
+      <p class="lede">Drei Dinge vor Mittwoch — nimm dir jetzt zehn Minuten, damit im Tagesgeschäft nichts untergeht.</p>
     </div>
   </div>
 </header>
@@ -82,44 +78,51 @@
       <div class="stepcard">
         <div class="s-head">
           <span class="s-num">1</span>
-          <h2>Trag es dir ein</h2>
+          <h2>In den Kalender eintragen</h2>
         </div>
-        <p>Ein Klick, damit der Termin nicht unter allem anderen dieser Woche verschwindet.</p>
+        <p>Ein Klick, damit der Termin nicht unter allem anderen verschwindet, was diese Woche auf deinem Tisch landet.</p>
         <button type="button" class="btn-sm-cta" id="add-to-calendar">
-          In den Kalender eintragen
+          Zum Kalender hinzufügen
           <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <p class="note">Lädt eine .ics-Datei, die mit Google Kalender, Outlook und Apple Kalender funktioniert.</p>
         <div class="details">
-          <b>Donnerstag, 20. August &middot; 19:00 Uhr</b> — Das Vollgas-System, Live-Workshop. Den Zugangslink bekommst du am selben Tag per E-Mail.
+          <b><span data-event-date="long">Mittwoch, 23. September · 19:00 Uhr</span></b> — Das Vollgas-System, Live-Workshop mit Tim Noldin. Der Zugangslink kommt am Morgen des Tages per E-Mail.
         </div>
       </div>
 
       <div class="stepcard">
         <div class="s-head">
           <span class="s-num">2</span>
-          <h2>Achte auf den Zugangslink</h2>
+          <h2>Auf den Zugangslink achten</h2>
         </div>
-        <p>Er kommt von derselben Adresse, die deine Anmeldung bestätigt hat, etwa eine Stunde vor Beginn. Wenn er bis dahin nicht im Posteingang liegt, schau zuerst in den Spam-Ordner — dort landet er am häufigsten.</p>
+        <p>Er kommt von derselben Adresse, die deine Anmeldung bestätigt hat — etwa eine Stunde vor Beginn. Wenn er bis dann nicht im Postfach ist, schau in den Spam-Ordner. Dort landet er am häufigsten.</p>
         <div class="details">
-          Hier musst du nichts tun — das läuft automatisch, sobald du angemeldet bist.
+          Hier musst du nichts tun — das passiert automatisch, sobald du angemeldet bist.
         </div>
       </div>
 
       <div class="stepcard">
         <div class="s-head">
           <span class="s-num">3</span>
-          <h2>Bring einen echten Fall mit</h2>
+          <h2>Bring eine Aufgabe mit, die zurückkam</h2>
         </div>
-        <p>Der Workshop wirkt an einem echten Fall, nicht an einem gedachten. Nimm den, bei dem gerade wieder alles über deinen Schreibtisch läuft — du gehst mit einer Diagnose dafür raus.</p>
+        <p>Der Workshop wirkt am besten an einem echten Fall. Denk an die eine Aufgabe, die du abgegeben hast und die trotzdem wieder auf deinem Tisch gelandet ist — wer, was, und was damals gesagt wurde. Genau die formulieren wir gemeinsam um.</p>
         <div class="details">
-          Wenn du VIP dazugenommen hast, ist das auch der Fall, den du zur schriftlichen Analyse einschickst.
+          Wenn du das Umsetzungs-Paket genommen hast, ist das auch der Fall für deinen schriftlichen Übergabe-Check.
         </div>
       </div>
 
     </div>
   </div>
 </section>
+
+<div class="back-wrap">
+  <a class="btn" href="index.html">Zurück zum Paket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  <div class="back-offer">
+    <a class="back-link" href="offer.html">Anders überlegt? Sieh dir das Umsetzungs-Paket noch einmal an →</a>
+  </div>
+</div>
 
 <footer>
   <div class="wrap">
@@ -128,16 +131,12 @@
       <span>© 2026 — Beispielseite</span>
       <span>Datenschutz · Impressum · Kontakt</span>
     </div>
-    <p class="disc">Dies ist eine Demonstrationsseite, die Design und Text für einen Webinar-Funnel zeigt. Gastgeber, Stimmen und Angaben sind beispielhafte Platzhalter und keine Aussagen über eine reale Person, ein reales Unternehmen oder ein reales Produkt.</p>
+    <p class="disc">Dies ist eine Demonstrationsseite, erstellt von Sales At Scale, um Design und Copywriting für einen Workshop-Funnel zu zeigen — kein Angebot von Noldin Consulting. Termin und Angaben sind illustrative Platzhalter.</p>
   </div>
 </footer>
 
-<div class="back-wrap">
-  <a class="back-link" href="offer.html">Doch noch interessiert? Zum VIP-Ticket zurück →</a>
-</div>
-
 <script>
-  // Der Wrapper liefert den <head>; sicherstellen, dass Handys auf Gerätebreite layouten.
+  // Wrapper supplies <head>; ensure phones lay out at device width.
   (function () {
     if (!document.querySelector('meta[name="viewport"]')) {
       var mv = document.createElement('meta');
@@ -147,7 +146,20 @@
     }
   })();
 
-  // .ics wird im Browser erzeugt — kein Backend, funktioniert offline.
+  /* Keep the visible date in step 1 in sync with the countdown on landing.html and
+     the .ics below — all three compute "next Wednesday", so a hardcoded
+     label would drift a week the moment the build day passed. */
+  (function () {
+    var d = new Date();
+    d.setDate(d.getDate() + ((3 - d.getDay() + 7) % 7 || 7));
+    d.setHours(19, 0, 0, 0);
+    var longD = d.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long' });
+    document.querySelectorAll('[data-event-date]').forEach(function (el) {
+      el.textContent = longD + ' · 19:00 Uhr';
+    });
+  })();
+
+  // Client-side .ics generation — no backend, works offline.
   (function () {
     var btn = document.getElementById('add-to-calendar');
     if (!btn) return;
@@ -160,12 +172,12 @@
     }
 
     btn.addEventListener('click', function () {
-      // Nächster Donnerstag, 19 Uhr in der lokalen Zeitzone des Browsers.
-      // EVENT_WEEKDAY und EVENT_HOUR_24 müssen zum Countdown auf index.html passen —
-      // driften sie auseinander, landet der Termin an einem anderen Tag als dem
-      // versprochenen, und es merkt niemand, bis jemand den Workshop verpasst.
+      // Next Wednesday, 19:00 Uhr in the browser's local
+      // time zone. EVENT_WEEKDAY and EVENT_HOUR_24 must match the countdown on
+      // landing.html — if they drift, the invite lands on a different day than the
+      // page promises, and nobody notices until someone misses the session.
       var start = new Date();
-      start.setDate(start.getDate() + ((4 - start.getDay() + 7) % 7 || 7));
+      start.setDate(start.getDate() + ((3 - start.getDay() + 7) % 7 || 7));
       start.setHours(19, 0, 0, 0);
       var end = new Date(start.getTime() + 45 * 60 * 1000);
       var stamp = toICSDate(new Date());
@@ -182,11 +194,11 @@
         'DTSTART:' + toICSDate(start),
         'DTEND:' + toICSDate(end),
         "SUMMARY:Das Vollgas-System — kostenloser Live-Workshop mit Tim Noldin",
-        'DESCRIPTION:45 Minuten live: die drei Schritte, mit denen dein Team Verantwortung uebernimmt, statt sie zurueckzuschieben. Den Zugangslink bekommst du per E-Mail vor dem Start.',
+        'DESCRIPTION:45 Minuten live: Aufgaben abgeben, die nicht zurueckkommen. Den Zugangslink bekommst du vorher per E-Mail.',
         'STATUS:CONFIRMED',
         'BEGIN:VALARM',
         'ACTION:DISPLAY',
-        "DESCRIPTION:Das Vollgas-System startet in 30 Minuten",
+        "DESCRIPTION:Das Vollgas-System beginnt in 30 Minuten",
         'TRIGGER:-PT30M',
         'END:VALARM',
         'END:VEVENT',
