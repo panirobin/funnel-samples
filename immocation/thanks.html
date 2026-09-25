@@ -1,0 +1,261 @@
+<title>Du bist dabei | immocation Steuerwebinar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- page-specific: thanks ---------- */
+
+  .confirm-hero {
+    padding: 72px 0 20px; text-align: center;
+    background: radial-gradient(ellipse 70% 70% at 50% 0%, var(--glow-soft), transparent 70%);
+  }
+  .confirm-hero .inner { max-width: 640px; margin: 0 auto; }
+  .confirm-hero h1 { margin: 20px 0 16px; }
+  .confirm-hero .lede { font-size: 17px; color: var(--ink-soft); }
+
+  .steps-wrap { padding: 40px 0 90px; }
+  .steps-wrap .inner { max-width: 660px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
+
+  .stepcard {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 18px; padding: 30px 32px;
+  }
+  /* step 1 is the one action that matters — it gets the lit treatment */
+  .stepcard:first-child { background: var(--surface-hi); border-color: transparent; box-shadow: var(--ring); }
+  .stepcard .s-head {
+    display: flex; align-items: center; gap: 14px; margin-bottom: 16px;
+  }
+  .stepcard .s-num {
+    width: 34px; height: 34px; border-radius: 50%; flex: none;
+    background: var(--brand); color: var(--on-brand);
+    font-family: var(--label); font-size: 14px; font-weight: 800; line-height: 1;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 0 4px var(--brand-soft), 0 0 18px -2px var(--glow);
+  }
+  .stepcard h2 { font-size: 21px; }
+  .stepcard p { color: var(--ink-soft); font-size: 15px; line-height: 1.6; margin-bottom: 18px; }
+  .stepcard .btn-sm-cta {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: var(--sans); font-size: 14px; font-weight: 700;
+    padding: 14px 24px; border-radius: 999px;
+    background: var(--btn-bg); color: var(--btn-fg);
+    text-decoration: none; cursor: pointer; border: none;
+    line-height: 1;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 8px 24px -8px var(--glow);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .stepcard .btn-sm-cta:hover { transform: translateY(-1px); box-shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 12px 32px -6px var(--glow); }
+  .stepcard .btn-sm-cta:focus-visible { outline: 2px solid var(--brand-ink); outline-offset: 3px; }
+  .stepcard .note { margin-top: 12px; font-size: 12.5px; color: var(--ink-faint); }
+  .stepcard .details {
+    margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line-soft);
+    font-size: 13.5px; color: var(--ink-soft); line-height: 1.7;
+  }
+  .stepcard .details b { color: var(--ink); }
+
+  .back-link {
+    display: inline-block; margin: 8px auto 0;
+    font-family: var(--sans); font-size: 13.5px; color: var(--ink-faint);
+    text-decoration: underline; text-underline-offset: 3px;
+  }
+  .back-link:hover { color: var(--ink-soft); }
+  /* end of the funnel walk-through: back to the package, with the quiet offer
+     link underneath — both above the footer so the page ends in one place */
+  .back-wrap { text-align: center; padding: 8px 20px 76px; }
+  .back-wrap .back-offer { margin-top: 18px; }
+
+  /* TEMPORARY preview-only box: dashed and neutral on purpose, so it can't be
+     mistaken for a funnel step. Delete together with the .temp-nav markup. */
+  .temp-nav {
+    max-width: 460px; margin: 0 auto;
+    border: 1.5px dashed color-mix(in srgb, var(--ink) 28%, transparent);
+    border-radius: 16px; padding: 20px 22px 22px;
+    background: color-mix(in srgb, var(--ink) 3%, transparent);
+  }
+  .temp-tag {
+    display: inline-block; font-family: var(--label); font-size: 10.5px; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase; line-height: 1;
+    color: var(--ink-soft); border: 1px dashed var(--line); border-radius: 999px; padding: 6px 11px;
+  }
+  .temp-nav p { font-size: 13.5px; line-height: 1.55; color: var(--ink-faint); margin: 12px auto 16px; max-width: 40ch; }
+  .temp-btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: var(--sans); font-size: 14px; font-weight: 600; line-height: 1;
+    padding: 13px 20px; border-radius: 999px; text-decoration: none;
+    color: var(--ink); background: transparent; border: 1px solid var(--line);
+    transition: border-color .18s ease, background .18s ease;
+  }
+  .temp-btn:hover { border-color: var(--ink-faint); background: var(--line-soft); }
+  .temp-btn:focus-visible { outline: 2px solid var(--brand-ink); outline-offset: 3px; }
+  .temp-btn svg { width: 1em; height: 1em; flex: none; }
+
+  @media (max-width: 640px) {
+    .confirm-hero { padding: 52px 0 16px; }
+    .stepcard { padding: 24px 22px; }
+    .stepcard h2 { font-size: 19px; }
+  }
+</style>
+
+<header class="confirm-hero">
+  <div class="wrap">
+    <div class="inner">
+      <span class="tag">Anmeldung bestätigt</span>
+      <h1>Du bist dabei.</h1>
+      <p class="lede">Drei Dinge vor Sonntag. Nimm dir jetzt fünf Minuten, dann geht nichts unter.</p>
+    </div>
+  </div>
+</header>
+
+<section class="steps-wrap">
+  <div class="wrap">
+    <div class="inner">
+
+      <div class="stepcard">
+        <div class="s-head">
+          <span class="s-num">1</span>
+          <h2>Trag es dir in den Kalender ein</h2>
+        </div>
+        <p>Ein Klick, damit der Termin nicht zwischen allem anderen in dieser Woche verschwindet.</p>
+        <button type="button" class="btn-sm-cta" id="add-to-calendar">
+          In den Kalender eintragen
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <p class="note">Lädt eine .ics-Datei herunter, die mit Google Kalender, Outlook und Apple Kalender funktioniert.</p>
+        <div class="details">
+          <b><span data-event-date="long">Sonntag, 27. September · 19:00 Uhr</span></b> – immocation Steuerwebinar, live mit Martin Richter. Den Zugangslink bekommst du am Vormittag per E-Mail.
+        </div>
+      </div>
+
+      <div class="stepcard">
+        <div class="s-head">
+          <span class="s-num">2</span>
+          <h2>Achte auf den Zugangslink</h2>
+        </div>
+        <p>Er kommt von derselben Adresse wie deine Anmeldebestätigung, am Tag des Webinars und noch einmal eine Stunde vor Beginn. Ist er dann nicht in deinem Posteingang, schau zuerst im Spam-Ordner nach. Dort landet er am häufigsten.</p>
+        <div class="details">
+          Sonst musst du nichts tun. Das passiert automatisch, sobald du angemeldet bist.
+        </div>
+      </div>
+
+      <div class="stepcard">
+        <div class="s-head">
+          <span class="s-num">3</span>
+          <h2>Bring deine Zahlen mit</h2>
+        </div>
+        <p>Das Webinar wirkt am stärksten, wenn du beim Zuhören an deine eigenen Immobilien denkst. Leg dir Kaufpreis, Grundstücksanteil und Mieteinnahmen deiner Wohnungen bereit, oder die Eckdaten des Objekts, das du als Nächstes kaufen willst.</p>
+        <div class="details">
+          Hast du das Steuerstrategie-Paket genommen, sind das auch die Zahlen für deinen Fragebogen zur Struktur-Einschätzung.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="back-wrap">
+  <!-- TEMPORARY: preview navigation for the prospect, not part of the funnel.
+       Delete this .temp-nav box before the funnel goes live. -->
+  <div class="temp-nav">
+    <span class="temp-tag">Temp · nur für die Vorschau</span>
+    <p>Das gehört nicht zu eurem Funnel. Der Button bringt euch zurück zum Paket und kommt vor dem Launch weg.</p>
+    <a class="temp-btn" href="index.html"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13.5 8H3M7 3.75 2.75 8 7 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg> Zurück zum Paket</a>
+  </div>
+  <div class="back-offer">
+    <a class="back-link" href="offer.html">Doch anders überlegt? Hier geht's zurück zum Steuerstrategie-Paket →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">immocation <em>Steuerwebinar</em></div>
+    <div class="fmeta">
+      <span>© 2026 — Beispielseite</span>
+      <span>Datenschutz · Impressum · Kontakt</span>
+    </div>
+    <p class="disc">Dies ist eine Demonstrationsseite, erstellt von Sales At Scale, um Design und Copywriting für den Webinar-Funnel des immocation Steuerwebinars zu zeigen — kein Angebot der immocation GmbH. Termin und Details sind illustrative Platzhalter.</p>
+  </div>
+</footer>
+
+<script>
+  // Wrapper supplies <head>; ensure phones lay out at device width.
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+
+  /* Keep the visible date in step 1 in sync with the countdown on landing.html and
+     the .ics below — all three compute "next Sunday", so a hardcoded
+     label would drift a week the moment the build day passed. */
+  (function () {
+    var d = new Date();
+    d.setDate(d.getDate() + ((0 - d.getDay() + 7) % 7 || 7));
+    d.setHours(19, 0, 0, 0);
+    var longD = d.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long' });
+    document.querySelectorAll('[data-event-date]').forEach(function (el) {
+      el.textContent = longD + ' · 19:00 Uhr';
+    });
+  })();
+
+  // Client-side .ics generation — no backend, works offline.
+  (function () {
+    var btn = document.getElementById('add-to-calendar');
+    if (!btn) return;
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function toICSDate(d) {
+      return d.getUTCFullYear() + pad(d.getUTCMonth() + 1) + pad(d.getUTCDate()) +
+        'T' + pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + pad(d.getUTCSeconds()) + 'Z';
+    }
+
+    btn.addEventListener('click', function () {
+      // Next Sunday, 19:00 Uhr in the browser's local
+      // time zone. EVENT_WEEKDAY and EVENT_HOUR_24 must match the countdown on
+      // landing.html — if they drift, the invite lands on a different day than the
+      // page promises, and nobody notices until someone misses the session.
+      var start = new Date();
+      start.setDate(start.getDate() + ((0 - start.getDay() + 7) % 7 || 7));
+      start.setHours(19, 0, 0, 0);
+      var end = new Date(start.getTime() + 90 * 60 * 1000);
+      var stamp = toICSDate(new Date());
+
+      var lines = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//immocation Steuerwebinar//Webinar//EN',
+        'CALSCALE:GREGORIAN',
+        'METHOD:PUBLISH',
+        'BEGIN:VEVENT',
+        'UID:immocation-event-' + start.getTime() + '@salesatscale.netlify.app',
+        'DTSTAMP:' + stamp,
+        'DTSTART:' + toICSDate(start),
+        'DTEND:' + toICSDate(end),
+        "SUMMARY:immocation Steuerwebinar mit Martin Richter (live)",
+        'DESCRIPTION:Kostenloses Live-Webinar: Die perfekte Steuerstrategie fuer dich und deine Immobilien. Den Zugangslink bekommst du vorab per E-Mail.',
+        'STATUS:CONFIRMED',
+        'BEGIN:VALARM',
+        'ACTION:DISPLAY',
+        "DESCRIPTION:immocation Steuerwebinar startet in 30 Minuten",
+        'TRIGGER:-PT30M',
+        'END:VALARM',
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ];
+
+      var blob = new Blob([lines.join('\r\n')], { type: 'text/calendar;charset=utf-8' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'immocation-steuerwebinar.ics';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    });
+  })();
+</script>

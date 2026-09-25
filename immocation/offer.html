@@ -1,0 +1,610 @@
+<title>Einmaliges Angebot — Steuerstrategie-Paket | immocation Steuerwebinar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- page-specific: offer ---------- */
+
+  /* urgency bar — clay, the palette's existing accent for urgency */
+  .alertbar {
+    position: sticky; top: 0; z-index: 40;
+    background: var(--accent);
+    color: #FFF6F2;
+  }
+  .alertbar .wrap {
+    display: flex; align-items: center; justify-content: center;
+    gap: 10px; min-height: 46px;
+    font-family: var(--label); font-size: 11px; letter-spacing: .1em;
+    text-transform: uppercase; line-height: 1; text-align: center;
+  }
+  .alertbar .pip {
+    width: 7px; height: 7px; border-radius: 50%; flex: none;
+    background: #FFF6F2;
+    animation: alertBlink 1.6s ease-in-out infinite;
+  }
+  @keyframes alertBlink { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
+
+  /* progress — "step 2 of 2", mirrors both reference samples */
+  .progress { padding: 34px 0 0; }
+  .progress .inner { max-width: 460px; margin: 0 auto; }
+  .progress .meta {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--label); font-size: 11px; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px;
+  }
+  .progress .track {
+    height: 8px; border-radius: 999px; overflow: hidden;
+    background: var(--line); border: 1px solid var(--line-soft);
+  }
+  /* fills from empty on load, then a light sweeps across it and the glow breathes —
+     motion that says "nearly there" without pulling focus from the headline */
+  .progress .fill {
+    position: relative; overflow: hidden;
+    height: 100%; width: 90%; border-radius: 999px;
+    background: linear-gradient(90deg, var(--brand-2), var(--brand));
+    box-shadow: 0 0 14px var(--glow);
+    animation: progFill 1.4s cubic-bezier(.2,.8,.2,1) .25s both,
+               progGlow 2.4s ease-in-out 1.7s infinite;
+  }
+  .progress .fill::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.55) 50%, transparent 100%);
+    transform: translateX(-100%);
+    animation: progShine 2.4s ease-in-out 1.7s infinite;
+  }
+  @keyframes progFill  { from { width: 0; } to { width: 90%; } }
+  @keyframes progShine { 0% { transform: translateX(-100%); } 60%, 100% { transform: translateX(100%); } }
+  @keyframes progGlow  { 0%, 100% { box-shadow: 0 0 14px var(--glow); } 50% { box-shadow: 0 0 26px var(--glow), 0 0 4px var(--brand); } }
+
+  .offer-hero {
+    padding: 40px 0 64px; text-align: center;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, var(--glow-soft), transparent 70%);
+  }
+  .offer-hero .inner { max-width: 800px; margin: 0 auto; }
+  .offer-hero h1 { margin: 22px 0 22px; }
+  .offer-hero .lede {
+    font-size: 18px; color: var(--ink-soft);
+    max-width: 54ch; margin: 0 auto;
+  }
+
+  /* CTA cluster: primary button + quiet decline beneath, repeated down the page */
+  .cta-block { text-align: center; margin: 40px auto 0; }
+  .cta-block .price-note {
+    margin-top: 14px;
+    font-family: var(--label); font-size: 11.5px; font-weight: 500; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+  .decline {
+    display: inline-block; margin-top: 18px;
+    font-family: var(--sans); font-size: 14px;
+    color: var(--ink-faint); text-decoration: underline;
+    text-underline-offset: 3px; text-decoration-thickness: 1px;
+  }
+  .decline:hover { color: var(--ink-soft); }
+  .decline:focus-visible { outline: 2px solid var(--brand-ink); outline-offset: 3px; }
+
+  /* bonus rows — alternating image/text, per reference sample 2 */
+  .bonus { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .bonus + .bonus { margin-top: 56px; }
+  .bonus:nth-child(even) .bonus-media { order: 2; }
+  .bonus .kicker {
+    font-family: var(--label); font-size: 11px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--brand-ink); margin-bottom: 12px;
+  }
+  .bonus h3 { font-size: 24px; margin-bottom: 14px; }
+  .bonus p { color: var(--ink-soft); font-size: 15.5px; line-height: 1.65; }
+  .bonus .worth {
+    display: inline-block; margin-top: 16px;
+    font-family: var(--label); font-size: 11px; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--brand-ink);
+    background: var(--brand-soft); border: 1px solid var(--brand-line);
+    border-radius: 999px; padding: 7px 13px;
+  }
+  .bonus-media {
+    background: var(--surface-hi); color: var(--ink);
+    border-radius: 18px; padding: 26px; min-height: 210px;
+    display: flex; flex-direction: column; justify-content: center;
+    box-shadow: var(--ring);
+  }
+  .bonus-media .m-label {
+    font-family: var(--label); font-size: 10.5px; font-weight: 600; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 14px;
+  }
+  .bonus-media .m-row {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 14px; padding: 11px 0;
+    border-bottom: 1px solid var(--line);
+    font-family: var(--label); font-size: 12.5px; font-weight: 500;
+  }
+  .bonus-media .m-row:last-child { border-bottom: 0; }
+  .bonus-media .m-row .v { color: var(--brand-ink); font-weight: 700; }
+  .bonus-media .m-big {
+    font-family: var(--display); font-size: 44px; font-weight: 800; line-height: 1;
+    letter-spacing: -0.03em; margin-bottom: 6px; color: var(--brand-ink);
+    text-shadow: 0 0 30px var(--glow-soft);
+  }
+  .bonus-media .m-sub {
+    font-family: var(--label); font-size: 10.5px; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+
+  /* ticket comparison — the upgrade is the lit card */
+  .tickets { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+  .ticket { border-radius: 18px; padding: 32px 30px; }
+  .ticket-free { background: var(--surface); border: 1px solid var(--line); }
+  .ticket-vip {
+    background: var(--surface-hi); color: var(--ink);
+    box-shadow: var(--ring);
+    position: relative;
+  }
+  .ticket .t-name {
+    font-family: var(--label); font-size: 11px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; margin-bottom: 12px;
+  }
+  .ticket-free .t-name { color: var(--ink-faint); }
+  .ticket-vip .t-name { color: var(--brand-ink); }
+  .ticket .t-price {
+    font-family: var(--display); font-size: 48px; font-weight: 800; line-height: 1;
+    letter-spacing: -0.04em; margin-bottom: 6px;
+  }
+  .ticket-vip .t-price { color: var(--ink); text-shadow: 0 0 30px var(--glow-soft); }
+  .ticket .t-cap {
+    font-family: var(--label); font-size: 10.5px; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; margin-bottom: 24px; color: var(--ink-faint);
+  }
+  .ticket ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+  .ticket li {
+    display: grid; grid-template-columns: 22px 1fr; gap: 13px;
+    align-items: start; font-size: 14.5px; line-height: 1.55;
+  }
+  .ticket li .ic {
+    width: 22px; height: 22px; margin-top: 0; flex: none; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ticket li .ic svg { width: 14px; height: 14px; }
+  .ticket-free li { color: var(--ink-soft); }
+  .ticket-free li .ic { color: var(--ink-faint); background: var(--line-soft); }
+  .ticket-vip li { color: var(--ink); }
+  .ticket-vip li .ic { color: var(--on-brand); background: var(--brand); box-shadow: 0 0 12px -2px var(--glow); }
+  .ticket .t-foot {
+    margin-top: 26px; padding-top: 20px;
+    font-family: var(--label); font-size: 10.5px; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; border-top: 1px solid var(--line); color: var(--ink-faint);
+  }
+  .ticket-vip .flag {
+    position: absolute; top: -12px; right: 24px;
+    background: var(--accent); color: #FFF6F2;
+    font-family: var(--label); font-size: 10.5px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; padding: 7px 12px; line-height: 1;
+    border-radius: 999px;
+    box-shadow: 0 0 18px -4px var(--accent);
+  }
+
+  /* guarantee — a glowing seal */
+  .guarantee { text-align: center; max-width: 640px; margin: 0 auto; }
+  .seal {
+    width: 104px; height: 104px; margin: 0 auto 28px;
+    border-radius: 50%; border: 2px solid var(--brand);
+    background: radial-gradient(circle, var(--brand-soft), transparent 70%);
+    box-shadow: 0 0 0 6px var(--brand-soft), 0 0 44px -6px var(--glow);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: var(--brand-ink);
+  }
+  .seal .n { font-family: var(--display); font-size: 34px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+  .seal .d {
+    font-family: var(--label); font-size: 9px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; margin-top: 4px;
+  }
+  .guarantee p { color: var(--ink-soft); font-size: 16px; line-height: 1.7; }
+
+  @media (max-width: 900px) {
+    .bonus { grid-template-columns: 1fr; gap: 26px; }
+    .bonus:nth-child(even) .bonus-media { order: 0; }
+    .bonus + .bonus { margin-top: 44px; }
+    .tickets { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .alertbar .wrap { font-size: 10px; letter-spacing: .08em; min-height: 44px; gap: 8px; }
+    .progress { padding-top: 26px; }
+    .offer-hero { padding: 30px 0 48px; }
+    .offer-hero .lede { font-size: 17px; }
+    .cta-block .btn, .guarantee .btn { display: flex; width: 100%; justify-content: center; }
+    .bonus h3 { font-size: 22px; }
+    .bonus-media { padding: 22px; min-height: 0; }
+    .bonus-media .m-big { font-size: 34px; }
+    .ticket { padding: 28px 24px; }
+    .ticket .t-price { font-size: 38px; }
+  }
+  @media (max-width: 400px) {
+    .alertbar .wrap { font-size: 9px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .alertbar .pip { animation: none; }
+    .progress .fill, .progress .fill::after { animation: none; }
+  }
+</style>
+
+<div class="alertbar">
+  <div class="wrap">
+    <span class="pip" aria-hidden="true"></span>
+    <span>Moment – deine Anmeldung ist noch nicht ganz fertig</span>
+  </div>
+</div>
+
+<div class="progress">
+  <div class="wrap">
+    <div class="inner">
+      <div class="meta"><span>Schritt 2 von 2</span><span>Fast geschafft</span></div>
+      <div class="track"><div class="fill"></div></div>
+    </div>
+  </div>
+</div>
+
+<header class="offer-hero">
+  <div class="wrap">
+    <div class="inner">
+      <span class="tag tag-c">Einmaliges Angebot · nur auf dieser Seite</span>
+      <h1>Dein Platz ist gesichert. Jetzt <em>mach mehr daraus.</em></h1>
+      <p class="lede">Du bist für Sonntag angemeldet. Bevor du gehst: Es gibt eine Version dieses Webinars, in der du die Strategie nicht nur siehst, sondern auf deine eigenen Immobilien übertragen bekommst.</p>
+    </div>
+  </div>
+</header>
+
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="head head-c">
+      <span class="tag">Was das Paket ergänzt</span>
+      <h2>Drei Dinge, die der kostenlose Platz nicht enthält.</h2>
+      <p>Das Webinar zeigt dir die Strategie. Im Paket wird sie auf deinen Bestand, deinen Steuersatz und deinen nächsten Kauf angewendet.</p>
+    </div>
+
+    <div class="bonus">
+      <div class="bonus-media">
+        <div class="m-label">Nachbesprechung – direkt nach dem Webinar</div>
+        <div class="m-row"><span>Fall 01</span><span class="v">3 ETW privat · 42 %</span></div>
+        <div class="m-row"><span>Fall 02</span><span class="v">MFH-Kauf in 6 Wochen</span></div>
+        <div class="m-row"><span>Fall 03</span><span class="v">geerbt · AfA bei null</span></div>
+        <div class="m-row"><span>Plätze</span><span class="v">max. 50</span></div>
+      </div>
+      <div>
+        <div class="kicker">Bonus 01</div>
+        <h3>Die Nachbesprechung in kleiner Runde</h3>
+        <p>Wenn das Webinar endet, öffnet sich ein zweiter Raum. Höchstens 50 Teilnehmer, und Martin und sein Team gehen eure konkreten Fälle durch: die geerbte Wohnung ohne Abschreibung, den Kauf, der in sechs Wochen beurkundet wird. Dieser Teil wird nicht öffentlich aufgezeichnet.</p>
+        <span class="worth">Nicht einzeln erhältlich</span>
+      </div>
+    </div>
+
+    <div class="bonus">
+      <div class="bonus-media">
+        <div class="m-big">12</div>
+        <div class="m-sub">Rechner &amp; Vorlagen</div>
+        <div class="m-row" style="margin-top:18px"><span>Kaufpreisaufteilung</span><span class="v">Rechner</span></div>
+        <div class="m-row"><span>VV GmbH oder privat</span><span class="v">Break-even</span></div>
+        <div class="m-row"><span>Ehegattenschaukel</span><span class="v">Ablaufplan</span></div>
+        <div class="m-row"><span>Aufzeichnung</span><span class="v">dauerhaft</span></div>
+      </div>
+      <div>
+        <div class="kicker">Bonus 02</div>
+        <h3>Das Steuerstrategie-Workbook</h3>
+        <p>Alles aus dem Webinar zum Nachrechnen: Kaufpreisaufteilung, Break-even für die VV GmbH, der Ablauf der Ehegattenschaukel. Dazu die Aufzeichnung dauerhaft statt 48 Stunden. Du trägst deine Zahlen ein und siehst, was sich bei dir rechnet, bevor du zum Notar gehst.</p>
+        <span class="worth">Wert 147 €</span>
+      </div>
+    </div>
+
+    <div class="bonus">
+      <div class="bonus-media">
+        <div class="m-label">Struktur-Check – schriftlich, in 5 Werktagen</div>
+        <div class="m-row"><span>Du schickst</span><span class="v">Bestand, Einkommen, Pläne</span></div>
+        <div class="m-row"><span>Du bekommst</span><span class="v">privat, GmbH oder Holding</span></div>
+        <div class="m-row"><span>Dazu</span><span class="v">3 Fragen für deinen StB</span></div>
+        <div class="m-row"><span>Antwort</span><span class="v">in 5 Werktagen</span></div>
+      </div>
+      <div>
+        <div class="kicker">Bonus 03</div>
+        <h3>Deine Struktur-Einschätzung, schriftlich</h3>
+        <p>Du füllst einen kurzen Fragebogen aus: was du besitzt, was du verdienst, was du als Nächstes kaufen willst. Zurück bekommst du eine schriftliche Einschätzung, welche Struktur für dich jetzt Sinn ergibt, und die drei Fragen, die du deinem Steuerberater vor dem nächsten Kauf stellen solltest.</p>
+        <span class="worth">Wert 297 €</span>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <button type="button" class="btn checkout-trigger">Ja – ich will das Paket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="price-note">97 € einmalig · nur auf dieser Seite</p>
+      <a class="decline" href="thanks.html">Nein danke, ich bleibe beim kostenlosen Platz</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="head head-c">
+      <span class="tag">Dein Platz</span>
+      <h2>Was du hast, und was dazukäme.</h2>
+    </div>
+
+    <div class="tickets">
+      <div class="ticket ticket-free">
+        <div class="t-name">Kostenloser Platz – gehört dir schon</div>
+        <div class="t-price">0 €</div>
+        <div class="t-cap">Bestätigt für Sonntag</div>
+        <ul>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Das Live-Webinar mit Martin</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Struktur-Kompass &amp; Notartermin-Checkliste</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Fragerunde im Hauptraum</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>48 Stunden Aufzeichnung</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <span>Keine Nachbesprechung in kleiner Runde</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <span>Kein Workbook mit Rechnern</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <span>Keine schriftliche Struktur-Einschätzung</span>
+          </li>
+        </ul>
+        <div class="t-foot">Nichts zu tun – du bist schon dabei</div>
+      </div>
+
+      <div class="ticket ticket-vip">
+        <span class="flag">Bester Wert</span>
+        <div class="t-name">Steuerstrategie-Paket</div>
+        <div class="t-price">97 €</div>
+        <div class="t-cap">Einmalzahlung · nur auf dieser Seite</div>
+        <ul>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span><strong>Alles aus dem kostenlosen Platz</strong></span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Nachbesprechung in kleiner Runde</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Workbook mit 12 Rechnern &amp; Vorlagen</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Schriftliche Struktur-Einschätzung für deine Situation</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Die 3 Fragen für deinen Steuerberater</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Aufzeichnung dauerhaft statt 48 Stunden</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>14 Tage Geld-zurück-Garantie</span>
+          </li>
+        </ul>
+        <div class="t-foot">Nachbesprechung auf 50 Plätze begrenzt</div>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <button type="button" class="btn checkout-trigger">Ja – ich will das Paket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="price-note">97 € einmalig · nur auf dieser Seite</p>
+      <a class="decline" href="thanks.html">Nein danke, ich bleibe beim kostenlosen Platz</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="wrap narrow">
+    <div class="head head-c">
+      <span class="tag">Die Rechnung</span>
+      <h2>Was zusammenkommt.</h2>
+    </div>
+
+    <div class="ledger">
+      <div class="lrow">
+        <div>
+          <div class="nm">Nachbesprechung in kleiner Runde</div>
+          <div class="ds">Direkt nach dem Webinar, max. 50 Plätze, echte Fälle</div>
+        </div>
+        <div class="vl">197 €</div>
+      </div>
+      <div class="lrow">
+        <div>
+          <div class="nm">Das Steuerstrategie-Workbook</div>
+          <div class="ds">12 Rechner und Vorlagen zum Nachrechnen</div>
+        </div>
+        <div class="vl">147 €</div>
+      </div>
+      <div class="lrow">
+        <div>
+          <div class="nm">Schriftliche Struktur-Einschätzung</div>
+          <div class="ds">Deine Situation, bewertet in 5 Werktagen</div>
+        </div>
+        <div class="vl">297 €</div>
+      </div>
+      <div class="lrow">
+        <div>
+          <div class="nm">Dauerhafte Aufzeichnung</div>
+          <div class="ds">Webinar und Fragerunde, so oft du willst</div>
+        </div>
+        <div class="vl">49 €</div>
+      </div>
+
+      <div class="ltotal">
+        <span class="lbl">Gesamtwert</span>
+        <span class="amt">
+          <span class="old">690 €</span>
+          <span class="new">97 €</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <button type="button" class="btn checkout-trigger">Ja – ich will das Paket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="price-note">97 € einmalig · nur auf dieser Seite</p>
+      <a class="decline" href="thanks.html">Nein danke, ich bleibe beim kostenlosen Platz</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="guarantee">
+      <div class="seal" aria-hidden="true">
+        <span class="n">14</span>
+        <span class="d">Tage</span>
+      </div>
+      <span class="tag">Garantie ohne Diskussion</span>
+      <h2 style="margin:14px 0 18px">War es dir die 97 € nicht wert, bekommst du sie zurück.</h2>
+      <p>Komm in die Nachbesprechung, rechne mit dem Workbook, schick deinen Fragebogen ein. Wenn du 14 Tage nach dem Webinar findest, dass es das nicht wert war, antworte einfach auf eine unserer E-Mails, und du bekommst die vollen 97 € zurück. Die Unterlagen behältst du. Kein Formular, keine Begründung, keine Rückfragen.</p>
+      <div class="cta-block">
+        <button type="button" class="btn checkout-trigger">Ja – ich will das Paket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <p class="price-note">97 € einmalig · nur auf dieser Seite</p>
+        <a class="decline" href="thanks.html">Nein danke, ich bleibe beim kostenlosen Platz</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-handoff">
+  <div class="wrap narrow">
+    <div class="head head-c">
+      <span class="tag">Bevor du entscheidest</span>
+      <h2>Berechtigte Fragen</h2>
+    </div>
+
+    <div class="faq" id="faq">
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Ich habe mich gerade kostenlos angemeldet. Warum gibt es jetzt etwas Kostenpflichtiges?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Das Webinar ist wirklich kostenlos und für sich vollständig. Du bekommst die komplette Strategie, ob du das Paket nimmst oder nicht. Das Paket gibt es, weil danach fast alle dieselbe Frage stellen: „Und was heißt das für <em>meine</em> Wohnungen?“ Das braucht Zeit in kleiner Runde und schriftliche Arbeit. Beides lässt sich nicht an einen Raum mit tausend Leuten verschenken.</p></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Kann ich das Paket später noch buchen?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Nicht zu diesem Preis. Die Nachbesprechung ist auf 50 Plätze begrenzt, und das Paket gibt es für 97 € nur auf dieser Seite. Falls danach Plätze übrig sind, gehen sie zum regulären Preis weg.</p></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Was, wenn ich bei der Nachbesprechung nicht live dabei sein kann?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Workbook, dauerhafte Aufzeichnung und deine schriftliche Struktur-Einschätzung bekommst du trotzdem. Den Fragebogen schickst du ein, wann es dir passt. Nur die Fallbesprechungen brauchen dich live im Raum.</p></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Ist das ein Abo?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Nein. Eine Zahlung von 97 €, nichts Wiederkehrendes, keine gespeicherte Karte für spätere Abbuchungen.</p></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Was passiert, wenn ich Nein sage?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Nichts Schlimmes. Dein kostenloser Platz ist bestätigt und bleibt es. Klick auf „Nein danke“, dann kommst du direkt zu deinen Anmeldedetails.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="tag tag-c">Letzte Chance auf dieser Seite</span>
+    <h2>50 Plätze. Eine Zahlung. Dann ist es weg.</h2>
+    <p class="sub">Dein kostenloser Platz ist so oder so sicher. Es geht nur darum, ob der Sonntag mit einer Strategie endet oder mit deiner eigenen Struktur.</p>
+    <div class="cta-block" style="margin-top:0">
+      <button type="button" class="btn checkout-trigger">Ja – ich will das Paket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="price-note">97 € einmalig · 14 Tage Geld-zurück-Garantie</p>
+      <a class="decline" href="thanks.html">Nein danke, ich bleibe beim kostenlosen Platz</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">immocation <em>Steuerwebinar</em></div>
+    <div class="fmeta">
+      <span>© 2026 — Beispielseite</span>
+      <span>Datenschutz · Impressum · Kontakt</span>
+    </div>
+    <p class="disc">Dies ist eine Demonstrationsseite, erstellt von Sales At Scale, um Design und Copywriting für den Webinar-Funnel des immocation Steuerwebinars zu zeigen — kein Angebot der immocation GmbH. Paket, Inhalte, Preise, Plätze und Garantie sind illustrative Vorschläge. Keine Steuerberatung; es werden keine Ergebnisse versprochen.</p>
+  </div>
+</footer>
+
+<div class="tally-toast" id="offer-toast" role="status" aria-live="polite"></div>
+
+<script>
+  /* ════════════════════════════════════════════════════════════════════
+     CHECKOUT URL — replace this one value to connect payment.
+
+     Paste the full URL your "Yes" buttons should go to, e.g. a Stripe
+     Payment Link:  https://buy.stripe.com/xxxxxxxx
+
+     Until this is set, clicking shows a toast instead of dead-ending.
+     ════════════════════════════════════════════════════════════════════ */
+  const CHECKOUT_URL = "REPLACE_ME";
+
+  (function () {
+    var triggers = document.querySelectorAll('.checkout-trigger');
+    var toast = document.getElementById('offer-toast');
+    var configured = CHECKOUT_URL && !/^REPLACE_ME$/i.test(CHECKOUT_URL);
+    var timer;
+
+    triggers.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (configured) { window.location.href = CHECKOUT_URL; return; }
+        if (!toast) return;
+        toast.textContent = 'Hier würdest du bezahlt werden — klick für jetzt auf „Nein danke“ :)';
+        toast.classList.add('show');
+        clearTimeout(timer);
+        timer = setTimeout(function () { toast.classList.remove('show'); }, 3200);
+      });
+    });
+  })();
+
+  // Wrapper supplies <head>; ensure phones lay out at device width.
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+
+  // FAQ accordion — same behaviour as the landing page.
+  (function () {
+    var items = document.querySelectorAll('.fitem');
+    items.forEach(function (item) {
+      var btn = item.querySelector('.fq'), panel = item.querySelector('.fa');
+      btn.addEventListener('click', function () {
+        var wasOpen = item.classList.contains('open');
+        items.forEach(function (o) {
+          o.classList.remove('open');
+          o.querySelector('.fq').setAttribute('aria-expanded', 'false');
+          o.querySelector('.fa').style.maxHeight = null;
+        });
+        if (!wasOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+        }
+      });
+    });
+
+    var t;
+    window.addEventListener('resize', function () {
+      clearTimeout(t);
+      t = setTimeout(function () {
+        var open = document.querySelector('.fitem.open .fa');
+        if (open) open.style.maxHeight = open.scrollHeight + 'px';
+      }, 120);
+    });
+  })();
+</script>

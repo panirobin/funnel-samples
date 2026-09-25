@@ -1,0 +1,332 @@
+<title>ICP-Recherche | immocation Steuerwebinar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- page-specific: ICP research ---------- */
+
+  .doc-hero {
+    padding: 76px 0 40px;
+    background: radial-gradient(ellipse 60% 80% at 20% 0%, var(--glow-soft), transparent 70%);
+  }
+  .doc-hero .inner { max-width: 760px; }
+  .doc-hero h1 { font-size: clamp(30px, 5vw, 46px); margin: 18px 0 18px; }
+  .doc-hero .lede { font-size: 17px; color: var(--ink-soft); max-width: 58ch; }
+  .backbar { padding-top: 26px; }
+  .backlink {
+    font-family: var(--label); font-size: 11px; font-weight: 600; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ink-faint); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .backlink:hover { color: var(--ink-soft); }
+  .backlink svg { width: 1em; height: 1em; transform: rotate(180deg); flex: none; }
+
+  /* short profile card — replaces the old full-bleed four-column strip so the
+     summary sits in the same narrow column, and reads in the same card
+     language as the .ritem and .evidence blocks below it */
+  .profile-sec { padding: 0 0 8px; }
+  .profile {
+    background: var(--surface-hi);
+    border: 1px solid var(--brand-line); border-left: 3px solid var(--brand);
+    border-radius: 6px 16px 16px 6px; padding: 8px 28px;
+    box-shadow: 0 0 44px -18px var(--glow);
+  }
+  .profile .prow {
+    display: grid; grid-template-columns: 168px 1fr; gap: 20px;
+    align-items: baseline; padding: 15px 0;
+    border-top: 1px solid var(--line-soft);
+  }
+  .profile .prow:first-child { border-top: 0; }
+  .profile .pk {
+    font-family: var(--label); font-size: 10.5px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+  .profile .pv { font-size: 15.5px; line-height: 1.5; color: var(--ink); }
+
+  /* research blocks */
+  .rblock { margin-bottom: 20px; }
+  .rblock > .rhead {
+    display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px;
+  }
+  .rblock .rnum {
+    font-family: var(--label); font-size: 10.5px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--brand-ink);
+  }
+  .rblock h2 { font-size: clamp(23px, 3.2vw, 30px); }
+  .rblock .rintro { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 22px; max-width: 62ch; }
+
+  .rlist { display: flex; flex-direction: column; gap: 14px; }
+  .ritem {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 16px; padding: 24px 26px;
+  }
+  .ritem h3 { font-size: 17.5px; margin-bottom: 9px; }
+  .ritem p { color: var(--ink-soft); font-size: 15px; line-height: 1.65; }
+
+  /* the thing that makes this not a generic persona doc */
+  .evidence {
+    margin-top: 16px; padding: 14px 18px;
+    background: var(--brand-soft); border-left: 3px solid var(--brand);
+    border-radius: 4px 10px 10px 4px;
+  }
+  .evidence .elabel {
+    font-family: var(--label); font-size: 9.5px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 7px;
+  }
+  .evidence q {
+    display: block; font-family: var(--display); font-size: 16px; font-weight: 500;
+    line-height: 1.55; color: var(--ink); quotes: none;
+  }
+  .evidence .src {
+    display: block; margin-top: 9px;
+    font-family: var(--label); font-size: 10.5px; color: var(--ink-faint);
+  }
+
+  /* vocabulary */
+  .vocab { display: flex; flex-wrap: wrap; gap: 10px; }
+  .vword {
+    font-family: var(--label); font-size: 12.5px; font-weight: 600; letter-spacing: .01em;
+    background: var(--brand); color: var(--on-brand);
+    padding: 9px 15px; border-radius: 999px;
+    box-shadow: 0 0 18px -6px var(--glow);
+  }
+  .vword.avoid {
+    background: transparent; color: var(--ink-faint);
+    border: 1px dashed var(--line); text-decoration: line-through;
+  }
+  .vocab-note { margin-top: 18px; color: var(--ink-soft); font-size: 14.5px; max-width: 62ch; }
+
+  @media (max-width: 640px) {
+    .doc-hero { padding: 52px 0 32px; }
+    .profile { padding: 6px 20px; }
+    .profile .prow { grid-template-columns: 1fr; gap: 5px; padding: 14px 0; }
+    .ritem { padding: 22px 20px; }
+  }
+</style>
+
+<div class="wrap backbar">
+  <a class="backlink" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Zurück zum Paket
+  </a>
+</div>
+
+<header class="doc-hero">
+  <div class="wrap">
+    <div class="inner">
+      <span class="tag">04 · ICP-Recherche</span>
+      <h1>Wen ihr wirklich ansprecht</h1>
+      <p class="lede">Gebaut aus dem, was eure Zielgruppe öffentlich schreibt: Vermieter-Foren, Frugalisten, eure eigenen Teilnehmerstimmen und Martins meistgesehene Videos. Jede Aussage hat eine Quelle. Nutzbar für E-Mails, Video-Hooks und Verkaufsgespräche, nicht nur für diesen Funnel.</p>
+    </div>
+  </div>
+</header>
+
+<section class="profile-sec">
+  <div class="wrap narrow">
+    <div class="profile">
+      <div class="prow"><span class="pk">Wer sie sind</span><span class="pv">Angestellte & Unternehmer mit 1–15 Immobilien</span></div>
+      <div class="prow"><span class="pk">Wo sie feststecken</span><span class="pv">Kaufen privat, zahlen 42 % – ohne Plan</span></div>
+      <div class="prow"><span class="pk">Schon versucht</span><span class="pv">Belege sammeln, Standard-Steuerberater</span></div>
+      <div class="prow"><span class="pk">Was sie wirklich wollen</span><span class="pv">Eine Struktur, bevor die nächste Wohnung kommt</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap narrow">
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">01</span><h2>Ängste</h2></div>
+      <p class="rintro">Was sie insgeheim beschäftigt. Das sind die Einwände, die im Gespräch nie laut ausgesprochen werden. Die Seite muss sie beantworten, bevor sie aufkommen.</p>
+      <div class="rlist">
+
+        <div class="ritem">
+          <h3>Ein Fehler beim Kauf, der sich nicht mehr reparieren lässt</h3>
+          <p>Sie wissen, dass beim Notartermin Dinge festgelegt werden, die sie nicht verstehen: Aufteilung, Eigentümer, Struktur. Also verschieben sie den nächsten Kauf oder unterschreiben mit einem mulmigen Gefühl.</p>
+          <div class="evidence">
+            <div class="elabel">So klingt es</div>
+            <q>Jeder Fehler kann im Immobilienbereich schnell mehrere tausend Euro kosten.</q>
+            <span class="src">Frugalisten-Forum, Thread „Erfahrungsbericht Immocation“</span>
+          </div>
+        </div>
+
+        <div class="ritem">
+          <h3>Zu spät angefangen zu haben</h3>
+          <p>Wer schon ein paar Wohnungen hat, rechnet zurück: Was wäre gewesen, wenn die Struktur von Anfang an gestimmt hätte? Das tut weh und macht gleichzeitig dringlich.</p>
+          <div class="evidence">
+            <div class="elabel">So klingt es</div>
+            <q>Rückwirkend betrachtet hätte ich hunderttausende Euro zusätzliches Eigenkapital in Immobilien investieren können, wenn ich damit früher angefangen hätte.</q>
+            <span class="src">Sebastian Kopp, Teilnehmerstimme auf immocation.de/steuerclass</span>
+          </div>
+        </div>
+
+        <div class="ritem">
+          <h3>Eine GmbH, die sie gläsern und abhängig macht</h3>
+          <p>Jahresabschluss, Bundesanzeiger, Bürgschaft bei der Bank: Die GmbH klingt nach Kontrollverlust und Papierkram. Diese Angst hält viele privat, auch wenn es sich längst rechnen würde.</p>
+          <div class="evidence">
+            <div class="elabel">So klingt es</div>
+            <q>Eher noch der Nachteil das du alles offen legen darfst.</q>
+            <span class="src">vermieter-forum.com, Thread „Eigene Holding? Ab wann lohnt sich eine Immobilien GmbH?“</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">02</span><h2>Wünsche</h2></div>
+      <p class="rintro">Was sie wirklich kaufen würden, so formuliert, wie sie es sagen. Meist bescheidener und konkreter, als man denkt.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Eine klare Faustregel statt Bauchgefühl</h3>
+          <p>Ab wie vielen Wohnungen, ab welchem Überschuss, ab welchem Steuersatz? Sie wollen eine Zahl, an der sie ihre eigene Situation messen können.</p>
+          <div class="evidence">
+            <div class="elabel">So klingt es</div>
+            <q>Gibt es generell eine „Faustformel“?</q>
+            <span class="src">vermieter-forum.com, Thread „Eigene Holding? Ab wann lohnt sich eine Immobilien GmbH?“</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>Überschüsse reinvestieren statt versteuern</h3>
+          <p>Nicht Steuern sparen als Selbstzweck, sondern schneller zur nächsten Immobilie kommen. Das ist die Brücke zu „Heute gesparte Steuern sind pures Eigenkapital“.</p>
+          <div class="evidence">
+            <div class="elabel">So klingt es</div>
+            <q>Wenn ich das jetzt reinvestiere oder damit Verpflichtungen tilge, sollte ich doch einen Vorteil haben?</q>
+            <span class="src">vermieter-forum.com, Thread „Eigene Holding? Ab wann lohnt sich eine Immobilien GmbH?“</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>Mit dem eigenen Steuerberater auf Augenhöhe</h3>
+          <p>Sie wollen ihren Steuerberater nicht ersetzen, sondern ihm sagen können, was sie wollen. Das ist die Übersetzung von „Steuerstrategie ist Chefsache“ in ihre Sprache.</p>
+          <div class="evidence">
+            <div class="elabel">So klingt es</div>
+            <q>Martin schafft es immer wieder, steuerlich komplexe Vorgänge so zu erklären, dass ich nun mit meinem Steuerberater auf Augenhöhe sprechen kann.</q>
+            <span class="src">Jochen Braun, Teilnehmerstimme auf immocation.de/steuerclass</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">03</span><h2>Einwände</h2></div>
+      <p class="rintro">Warum sie nicht kaufen. Bewusst aus kritischen Threads gezogen, denn das skeptische Material ist das nützlichste in diesem Dokument.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>„Die GmbH hilft nur den Beratern“</h3>
+          <p>Ehrlich antworten: Für ein, zwei kleine Wohnungen ist privat oft besser. Genau deshalb zeigt das Webinar den Break-even und sagt, wann man es lassen sollte. Das macht den Rest glaubwürdig.</p>
+          <div class="evidence">
+            <div class="elabel">So klingt es</div>
+            <q>… dann hat eine GmbH gegenüber Immobilien im Privatvermögen keinerlei Vorteil, doch für Rechtsanwälte, Notare und Steuerberater auf alle Fälle, die verdienen gut damit.</q>
+            <span class="src">vermieter-forum.com, Thread „Eigene Holding? Ab wann lohnt sich eine Immobilien GmbH?“</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>„Wenn das so einfach wäre, würde es jeder machen“</h3>
+          <p>Große Zahlen wecken Misstrauen. Die Antwort ist Martins Stil: live nachrechnen, mit kleinen Beispielen anfangen, Grenzen offen benennen, etwa bei der Familiengenossenschaft.</p>
+          <div class="evidence">
+            <div class="elabel">So klingt es</div>
+            <q>Ich frage mich, warum kommt keiner sonst auf die Idee?</q>
+            <span class="src">Frugalisten-Forum, Thread „Erfahrungsbericht Immocation“</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>„Man hört nur die Erfolgsgeschichten“</h3>
+          <p>Skeptiker vermuten, dass nur die Gewinner sprechen. Dagegen hilft, Risiken selbst anzusprechen: gewerbesteuerliche Infektion, Bankbürgschaft, wann eine Struktur kippt.</p>
+          <div class="evidence">
+            <div class="elabel">So klingt es</div>
+            <q>Die insolventen Immobilienbesitzer machen keine Masterclass.</q>
+            <span class="src">Frugalisten-Forum, Thread „Erfahrungsbericht Immocation“</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">04</span><h2>Kaufauslöser</h2></div>
+      <p class="rintro">Der Moment, in dem das Problem nicht mehr auszuhalten ist. Ads, die den Auslöser benennen, schlagen Ads, die die Lösung benennen, weil der Auslöser das ist, woran sie gerade denken.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Der Kaufvertrags-Entwurf liegt auf dem Tisch</h3>
+          <p>Die nächste Wohnung ist gefunden, der Notartermin steht. Jetzt ist die Frage „privat oder GmbH?“ plötzlich keine Theorie mehr, sondern eine Frist.</p>
+        </div>
+        <div class="ritem">
+          <h3>Der erste Steuerbescheid nach dem Kauf</h3>
+          <p>Die Abschreibung fällt kleiner aus als gedacht, oder die Mieteinnahmen treiben die Nachzahlung hoch. Das ist der Moment, in dem sie merken, dass die Entscheidung schon gefallen war.</p>
+        </div>
+        <div class="ritem">
+          <h3>Gehaltssprung, Erbschaft, Spitzensteuersatz</h3>
+          <p>Mit 42 % auf jeden zusätzlichen Euro wird jeder Mietüberschuss teuer. Eine geerbte Wohnung ohne Abschreibung bringt dieselbe Frage von der anderen Seite.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">05</span><h2>Ihr Wortschatz</h2></div>
+      <p class="rintro">Die Wörter, die diese Zielgruppe für ihr eigenes Problem benutzt. Texte in diesen Wörtern klingen nach Insider, Texte drumherum nach jemandem, der von außen rät.</p>
+      <div class="vocab">
+        <span class="vword">Struktur</span>
+        <span class="vword">VV GmbH</span>
+        <span class="vword">Holding</span>
+        <span class="vword">Kaufpreisaufteilung</span>
+        <span class="vword">AfA</span>
+        <span class="vword">Eigenkapital</span>
+        <span class="vword">Steuerlast</span>
+        <span class="vword">Notartermin</span>
+        <span class="vword">Ehegattenschaukel</span>
+        <span class="vword">Bestandsaufbau</span>
+        <span class="vword avoid">Steuerschlupfloch</span>
+        <span class="vword avoid">Steuervermeidung</span>
+        <span class="vword avoid">garantiert passives Einkommen</span>
+      </div>
+      <p class="vocab-note">Durchgestrichene Begriffe besser meiden: Sie klingen nach Grauzone oder nach Werbeversprechen, und genau das lässt Skeptiker abspringen.</p>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">06</span><h2>Wo sie sind</h2></div>
+      <p class="rintro">Wo sich diese Zielgruppe schon trifft und was sie liest. Nützlich fürs Targeting und dafür, welche Bezüge ankommen.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>YouTube und der Podcast „Lerne Immobilien“</h3>
+          <p>Lange Formate mit Martin laufen: Die Steuertricks-Rankings sind die meistgesehenen Folgen im aktuellen Feed. Retargeting auf Zuschauer dieser Folgen ist die wärmste Zielgruppe für das Webinar.</p>
+        </div>
+        <div class="ritem">
+          <h3>Vermieter-Foren und die Frugalisten</h3>
+          <p>Sachlich, skeptisch, zahlengetrieben. Hier wird jede Behauptung nachgerechnet. Anzeigen, die rechnen statt versprechen, passen zu diesem Ton.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="tag tag-c">Weiter</span>
+    <h2>Diese Recherche hat den Funnel geschrieben.</h2>
+    <p class="sub">Jede Überschrift, jeder Einwand und jede FAQ auf den Seiten stammt von hier. Deshalb klingt es, als hätte es jemand aus eurem Markt geschrieben.</p>
+    <a class="btn" href="index.html">Zurück zum Paket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">immocation <em>Steuerwebinar</em></div>
+    <div class="fmeta">
+      <span>Exklusiv für immocation erstellt</span>
+      <span>Gebaut von <a href="https://link.robinpani.com/sas" target="_blank" rel="noopener noreferrer">Sales At Scale</a></span>
+    </div>
+    <p class="disc">Recherche aus öffentlich zugänglichen Quellen. Forenzitate sind wörtlich übernommen und der Quelle zugeordnet, nicht einzelnen Personen. Teilnehmerstimmen stammen von immocation.de/steuerclass.</p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+</script>
