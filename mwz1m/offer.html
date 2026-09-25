@@ -1,0 +1,610 @@
+﻿<title>Einmaliges Angebot — Insider-Upgrade | Mein Weg zur 1. Million</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- page-specific: offer ---------- */
+
+  /* urgency bar — clay, the palette's existing accent for urgency */
+  .alertbar {
+    position: sticky; top: 0; z-index: 40;
+    background: var(--accent);
+    color: #FFF6F2;
+  }
+  .alertbar .wrap {
+    display: flex; align-items: center; justify-content: center;
+    gap: 10px; min-height: 46px;
+    font-family: var(--label); font-size: 11px; letter-spacing: .1em;
+    text-transform: uppercase; line-height: 1; text-align: center;
+  }
+  .alertbar .pip {
+    width: 7px; height: 7px; border-radius: 50%; flex: none;
+    background: #FFF6F2;
+    animation: alertBlink 1.6s ease-in-out infinite;
+  }
+  @keyframes alertBlink { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
+
+  /* progress — "step 2 of 2", mirrors both reference samples */
+  .progress { padding: 34px 0 0; }
+  .progress .inner { max-width: 460px; margin: 0 auto; }
+  .progress .meta {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--label); font-size: 11px; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px;
+  }
+  .progress .track {
+    height: 8px; border-radius: 999px; overflow: hidden;
+    background: var(--line); border: 1px solid var(--line-soft);
+  }
+  /* fills from empty on load, then a light sweeps across it and the glow breathes —
+     motion that says "nearly there" without pulling focus from the headline */
+  .progress .fill {
+    position: relative; overflow: hidden;
+    height: 100%; width: 90%; border-radius: 999px;
+    background: linear-gradient(90deg, var(--brand-2), var(--brand));
+    box-shadow: 0 0 14px var(--glow);
+    animation: progFill 1.4s cubic-bezier(.2,.8,.2,1) .25s both,
+               progGlow 2.4s ease-in-out 1.7s infinite;
+  }
+  .progress .fill::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.55) 50%, transparent 100%);
+    transform: translateX(-100%);
+    animation: progShine 2.4s ease-in-out 1.7s infinite;
+  }
+  @keyframes progFill  { from { width: 0; } to { width: 90%; } }
+  @keyframes progShine { 0% { transform: translateX(-100%); } 60%, 100% { transform: translateX(100%); } }
+  @keyframes progGlow  { 0%, 100% { box-shadow: 0 0 14px var(--glow); } 50% { box-shadow: 0 0 26px var(--glow), 0 0 4px var(--brand); } }
+
+  .offer-hero {
+    padding: 40px 0 64px; text-align: center;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, var(--glow-soft), transparent 70%);
+  }
+  .offer-hero .inner { max-width: 800px; margin: 0 auto; }
+  .offer-hero h1 { margin: 22px 0 22px; }
+  .offer-hero .lede {
+    font-size: 18px; color: var(--ink-soft);
+    max-width: 54ch; margin: 0 auto;
+  }
+
+  /* CTA cluster: primary button + quiet decline beneath, repeated down the page */
+  .cta-block { text-align: center; margin: 40px auto 0; }
+  .cta-block .price-note {
+    margin-top: 14px;
+    font-family: var(--label); font-size: 11.5px; font-weight: 500; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+  .decline {
+    display: inline-block; margin-top: 18px;
+    font-family: var(--sans); font-size: 14px;
+    color: var(--ink-faint); text-decoration: underline;
+    text-underline-offset: 3px; text-decoration-thickness: 1px;
+  }
+  .decline:hover { color: var(--ink-soft); }
+  .decline:focus-visible { outline: 2px solid var(--brand-ink); outline-offset: 3px; }
+
+  /* bonus rows — alternating image/text, per reference sample 2 */
+  .bonus { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .bonus + .bonus { margin-top: 56px; }
+  .bonus:nth-child(even) .bonus-media { order: 2; }
+  .bonus .kicker {
+    font-family: var(--label); font-size: 11px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--brand-ink); margin-bottom: 12px;
+  }
+  .bonus h3 { font-size: 24px; margin-bottom: 14px; }
+  .bonus p { color: var(--ink-soft); font-size: 15.5px; line-height: 1.65; }
+  .bonus .worth {
+    display: inline-block; margin-top: 16px;
+    font-family: var(--label); font-size: 11px; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--brand-ink);
+    background: var(--brand-soft); border: 1px solid var(--brand-line);
+    border-radius: 999px; padding: 7px 13px;
+  }
+  .bonus-media {
+    background: var(--surface-hi); color: var(--ink);
+    border-radius: 18px; padding: 26px; min-height: 210px;
+    display: flex; flex-direction: column; justify-content: center;
+    box-shadow: var(--ring);
+  }
+  .bonus-media .m-label {
+    font-family: var(--label); font-size: 10.5px; font-weight: 600; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 14px;
+  }
+  .bonus-media .m-row {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 14px; padding: 11px 0;
+    border-bottom: 1px solid var(--line);
+    font-family: var(--label); font-size: 12.5px; font-weight: 500;
+  }
+  .bonus-media .m-row:last-child { border-bottom: 0; }
+  .bonus-media .m-row .v { color: var(--brand-ink); font-weight: 700; }
+  .bonus-media .m-big {
+    font-family: var(--display); font-size: 44px; font-weight: 800; line-height: 1;
+    letter-spacing: -0.03em; margin-bottom: 6px; color: var(--brand-ink);
+    text-shadow: 0 0 30px var(--glow-soft);
+  }
+  .bonus-media .m-sub {
+    font-family: var(--label); font-size: 10.5px; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+
+  /* ticket comparison — the upgrade is the lit card */
+  .tickets { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+  .ticket { border-radius: 18px; padding: 32px 30px; }
+  .ticket-free { background: var(--surface); border: 1px solid var(--line); }
+  .ticket-vip {
+    background: var(--surface-hi); color: var(--ink);
+    box-shadow: var(--ring);
+    position: relative;
+  }
+  .ticket .t-name {
+    font-family: var(--label); font-size: 11px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; margin-bottom: 12px;
+  }
+  .ticket-free .t-name { color: var(--ink-faint); }
+  .ticket-vip .t-name { color: var(--brand-ink); }
+  .ticket .t-price {
+    font-family: var(--display); font-size: 48px; font-weight: 800; line-height: 1;
+    letter-spacing: -0.04em; margin-bottom: 6px;
+  }
+  .ticket-vip .t-price { color: var(--ink); text-shadow: 0 0 30px var(--glow-soft); }
+  .ticket .t-cap {
+    font-family: var(--label); font-size: 10.5px; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; margin-bottom: 24px; color: var(--ink-faint);
+  }
+  .ticket ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+  .ticket li {
+    display: grid; grid-template-columns: 22px 1fr; gap: 13px;
+    align-items: start; font-size: 14.5px; line-height: 1.55;
+  }
+  .ticket li .ic {
+    width: 22px; height: 22px; margin-top: 0; flex: none; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ticket li .ic svg { width: 14px; height: 14px; }
+  .ticket-free li { color: var(--ink-soft); }
+  .ticket-free li .ic { color: var(--ink-faint); background: var(--line-soft); }
+  .ticket-vip li { color: var(--ink); }
+  .ticket-vip li .ic { color: var(--on-brand); background: var(--brand); box-shadow: 0 0 12px -2px var(--glow); }
+  .ticket .t-foot {
+    margin-top: 26px; padding-top: 20px;
+    font-family: var(--label); font-size: 10.5px; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; border-top: 1px solid var(--line); color: var(--ink-faint);
+  }
+  .ticket-vip .flag {
+    position: absolute; top: -12px; right: 24px;
+    background: var(--accent); color: #FFF6F2;
+    font-family: var(--label); font-size: 10.5px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; padding: 7px 12px; line-height: 1;
+    border-radius: 999px;
+    box-shadow: 0 0 18px -4px var(--accent);
+  }
+
+  /* guarantee — a glowing seal */
+  .guarantee { text-align: center; max-width: 640px; margin: 0 auto; }
+  .seal {
+    width: 104px; height: 104px; margin: 0 auto 28px;
+    border-radius: 50%; border: 2px solid var(--brand);
+    background: radial-gradient(circle, var(--brand-soft), transparent 70%);
+    box-shadow: 0 0 0 6px var(--brand-soft), 0 0 44px -6px var(--glow);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: var(--brand-ink);
+  }
+  .seal .n { font-family: var(--display); font-size: 34px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+  .seal .d {
+    font-family: var(--label); font-size: 9px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; margin-top: 4px;
+  }
+  .guarantee p { color: var(--ink-soft); font-size: 16px; line-height: 1.7; }
+
+  @media (max-width: 900px) {
+    .bonus { grid-template-columns: 1fr; gap: 26px; }
+    .bonus:nth-child(even) .bonus-media { order: 0; }
+    .bonus + .bonus { margin-top: 44px; }
+    .tickets { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .alertbar .wrap { font-size: 10px; letter-spacing: .08em; min-height: 44px; gap: 8px; }
+    .progress { padding-top: 26px; }
+    .offer-hero { padding: 30px 0 48px; }
+    .offer-hero .lede { font-size: 17px; }
+    .cta-block .btn, .guarantee .btn { display: flex; width: 100%; justify-content: center; }
+    .bonus h3 { font-size: 22px; }
+    .bonus-media { padding: 22px; min-height: 0; }
+    .bonus-media .m-big { font-size: 34px; }
+    .ticket { padding: 28px 24px; }
+    .ticket .t-price { font-size: 38px; }
+  }
+  @media (max-width: 400px) {
+    .alertbar .wrap { font-size: 9px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .alertbar .pip { animation: none; }
+    .progress .fill, .progress .fill::after { animation: none; }
+  }
+</style>
+
+<div class="alertbar">
+  <div class="wrap">
+    <span class="pip" aria-hidden="true"></span>
+    <span>Moment – deine Anmeldung ist fast fertig</span>
+  </div>
+</div>
+
+<div class="progress">
+  <div class="wrap">
+    <div class="inner">
+      <div class="meta"><span>Schritt 2 von 2</span><span>Fast geschafft</span></div>
+      <div class="track"><div class="fill"></div></div>
+    </div>
+  </div>
+</div>
+
+<header class="offer-hero">
+  <div class="wrap">
+    <div class="inner">
+      <span class="tag tag-c">Einmaliges Angebot · nur auf dieser Seite</span>
+      <h1>Dein Platz ist gesichert. Jetzt <em>mach mehr draus.</em></h1>
+      <p class="lede">Du bist für Donnerstag angemeldet. Bevor du gehst: Es gibt eine Version dieses Abends, in der du Andres nicht nur beim Rechnen zuschaust – sondern in der er dein eigenes Exposé durchrechnet.</p>
+    </div>
+  </div>
+</header>
+
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="head head-c">
+      <span class="tag">Was das Upgrade dazubringt</span>
+      <h2>Drei Dinge, die der kostenlose Platz nicht hat.</h2>
+      <p>Im Webinar lernst du die Rechnung. Im Insider-Upgrade wird sie auf die Objekte angewendet, die gerade bei dir auf dem Tisch liegen.</p>
+    </div>
+
+    <div class="bonus">
+      <div class="bonus-media">
+        <div class="m-label">Insider-Runde — direkt nach dem Webinar</div>
+        <div class="m-row"><span>Exposé 01</span><span class="v">MFH, 6 WE · Gelsenkirchen</span></div>
+        <div class="m-row"><span>Exposé 02</span><span class="v">ETW · steht leer</span></div>
+        <div class="m-row"><span>Exposé 03</span><span class="v">Sanierungsstau · Bochum</span></div>
+        <div class="m-row"><span>Plätze</span><span class="v">max. 40</span></div>
+      </div>
+      <div>
+        <div class="kicker">Bonus 01</div>
+        <h3>Die Insider-Runde, direkt im Anschluss</h3>
+        <p>Der große Raum schließt, die Insider-Runde öffnet. Höchstens 40 Leute, eine Stunde, und Andres rechnet eure Exposés live durch – auch die, bei denen man sich fragt, ob man sie überhaupt zeigen soll. Dieser Teil wird nicht öffentlich aufgezeichnet.</p>
+        <span class="worth">Nicht einzeln erhältlich</span>
+      </div>
+    </div>
+
+    <div class="bonus">
+      <div class="bonus-media">
+        <div class="m-big">12</div>
+        <div class="m-sub">Prüfpunkte vor jedem Kauf</div>
+        <div class="m-row" style="margin-top:18px"><span>Einkauf</span><span class="v">€ pro m²</span></div>
+        <div class="m-row"><span>Cashflow</span><span class="v">Rate gegen Kaltmiete</span></div>
+        <div class="m-row"><span>Puffer</span><span class="v">Rücklage &amp; Leerstand</span></div>
+        <div class="m-row"><span>Lage</span><span class="v">Mikrolage-Check</span></div>
+      </div>
+      <div>
+        <div class="kicker">Bonus 02</div>
+        <h3>Der Cashflow-Rechner mit Ankaufs-Checkliste</h3>
+        <p>Der Rechner, mit dem du jedes Exposé in einer Minute auf Cashflow prüfst, plus die 12 Punkte, die Andres vor jedem Kauf abhakt – vom Quadratmeterpreis bis zu dem, was im Exposé fehlt. Zum Behalten, für jedes Objekt, das noch kommt.</p>
+        <span class="worth">Wert 97 €</span>
+      </div>
+    </div>
+
+    <div class="bonus">
+      <div class="bonus-media">
+        <div class="m-label">Exposé-Bewertung — schriftlich, in 48 Std.</div>
+        <div class="m-row"><span>Du schickst</span><span class="v">Exposé + deine Zahlen</span></div>
+        <div class="m-row"><span>Du bekommst</span><span class="v">Ja oder Nein, mit Begründung</span></div>
+        <div class="m-row"><span>Dazu</span><span class="v">dein nächster Schritt</span></div>
+        <div class="m-row"><span>Antwort</span><span class="v">innerhalb von 48 Stunden</span></div>
+      </div>
+      <div>
+        <div class="kicker">Bonus 03</div>
+        <h3>Ein Exposé, schriftlich bewertet</h3>
+        <p>Schick das Objekt, über das du gerade nachdenkst, zusammen mit deinen Zahlen. Du bekommst eine schriftliche Einschätzung zurück: kaufen, nachverhandeln oder Finger weg – und warum. Keine Vorlage. Dein Objekt, deine Zahlen, deine Stadt.</p>
+        <span class="worth">Wert 190 €</span>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <button type="button" class="btn checkout-trigger">Ja – ich will das Insider-Upgrade <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="price-note">47 € einmalig · nur auf dieser Seite</p>
+      <a class="decline" href="thanks.html">Nein danke – ich behalte meinen kostenlosen Platz</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="head head-c">
+      <span class="tag">Wähle deinen Platz</span>
+      <h2>Was du hast – und was dazukäme.</h2>
+    </div>
+
+    <div class="tickets">
+      <div class="ticket ticket-free">
+        <div class="t-name">Kostenloser Platz — gehört dir schon</div>
+        <div class="t-price">0 €</div>
+        <div class="t-cap">Bestätigt für Donnerstag</div>
+        <ul>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Das Live-Webinar</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Die Bank-Mappe</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Fragerunde im großen Raum</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>48 Stunden Aufzeichnung</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <span>Keine Insider-Runde</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <span>Kein Cashflow-Rechner</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <span>Keine schriftliche Exposé-Bewertung</span>
+          </li>
+        </ul>
+        <div class="t-foot">Nichts zu tun – du bist schon dabei</div>
+      </div>
+
+      <div class="ticket ticket-vip">
+        <span class="flag">Bester Wert</span>
+        <div class="t-name">Insider-Upgrade</div>
+        <div class="t-price">47 €</div>
+        <div class="t-cap">Einmalzahlung · nur auf dieser Seite</div>
+        <ul>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span><strong>Alles aus dem kostenlosen Platz</strong></span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Insider-Runde nach dem Webinar</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Cashflow-Rechner + Ankaufs-Checkliste</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Schriftliche Bewertung eines Exposés</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Vorrang auf der Mastermind-Warteliste</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Aufzeichnung 12 Monate statt 48 Stunden</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>7 Tage Geld-zurück-Garantie</span>
+          </li>
+        </ul>
+        <div class="t-foot">Höchstens 40 Plätze</div>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <button type="button" class="btn checkout-trigger">Ja – ich will das Insider-Upgrade <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="price-note">47 € einmalig · nur auf dieser Seite</p>
+      <a class="decline" href="thanks.html">Nein danke – ich behalte meinen kostenlosen Platz</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="wrap narrow">
+    <div class="head head-c">
+      <span class="tag">Die Rechnung</span>
+      <h2>Was da zusammenkommt.</h2>
+    </div>
+
+    <div class="ledger">
+      <div class="lrow">
+        <div>
+          <div class="nm">Insider-Runde</div>
+          <div class="ds">Eine Stunde, höchstens 40 Leute, Exposés live gerechnet</div>
+        </div>
+        <div class="vl">150 €</div>
+      </div>
+      <div class="lrow">
+        <div>
+          <div class="nm">Cashflow-Rechner + Checkliste</div>
+          <div class="ds">12 Prüfpunkte, für jedes künftige Objekt</div>
+        </div>
+        <div class="vl">97 €</div>
+      </div>
+      <div class="lrow">
+        <div>
+          <div class="nm">Schriftliche Exposé-Bewertung</div>
+          <div class="ds">Ein Objekt deiner Wahl, Antwort in 48 Stunden</div>
+        </div>
+        <div class="vl">190 €</div>
+      </div>
+      <div class="lrow">
+        <div>
+          <div class="nm">Aufzeichnung für 12 Monate</div>
+          <div class="ds">Statt 48 Stunden – zum Nachschauen vor jedem Notartermin</div>
+        </div>
+        <div class="vl">39 €</div>
+      </div>
+
+      <div class="ltotal">
+        <span class="lbl">Gesamtwert</span>
+        <span class="amt">
+          <span class="old">476 €</span>
+          <span class="new">47 €</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <button type="button" class="btn checkout-trigger">Ja – ich will das Insider-Upgrade <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="price-note">47 € einmalig · nur auf dieser Seite</p>
+      <a class="decline" href="thanks.html">Nein danke – ich behalte meinen kostenlosen Platz</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="guarantee">
+      <div class="seal" aria-hidden="true">
+        <span class="n">7</span>
+        <span class="d">Tage</span>
+      </div>
+      <span class="tag">Garantie ohne Diskussion</span>
+      <h2 style="margin:14px 0 18px">Wenn es die 47 € nicht wert war, gibt's sie zurück.</h2>
+      <p>Komm in die Insider-Runde, nimm den Rechner, schick dein Exposé ein. Wenn du sieben Tage nach dem Webinar findest, dass es das nicht wert war, antworte einfach auf eine unserer E-Mails und du bekommst die vollen 47 € zurück. Das Material behältst du. Kein Formular, keine Begründung, keine Rückfragen.</p>
+      <div class="cta-block">
+        <button type="button" class="btn checkout-trigger">Ja – ich will das Insider-Upgrade <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <p class="price-note">47 € einmalig · nur auf dieser Seite</p>
+        <a class="decline" href="thanks.html">Nein danke – ich behalte meinen kostenlosen Platz</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-handoff">
+  <div class="wrap narrow">
+    <div class="head head-c">
+      <span class="tag">Bevor du entscheidest</span>
+      <h2>Berechtigte Fragen</h2>
+    </div>
+
+    <div class="faq" id="faq">
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Ich habe mich gerade kostenlos angemeldet. Warum gibt es jetzt etwas Bezahltes?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Das Webinar ist wirklich kostenlos und für sich vollständig – du bekommst die ganze Rechnung, mit oder ohne Upgrade. Das Upgrade gibt es, weil nach jedem Abend dieselbe Frage kommt: „Und was ist mit <em>meinem</em> Objekt?“ Dafür braucht es Live-Zeit und schriftliche Arbeit, und die lässt sich nicht an einen unbegrenzten Raum verschenken.</p></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Kann ich das Upgrade auch später buchen?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Nicht für 47 €. Die Insider-Runde ist auf 40 Plätze begrenzt, weil Andres dort echte Exposés durchrechnet, und diese Seite ist der einzige Ort, an dem es sie zu diesem Preis gibt. Bleiben Plätze übrig, gehen sie danach zum vollen Preis weg.</p></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Was, wenn ich bei der Insider-Runde nicht live dabei sein kann?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Du bekommst trotzdem die Aufzeichnung, den Cashflow-Rechner mit Checkliste und deine schriftliche Exposé-Bewertung. Die Bewertung läuft unabhängig vom Termin, du kannst dein Exposé also jederzeit einschicken. Nur die Live-Plätze in der Runde brauchen dich am Bildschirm.</p></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Ist das ein Abo?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Nein. Einmal 47 €, nichts Wiederkehrendes, keine gespeicherte Karte für eine spätere Abbuchung.</p></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Was passiert, wenn ich Nein sage?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Nichts Schlimmes. Dein kostenloser Platz ist bestätigt und bleibt es – klick auf den Nein-Link und du landest direkt bei deinen Anmeldedetails.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="tag tag-c">Letzte Chance auf dieser Seite</span>
+    <h2>40 Plätze. Eine Zahlung. Dann ist es weg.</h2>
+    <p class="sub">Dein kostenloser Platz ist so oder so sicher. Es geht nur darum, ob der Donnerstag mit einer Rechnung endet – oder mit deinem eigenen Exposé, durchgerechnet.</p>
+    <div class="cta-block" style="margin-top:0">
+      <button type="button" class="btn checkout-trigger">Ja – ich will das Insider-Upgrade <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="price-note">47 € einmalig · 7 Tage Geld-zurück-Garantie</p>
+      <a class="decline" href="thanks.html">Nein danke – ich behalte meinen kostenlosen Platz</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">Mein Weg zur <em>1. Million</em></div>
+    <div class="fmeta">
+      <span>© 2026 — Beispielseite</span>
+      <span>Datenschutz · Impressum · Kontakt</span>
+    </div>
+    <p class="disc">Dies ist eine Demonstrationsseite, erstellt von Sales At Scale, um Design und Copywriting für einen Webinar-Funnel von „Mein Weg zur 1. Million“ zu zeigen – kein Angebot von Andres Martinez. Upgrade, Inhalte, Preise, Plätze und Garantie sind illustrative Platzhalter. Keine Anlage- oder Finanzierungsberatung; es werden keine Renditen oder Ergebnisse versprochen.</p>
+  </div>
+</footer>
+
+<div class="tally-toast" id="offer-toast" role="status" aria-live="polite"></div>
+
+<script>
+  /* ════════════════════════════════════════════════════════════════════
+     CHECKOUT URL — replace this one value to connect payment.
+
+     Paste the full URL your "Yes" buttons should go to, e.g. a Stripe
+     Payment Link:  https://buy.stripe.com/xxxxxxxx
+
+     Until this is set, clicking shows a toast instead of dead-ending.
+     ════════════════════════════════════════════════════════════════════ */
+  const CHECKOUT_URL = "REPLACE_ME";
+
+  (function () {
+    var triggers = document.querySelectorAll('.checkout-trigger');
+    var toast = document.getElementById('offer-toast');
+    var configured = CHECKOUT_URL && !/^REPLACE_ME$/i.test(CHECKOUT_URL);
+    var timer;
+
+    triggers.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (configured) { window.location.href = CHECKOUT_URL; return; }
+        if (!toast) return;
+        toast.textContent = 'Hier würdest du bezahlt werden — klick für jetzt auf „Nein danke“ :)';
+        toast.classList.add('show');
+        clearTimeout(timer);
+        timer = setTimeout(function () { toast.classList.remove('show'); }, 3200);
+      });
+    });
+  })();
+
+  // Wrapper supplies <head>; ensure phones lay out at device width.
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+
+  // FAQ accordion — same behaviour as the landing page.
+  (function () {
+    var items = document.querySelectorAll('.fitem');
+    items.forEach(function (item) {
+      var btn = item.querySelector('.fq'), panel = item.querySelector('.fa');
+      btn.addEventListener('click', function () {
+        var wasOpen = item.classList.contains('open');
+        items.forEach(function (o) {
+          o.classList.remove('open');
+          o.querySelector('.fq').setAttribute('aria-expanded', 'false');
+          o.querySelector('.fa').style.maxHeight = null;
+        });
+        if (!wasOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+        }
+      });
+    });
+
+    var t;
+    window.addEventListener('resize', function () {
+      clearTimeout(t);
+      t = setTimeout(function () {
+        var open = document.querySelector('.fitem.open .fa');
+        if (open) open.style.maxHeight = open.scrollHeight + 'px';
+      }, 120);
+    });
+  })();
+</script>

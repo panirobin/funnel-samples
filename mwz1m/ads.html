@@ -1,0 +1,359 @@
+<title>5 Ad-Skripte | Mein Weg zur 1. Million</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- page-specific: ad scripts ---------- */
+
+  .doc-hero {
+    padding: 76px 0 44px;
+    background: radial-gradient(ellipse 60% 80% at 20% 0%, var(--glow-soft), transparent 70%);
+  }
+  .doc-hero .inner { max-width: 760px; }
+  .doc-hero h1 { font-size: clamp(30px, 5vw, 46px); margin: 18px 0 18px; }
+  .doc-hero .lede { font-size: 17px; color: var(--ink-soft); max-width: 58ch; }
+  .backbar { padding-top: 26px; }
+  .backlink {
+    font-family: var(--label); font-size: 11px; font-weight: 600; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ink-faint); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .backlink:hover { color: var(--ink-soft); }
+  .backlink svg { width: 1em; height: 1em; transform: rotate(180deg); flex: none; }
+
+  .scripts { display: flex; flex-direction: column; gap: 14px; }
+
+  .script { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; transition: border-color .2s ease, box-shadow .2s ease; }
+  .script:hover { border-color: var(--brand-line); }
+  .script.open { border-color: var(--brand-line); box-shadow: 0 0 44px -16px var(--glow), var(--shadow); }
+
+  .s-head {
+    width: 100%; display: grid; grid-template-columns: auto 1fr auto auto;
+    gap: 18px; align-items: center; text-align: left;
+    background: none; border: 0; cursor: pointer;
+    padding: 24px 26px; color: var(--ink); font-family: var(--sans);
+  }
+  .s-head:focus-visible { outline: 2px solid var(--brand-ink); outline-offset: -2px; }
+  .s-num {
+    font-family: var(--label); font-size: 11px; font-weight: 800; letter-spacing: .02em;
+    color: var(--brand-ink);
+    width: 40px; height: 40px; border-radius: 50%; flex: none;
+    display: flex; align-items: center; justify-content: center; line-height: 1;
+    background: var(--brand-soft); border: 1px solid var(--brand-line);
+  }
+  .s-title { font-family: var(--display); font-size: 18px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.25; }
+  .s-meta {
+    font-family: var(--label); font-size: 10.5px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ink-faint); white-space: nowrap;
+  }
+  .s-sign { font-family: var(--sans); font-size: 18px; font-weight: 600; color: var(--brand-ink); transition: transform .28s ease; }
+  .script.open .s-sign { transform: rotate(45deg); }
+
+  .s-body { max-height: 0; overflow: hidden; transition: max-height .34s ease; }
+  .s-inner { padding: 4px 26px 26px; }
+
+  .s-part { padding: 18px 0; border-top: 1px solid var(--line-soft); }
+  .s-part:first-child { border-top: 0; padding-top: 6px; }
+  .p-label {
+    font-family: var(--label); font-size: 10px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px;
+  }
+  .s-part p { font-size: 15.5px; line-height: 1.7; color: var(--ink); margin-bottom: 12px; }
+  .s-part p:last-child { margin-bottom: 0; }
+
+  .s-actions { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+  .s-btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: var(--sans); font-size: 13.5px; font-weight: 600; line-height: 1;
+    padding: 13px 20px; border-radius: 999px; cursor: pointer;
+    background: var(--btn-bg); color: var(--btn-fg); border: 1px solid transparent;
+    box-shadow: 0 8px 22px -10px var(--glow);
+    appearance: none; -webkit-appearance: none; margin: 0;
+  }
+  .s-btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); box-shadow: none; }
+  .s-btn.ghost:hover { background: var(--paper-2); }
+  .s-btn:focus-visible { outline: 2px solid var(--brand-ink); outline-offset: 3px; }
+  .s-btn svg { width: 1em; height: 1em; flex: none; }
+
+  @media (max-width: 640px) {
+    .doc-hero { padding: 52px 0 34px; }
+    .s-head { grid-template-columns: auto 1fr auto; gap: 12px; padding: 20px; }
+    .s-meta { display: none; }
+    .s-title { font-size: 17px; }
+    .s-inner { padding: 4px 20px 22px; }
+  }
+</style>
+
+<div class="wrap backbar">
+  <a class="backlink" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Zurück zum Paket
+  </a>
+</div>
+
+<header class="doc-hero">
+  <div class="wrap">
+    <div class="inner">
+      <span class="tag">05 · Ad-Skripte</span>
+      <h1>Fünf Skripte, fünf verschiedene Menschen</h1>
+      <p class="lede">Jedes spricht einen anderen Grund an, warum jemand in deiner Community noch nicht gekauft hat – so laufen sie parallel, ohne sich Konkurrenz zu machen. In deiner Stimme, aus deinen eigenen Videos, und nur mit Zahlen, die du selbst öffentlich genannt hast. Klick auf ein Skript, um es zu öffnen, dann kopieren oder herunterladen.</p>
+    </div>
+  </div>
+</header>
+
+<section class="sec">
+  <div class="wrap narrow">
+    <div class="scripts" id="scripts">
+
+      <article class="script" data-slug="skript-1-bank-absage">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">01</span>
+          <span class="s-title">Die Absage — für alle, bei denen die Bank schon Nein gesagt hat</span>
+          <span class="s-meta">~75 Sek.</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+
+            <div class="s-part" data-part="HOOK">
+              <div class="p-label">Hook</div>
+              <p>Deine Bank hat Nein gesagt? Meine auch. Und am Ende hat genau diese Bank mein erstes Mehrfamilienhaus finanziert – mit über 110 Prozent.</p>
+            </div>
+
+            <div class="s-part" data-part="HAUPTTEIL">
+              <div class="p-label">Hauptteil</div>
+              <p>Moin, ich bin Andres. Ich war 14 Jahre angestellt, im Qualitätsmanagement. Für mein erstes Haus – 255.000 Euro, 300 Quadratmeter, off-market gefunden – habe ich bei über zehn Banken angefragt. Die Volksbank hat erst gesagt: 110 Prozent machen wir gar nicht, für das Objekt maximal 80. Finanziert hat sie am Ende 280.000.</p>
+              <p>Der Unterschied war nicht mein Gehalt. Der Unterschied war das Objekt: günstig eingekauft, rund 1.000 Euro Rate, 1.600 Euro Miete. Wenn die Zahlen stimmen, redet die Bank anders mit dir. Heute halten meine Frau und ich rund 40 Einheiten.</p>
+            </div>
+
+            <div class="s-part" data-part="WAS DU LERNST">
+              <div class="p-label">Was du lernst</div>
+              <p>Am Donnerstag zeige ich dir live, welche Objekte eine Bank voll finanziert, was in deine Bank-Mappe gehört und warum 80 Prozent mit deinem ganzen Ersparten oft riskanter sind als 110 mit Puffer auf dem Konto.</p>
+            </div>
+
+            <div class="s-part" data-part="CTA">
+              <div class="p-label">Call to Action</div>
+              <p>Das Webinar ist kostenlos und live, Donnerstag um 19 Uhr. Klick auf den Link und sichere dir deinen Platz – und bring das Exposé mit, bei dem die Bank Nein gesagt hat.</p>
+            </div>
+
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>
+                Skript kopieren
+              </button>
+              <button type="button" class="s-btn ghost download-script">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Als .txt laden
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </article>
+
+      <article class="script" data-slug="skript-2-off-market">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">02</span>
+          <span class="s-title">Der ImmoScout-Frust — für alle, bei denen sich kein Exposé rechnet</span>
+          <span class="s-meta">~70 Sek.</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+            <div class="s-part" data-part="HOOK"><div class="p-label">Hook</div><p>Wenn du abends durch ImmoScout scrollst und sich einfach kein Exposé rechnet – dann liegt das nicht an dir. Die guten Deals stehen da gar nicht drin.</p></div>
+            <div class="s-part" data-part="HAUPTTEIL"><div class="p-label">Hauptteil</div><p>Moin, ich bin Andres. Mir ist letztens im Gespräch mit einem Freund aufgefallen: Ich habe alle meine Objekte off-market gekauft. Kein einziges über die üblichen Portale. Mein erstes Mehrfamilienhaus habe ich in einer Facebook-Gruppe gefunden, ein paar Hausnummern von mir entfernt. Beim Makler stand es für 280.000 drin, ich habe es für 255.000 bekommen.</p><p>Der Gewinn entsteht beim Einkauf, nicht bei der Miete. In meiner Region bleibe ich unter 1.000 Euro pro Quadratmeter – und solche Preise findest du über Netzwerk, Stammtische und Leute, die an dich denken, wenn sie verkaufen wollen.</p></div>
+            <div class="s-part" data-part="WAS DU LERNST"><div class="p-label">Was du lernst</div><p>Im Webinar lernst du, wie du ein Exposé in unter einer Minute auf Cashflow prüfst, wo die Off-Market-Deals wirklich herkommen und wie du dir das Netzwerk dafür neben dem Job aufbaust.</p></div>
+            <div class="s-part" data-part="CTA"><div class="p-label">Call to Action</div><p>Kostenlos und live, Donnerstag um 19 Uhr. Klick unten auf den Link und sichere dir deinen Platz.</p></div>
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Skript kopieren</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Als .txt laden</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="script" data-slug="skript-3-hamsterrad">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">03</span>
+          <span class="s-title">Das Hamsterrad — für Pendler mit Familie</span>
+          <span class="s-meta">~80 Sek.</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+            <div class="s-part" data-part="HOOK"><div class="p-label">Hook</div><p>Mein Wecker hat um 3:40 Uhr geklingelt. Eine Stunde hin, eine Stunde zurück. Und irgendwann habe ich gedacht: So kann das nicht bis zur Rente weitergehen.</p></div>
+            <div class="s-part" data-part="HAUPTTEIL"><div class="p-label">Hauptteil</div><p>Moin, ich bin Andres. 14 Jahre war ich im Qualitätsmanagement angestellt. Als klar war, dass meine Frau und ich Kinder bekommen, wusste ich: Abends nach Hause kommen, schnell Abendessen, Kinder ins Bett bringen – das soll nicht mein Alltag sein.</p><p>2017 habe ich angefangen, neben dem Job Immobilien zu kaufen. Mein Motto war: Rente mit 40. Mit 38 war ich raus aus dem Job. Heute halten meine Frau und ich rund 40 Einheiten. Nicht, weil ich mehr Zeit hatte als du – sondern weil ich irgendwann aufgehört habe, alles selbst zu machen.</p></div>
+            <div class="s-part" data-part="WAS DU LERNST"><div class="p-label">Was du lernst</div><p>Im Webinar zeige ich dir, wie du neben Vollzeitjob und Familie dein erstes Objekt findest und finanzierst – und was du von Anfang an abgibst, damit dir der Bestand nicht die Wochenenden frisst.</p></div>
+            <div class="s-part" data-part="CTA"><div class="p-label">Call to Action</div><p>Kostenlos und live, Donnerstag um 19 Uhr, nach Feierabend. Klick auf den Link und sichere dir deinen Platz.</p></div>
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Skript kopieren</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Als .txt laden</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="script" data-slug="skript-4-mietnomaden">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">04</span>
+          <span class="s-title">Die Mietnomaden-Frage — für alle, die das Risiko abschreckt</span>
+          <span class="s-meta">~75 Sek.</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+            <div class="s-part" data-part="HOOK"><div class="p-label">Hook</div><p>„Hast du keine Angst vor Mietnomaden?“ Das fragen dich deine Kollegen. Auf unserem Stammtisch fragt das keiner.</p></div>
+            <div class="s-part" data-part="HAUPTTEIL"><div class="p-label">Hauptteil</div><p>Moin, ich bin Andres. Ich organisiere in Dortmund einen Immobilienstammtisch, und da merke ich jedes Mal den Unterschied. Mit Kollegen redest du darüber, ob. Mit Leuten, die schon da sind, wo du hinwillst, redest du nur noch darüber, wie: Weißt du schon, wie du es finanzierst?</p><p>Ich habe heute über drei Millionen Euro Schulden – und schlafe ehrlich gesagt wie ein Baby. Weil ich auf Cashflow kaufe und rechne, bevor ich unterschreibe. Klar geht auch bei mir mal was schief, und darüber rede ich offen. Aber Probleme sind lösbar, wenn die Zahlen stimmen.</p></div>
+            <div class="s-part" data-part="WAS DU LERNST"><div class="p-label">Was du lernst</div><p>Im Webinar lernst du, Risiko zu rechnen statt zu fühlen: Puffer, Rücklage, Mikrolage – und was du im Exposé nie siehst, sondern nur vor Ort.</p></div>
+            <div class="s-part" data-part="CTA"><div class="p-label">Call to Action</div><p>Das Webinar ist kostenlos und live, Donnerstag um 19 Uhr. Klick unten auf den Link und sichere dir deinen Platz.</p></div>
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Skript kopieren</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Als .txt laden</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="script" data-slug="skript-5-nie-gekauft">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">05</span>
+          <span class="s-title">Alles gelesen, nie gekauft — für die Theoretiker</span>
+          <span class="s-meta">~70 Sek.</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+            <div class="s-part" data-part="HOOK"><div class="p-label">Hook</div><p>Du hast die Bücher gelesen, die Videos geschaut, die Tabellen gebaut – und noch nichts gekauft? Dann ist das hier für dich.</p></div>
+            <div class="s-part" data-part="HAUPTTEIL"><div class="p-label">Hauptteil</div><p>Moin, ich bin Andres. Ich wollte damals einem Freund eigentlich nur beweisen, dass das kompletter Quatsch ist – dass man nicht einfach eine Immobilie nach der anderen kaufen kann. Dann habe ich das Buch gelesen und gemerkt: Der Typ hat recht. Und das Gefährliche daran ist: Weil es so einfach ist, glauben die meisten, dass es nicht funktioniert.</p><p>Direkt nach dem Hörbuch habe ich in einer Facebook-Gruppe gefragt, wer verkaufen will. So kam mein erstes Mehrfamilienhaus zustande. Heute halten meine Frau und ich rund 40 Einheiten, und meinen Weg habe ich im SPIEGEL-Bestseller „Mein Weg zur 1. Million“ aufgeschrieben.</p></div>
+            <div class="s-part" data-part="WAS DU LERNST"><div class="p-label">Was du lernst</div><p>Im Webinar gehen wir weg von der Theorie: Wir rechnen echte Exposés live durch, und du lernst, wie du vom Lesen zum ersten Angebot kommst – mit einer Rechnung, die du sofort anwendest.</p></div>
+            <div class="s-part" data-part="CTA"><div class="p-label">Call to Action</div><p>Kostenlos und live, Donnerstag um 19 Uhr. Klick auf den Link, sichere dir deinen Platz und bring dein Exposé mit.</p></div>
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Skript kopieren</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Als .txt laden</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="tag tag-c">Weiter</span>
+    <h2>Schick sie auf die Landingpage.</h2>
+    <p class="sub">Jedes Skript endet mit dem Link zur Anmeldeseite aus diesem Paket.</p>
+    <a class="btn" href="index.html">Zurück zum Paket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">Mein Weg zur <em>1. Million</em></div>
+    <div class="fmeta">
+      <span>Exklusiv vorbereitet für Andres Martinez</span>
+      <span>Gebaut von <a href="https://link.robinpani.com/sas" target="_blank" rel="noopener noreferrer">Sales At Scale</a></span>
+    </div>
+    <p class="disc">Diese Skripte sind Entwürfe auf Basis öffentlicher Recherche. Alle Zahlen stammen aus Andres' eigenen Videos und Buchangaben und sollten vor dem Einsatz in bezahlter Werbung noch einmal bestätigt werden.</p>
+  </div>
+</footer>
+
+<div class="tally-toast" id="ads-toast" role="status" aria-live="polite"></div>
+
+<script>
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+
+  (function () {
+    var scripts = [].slice.call(document.querySelectorAll('.script'));
+    var toast = document.getElementById('ads-toast');
+    var toastTimer;
+
+    function flash(msg) {
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 2600);
+    }
+
+    // Assemble plain text from the script parts only (title + labelled parts).
+    function scriptText(article) {
+      var title = article.querySelector('.s-title').textContent.trim();
+      var out = [title, ''];
+      [].slice.call(article.querySelectorAll('.s-part')).forEach(function (part) {
+        out.push('[' + (part.getAttribute('data-part') || '').toUpperCase() + ']');
+        [].slice.call(part.querySelectorAll('p')).forEach(function (p) {
+          out.push(p.textContent.trim());
+        });
+        out.push('');
+      });
+      return out.join('\n').replace(/\n{3,}/g, '\n\n').trim() + '\n';
+    }
+
+    function setOpen(article, open) {
+      var body = article.querySelector('.s-body');
+      var btn = article.querySelector('.s-head');
+      article.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      body.style.maxHeight = open ? body.scrollHeight + 'px' : null;
+    }
+
+    scripts.forEach(function (article) {
+      article.querySelector('.s-head').addEventListener('click', function () {
+        setOpen(article, !article.classList.contains('open'));
+      });
+
+      article.querySelector('.copy-script').addEventListener('click', function () {
+        var text = scriptText(article);
+        function fallback() {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); flash('Skript kopiert'); }
+          catch (e) { flash('Kopieren fehlgeschlagen – Text bitte manuell markieren'); }
+          document.body.removeChild(ta);
+        }
+        // navigator.clipboard needs a secure context; fall back where it is absent
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(function () { flash('Skript kopiert'); }, fallback);
+        } else { fallback(); }
+      });
+
+      article.querySelector('.download-script').addEventListener('click', function () {
+        var blob = new Blob([scriptText(article)], { type: 'text/plain;charset=utf-8' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'mwz1m-' + (article.getAttribute('data-slug') || 'script') + '.txt';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+        flash('Heruntergeladen');
+      });
+    });
+
+    // An open panel's pixel height goes stale when the viewport reflows.
+    var t;
+    window.addEventListener('resize', function () {
+      clearTimeout(t);
+      t = setTimeout(function () {
+        var open = document.querySelector('.script.open');
+        if (open) { var b = open.querySelector('.s-body'); b.style.maxHeight = b.scrollHeight + 'px'; }
+      }, 120);
+    });
+  })();
+</script>
