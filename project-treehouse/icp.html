@@ -1,0 +1,325 @@
+<title>ICP-Recherche | Project Treehouse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- page-specific: ICP research ---------- */
+
+  .doc-hero {
+    padding: 76px 0 40px;
+    background: radial-gradient(ellipse 60% 80% at 20% 0%, var(--glow-soft), transparent 70%);
+  }
+  .doc-hero .inner { max-width: 760px; }
+  .doc-hero h1 { font-size: clamp(30px, 5vw, 46px); margin: 18px 0 18px; }
+  .doc-hero .lede { font-size: 17px; color: var(--ink-soft); max-width: 58ch; }
+  .backbar { padding-top: 26px; }
+  .backlink {
+    font-family: var(--label); font-size: 11px; font-weight: 600; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ink-faint); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .backlink:hover { color: var(--ink-soft); }
+  .backlink svg { width: 1em; height: 1em; transform: rotate(180deg); flex: none; }
+
+  /* short profile card — replaces the old full-bleed four-column strip so the
+     summary sits in the same narrow column, and reads in the same card
+     language as the .ritem and .evidence blocks below it */
+  .profile-sec { padding: 0 0 8px; }
+  .profile {
+    background: var(--surface-hi);
+    border: 1px solid var(--brand-line); border-left: 3px solid var(--brand);
+    border-radius: 6px 16px 16px 6px; padding: 8px 28px;
+    box-shadow: 0 0 44px -18px var(--glow);
+  }
+  .profile .prow {
+    display: grid; grid-template-columns: 168px 1fr; gap: 20px;
+    align-items: baseline; padding: 15px 0;
+    border-top: 1px solid var(--line-soft);
+  }
+  .profile .prow:first-child { border-top: 0; }
+  .profile .pk {
+    font-family: var(--label); font-size: 10.5px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+  .profile .pv { font-size: 15.5px; line-height: 1.5; color: var(--ink); }
+
+  /* research blocks */
+  .rblock { margin-bottom: 20px; }
+  .rblock > .rhead {
+    display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px;
+  }
+  .rblock .rnum {
+    font-family: var(--label); font-size: 10.5px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--brand-ink);
+  }
+  .rblock h2 { font-size: clamp(23px, 3.2vw, 30px); }
+  .rblock .rintro { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 22px; max-width: 62ch; }
+
+  .rlist { display: flex; flex-direction: column; gap: 14px; }
+  .ritem {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 16px; padding: 24px 26px;
+  }
+  .ritem h3 { font-size: 17.5px; margin-bottom: 9px; }
+  .ritem p { color: var(--ink-soft); font-size: 15px; line-height: 1.65; }
+
+  /* the thing that makes this not a generic persona doc */
+  .evidence {
+    margin-top: 16px; padding: 14px 18px;
+    background: var(--brand-soft); border-left: 3px solid var(--brand);
+    border-radius: 4px 10px 10px 4px;
+  }
+  .evidence .elabel {
+    font-family: var(--label); font-size: 9.5px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 7px;
+  }
+  .evidence q {
+    display: block; font-family: var(--display); font-size: 16px; font-weight: 500;
+    line-height: 1.55; color: var(--ink); quotes: none;
+  }
+  .evidence .src {
+    display: block; margin-top: 9px;
+    font-family: var(--label); font-size: 10.5px; color: var(--ink-faint);
+  }
+
+  /* vocabulary */
+  .vocab { display: flex; flex-wrap: wrap; gap: 10px; }
+  .vword {
+    font-family: var(--label); font-size: 12.5px; font-weight: 600; letter-spacing: .01em;
+    background: var(--brand); color: var(--on-brand);
+    padding: 9px 15px; border-radius: 999px;
+    box-shadow: 0 0 18px -6px var(--glow);
+  }
+  .vword.avoid {
+    background: transparent; color: var(--ink-faint);
+    border: 1px dashed var(--line); text-decoration: line-through;
+  }
+  .vocab-note { margin-top: 18px; color: var(--ink-soft); font-size: 14.5px; max-width: 62ch; }
+
+  @media (max-width: 640px) {
+    .doc-hero { padding: 52px 0 32px; }
+    .profile { padding: 6px 20px; }
+    .profile .prow { grid-template-columns: 1fr; gap: 5px; padding: 14px 0; }
+    .ritem { padding: 22px 20px; }
+  }
+</style>
+
+<div class="wrap backbar">
+  <a class="backlink" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Zurück zum Paket
+  </a>
+</div>
+
+<header class="doc-hero">
+  <div class="wrap">
+    <div class="inner">
+      <span class="tag">04 · ICP-Recherche</span>
+      <h1>An wen du wirklich verkaufst</h1>
+      <p class="lede">Zusammengestellt aus öffentlichen Quellen — deinen eigenen Seiten, Stimmen deiner Kundinnen, Interviews und Presse. Jede Aussage unten hat eine Quelle. Nutzbar für E-Mails, Reels und Verkaufsgespräche, nicht nur für diesen Funnel.</p>
+    </div>
+  </div>
+</header>
+
+<section class="profile-sec">
+  <div class="wrap narrow">
+    <div class="profile">
+      <div class="prow"><span class="pk">Wer sie ist</span><span class="pv">Berufstätige Frauen, 30–45, gutes Gehalt</span></div>
+      <div class="prow"><span class="pk">Hängt fest bei</span><span class="pv">Rentenlücke gesehen, Angst vor dem Fehlkauf</span></div>
+      <div class="prow"><span class="pk">Schon versucht</span><span class="pv">Podcasts, Bücher, Exposés – nie gekauft</span></div>
+      <div class="prow"><span class="pk">Will eigentlich</span><span class="pv">Die erste Wohnung, die sich rechnet</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap narrow">
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">01</span><h2>Ängste</h2></div>
+      <p class="rintro">Was sie insgeheim beschäftigt. Diese Einwände fallen selten laut im Gespräch — also muss die Copy sie beantworten, bevor sie gestellt werden.</p>
+      <div class="rlist">
+
+        <div class="ritem">
+          <h3>Der Fehlkauf, der erst nach dem Notar sichtbar wird</h3>
+          <p>Sie hat Geld, aber keine Möglichkeit zu prüfen, ob ein Objekt gut ist. Also schiebt sie die Entscheidung auf — lieber nicht kaufen als falsch kaufen. Sanierungsstau und laufende Kosten sind die konkreten Schreckgespenster.</p>
+          <div class="evidence">
+            <div class="elabel">Aus deinem eigenen Webinar</div>
+            <q>…bevor sie deine Kalkulation zerstören.</q>
+            <span class="src">Starterwebinar-Seite, Hebel 5 „Zustand und Risiken“</span>
+          </div>
+        </div>
+
+        <div class="ritem">
+          <h3>„Immobilien sind nichts für mich“</h3>
+          <p>Kein Erbe, kein Immobilien-Umfeld, keine Profi-Kontakte. Sie glaubt, dass diese Welt anderen gehört — und dass Banken ihr als Frau weniger zutrauen.</p>
+          <div class="evidence">
+            <div class="elabel">Aus Presse &amp; deinem Webinar</div>
+            <q>Banken müssen Frauen mehr zutrauen</q>
+            <span class="src">Sheconomy-Interview mit Indra (Titel)</span>
+          </div>
+        </div>
+
+        <div class="ritem">
+          <h3>Die Zahl auf dem Rentenbescheid</h3>
+          <p>Trotz gutem Gehalt reicht es später nicht. Das ist keine abstrakte Sorge, sondern ein Brief in der Schublade, der jedes Jahr wiederkommt.</p>
+          <div class="evidence">
+            <div class="elabel">Aus deiner Bio</div>
+            <q>Selbst mit meinem Top-Gehalt reichte es hinten und vorne nicht.</q>
+            <span class="src">Starterwebinar-Seite, „Hi, ich bin Indra“</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">02</span><h2>Wünsche</h2></div>
+      <p class="rintro">Was sie wirklich kaufen würde — so formuliert, wie sie es sagen würde. Bescheidener und konkreter, als man denkt.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Es endlich verstehen</h3>
+          <p>Nicht reich werden, sondern das Gefühl haben: Ich kann das beurteilen. Klarheit und Struktur sind das, was deine Kundinnen am häufigsten loben.</p>
+          <div class="evidence">
+            <div class="elabel">Kundinnenstimme</div>
+            <q>…man checkt das immer und hat bei ihr das Gefühl, man kann das verstehen.</q>
+            <span class="src">Sandra H., Konferenz-Dolmetscherin — Starterwebinar-Seite</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>Den ersten Schritt gehen</h3>
+          <p>Nicht 90 Wohnungen. Eine, die sich rechnet. Der erste Kauf ist das eigentliche Ziel — alles danach wird leichter.</p>
+          <div class="evidence">
+            <div class="elabel">Kundinnenstimme</div>
+            <q>…der erste wichtige Schritt ist gegangen.</q>
+            <span class="src">Louisa T., Marketing-Leitung — Starterwebinar-Seite</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>Selbst im Grundbuch stehen</h3>
+          <p>Eigenes Vermögen, unabhängig von Partner, Arbeitgeber oder Rentenkasse. Das ist die Identität, die Project Treehouse verkauft.</p>
+          <div class="evidence">
+            <div class="elabel">Aus deinem Instagram</div>
+            <q>Für mehr Frauen im Grundbuch!</q>
+            <span class="src">Instagram-Bio @project__treehouse</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">03</span><h2>Einwände</h2></div>
+      <p class="rintro">Warum sie nicht kauft — und wie man ehrlich darauf antwortet, statt auszuweichen.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>„Ist das nicht wieder nur Motivation?“</h3>
+          <p>Sie hat schon viel Content konsumiert. Die Antwort: im Webinar live ein echtes Exposé durchrechnen, statt über Mindset zu reden.</p>
+          <div class="evidence">
+            <div class="elabel">Aus deinem Webinar</div>
+            <q>…seit Jahren nur liest und hörst, aber nie ins Handeln kommst</q>
+            <span class="src">Starterwebinar-Seite, „nichts für dich, wenn…“</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>„Ich habe zu wenig Eigenkapital“</h3>
+          <p>Häufigste Ausrede, oft unbegründet. Antwort: Eigenkapitalrendite erklären — und dass gerade wenig Kapital einen sauberen Rechenweg verlangt.</p>
+        </div>
+        <div class="ritem">
+          <h3>„Jetzt ist der falsche Zeitpunkt“</h3>
+          <p>Zinsen, Preise, Nachrichten. Du beantwortest das bereits selbst auf deiner Website — der Funnel sollte es früh aufgreifen.</p>
+          <div class="evidence">
+            <div class="elabel">Aus deiner Website</div>
+            <q>der richtige zeitpunkt ist JETZT</q>
+            <span class="src">project-treehouse.de, Startseite</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">04</span><h2>Kaufauslöser</h2></div>
+      <p class="rintro">Der Moment, in dem das Problem nicht mehr auszuhalten ist. Ads, die den Auslöser benennen, schlagen Ads, die die Lösung benennen.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Der Rentenbescheid kommt</h3>
+          <p>Die jährliche Renteninformation macht die Lücke plötzlich konkret — genau wie in deiner eigenen Geschichte.</p>
+        </div>
+        <div class="ritem">
+          <h3>Elternzeit oder Teilzeit</h3>
+          <p>Weniger Einzahlung, mehr Nachdenken über die Zukunft. Du hast Project Treehouse selbst in der Elternzeit gegründet.</p>
+        </div>
+        <div class="ritem">
+          <h3>Eine Freundin kauft ihre erste Wohnung</h3>
+          <p>Plötzlich ist es nicht mehr „nur was für Reiche“, sondern etwas, das jemand wie sie gemacht hat.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">05</span><h2>Ihre Sprache</h2></div>
+      <p class="rintro">Die Wörter, die dieser Markt für sein eigenes Problem benutzt. Copy in diesen Wörtern klingt nach Insiderin.</p>
+      <div class="vocab">
+        <span class="vword">Exposé</span>
+        <span class="vword">Rentenlücke</span>
+        <span class="vword">rechnet sich</span>
+        <span class="vword">Eigenkapitalrendite</span>
+        <span class="vword">Hausgeld</span>
+        <span class="vword">Sanierungsstau</span>
+        <span class="vword">Grundbuch</span>
+        <span class="vword">Schritt für Schritt</span>
+        <span class="vword avoid">passives Einkommen</span>
+        <span class="vword avoid">finanzielle Freiheit in 12 Monaten</span>
+      </div>
+      <p class="vocab-note">Durchgestrichen: Begriffe, die nach Guru-Marketing klingen. Deine Marke steht für „mit System, nicht mit Glück“ — diese Wörter würden dagegen arbeiten.</p>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">06</span><h2>Wo sie sich aufhält</h2></div>
+      <p class="rintro">Wo diese Zielgruppe schon ist und was sie liest — für Targeting und für Referenzen, die sitzen.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Instagram</h3>
+          <p>Deine 83k Follower:innen sind der Kern. Reels mit einer konkreten Rechnung funktionieren hier besser als Motivation.</p>
+        </div>
+        <div class="ritem">
+          <h3>Podcasts für Frauen &amp; Mütter im Business</h3>
+          <p>Du warst u. a. bei „ElternzeitChancen“ und „The Mompany“ zu Gast — genau dort hören deine Kundinnen zu.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="tag tag-c">Weiter</span>
+    <h2>Diese Recherche hat den Funnel geschrieben.</h2>
+    <p class="sub">Jede Headline, jeder Einwand und jede FAQ auf den Seiten kommt von oben — deshalb liest es sich, als hätte es jemand aus deinem Markt geschrieben.</p>
+    <a class="btn" href="index.html">Zurück zum Paket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">Project <em>Treehouse</em></div>
+    <div class="fmeta">
+      <span>Exklusiv erstellt für Indra Schormann</span>
+      <span>Gebaut von <a href="https://link.robinpani.com/sas" target="_blank" rel="noopener noreferrer">Sales At Scale</a></span>
+    </div>
+    <p class="disc">Recherche aus öffentlich zugänglichen Quellen. Zitate stammen von Project Treehouse' eigenen Seiten, Profilen und Presseartikeln und sind ihrer Quelle zugeordnet.</p>
+  </div>
+</footer>
+
+
+<script>
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+</script>
