@@ -1,0 +1,610 @@
+﻿<title>Einmaliges Angebot — VIP-Ticket | Cashflow Quartier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- page-specific: offer ---------- */
+
+  /* urgency bar — clay, the palette's existing accent for urgency */
+  .alertbar {
+    position: sticky; top: 0; z-index: 40;
+    background: var(--accent);
+    color: #FFF6F2;
+  }
+  .alertbar .wrap {
+    display: flex; align-items: center; justify-content: center;
+    gap: 10px; min-height: 46px;
+    font-family: var(--label); font-size: 11px; letter-spacing: .1em;
+    text-transform: uppercase; line-height: 1; text-align: center;
+  }
+  .alertbar .pip {
+    width: 7px; height: 7px; border-radius: 50%; flex: none;
+    background: #FFF6F2;
+    animation: alertBlink 1.6s ease-in-out infinite;
+  }
+  @keyframes alertBlink { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
+
+  /* progress — "step 2 of 2", mirrors both reference samples */
+  .progress { padding: 34px 0 0; }
+  .progress .inner { max-width: 460px; margin: 0 auto; }
+  .progress .meta {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--label); font-size: 11px; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px;
+  }
+  .progress .track {
+    height: 8px; border-radius: 999px; overflow: hidden;
+    background: var(--line); border: 1px solid var(--line-soft);
+  }
+  /* fills from empty on load, then a light sweeps across it and the glow breathes —
+     motion that says "nearly there" without pulling focus from the headline */
+  .progress .fill {
+    position: relative; overflow: hidden;
+    height: 100%; width: 90%; border-radius: 999px;
+    background: linear-gradient(90deg, var(--brand-2), var(--brand));
+    box-shadow: 0 0 14px var(--glow);
+    animation: progFill 1.4s cubic-bezier(.2,.8,.2,1) .25s both,
+               progGlow 2.4s ease-in-out 1.7s infinite;
+  }
+  .progress .fill::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.55) 50%, transparent 100%);
+    transform: translateX(-100%);
+    animation: progShine 2.4s ease-in-out 1.7s infinite;
+  }
+  @keyframes progFill  { from { width: 0; } to { width: 90%; } }
+  @keyframes progShine { 0% { transform: translateX(-100%); } 60%, 100% { transform: translateX(100%); } }
+  @keyframes progGlow  { 0%, 100% { box-shadow: 0 0 14px var(--glow); } 50% { box-shadow: 0 0 26px var(--glow), 0 0 4px var(--brand); } }
+
+  .offer-hero {
+    padding: 40px 0 64px; text-align: center;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, var(--glow-soft), transparent 70%);
+  }
+  .offer-hero .inner { max-width: 800px; margin: 0 auto; }
+  .offer-hero h1 { margin: 22px 0 22px; }
+  .offer-hero .lede {
+    font-size: 18px; color: var(--ink-soft);
+    max-width: 54ch; margin: 0 auto;
+  }
+
+  /* CTA cluster: primary button + quiet decline beneath, repeated down the page */
+  .cta-block { text-align: center; margin: 40px auto 0; }
+  .cta-block .price-note {
+    margin-top: 14px;
+    font-family: var(--label); font-size: 11.5px; font-weight: 500; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+  .decline {
+    display: inline-block; margin-top: 18px;
+    font-family: var(--sans); font-size: 14px;
+    color: var(--ink-faint); text-decoration: underline;
+    text-underline-offset: 3px; text-decoration-thickness: 1px;
+  }
+  .decline:hover { color: var(--ink-soft); }
+  .decline:focus-visible { outline: 2px solid var(--brand-ink); outline-offset: 3px; }
+
+  /* bonus rows — alternating image/text, per reference sample 2 */
+  .bonus { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .bonus + .bonus { margin-top: 56px; }
+  .bonus:nth-child(even) .bonus-media { order: 2; }
+  .bonus .kicker {
+    font-family: var(--label); font-size: 11px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--brand-ink); margin-bottom: 12px;
+  }
+  .bonus h3 { font-size: 24px; margin-bottom: 14px; }
+  .bonus p { color: var(--ink-soft); font-size: 15.5px; line-height: 1.65; }
+  .bonus .worth {
+    display: inline-block; margin-top: 16px;
+    font-family: var(--label); font-size: 11px; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--brand-ink);
+    background: var(--brand-soft); border: 1px solid var(--brand-line);
+    border-radius: 999px; padding: 7px 13px;
+  }
+  .bonus-media {
+    background: var(--surface-hi); color: var(--ink);
+    border-radius: 18px; padding: 26px; min-height: 210px;
+    display: flex; flex-direction: column; justify-content: center;
+    box-shadow: var(--ring);
+  }
+  .bonus-media .m-label {
+    font-family: var(--label); font-size: 10.5px; font-weight: 600; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 14px;
+  }
+  .bonus-media .m-row {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 14px; padding: 11px 0;
+    border-bottom: 1px solid var(--line);
+    font-family: var(--label); font-size: 12.5px; font-weight: 500;
+  }
+  .bonus-media .m-row:last-child { border-bottom: 0; }
+  .bonus-media .m-row .v { color: var(--brand-ink); font-weight: 700; }
+  .bonus-media .m-big {
+    font-family: var(--display); font-size: 44px; font-weight: 800; line-height: 1;
+    letter-spacing: -0.03em; margin-bottom: 6px; color: var(--brand-ink);
+    text-shadow: 0 0 30px var(--glow-soft);
+  }
+  .bonus-media .m-sub {
+    font-family: var(--label); font-size: 10.5px; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+
+  /* ticket comparison — the upgrade is the lit card */
+  .tickets { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+  .ticket { border-radius: 18px; padding: 32px 30px; }
+  .ticket-free { background: var(--surface); border: 1px solid var(--line); }
+  .ticket-vip {
+    background: var(--surface-hi); color: var(--ink);
+    box-shadow: var(--ring);
+    position: relative;
+  }
+  .ticket .t-name {
+    font-family: var(--label); font-size: 11px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; margin-bottom: 12px;
+  }
+  .ticket-free .t-name { color: var(--ink-faint); }
+  .ticket-vip .t-name { color: var(--brand-ink); }
+  .ticket .t-price {
+    font-family: var(--display); font-size: 48px; font-weight: 800; line-height: 1;
+    letter-spacing: -0.04em; margin-bottom: 6px;
+  }
+  .ticket-vip .t-price { color: var(--ink); text-shadow: 0 0 30px var(--glow-soft); }
+  .ticket .t-cap {
+    font-family: var(--label); font-size: 10.5px; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; margin-bottom: 24px; color: var(--ink-faint);
+  }
+  .ticket ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+  .ticket li {
+    display: grid; grid-template-columns: 22px 1fr; gap: 13px;
+    align-items: start; font-size: 14.5px; line-height: 1.55;
+  }
+  .ticket li .ic {
+    width: 22px; height: 22px; margin-top: 0; flex: none; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ticket li .ic svg { width: 14px; height: 14px; }
+  .ticket-free li { color: var(--ink-soft); }
+  .ticket-free li .ic { color: var(--ink-faint); background: var(--line-soft); }
+  .ticket-vip li { color: var(--ink); }
+  .ticket-vip li .ic { color: var(--on-brand); background: var(--brand); box-shadow: 0 0 12px -2px var(--glow); }
+  .ticket .t-foot {
+    margin-top: 26px; padding-top: 20px;
+    font-family: var(--label); font-size: 10.5px; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; border-top: 1px solid var(--line); color: var(--ink-faint);
+  }
+  .ticket-vip .flag {
+    position: absolute; top: -12px; right: 24px;
+    background: var(--accent); color: #FFF6F2;
+    font-family: var(--label); font-size: 10.5px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; padding: 7px 12px; line-height: 1;
+    border-radius: 999px;
+    box-shadow: 0 0 18px -4px var(--accent);
+  }
+
+  /* guarantee — a glowing seal */
+  .guarantee { text-align: center; max-width: 640px; margin: 0 auto; }
+  .seal {
+    width: 104px; height: 104px; margin: 0 auto 28px;
+    border-radius: 50%; border: 2px solid var(--brand);
+    background: radial-gradient(circle, var(--brand-soft), transparent 70%);
+    box-shadow: 0 0 0 6px var(--brand-soft), 0 0 44px -6px var(--glow);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: var(--brand-ink);
+  }
+  .seal .n { font-family: var(--display); font-size: 34px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+  .seal .d {
+    font-family: var(--label); font-size: 9px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; margin-top: 4px;
+  }
+  .guarantee p { color: var(--ink-soft); font-size: 16px; line-height: 1.7; }
+
+  @media (max-width: 900px) {
+    .bonus { grid-template-columns: 1fr; gap: 26px; }
+    .bonus:nth-child(even) .bonus-media { order: 0; }
+    .bonus + .bonus { margin-top: 44px; }
+    .tickets { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .alertbar .wrap { font-size: 10px; letter-spacing: .08em; min-height: 44px; gap: 8px; }
+    .progress { padding-top: 26px; }
+    .offer-hero { padding: 30px 0 48px; }
+    .offer-hero .lede { font-size: 17px; }
+    .cta-block .btn, .guarantee .btn { display: flex; width: 100%; justify-content: center; }
+    .bonus h3 { font-size: 22px; }
+    .bonus-media { padding: 22px; min-height: 0; }
+    .bonus-media .m-big { font-size: 34px; }
+    .ticket { padding: 28px 24px; }
+    .ticket .t-price { font-size: 38px; }
+  }
+  @media (max-width: 400px) {
+    .alertbar .wrap { font-size: 9px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .alertbar .pip { animation: none; }
+    .progress .fill, .progress .fill::after { animation: none; }
+  }
+</style>
+
+<div class="alertbar">
+  <div class="wrap">
+    <span class="pip" aria-hidden="true"></span>
+    <span>Moment – dein Ticket ist noch nicht ganz fertig</span>
+  </div>
+</div>
+
+<div class="progress">
+  <div class="wrap">
+    <div class="inner">
+      <div class="meta"><span>Schritt 2 von 2</span><span>Fast geschafft</span></div>
+      <div class="track"><div class="fill"></div></div>
+    </div>
+  </div>
+</div>
+
+<header class="offer-hero">
+  <div class="wrap">
+    <div class="inner">
+      <span class="tag tag-c">Einmaliges Angebot · nur auf dieser Seite</span>
+      <h1>Dein Ticket ist gesichert. Jetzt <em>mach mehr daraus.</em></h1>
+      <p class="lede">Du bist für Donnerstag angemeldet. Bevor du gehst: Es gibt eine Version des Webinars, in der du Jan nicht nur beim Rechnen zuschaust – sondern in der deine eigenen Zahlen durchgerechnet werden.</p>
+    </div>
+  </div>
+</header>
+
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="head head-c">
+      <span class="tag">Was das Upgrade dazu bringt</span>
+      <h2>Drei Dinge, die im kostenlosen Ticket fehlen.</h2>
+      <p>Im Webinar lernst du die Rechnung. Mit dem VIP-Ticket wird sie auf dein Gehalt und dein Objekt angewendet.</p>
+    </div>
+
+    <div class="bonus">
+      <div class="bonus-media">
+        <div class="m-label">VIP-Runde – direkt im Anschluss</div>
+        <div class="m-row"><span>Frage 01</span><span class="v">3.100 € netto · reicht das?</span></div>
+        <div class="m-row"><span>Frage 02</span><span class="v">Exposé offen · rechnet es sich?</span></div>
+        <div class="m-row"><span>Frage 03</span><span class="v">Autokredit · stört der die Bank?</span></div>
+        <div class="m-row"><span>Plätze</span><span class="v">auf 40 begrenzt</span></div>
+      </div>
+      <div>
+        <div class="kicker">Bonus 01</div>
+        <h3>Die VIP-Runde direkt nach dem Webinar</h3>
+        <p>Das Hauptwebinar endet, die VIP-Runde beginnt. Höchstens 40 Leute, und Jan geht eure Fragen der Reihe nach durch – deine Bonität, dein Wunschobjekt, dein bestehender Kredit. Dieser Teil landet nicht in der Aufzeichnung für alle.</p>
+        <span class="worth">Nicht einzeln buchbar</span>
+      </div>
+    </div>
+
+    <div class="bonus">
+      <div class="bonus-media">
+        <div class="m-big">1 Tabelle</div>
+        <div class="m-sub">Vom Exposé zum Eigenbeitrag</div>
+        <div class="m-row" style="margin-top:18px"><span>Kaufpreis &amp; Nebenkosten</span><span class="v">automatisch</span></div>
+        <div class="m-row"><span>Zins &amp; Tilgung</span><span class="v">pro Monat</span></div>
+        <div class="m-row"><span>Miete &amp; Rücklagen</span><span class="v">pro Monat</span></div>
+        <div class="m-row"><span>Steuereffekt</span><span class="v">geschätzt</span></div>
+      </div>
+      <div>
+        <div class="kicker">Bonus 02</div>
+        <h3>Der Cashflow-Rechner zum Mitnehmen</h3>
+        <p>Die Basisversion der Tabelle, mit der Jan im Webinar rechnet – für Excel und Google Sheets. Zahlen aus dem Exposé eintragen, und du siehst sofort Eigenbeitrag, Tilgung und Steuereffekt pro Monat. So prüfst du das nächste Objekt selbst, bevor du jemanden fragst.</p>
+        <span class="worth">Wert 67 €</span>
+      </div>
+    </div>
+
+    <div class="bonus">
+      <div class="bonus-media">
+        <div class="m-label">Objekt-Check – schriftlich, in 72 Stunden</div>
+        <div class="m-row"><span>Du schickst</span><span class="v">Exposé + Nettogehalt</span></div>
+        <div class="m-row"><span>Du bekommst</span><span class="v">Cashflow-Rechnung als PDF</span></div>
+        <div class="m-row"><span>Dazu</span><span class="v">eine ehrliche Einschätzung</span></div>
+        <div class="m-row"><span>Dauer</span><span class="v">72 Stunden</span></div>
+      </div>
+      <div>
+        <div class="kicker">Bonus 03</div>
+        <h3>Dein Objekt, schriftlich durchgerechnet</h3>
+        <p>Schick uns ein Exposé, das dich interessiert, und dein ungefähres Nettogehalt. Du bekommst eine vollständige Cashflow-Rechnung zurück – und eine ehrliche Einschätzung, ob das Objekt zu dir passt. Auch wenn die Antwort „Finger weg“ lautet.</p>
+        <span class="worth">Wert 150 €</span>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <button type="button" class="btn checkout-trigger">Ja – ich will das VIP-Ticket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="price-note">47 € einmalig · nur auf dieser Seite</p>
+      <a class="decline" href="thanks.html">Nein danke – ich bleibe beim kostenlosen Ticket</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="head head-c">
+      <span class="tag">Wähl dein Ticket</span>
+      <h2>Was du hast – und was du dazunehmen kannst.</h2>
+    </div>
+
+    <div class="tickets">
+      <div class="ticket ticket-free">
+        <div class="t-name">Kostenloses Ticket – schon deins</div>
+        <div class="t-price">0 €</div>
+        <div class="t-cap">Für Donnerstag bestätigt</div>
+        <ul>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Das Live-Webinar</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Exposé-Checkliste</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Offenes Q&amp;A im Hauptraum</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Aufzeichnung für 48 Stunden</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <span>Keine VIP-Runde</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <span>Kein Cashflow-Rechner</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <span>Kein schriftlicher Objekt-Check</span>
+          </li>
+        </ul>
+        <div class="t-foot">Nichts zu tun – du bist schon dabei</div>
+      </div>
+
+      <div class="ticket ticket-vip">
+        <span class="flag">Bestes Angebot</span>
+        <div class="t-name">VIP-Ticket</div>
+        <div class="t-price">47 €</div>
+        <div class="t-cap">Einmalzahlung · nur auf dieser Seite</div>
+        <ul>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span><strong>Alles aus dem kostenlosen Ticket</strong></span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>VIP-Runde direkt nach dem Webinar</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Cashflow-Rechner (Basisversion)</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Dein Objekt, schriftlich durchgerechnet</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Deine Fragen zuerst im Q&amp;A</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Aufzeichnung 30 Tage statt 48 Stunden</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>14 Tage Geld-zurück-Garantie</span>
+          </li>
+        </ul>
+        <div class="t-foot">Auf 40 Plätze begrenzt</div>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <button type="button" class="btn checkout-trigger">Ja – ich will das VIP-Ticket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="price-note">47 € einmalig · nur auf dieser Seite</p>
+      <a class="decline" href="thanks.html">Nein danke – ich bleibe beim kostenlosen Ticket</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="wrap narrow">
+    <div class="head head-c">
+      <span class="tag">Die Rechnung</span>
+      <h2>Lass uns das mal kurz durchrechnen.</h2>
+    </div>
+
+    <div class="ledger">
+      <div class="lrow">
+        <div>
+          <div class="nm">VIP-Runde</div>
+          <div class="ds">Direkt nach dem Webinar, höchstens 40 Leute, deine Fragen live</div>
+        </div>
+        <div class="vl">120 €</div>
+      </div>
+      <div class="lrow">
+        <div>
+          <div class="nm">Cashflow-Rechner</div>
+          <div class="ds">Basisversion für Excel und Google Sheets</div>
+        </div>
+        <div class="vl">67 €</div>
+      </div>
+      <div class="lrow">
+        <div>
+          <div class="nm">Schriftlicher Objekt-Check</div>
+          <div class="ds">Dein Exposé, durchgerechnet und ehrlich eingeschätzt in 72 Stunden</div>
+        </div>
+        <div class="vl">150 €</div>
+      </div>
+      <div class="lrow">
+        <div>
+          <div class="nm">Aufzeichnung für 30 Tage</div>
+          <div class="ds">Statt 48 Stunden – zum Nachrechnen in Ruhe</div>
+        </div>
+        <div class="vl">29 €</div>
+      </div>
+
+      <div class="ltotal">
+        <span class="lbl">Gesamtwert</span>
+        <span class="amt">
+          <span class="old">366 €</span>
+          <span class="new">47 €</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <button type="button" class="btn checkout-trigger">Ja – ich will das VIP-Ticket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="price-note">47 € einmalig · nur auf dieser Seite</p>
+      <a class="decline" href="thanks.html">Nein danke – ich bleibe beim kostenlosen Ticket</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="guarantee">
+      <div class="seal" aria-hidden="true">
+        <span class="n">14</span>
+        <span class="d">Tage</span>
+      </div>
+      <span class="tag">Garantie ohne Diskussion</span>
+      <h2 style="margin:14px 0 18px">War es die 47 € nicht wert, bekommst du sie zurück.</h2>
+      <p>Komm in die VIP-Runde, nutz den Rechner, schick dein Exposé ein. Wenn du 14 Tage nach dem Webinar findest, dass es das nicht wert war, antworte einfach auf eine unserer E-Mails – und du bekommst die vollen 47 € zurück. Den Rechner darfst du behalten. Kein Formular, keine Begründung, keine Rückfragen.</p>
+      <div class="cta-block">
+        <button type="button" class="btn checkout-trigger">Ja – ich will das VIP-Ticket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <p class="price-note">47 € einmalig · nur auf dieser Seite</p>
+        <a class="decline" href="thanks.html">Nein danke – ich bleibe beim kostenlosen Ticket</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-handoff">
+  <div class="wrap narrow">
+    <div class="head head-c">
+      <span class="tag">Bevor du entscheidest</span>
+      <h2>Berechtigte Fragen</h2>
+    </div>
+
+    <div class="faq" id="faq">
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Ich habe mich gerade kostenlos angemeldet. Warum jetzt etwas Kostenpflichtiges?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Das Webinar ist wirklich kostenlos und für sich komplett – du bekommst die ganze Rechnung, mit oder ohne Upgrade. Das VIP-Ticket gibt es, weil nach jedem Webinar dieselbe Frage kommt: „Und was heißt das für <em>mein</em> Gehalt, <em>mein</em> Objekt?“ Das braucht Zeit und Handarbeit – und die lässt sich nicht unbegrenzt verschenken.</p></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Kann ich später noch upgraden?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Nicht für 47 €. Die VIP-Runde ist auf 40 Plätze begrenzt, weil Jan dort einzelne Fragen durchgeht, und nur auf dieser Seite gibt es sie zu diesem Preis.</p></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Was, wenn ich bei der VIP-Runde nicht live dabei sein kann?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Du bekommst trotzdem die Aufzeichnung für 30 Tage, den Cashflow-Rechner und deinen schriftlichen Objekt-Check – der läuft ohne Termin, du schickst dein Exposé einfach, wann es dir passt. Nur die VIP-Fragerunde braucht dich live.</p></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Ist das ein Abo?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Nein. Einmal 47 €, nichts Wiederkehrendes, keine gespeicherte Karte für spätere Abbuchungen.</p></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Was passiert, wenn ich Nein sage?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Nichts Schlimmes. Dein kostenloses Ticket ist bestätigt und bleibt es – klick auf „Nein danke“ und du landest direkt bei deinen Anmeldedetails.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="tag tag-c">Letzte Chance auf dieser Seite</span>
+    <h2>40 Plätze. Einmal zahlen. Dann ist es weg.</h2>
+    <p class="sub">Dein kostenloses Ticket ist so oder so sicher. Es geht nur darum, ob du Donnerstag mit einer Idee rausgehst – oder mit deiner eigenen Rechnung.</p>
+    <div class="cta-block" style="margin-top:0">
+      <button type="button" class="btn checkout-trigger">Ja – ich will das VIP-Ticket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="price-note">47 € einmalig · 14 Tage Geld-zurück-Garantie</p>
+      <a class="decline" href="thanks.html">Nein danke – ich bleibe beim kostenlosen Ticket</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">Cashflow <em>Quartier</em></div>
+    <div class="fmeta">
+      <span>© 2026 — Beispielseite</span>
+      <span>Datenschutz · Impressum · Kontakt</span>
+    </div>
+    <p class="disc">Dies ist eine Demo-Seite, erstellt, um Design und Copywriting für einen Webinar-Funnel zu zeigen. Angebot, Preise, Werte und Platzzahlen sind Platzhalter und keine Aussagen über reale Produkte von Cashflow Quartier. Es werden keine Renditen oder Ergebnisse versprochen.</p>
+  </div>
+</footer>
+
+<div class="tally-toast" id="offer-toast" role="status" aria-live="polite"></div>
+
+<script>
+  /* ════════════════════════════════════════════════════════════════════
+     CHECKOUT URL — replace this one value to connect payment.
+
+     Paste the full URL your "Yes" buttons should go to, e.g. a Stripe
+     Payment Link:  https://buy.stripe.com/xxxxxxxx
+
+     Until this is set, clicking shows a toast instead of dead-ending.
+     ════════════════════════════════════════════════════════════════════ */
+  const CHECKOUT_URL = "REPLACE_ME";
+
+  (function () {
+    var triggers = document.querySelectorAll('.checkout-trigger');
+    var toast = document.getElementById('offer-toast');
+    var configured = CHECKOUT_URL && !/^REPLACE_ME$/i.test(CHECKOUT_URL);
+    var timer;
+
+    triggers.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (configured) { window.location.href = CHECKOUT_URL; return; }
+        if (!toast) return;
+        toast.textContent = "Hier wird bezahlt. Vorerst: „Nein danke“ :)";
+        toast.classList.add('show');
+        clearTimeout(timer);
+        timer = setTimeout(function () { toast.classList.remove('show'); }, 3200);
+      });
+    });
+  })();
+
+  // Wrapper supplies <head>; ensure phones lay out at device width.
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+
+  // FAQ accordion — same behaviour as the landing page.
+  (function () {
+    var items = document.querySelectorAll('.fitem');
+    items.forEach(function (item) {
+      var btn = item.querySelector('.fq'), panel = item.querySelector('.fa');
+      btn.addEventListener('click', function () {
+        var wasOpen = item.classList.contains('open');
+        items.forEach(function (o) {
+          o.classList.remove('open');
+          o.querySelector('.fq').setAttribute('aria-expanded', 'false');
+          o.querySelector('.fa').style.maxHeight = null;
+        });
+        if (!wasOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+        }
+      });
+    });
+
+    var t;
+    window.addEventListener('resize', function () {
+      clearTimeout(t);
+      t = setTimeout(function () {
+        var open = document.querySelector('.fitem.open .fa');
+        if (open) open.style.maxHeight = open.scrollHeight + 'px';
+      }, 120);
+    });
+  })();
+</script>

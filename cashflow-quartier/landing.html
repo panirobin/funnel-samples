@@ -1,0 +1,884 @@
+﻿<title>Cashflow Quartier — Kostenloses Live-Webinar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- page-specific: schedule + what/when/why ---------- */
+
+  .schedule { display: flex; flex-direction: column; gap: 16px; }
+  .sblock {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 16px; padding: 30px 32px;
+    transition: border-color .2s ease, box-shadow .2s ease;
+  }
+  .sblock:hover { border-color: var(--brand-line); box-shadow: 0 0 40px -18px var(--glow); }
+  .sblock-head {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 16px; padding-bottom: 16px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .sday {
+    font-family: var(--label); font-size: 11px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; line-height: 1;
+    background: var(--brand); color: var(--on-brand);
+    padding: 8px 14px; border-radius: 999px;
+    box-shadow: 0 0 18px -4px var(--glow);
+  }
+  .stime {
+    font-family: var(--label); font-size: 11px; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+  .sblock h3 { font-size: 21px; margin-bottom: 18px; }
+  .sblock ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+  .sblock li {
+    display: grid; grid-template-columns: 8px 1fr; gap: 15px; align-items: start;
+    font-size: 15.5px; line-height: 1.65; color: var(--ink-soft);
+  }
+  .sblock li::before {
+    content: ""; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--brand-ink); box-shadow: 0 0 8px var(--glow); margin-top: 9px;
+  }
+
+  .cta-mid { text-align: center; padding-top: 44px; }
+  .cta-mid .microcopy { margin-top: 14px; }
+
+  /* What / When / Why — the middle card is lit, like the reference's highlighted tile */
+  .www { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .wcard {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 16px; padding: 32px 30px;
+  }
+  .wcard:nth-child(2) { background: var(--surface-hi); border-color: transparent; box-shadow: var(--ring); }
+  .wcard .wk {
+    font-family: var(--display); font-size: 30px; font-weight: 800; line-height: 1;
+    letter-spacing: -0.03em; color: var(--brand-ink); margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .wcard p { color: var(--ink-soft); font-size: 15px; line-height: 1.7; }
+  .wcard .wlist {
+    list-style: none; margin: 16px 0 0; padding: 16px 0 0;
+    border-top: 1px solid var(--line-soft);
+    display: flex; flex-direction: column; gap: 9px;
+    font-size: 14.5px; color: var(--ink);
+  }
+
+  @media (max-width: 900px) { .www { grid-template-columns: 1fr; } }
+  @media (max-width: 640px) {
+    .sblock { padding: 26px 22px; }
+    .sblock h3 { font-size: 20px; }
+    .sblock-head { flex-wrap: wrap; gap: 10px; }
+    .wcard { padding: 28px 24px; }
+    .cta-mid { padding-top: 34px; }
+  }
+  /* ---------- proof grid: client photos above the quotes ---------- */
+  .proof-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+    margin-bottom: 44px;
+  }
+  .ptile {
+    position: relative; margin: 0; overflow: hidden;
+    aspect-ratio: 4 / 5; border-radius: 16px;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 30%, var(--brand-soft), transparent 70%),
+      var(--surface);
+    border: 1px solid var(--brand-line);
+    box-shadow: 0 0 30px -16px var(--glow);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .ptile:hover { transform: translateY(-3px); box-shadow: 0 0 40px -10px var(--glow); }
+  /* silhouette placeholder — covered by the photo once assets/proof-N.jpg exists */
+  .ptile-ph {
+    position: absolute; left: 50%; bottom: 0; transform: translateX(-50%);
+    width: 72%; height: auto; fill: var(--ink-faint); opacity: .28;
+  }
+  .ptile img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  /* caption sits on a dark fade so it reads over any photo, in either theme */
+  .ptile figcaption {
+    position: absolute; left: 0; right: 0; bottom: 0; z-index: 1;
+    padding: 34px 14px 13px;
+    background: linear-gradient(180deg, transparent, rgba(3,5,10,.88) 60%);
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .ptile .pn { font-size: 14px; font-weight: 700; color: #FFFFFF; line-height: 1.25; }
+  .ptile .pr {
+    font-family: var(--label); font-size: 10.5px; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; color: color-mix(in srgb, var(--brand) 45%, white); line-height: 1.3;
+  }
+  @media (max-width: 900px) { .proof-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) {
+    .proof-grid { gap: 12px; margin-bottom: 32px; }
+    .ptile { border-radius: 14px; }
+    .ptile figcaption { padding: 28px 11px 11px; }
+    .ptile .pn { font-size: 13px; }
+    .ptile .pr { font-size: 9.5px; }
+  }
+
+  /* ---------- registration modal + Netlify form ---------- */
+  .modal[hidden] { display: none; }
+  .modal { position: fixed; inset: 0; z-index: 90; display: flex; align-items: center; justify-content: center; padding: 20px; }
+  .modal-backdrop { position: absolute; inset: 0; background: rgba(2,4,10,.72); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+  .modal-card {
+    position: relative; width: 100%; max-width: 440px;
+    background: var(--surface-hi);
+    border-radius: 20px; padding: 34px 34px 30px;
+    box-shadow: var(--ring), 0 30px 80px -20px rgba(0,0,0,.7);
+    max-height: calc(100vh - 40px); overflow-y: auto;
+  }
+  .modal-x {
+    position: absolute; top: 12px; right: 12px; width: 34px; height: 34px;
+    border: 0; background: transparent; color: var(--ink-faint);
+    font-size: 24px; line-height: 1; cursor: pointer; border-radius: 6px; appearance: none;
+  }
+  .modal-x:hover { background: var(--paper-2); color: var(--ink); }
+  .modal-x:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; }
+  .modal-head { margin-bottom: 24px; }
+  .modal-head h2 { font-size: 27px; margin: 12px 0 8px; }
+  .modal-sub { font-size: 14.5px; color: var(--ink-soft); }
+
+  .f-row { display: block; margin-bottom: 18px; }
+  .f-label {
+    display: block; font-family: var(--label); font-size: 10.5px;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--ink-faint); margin-bottom: 8px;
+  }
+  .lead-form input[type="text"], .lead-form input[type="email"] {
+    width: 100%; box-sizing: border-box;
+    font-family: var(--sans); font-size: 15.5px; color: var(--ink);
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: 12px; padding: 15px 16px; line-height: 1.2;
+    appearance: none; -webkit-appearance: none;
+    transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  .lead-form input::placeholder { color: var(--ink-faint); }
+  .lead-form input:focus-visible { outline: none; border-color: var(--brand); box-shadow: 0 0 0 4px var(--brand-soft); }
+  /* honeypot: present in the DOM for Netlify, never visible or focusable */
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  .f-submit { width: 100%; justify-content: center; margin-top: 4px; }
+  .f-submit[disabled] { opacity: .6; cursor: default; transform: none; }
+  .f-note { margin-top: 14px; font-size: 12.5px; color: var(--ink-faint); text-align: center; }
+  .f-error { margin-top: 14px; font-size: 13.5px; color: var(--accent-ink); text-align: center; }
+
+  @media (max-width: 640px) {
+    .modal { padding: 14px; align-items: flex-start; padding-top: 40px; }
+    .modal-card { padding: 28px 22px 24px; }
+    .modal-head h2 { font-size: 24px; }
+  }
+
+  /* host portrait photo — sits behind the opaque name plate. For a full-length
+     shot, zoom toward the face: object-position + transform-origin on the face,
+     transform: scale(1.5). */
+  .portrait img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+
+  /* TEMPORARY: lets the prospect reach the offer page without entering data.
+     Remove this button (and #skip-reg) before the funnel goes live. */
+  .f-skip {
+    display: block; width: 100%; margin-top: 12px;
+    background: none; border: 0; cursor: pointer; appearance: none;
+    font-family: var(--sans); font-size: 13px; color: var(--ink-faint);
+    text-decoration: underline; text-underline-offset: 3px;
+  }
+  .f-skip:hover { color: var(--ink-soft); }
+
+  /* Jan's portrait is a standing half-length shot: zoom toward the face */
+  .portrait img { object-position: 50% 0%; transform: scale(1.45); transform-origin: 56% 12%; }
+  /* the box turns 16:10 here: less zoom, face above the name plate */
+  @media (max-width: 900px) { .portrait img { transform: scale(1.1); transform-origin: 56% 0%; object-position: 50% 8%; } }
+
+  /* "Kostenlos" is wider than "Free": keep the ledger total inside a 360px phone */
+  @media (max-width: 380px) { .ltotal .new { font-size: 30px; } }
+  .f-skip:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; border-radius: 4px; }
+</style>
+
+<div class="topbar">
+  <div class="wrap">
+    <span class="cd-label">Anmeldung schließt in</span>
+    <div class="cd" id="cd" aria-label="Verbleibende Zeit bis zum Anmeldeschluss">
+      <span class="seg" id="cd-d">00<span>T</span></span><span class="colon">:</span>
+      <span class="seg" id="cd-h">00<span>Std</span></span><span class="colon">:</span>
+      <span class="seg" id="cd-m">00<span>Min</span></span><span class="colon">:</span>
+      <span class="seg" id="cd-s">00<span>Sek</span></span>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="inner">
+      <span class="badge">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="badge-label">Live-Webinar:</span>
+        <span class="badge-date" data-event-date="short">1. Okt · 19 Uhr</span>
+      </span>
+      <h1>Deine erste Cashflow-Immobilie mit deinem Gehalt — <span class="hl">ohne erst 40.000 € Eigenkapital anzusparen.</span></h1>
+      <p class="lede">Am Donnerstag rechnet Jan live vor, wie seine Investoren über ihre Bonität statt über Erspartes finanzieren – mit dem System hinter über 800 begleiteten Investoren und seinen eigenen 70+ Wohneinheiten. Auch wenn du noch nie ein Exposé in der Hand hattest.</p>
+      <button type="button" class="btn reg-trigger">Kostenloses Ticket sichern <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="microcopy">Kostenlos · Keine Zahlungsdaten nötig</p>
+    </div>
+  </div>
+</header>
+
+<div class="band">
+  <div class="wrap">
+    <div class="cell">
+      <div class="fig">800+</div>
+      <div class="cap">Investoren begleitet</div>
+    </div>
+    <div class="cell">
+      <div class="fig">99 %</div>
+      <div class="cap">Starten ohne Eigenkapital</div>
+    </div>
+    <div class="cell">
+      <div class="fig">200+</div>
+      <div class="cap">Vermittelte Einheiten pro Jahr</div>
+    </div>
+  </div>
+</div>
+
+<section class="sec" id="ablauf">
+  <div class="wrap">
+    <div class="head head-c">
+      <span class="tag">Das erwartet dich</span>
+      <h2>Das gehen wir live gemeinsam durch</h2>
+      <p>Drei Teile, einer baut auf dem anderen auf. Du gehst nicht mit Notizen raus, sondern mit einer Rechnung, die du auf dein eigenes Gehalt anwenden kannst.</p>
+    </div>
+
+    <div class="schedule">
+
+      <article class="sblock">
+        <div class="sblock-head">
+          <span class="sday">Teil 01</span>
+          <span class="stime">Erstes Drittel</span>
+        </div>
+        <h3>Warum dein Gehalt allein kein Vermögen baut</h3>
+        <ul>
+          <li>Der Hebel, der deinem Depot fehlt: Bei der Immobilie finanziert die Bank den Großteil – und die Mieter zahlen den Kredit ab.</li>
+          <li>Warum Banken weniger auf dein Erspartes schauen als auf deine Bonität – und was das heißt, wenn du überdurchschnittlich verdienst.</li>
+          <li>Der Schnell-Check: Reicht dein Nettoeinkommen heute schon für die erste Kapitalanlage-Immobilie?</li>
+        </ul>
+      </article>
+
+      <article class="sblock">
+        <div class="sblock-head">
+          <span class="sday">Teil 02</span>
+          <span class="stime">Zweites Drittel</span>
+        </div>
+        <h3>Die Cashflow-Rechnung, live durchgerechnet</h3>
+        <ul>
+          <li>Ein echtes Objekt, Zeile für Zeile: Kaufpreis, Zins, Tilgung, Miete, Steuereffekt – und was am Ende als Eigenbeitrag übrig bleibt.</li>
+          <li>Woran du ein Objekt erkennst, das monatlich Cashflow bringt – und woran eine Steuerimmobilie, die dir nur schöngerechnet wird.</li>
+          <li>Wie Finanzierung ohne Eigenkapital wirklich läuft: 110 %, Kaufnebenkosten, und warum dein Sicherheitsnachweis auf deinem Konto bleibt.</li>
+        </ul>
+      </article>
+
+      <article class="sblock">
+        <div class="sblock-head">
+          <span class="sday">Teil 03</span>
+          <span class="stime">Letztes Drittel</span>
+        </div>
+        <h3>Deine Zahlen, deine Fragen – live</h3>
+        <ul>
+          <li>Wir rechnen Beispiele aus dem Chat live durch – mit echten Gehältern, nicht mit Musterfällen aus dem Lehrbuch.</li>
+          <li>Der häufigste Fehler bei der ersten Wohnung: in einer Einheit denken statt in einem Bestand, der die nächste finanzierbar hält.</li>
+          <li>Offenes Q&amp;A: Deine Situation, ehrlich eingeschätzt – auch wenn die Antwort „noch nicht“ lautet.</li>
+        </ul>
+      </article>
+
+    </div>
+
+    <div class="cta-mid">
+      <button type="button" class="btn reg-trigger">Kostenloses Ticket sichern <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="microcopy">Plätze begrenzt · Wer zuerst kommt</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="head head-c">
+      <span class="tag">Der Unterschied</span>
+      <h2>Was sich nach diesem Abend ändert</h2>
+      <p>Das Problem ist selten dein Gehalt. Es ist die Annahme, dass du erst sparen musst, bevor du investieren darfst.</p>
+    </div>
+
+    <div class="fit">
+      <div class="fit-col fit-no">
+        <h3>Ohne das Webinar</h3>
+        <ul>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <span>Gutes Gehalt, Gehaltserhöhung, Bonus – und am Monatsende entsteht trotzdem nichts, das für dich arbeitet.</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <span>Du zahlst jedes Jahr mehr Steuern und siehst davon nichts wieder.</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <span>Immobilien klingen nach Zweitjob: Objektsuche, Bank, Notar, Mieter – und der Anruf wegen der Heizung um 22 Uhr.</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <span>Jedes Exposé sieht gut aus, und du kannst nicht sagen, ob die Zahlen stimmen.</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <span>Dein Plan: erst mal 40.000 € ansparen. Bis dahin sind die Preise gestiegen – und du bist fünf Jahre älter.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="fit-col fit-yes">
+        <h3>Nach dem Webinar</h3>
+        <ul>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Du weißt, wie ein Bestand aussieht, der jeden Monat für dich tilgt – bezahlt von der Miete, nicht von deinem Gehalt.</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Du verstehst, wie Zinsen und Abschreibung einer vermieteten Wohnung in deine Steuererklärung wirken.</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Du kennst den Ablauf vom Erstgespräch bis zum Notartermin – und weißt, welche Schritte du komplett abgeben kannst.</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Du rechnest ein Objekt selbst durch und siehst, ob es Cashflow bringt oder nur schöngerechnet ist.</span>
+          </li>
+          <li>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.6l4 4L16 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Du startest über deine Bonität, lässt dein Erspartes als Puffer liegen – und nutzt die Zeit, statt auf sie zu warten.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cta-mid">
+      <button type="button" class="btn reg-trigger">Kostenloses Ticket sichern <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="microcopy">Plätze begrenzt · Wer zuerst kommt</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="www">
+
+      <div class="wcard">
+        <div class="wk">Was</div>
+        <p>Ein kostenloses Live-Webinar mit offenem Q&amp;A. Keine Folienschlacht: Jan rechnet echte Objekte vor, bis du die Zahlen selbst nachvollziehen kannst.</p>
+      </div>
+
+      <div class="wcard">
+        <div class="wk">Wann</div>
+        <p>Einmal live am Donnerstagabend. Danach 48 Stunden Aufzeichnung für alle Angemeldeten.</p>
+        <ul class="wlist">
+          <li data-event-date="long" data-event-prefix="">Donnerstag, 1. Oktober · 19:00 Uhr</li>
+          <li>Live, mit offenem Q&amp;A am Ende</li>
+          <li>Zugangslink kommt per E-Mail</li>
+        </ul>
+      </div>
+
+      <div class="wcard">
+        <div class="wk">Warum</div>
+        <p>Die meisten scheitern nicht am Einkommen, sondern an einer Annahme: dass Eigenkapital die Eintrittskarte ist. Für die Bank zählt deine Bonität – und die hast du vielleicht längst.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap host">
+    <div class="portrait">
+      <span class="initials" aria-hidden="true">JB</span>
+      <img src="assets/prospect-portrait.jpg" alt="Jan-Moritz Becker" onerror="this.remove()">
+      <div class="plate">
+        <div class="nm">Jan-Moritz Becker</div>
+        <div class="rl">Dein Host</div>
+      </div>
+    </div>
+
+    <div class="host-body">
+      <span class="tag">Wer dir das zeigt</span>
+      <h2>Erst Banker. Dann Investor. Dann Unternehmer.</h2>
+      <p class="bio">Jan hat als gelernter Banker gesehen, wie Kreditentscheidungen wirklich fallen. Heute ist er zertifizierter Immobiliensachverständiger, hält selbst über 70 Wohneinheiten und hat mit Cashflow Quartier mehr als 800 Investoren zu ihrem eigenen Bestand begleitet – mit eigener Hausverwaltung in Wuppertal.</p>
+
+      <p class="pull">&bdquo;Die meisten Anbieter verkaufen dir eine Wohnung. Wir bauen mit dir einen Bestand auf – und sagen dir offen, wenn es für dich gerade nicht passt.&ldquo;</p>
+
+      <div class="creds">
+        <div>
+          <div class="fig">800+</div>
+          <div class="cap">Investoren begleitet</div>
+        </div>
+        <div>
+          <div class="fig">70+</div>
+          <div class="cap">Eigene Wohneinheiten</div>
+        </div>
+        <div>
+          <div class="fig">4,9/5</div>
+          <div class="cap">Aus 300+ Bewertungen</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="wrap narrow">
+    <div class="head head-c">
+      <span class="tag">Das bekommst du</span>
+      <h2>Alles hier ist inklusive.</h2>
+    </div>
+
+    <div class="ledger">
+      <div class="lrow">
+        <div>
+          <div class="nm">Das Live-Webinar</div>
+          <div class="ds">Vom Gehalt zur ersten Cashflow-Immobilie, an echten Objekten durchgerechnet</div>
+        </div>
+        <div class="vl">197 €</div>
+      </div>
+      <div class="lrow">
+        <div>
+          <div class="nm">Exposé-Checkliste</div>
+          <div class="ds">Die zwölf Fragen, die du jedem Objekt stellst, bevor du rechnest</div>
+        </div>
+        <div class="vl">37 €</div>
+      </div>
+      <div class="lrow">
+        <div>
+          <div class="nm">Offenes Q&amp;A mit Jan</div>
+          <div class="ds">Bring deine Zahlen mit – Jan schätzt sie live ein</div>
+        </div>
+        <div class="vl">150 €</div>
+      </div>
+      <div class="lrow">
+        <div>
+          <div class="nm">Aufzeichnung</div>
+          <div class="ds">Für alle Angemeldeten, 48 Stunden verfügbar</div>
+        </div>
+        <div class="vl">40 €</div>
+      </div>
+
+      <div class="ltotal">
+        <span class="lbl">Gesamtwert</span>
+        <span class="amt">
+          <span class="old">424 €</span>
+          <span class="new">Kostenlos</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="head head-c">
+      <span class="tag">Aus früheren Webinaren</span>
+      <h2>Was Teilnehmer danach gesagt haben</h2>
+    </div>
+
+    <!-- Proof grid: names and captions come from Jan's own published reviews
+         (webinar.janmoritzbecker.com, janmoritzbecker.com). Drop real photos at
+         assets/proof-1.jpg … proof-8.jpg only with permission; silhouettes until then. -->
+    <div class="proof-grid">
+      <figure class="ptile">
+        <svg class="ptile-ph" viewBox="0 0 80 100" aria-hidden="true"><circle cx="40" cy="38" r="16"/><path d="M8 100c0-20 14.3-34 32-34s32 14 32 34z"/></svg>
+        <img src="assets/proof-1.jpg" alt="" loading="lazy" onerror="this.remove()">
+        <figcaption><span class="pn">Julia K.</span><span class="pr">Erstes Objekt in Prüfung</span></figcaption>
+      </figure>
+      <figure class="ptile">
+        <svg class="ptile-ph" viewBox="0 0 80 100" aria-hidden="true"><circle cx="40" cy="38" r="16"/><path d="M8 100c0-20 14.3-34 32-34s32 14 32 34z"/></svg>
+        <img src="assets/proof-2.jpg" alt="" loading="lazy" onerror="this.remove()">
+        <figcaption><span class="pn">Patrick L.</span><span class="pr">Erst skeptisch</span></figcaption>
+      </figure>
+      <figure class="ptile">
+        <svg class="ptile-ph" viewBox="0 0 80 100" aria-hidden="true"><circle cx="40" cy="38" r="16"/><path d="M8 100c0-20 14.3-34 32-34s32 14 32 34z"/></svg>
+        <img src="assets/proof-3.jpg" alt="" loading="lazy" onerror="this.remove()">
+        <figcaption><span class="pn">Tim K.</span><span class="pr">Ohne Vorkenntnisse</span></figcaption>
+      </figure>
+      <figure class="ptile">
+        <svg class="ptile-ph" viewBox="0 0 80 100" aria-hidden="true"><circle cx="40" cy="38" r="16"/><path d="M8 100c0-20 14.3-34 32-34s32 14 32 34z"/></svg>
+        <img src="assets/proof-4.jpg" alt="" loading="lazy" onerror="this.remove()">
+        <figcaption><span class="pn">Mehmet A.</span><span class="pr">Keine Luftschlösser</span></figcaption>
+      </figure>
+      <figure class="ptile">
+        <svg class="ptile-ph" viewBox="0 0 80 100" aria-hidden="true"><circle cx="40" cy="38" r="16"/><path d="M8 100c0-20 14.3-34 32-34s32 14 32 34z"/></svg>
+        <img src="assets/proof-5.jpg" alt="" loading="lazy" onerror="this.remove()">
+        <figcaption><span class="pn">Halil C.</span><span class="pr">Erste Immobilie ohne EK</span></figcaption>
+      </figure>
+      <figure class="ptile">
+        <svg class="ptile-ph" viewBox="0 0 80 100" aria-hidden="true"><circle cx="40" cy="38" r="16"/><path d="M8 100c0-20 14.3-34 32-34s32 14 32 34z"/></svg>
+        <img src="assets/proof-6.jpg" alt="" loading="lazy" onerror="this.remove()">
+        <figcaption><span class="pn">Kenny</span><span class="pr">Positiver Cashflow</span></figcaption>
+      </figure>
+      <figure class="ptile">
+        <svg class="ptile-ph" viewBox="0 0 80 100" aria-hidden="true"><circle cx="40" cy="38" r="16"/><path d="M8 100c0-20 14.3-34 32-34s32 14 32 34z"/></svg>
+        <img src="assets/proof-7.jpg" alt="" loading="lazy" onerror="this.remove()">
+        <figcaption><span class="pn">Jürgen H.</span><span class="pr">Einfacher Einstieg</span></figcaption>
+      </figure>
+      <figure class="ptile">
+        <svg class="ptile-ph" viewBox="0 0 80 100" aria-hidden="true"><circle cx="40" cy="38" r="16"/><path d="M8 100c0-20 14.3-34 32-34s32 14 32 34z"/></svg>
+        <img src="assets/proof-8.jpg" alt="" loading="lazy" onerror="this.remove()">
+        <figcaption><span class="pn">Andreas H.</span><span class="pr">Viel Substanz</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="quotes">
+      <figure class="q">
+        <blockquote>Das Webinar hat bei mir den Schalter umgelegt. Ich dachte immer, ich müsste erst 40.000 € sparen, was völliger Quatsch ist. Jan hat mir gezeigt, wie man auch mit meinem Gehalt starten kann.</blockquote>
+        <figcaption class="by">
+          <span class="nm">Julia K.</span>
+          <span class="rl">Steuerfachangestellte</span>
+        </figcaption>
+      </figure>
+
+      <figure class="q">
+        <blockquote>Ich war ehrlich gesagt skeptisch, ob das Webinar mir wirklich Mehrwert bringt – aber ich hab super viel mitgenommen. Besonders die Finanzierung ohne Eigenkapital war ein echter Augenöffner.</blockquote>
+        <figcaption class="by">
+          <span class="nm">Patrick L.</span>
+          <span class="rl">IT-Consultant</span>
+        </figcaption>
+      </figure>
+
+      <figure class="q">
+        <blockquote>Besonders gut fand ich die Beispiele mit echten Zahlen und wie er den Ablauf von der Objektsuche bis zur Vermietung Schritt für Schritt erklärt hat.</blockquote>
+        <figcaption class="by">
+          <span class="nm">Tim K.</span>
+          <span class="rl">Handwerksmeister</span>
+        </figcaption>
+      </figure>
+
+      <figure class="q">
+        <blockquote>Ich hab schon viele Webinare gesehen, wo es nur um Verkauf ging – hier war das anders. Klare Infos, ehrliche Einschätzung, keine Luftschlösser.</blockquote>
+        <figcaption class="by">
+          <span class="nm">Mehmet A.</span>
+          <span class="rl">Selbstständig</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="urgent">
+  <div class="wrap">
+    <span class="tag">Plätze begrenzt</span>
+    <h2>Der Raum schließt, wenn der Timer abläuft.</h2>
+    <button type="button" class="btn reg-trigger">Kostenloses Ticket sichern <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <div class="meter">
+      <div class="track"><div class="fill"></div></div>
+      <div class="cap"><span>438 angemeldet</span><span>62 Plätze frei</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-handoff">
+  <div class="wrap narrow">
+    <div class="head head-c">
+      <span class="tag">Bevor du dich anmeldest</span>
+      <h2>Das fragen die meisten vorher</h2>
+    </div>
+
+    <div class="faq" id="faq">
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Ist das wirklich kostenlos?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Ja. Du trägst Name und E-Mail ein, das war's. Keine Zahlungsdaten, keine versteckten Kosten. Am Ende stellt Jan vor, wie er mit Investoren weiterarbeitet – ob das für dich passt, entscheidest du.</p></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Was, wenn ich live nicht kann?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Melde dich trotzdem an. Die Aufzeichnung geht an alle Angemeldeten und bleibt 48 Stunden online. Das Q&amp;A, in dem Jan eure Zahlen durchrechnet, gibt es aber nur live – und das ist meistens der wertvollste Teil.</p></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Klappt das mit meinem Einkommen?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Als grobe Orientierung: ab ca. 2.500 € netto im Monat wird es realistisch, dazu ein Sicherheitsnachweis von etwa 20.000 €, der auf deinem Konto bleibt. Im Webinar zeigt Jan, wie Banken rechnen – danach weißt du, wo du stehst.</p></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Ohne Eigenkapital – ist das nicht riskant?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Genau darüber spricht Jan offen: welche Puffer du brauchst, egal wie du finanzierst, warum der Zins bei 110 % etwas höher liegt und woran du Anbieter erkennst, die dir Steuerimmobilien schönrechnen. Keine garantierten Renditen – nur nachvollziehbare Zahlen.</p></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false"><span>Ich habe null Ahnung von Immobilien. Bin ich da richtig?</span><span class="sign">+</span></button>
+        <div class="fa"><p>Ja. Die meisten Teilnehmer sind Angestellte ohne Vorerfahrung. Jan erklärt jeden Begriff – von Tilgung bis Grunderwerbsteuer – und rechnet alles an echten Beispielen vor, statt dich mit Fachchinesisch allein zu lassen.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="tag tag-c" data-event-date="long" data-event-prefix="">Donnerstag, 1. Oktober · 19:00 Uhr</span>
+    <h2>Bring dein Nettogehalt mit.</h2>
+    <p class="sub">Live und kostenlos. Wenn Zeit bleibt, rechnet Jan deine Zahlen direkt im Webinar durch.</p>
+    <button type="button" class="btn reg-trigger">Kostenloses Ticket sichern <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <p class="microcopy">Zugangslink per E-Mail · Aufzeichnung nur für Angemeldete</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">Cashflow <em>Quartier</em></div>
+    <div class="fmeta">
+      <span>© 2026 — Beispielseite</span>
+      <span>Datenschutz · Impressum · Kontakt</span>
+    </div>
+    <p class="disc">Dies ist eine Demo-Landingpage, erstellt, um Design und Copywriting für ein kostenloses Live-Webinar zu zeigen. Kennzahlen stammen von janmoritzbecker.com, die Stimmen von webinar.janmoritzbecker.com; Teilnehmerzahlen, Werte und Ablauf sind Platzhalter. Es werden keine Renditen oder Ergebnisse versprochen.</p>
+  </div>
+</footer>
+
+<div class="mobile-cta">
+  <button type="button" class="btn reg-trigger">Kostenloses Ticket sichern <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</div>
+
+<!-- Registration modal. The form lives in the static HTML (not injected by JS)
+     because Netlify detects forms by parsing the deployed HTML at build time —
+     a JS-injected form is never registered. -->
+<div class="modal" id="reg-modal" hidden>
+  <div class="modal-backdrop" data-close></div>
+
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="reg-title">
+    <button type="button" class="modal-x" data-close aria-label="Schließen">&times;</button>
+
+    <div class="modal-head">
+      <span class="tag">Kostenloses Live-Webinar</span>
+      <h2 id="reg-title">Sichere dir dein Ticket</h2>
+      <p class="modal-sub" data-event-date="long" data-event-prefix="">Donnerstag, 1. Oktober · 19:00 Uhr</p>
+    </div>
+
+    <form name="lead-cashflow-quartier" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="lead-form" id="lead-form" novalidate>
+      <!-- Required by Netlify for AJAX submissions — without it the POST is rejected.
+           Its value must match the form's name attribute exactly. -->
+      <input type="hidden" name="form-name" value="lead-cashflow-quartier">
+      <input type="hidden" name="source" value="cashflow-quartier">
+
+      <p class="hp" aria-hidden="true">
+        <label>Dieses Feld leer lassen: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+      </p>
+
+      <label class="f-row">
+        <span class="f-label">Name</span>
+        <input type="text" name="name" required autocomplete="name" placeholder="Vor- und Nachname">
+      </label>
+
+      <label class="f-row">
+        <span class="f-label">E-Mail</span>
+        <input type="email" name="email" required autocomplete="email" placeholder="du@beispiel.de">
+      </label>
+
+      <button type="submit" class="btn f-submit">
+        <span class="f-btn-label">Kostenloses Ticket sichern</span>
+        <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <p class="f-note">Kostenlos · Zugangslink per E-Mail · Jederzeit abmeldbar</p>
+
+      <!-- TEMPORARY preview shortcut — lets the prospect reach the offer page without
+           entering data. Delete this button before the funnel goes live. -->
+      <button type="button" class="f-skip" id="skip-reg">(Temp) Überspringen und direkt zum Angebot →</button>
+      <p class="f-error" id="f-error" role="alert" hidden></p>
+    </form>
+  </div>
+</div>
+
+
+<script>
+  /* ════════════════════════════════════════════════════════════════════
+     Registration — Netlify Forms via AJAX.
+
+     Netlify only accepts URL-encoded bodies from fetch; a JSON payload is
+     silently rejected. The hidden form-name field must match the form's
+     name attribute or the submission is dropped.
+
+     Forms are named per sample (lead-<slug>) so each prospect gets its own
+     bucket in the Netlify dashboard; the hidden source field carries the
+     slug as well, which keeps attribution intact if forms are ever merged.
+     ════════════════════════════════════════════════════════════════════ */
+  (function () {
+    var modal  = document.getElementById('reg-modal');
+    var form   = document.getElementById('lead-form');
+    var errEl  = document.getElementById('f-error');
+    var submit = form ? form.querySelector('[type="submit"]') : null;
+    var label  = submit ? submit.querySelector('.f-btn-label') : null;
+    var SUBMIT_LABEL = label ? label.textContent : '';
+    var lastFocus = null;
+    if (!modal || !form) return;
+
+    function openModal() {
+      lastFocus = document.activeElement;
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      var first = form.querySelector('input[name="name"]');
+      if (first) first.focus();
+    }
+
+    function closeModal() {
+      modal.hidden = true;
+      document.body.style.overflow = '';
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    document.querySelectorAll('.reg-trigger').forEach(function (b) {
+      b.addEventListener('click', openModal);
+    });
+    modal.querySelectorAll('[data-close]').forEach(function (b) {
+      b.addEventListener('click', closeModal);
+    });
+
+    // TEMPORARY preview shortcut — jumps to the offer page without submitting.
+    // Delete this block together with the .f-skip button before going live.
+    var skip = document.getElementById('skip-reg');
+    if (skip) {
+      skip.addEventListener('click', function () { window.location.href = 'offer.html'; });
+    }
+    document.addEventListener('keydown', function (e) {
+      if (modal.hidden) return;
+      if (e.key === 'Escape') { closeModal(); return; }
+      // keep tab focus inside the dialog while it is open
+      if (e.key === 'Tab') {
+        var f = modal.querySelectorAll('button, input:not([type="hidden"]), a[href]');
+        if (!f.length) return;
+        var first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+
+    function fail(msg) {
+      if (submit) submit.disabled = false;
+      if (label) label.textContent = SUBMIT_LABEL;
+      errEl.textContent = msg;
+      errEl.hidden = false;
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      errEl.hidden = true;
+
+      if (!form.checkValidity()) {
+        fail('Bitte gib deinen Namen und eine gültige E-Mail-Adresse ein.');
+        var bad = form.querySelector(':invalid');
+        if (bad) bad.focus();
+        return;
+      }
+
+      if (submit) submit.disabled = true;
+      if (label) label.textContent = 'Wird gesendet …';
+
+      // URL-encoded, never JSON — Netlify rejects JSON payloads from AJAX.
+      var body = new URLSearchParams(new FormData(form)).toString();
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body
+      })
+        .then(function (r) {
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          // No success message on purpose — straight into the offer while
+          // intent is at its highest.
+          window.location.href = 'offer.html';
+        })
+        .catch(function () {
+          fail('Das hat nicht geklappt. Bitte versuch es noch einmal.');
+        });
+    });
+  })();
+</script>
+
+<script>
+  // The published wrapper may supply <head>; make sure a viewport tag exists so
+  // phones lay out at device width instead of 980px.
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+
+  /* ════════════════════════════════════════════════════════════════════
+     Event date + countdown.
+
+     EVENT_WEEKDAY is 0=Sun..6=Sat. The same computation drives the visible
+     date, the countdown and DTSTART in the .ics on thanks.html — a static
+     date label would drift a week out the moment the build day passed.
+     ════════════════════════════════════════════════════════════════════ */
+  (function () {
+    var WD = 4, HR = 19, LOCALE = 'de-DE';
+    var TIME_SHORT = '19 Uhr', TIME_LONG = '19:00 Uhr';
+
+    function nextOccurrence() {
+      var d = new Date();
+      // || 7 : if today IS the event weekday, roll to next week rather than today
+      d.setDate(d.getDate() + ((WD - d.getDay() + 7) % 7 || 7));
+      d.setHours(HR, 0, 0, 0);
+      return d;
+    }
+
+    var target = nextOccurrence();
+
+    // Some locales append a period to short month names ("Aug."). The badge is
+    // nowrap and tight on a 360px phone, so drop it.
+    var shortD = target.toLocaleDateString(LOCALE, { day: 'numeric', month: 'short' }).replace(/\.$/, '');
+    var longD  = target.toLocaleDateString(LOCALE, { weekday: 'long', day: 'numeric', month: 'long' });
+    document.querySelectorAll('[data-event-date]').forEach(function (el) {
+      var isLong = el.getAttribute('data-event-date') === 'long';
+      var prefix = el.getAttribute('data-event-prefix') || '';
+      el.textContent = prefix + (isLong ? longD : shortD) + ' · ' + (isLong ? TIME_LONG : TIME_SHORT);
+    });
+
+    var d = document.getElementById('cd-d'), h = document.getElementById('cd-h'),
+        m = document.getElementById('cd-m'), s = document.getElementById('cd-s');
+    if (!d) return;
+    function set(el, n) { el.firstChild.nodeValue = String(n).padStart(2, '0'); }
+    function tick() {
+      var diff = Math.max(0, target - new Date());
+      set(d, Math.floor(diff / 864e5));
+      set(h, Math.floor(diff % 864e5 / 36e5));
+      set(m, Math.floor(diff % 36e5 / 6e4));
+      set(s, Math.floor(diff % 6e4 / 1e3));
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  // FAQ accordion
+  (function () {
+    var items = document.querySelectorAll('.fitem');
+    items.forEach(function (item) {
+      var btn = item.querySelector('.fq'), panel = item.querySelector('.fa');
+      btn.addEventListener('click', function () {
+        var wasOpen = item.classList.contains('open');
+        items.forEach(function (o) {
+          o.classList.remove('open');
+          o.querySelector('.fq').setAttribute('aria-expanded', 'false');
+          o.querySelector('.fa').style.maxHeight = null;
+        });
+        if (!wasOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+        }
+      });
+    });
+    // An open answer's pixel height goes stale when the viewport reflows.
+    var t;
+    window.addEventListener('resize', function () {
+      clearTimeout(t);
+      t = setTimeout(function () {
+        var open = document.querySelector('.fitem.open .fa');
+        if (open) open.style.maxHeight = open.scrollHeight + 'px';
+      }, 120);
+    });
+  })();
+</script>
