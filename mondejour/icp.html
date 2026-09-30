@@ -1,0 +1,332 @@
+<title>ICP avatar research | The Only Way Out</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- page-specific: ICP research ---------- */
+
+  .doc-hero {
+    padding: 76px 0 40px;
+    background: radial-gradient(ellipse 60% 80% at 20% 0%, var(--glow-soft), transparent 70%);
+  }
+  .doc-hero .inner { max-width: 760px; }
+  .doc-hero h1 { font-size: clamp(30px, 5vw, 46px); margin: 18px 0 18px; }
+  .doc-hero .lede { font-size: 17px; color: var(--ink-soft); max-width: 58ch; }
+  .backbar { padding-top: 26px; }
+  .backlink {
+    font-family: var(--label); font-size: 11px; font-weight: 600; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ink-faint); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .backlink:hover { color: var(--ink-soft); }
+  .backlink svg { width: 1em; height: 1em; transform: rotate(180deg); flex: none; }
+
+  /* short profile card — replaces the old full-bleed four-column strip so the
+     summary sits in the same narrow column, and reads in the same card
+     language as the .ritem and .evidence blocks below it */
+  .profile-sec { padding: 0 0 8px; }
+  .profile {
+    background: var(--surface-hi);
+    border: 1px solid var(--brand-line); border-left: 3px solid var(--brand);
+    border-radius: 6px 16px 16px 6px; padding: 8px 28px;
+    box-shadow: 0 0 44px -18px var(--glow);
+  }
+  .profile .prow {
+    display: grid; grid-template-columns: 168px 1fr; gap: 20px;
+    align-items: baseline; padding: 15px 0;
+    border-top: 1px solid var(--line-soft);
+  }
+  .profile .prow:first-child { border-top: 0; }
+  .profile .pk {
+    font-family: var(--label); font-size: 10.5px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+  .profile .pv { font-size: 15.5px; line-height: 1.5; color: var(--ink); }
+
+  /* research blocks */
+  .rblock { margin-bottom: 20px; }
+  .rblock > .rhead {
+    display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px;
+  }
+  .rblock .rnum {
+    font-family: var(--label); font-size: 10.5px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--brand-ink);
+  }
+  .rblock h2 { font-size: clamp(23px, 3.2vw, 30px); }
+  .rblock .rintro { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 22px; max-width: 62ch; }
+
+  .rlist { display: flex; flex-direction: column; gap: 14px; }
+  .ritem {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 16px; padding: 24px 26px;
+  }
+  .ritem h3 { font-size: 17.5px; margin-bottom: 9px; }
+  .ritem p { color: var(--ink-soft); font-size: 15px; line-height: 1.65; }
+
+  /* the thing that makes this not a generic persona doc */
+  .evidence {
+    margin-top: 16px; padding: 14px 18px;
+    background: var(--brand-soft); border-left: 3px solid var(--brand);
+    border-radius: 4px 10px 10px 4px;
+  }
+  .evidence .elabel {
+    font-family: var(--label); font-size: 9.5px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 7px;
+  }
+  .evidence q {
+    display: block; font-family: var(--display); font-size: 16px; font-weight: 500;
+    line-height: 1.55; color: var(--ink); quotes: none;
+  }
+  .evidence .src {
+    display: block; margin-top: 9px;
+    font-family: var(--label); font-size: 10.5px; color: var(--ink-faint);
+  }
+
+  /* vocabulary */
+  .vocab { display: flex; flex-wrap: wrap; gap: 10px; }
+  .vword {
+    font-family: var(--label); font-size: 12.5px; font-weight: 600; letter-spacing: .01em;
+    background: var(--brand); color: var(--on-brand);
+    padding: 9px 15px; border-radius: 999px;
+    box-shadow: 0 0 18px -6px var(--glow);
+  }
+  .vword.avoid {
+    background: transparent; color: var(--ink-faint);
+    border: 1px dashed var(--line); text-decoration: line-through;
+  }
+  .vocab-note { margin-top: 18px; color: var(--ink-soft); font-size: 14.5px; max-width: 62ch; }
+
+  @media (max-width: 640px) {
+    .doc-hero { padding: 52px 0 32px; }
+    .profile { padding: 6px 20px; }
+    .profile .prow { grid-template-columns: 1fr; gap: 5px; padding: 14px 0; }
+    .ritem { padding: 22px 20px; }
+  }
+</style>
+
+<div class="wrap backbar">
+  <a class="backlink" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back to the package
+  </a>
+</div>
+
+<header class="doc-hero">
+  <div class="wrap">
+    <div class="inner">
+      <span class="tag">04 · ICP avatar research</span>
+      <h1>Who you're actually selling to</h1>
+      <p class="lede">Built from your own pages and streams, what men said to you on camera, and what buyers write about paid communities in public. Every quote below has a source. Use it for hooks, DMs and sales calls, not just this funnel.</p>
+    </div>
+  </div>
+</header>
+
+<section class="profile-sec">
+  <div class="wrap narrow">
+    <div class="profile">
+      <div class="prow"><span class="pk">Who they are</span><span class="pv">Men 18–30 on shift work, scrolling at night</span></div>
+      <div class="prow"><span class="pk">Stuck at</span><span class="pv">Watching creators get paid, posting nothing</span></div>
+      <div class="prow"><span class="pk">Already tried</span><span class="pv">Motivation clips, gym streaks, side hustles</span></div>
+      <div class="prow"><span class="pk">Actually want</span><span class="pv">A first $1K online and a way off the clock</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap narrow">
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">01</span><h2>Fears</h2></div>
+      <p class="rintro">What they're privately worried about. These never get said out loud in a DM, so the copy has to answer them before they come up.</p>
+      <div class="rlist">
+
+        <div class="ritem">
+          <h3>"This is another guru"</h3>
+          <p>They've seen a hundred men sell a way out. They assume the money is made from selling the course, and they're watching for the moment you prove them right. Building a clip live, on screen, is what answers it.</p>
+          <div class="evidence">
+            <div class="elabel">Heard in the wild</div>
+            <q>they allow way too many rip off artists call themselves Instructors who will overcharge and under deliver.</q>
+            <span class="src">Trustpilot review of Skool, 2 stars</span>
+          </div>
+        </div>
+
+        <div class="ritem">
+          <h3>"I'll post for months and never get paid"</h3>
+          <p>Anyone who has looked into reaction videos has heard they get demonetized. They're afraid of doing ninety days of work for a page that gets flagged as reused content. The answer is specific: what commentary counts, shown on a real clip.</p>
+          <div class="evidence">
+            <div class="elabel">Heard in the wild</div>
+            <q>There is no change to our reused content policy which reviews content like commentary, clips, compilations and reaction videos.</q>
+            <span class="src">YouTube statement, quoted by Engadget, 14 July 2025</span>
+          </div>
+        </div>
+
+        <div class="ritem">
+          <h3>Getting stuck in a monthly charge</h3>
+          <p>Money is tight, so a recurring fee they can't get out of is a real fear. Your calisthenics page says "No refunds", which makes it sharper. A one-time price and a plain guarantee remove it.</p>
+          <div class="evidence">
+            <div class="elabel">Heard in the wild</div>
+            <q>I wanted to cancel my membership but its impossible to do so or its so hidden.</q>
+            <span class="src">Trustpilot review of Skool, 1 star</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">02</span><h2>Desires</h2></div>
+      <p class="rintro">What they'd actually buy, said the way they'd say it. More modest and more specific than "financial freedom".</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Off the clock</h3>
+          <p>The want underneath everything is fewer hours owed to somebody else. They don't picture a Lamborghini. They picture not doing Saturday.</p>
+          <div class="evidence">
+            <div class="elabel">Heard in the wild</div>
+            <q>60 hours a week, Monday through Saturday.</q>
+            <span class="src">A man on your Times Square stream (YouTube, auto-captions)</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>The first $1K, not the first million</h3>
+          <p>You already named the right target. One thousand dollars from a phone is believable to a man on an hourly wage, and it's proof to himself that the thing is real.</p>
+          <div class="evidence">
+            <div class="elabel">On your own page</div>
+            <q>Work toward your first $1K+ from social media</q>
+            <span class="src">Skool — Make Money From Social Media, about page</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>To become a different man</h3>
+          <p>They want the body, the discipline and the respect as much as the money. This is what separates you from every other "make money online" page, and it's the part worth charging real money for.</p>
+          <div class="evidence">
+            <div class="elabel">On your own page</div>
+            <q>You're not just here to make money. You're here to become the person capable of making it.</q>
+            <span class="src">Skool — Make Money From Social Media, about page</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">03</span><h2>Objections</h2></div>
+      <p class="rintro">Why they don't buy. The ones below came from men talking to you on stream, which makes them more honest than anything in a comment section.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>"I've got no time"</h3>
+          <p>True on paper. The honest answer is the screen-time test: most of them have three to six hours a day on the phone already. You're asking for one of those hours, and you say so.</p>
+          <div class="evidence">
+            <div class="elabel">Heard in the wild</div>
+            <q>I worked 16 hours yesterday.</q>
+            <span class="src">A man on your Times Square stream (YouTube, auto-captions)</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>"I've got bills"</h3>
+          <p>They have an idea of their own and no room to risk anything on it. So the offer can't ask them to quit. It has to run beside the job until the page pays.</p>
+          <div class="evidence">
+            <div class="elabel">Heard in the wild</div>
+            <q>I wanted run my own lawn and landscaping business… I got lots of bills.</q>
+            <span class="src">A man on your Times Square stream (YouTube, auto-captions)</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>"The money takes too long"</h3>
+          <p>Platform payouts arrive weeks after the views. A man who needs rent on the first won't wait through that without knowing it's coming. Tell them the timeline up front and it stops being a reason to quit in week five.</p>
+          <div class="evidence">
+            <div class="elabel">Heard in the wild</div>
+            <q>If it's October 1st and you make money, you got to wait all October and 21 days of November.</q>
+            <span class="src">Your Times Square stream (YouTube, auto-captions)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">04</span><h2>Buying triggers</h2></div>
+      <p class="rintro">The moment the problem stops being tolerable. Ads that name the trigger beat ads that name the solution, because the trigger is what he's already thinking about.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>The week that breaks him</h3>
+          <p>A 60 or 70-hour week, a paycheck that's gone by Tuesday, and the thought "I can't do this for forty more years". He's most reachable on the ride home.</p>
+        </div>
+        <div class="ritem">
+          <h3>Someone smaller gets paid</h3>
+          <p>A guy from his school, or a creator with fewer followers than he'd expect, posts a payout screenshot. Envy turns "that's not for me" into "why not me".</p>
+        </div>
+        <div class="ritem">
+          <h3>Another birthday, same balance</h3>
+          <p>A birthday, New Year, or a breakup. Any date that makes him count the years and see nothing changed. This is when the habits side of your message lands hardest.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">05</span><h2>Their vocabulary</h2></div>
+      <p class="rintro">The words this market uses for its own problem. Copy written in these words reads as one of them talking.</p>
+      <div class="vocab">
+        <span class="vword">broke</span>
+        <span class="vword">escape</span>
+        <span class="vword">the top 1%</span>
+        <span class="vword">first $1K</span>
+        <span class="vword">reaction videos</span>
+        <span class="vword">shift</span>
+        <span class="vword">monetized</span>
+        <span class="vword">payout</span>
+        <span class="vword">cooked</span>
+        <span class="vword">no excuses</span>
+        <span class="vword avoid">personal brand</span>
+        <span class="vword avoid">creator economy</span>
+        <span class="vword avoid">passive income</span>
+      </div>
+      <p class="vocab-note">Struck-through terms are ones to avoid. They're marketer words, and this audience hears them as someone selling something.</p>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">06</span><h2>Where they are</h2></div>
+      <p class="rintro">Where this audience already gathers, and what the tone is there.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Reels and the For You page</h3>
+          <p>Short clips, late at night. You described their feed yourself: "Get your ish right. You're broke. You're poor. Get up. Keep going." They're used to being talked to hard, so soft copy gets scrolled past.</p>
+        </div>
+        <div class="ritem">
+          <h3>Live streams: Kick and YouTube</h3>
+          <p>They watch you live and talk back in chat. A live training is a format they already trust, which is why it suits this audience better than a sales page.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="tag tag-c">Next</span>
+    <h2>This research wrote the funnel.</h2>
+    <p class="sub">Every headline, objection and FAQ in the pages came from what's above. That's why they read like you on a stream.</p>
+    <a class="btn" href="index.html">Back to the package <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">The Only Way <em>Out</em></div>
+    <div class="fmeta">
+      <span>Prepared exclusively for MonDejour Hines</span>
+      <span>Built by <a href="https://link.robinpani.com/sas" target="_blank" rel="noopener noreferrer">Sales At Scale</a></span>
+    </div>
+    <p class="disc">Research compiled from publicly available sources. Quotes are reproduced from public forums, reviews and comment threads and are attributed to their source rather than to any named individual.</p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+</script>
