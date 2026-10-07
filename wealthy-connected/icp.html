@@ -1,0 +1,325 @@
+<title>Zielgruppen-Analyse | Wealthy &amp; Connected</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- page-specific: ICP research ---------- */
+
+  .doc-hero {
+    padding: 76px 0 40px;
+    background: radial-gradient(ellipse 60% 80% at 20% 0%, var(--glow-soft), transparent 70%);
+  }
+  .doc-hero .inner { max-width: 760px; }
+  .doc-hero h1 { font-size: clamp(30px, 5vw, 46px); margin: 18px 0 18px; }
+  .doc-hero .lede { font-size: 17px; color: var(--ink-soft); max-width: 58ch; }
+  .backbar { padding-top: 26px; }
+  .backlink {
+    font-family: var(--label); font-size: 11px; font-weight: 600; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ink-faint); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .backlink:hover { color: var(--ink-soft); }
+  .backlink svg { width: 1em; height: 1em; transform: rotate(180deg); flex: none; }
+
+  /* short profile card — replaces the old full-bleed four-column strip so the
+     summary sits in the same narrow column, and reads in the same card
+     language as the .ritem and .evidence blocks below it */
+  .profile-sec { padding: 0 0 8px; }
+  .profile {
+    background: var(--surface-hi);
+    border: 1px solid var(--brand-line); border-left: 3px solid var(--brand);
+    border-radius: 6px 16px 16px 6px; padding: 8px 28px;
+    box-shadow: 0 0 44px -18px var(--glow);
+  }
+  .profile .prow {
+    display: grid; grid-template-columns: 168px 1fr; gap: 20px;
+    align-items: baseline; padding: 15px 0;
+    border-top: 1px solid var(--line-soft);
+  }
+  .profile .prow:first-child { border-top: 0; }
+  .profile .pk {
+    font-family: var(--label); font-size: 10.5px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+  .profile .pv { font-size: 15.5px; line-height: 1.5; color: var(--ink); }
+
+  /* research blocks */
+  .rblock { margin-bottom: 20px; }
+  .rblock > .rhead {
+    display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px;
+  }
+  .rblock .rnum {
+    font-family: var(--label); font-size: 10.5px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--brand-ink);
+  }
+  .rblock h2 { font-size: clamp(23px, 3.2vw, 30px); }
+  .rblock .rintro { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 22px; max-width: 62ch; }
+
+  .rlist { display: flex; flex-direction: column; gap: 14px; }
+  .ritem {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 16px; padding: 24px 26px;
+  }
+  .ritem h3 { font-size: 17.5px; margin-bottom: 9px; }
+  .ritem p { color: var(--ink-soft); font-size: 15px; line-height: 1.65; }
+
+  /* the thing that makes this not a generic persona doc */
+  .evidence {
+    margin-top: 16px; padding: 14px 18px;
+    background: var(--brand-soft); border-left: 3px solid var(--brand);
+    border-radius: 4px 10px 10px 4px;
+  }
+  .evidence .elabel {
+    font-family: var(--label); font-size: 9.5px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 7px;
+  }
+  .evidence q {
+    display: block; font-family: var(--display); font-size: 16px; font-weight: 500;
+    line-height: 1.55; color: var(--ink); quotes: none;
+  }
+  .evidence .src {
+    display: block; margin-top: 9px;
+    font-family: var(--label); font-size: 10.5px; color: var(--ink-faint);
+  }
+
+  /* vocabulary */
+  .vocab { display: flex; flex-wrap: wrap; gap: 10px; }
+  .vword {
+    font-family: var(--label); font-size: 12.5px; font-weight: 600; letter-spacing: .01em;
+    background: var(--brand); color: var(--on-brand);
+    padding: 9px 15px; border-radius: 999px;
+    box-shadow: 0 0 18px -6px var(--glow);
+  }
+  .vword.avoid {
+    background: transparent; color: var(--ink-faint);
+    border: 1px dashed var(--line); text-decoration: line-through;
+  }
+  .vocab-note { margin-top: 18px; color: var(--ink-soft); font-size: 14.5px; max-width: 62ch; }
+
+  @media (max-width: 640px) {
+    .doc-hero { padding: 52px 0 32px; }
+    .profile { padding: 6px 20px; }
+    .profile .prow { grid-template-columns: 1fr; gap: 5px; padding: 14px 0; }
+    .ritem { padding: 22px 20px; }
+  }
+</style>
+
+<div class="wrap backbar">
+  <a class="backlink" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Zurück zum Paket
+  </a>
+</div>
+
+
+<header class="doc-hero">
+  <div class="wrap">
+    <div class="inner">
+      <span class="tag">04 · Zielgruppen-Analyse</span>
+      <h1>Wer deine Kundin wirklich ist</h1>
+      <p class="lede">Zusammengestellt aus öffentlichen Quellen: deiner Website, deinem Instagram, den Geschichten deiner Kundinnen und Artikeln, in denen Anlegerinnen über ihren ersten Kauf sprechen. Jedes Zitat hat eine Quelle. Nutzbar für E-Mails, Reels und Strategiegespräche.</p>
+    </div>
+  </div>
+</header>
+
+<section class="profile-sec">
+  <div class="wrap narrow">
+    <div class="profile">
+      <div class="prow"><span class="pk">Wer sie ist</span><span class="pv">Berufstätige Frauen, 27–45, mit ETF-Depot</span></div>
+      <div class="prow"><span class="pk">Hängt fest bei</span><span class="pv">„Ich will investieren, weiß aber nicht wie“</span></div>
+      <div class="prow"><span class="pk">Schon versucht</span><span class="pv">YouTube, Podcasts, Bücher, Exposé-Scrollen</span></div>
+      <div class="prow"><span class="pk">Will eigentlich</span><span class="pv">Die erste Immobilie – mit Plan statt Bauchgefühl</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap narrow">
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">01</span><h2>Ängste</h2></div>
+      <p class="rintro">Was sie insgeheim beschäftigt. Diese Einwände fallen im Strategiegespräch selten laut — deshalb muss der Text sie beantworten, bevor sie gestellt werden.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Der teure erste Fehler</h3>
+          <p>Zu viel bezahlt, schlechte Substanz, falscher Standort. Die Angst ist nicht „Immobilien sind riskant“, sondern „ich erkenne das Risiko nicht“. Deshalb wird recherchiert statt gekauft.</p>
+          <div class="evidence">
+            <div class="elabel">Gefunden bei</div>
+            <q>Unsicherheiten und Bauchgefühl werden ersetzt … teure Fehler vermieden</q>
+            <span class="src">wealthyandconnected.de — Objektsprechstunde</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>Die Bank sagt Nein</h3>
+          <p>Sie weiß nicht, welche Unterlagen und Zahlen die Bank erwartet, und fürchtet, als Anfängerin nicht ernst genommen zu werden. Also wird der Termin verschoben.</p>
+          <div class="evidence">
+            <div class="elabel">Gefunden bei</div>
+            <q>Wie du dich optimal auf Gespräche mit Banken und Maklern vorbereitest</q>
+            <span class="src">wealthyandconnected.de — Leitfaden-Inhalte</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>Allein entscheiden müssen</h3>
+          <p>Bei schnellen Entscheidungen im Auswahlprozess niemanden zu haben, der draufschaut. Genau das heben deine Kundinnen als wertvollsten Teil hervor.</p>
+          <div class="evidence">
+            <div class="elabel">Gefunden bei</div>
+            <q>Gerade bei schnellen Entscheidungen im Auswahlprozess war es unglaublich hilfreich …</q>
+            <span class="src">Sophia, Kundin — wealthyandconnected.de</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">02</span><h2>Wünsche</h2></div>
+      <p class="rintro">Was sie wirklich kaufen würde — so gesagt, wie sie es sagen würde. Meist bescheidener und konkreter als erwartet.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Fixkosten, die sich selbst zahlen</h3>
+          <p>Nicht „reich werden“, sondern eine Miete, die Monat für Monat einen Teil der eigenen Lebenshaltungskosten deckt — und eine Altersvorsorge, um die sie sich nicht mehr sorgen muss.</p>
+          <div class="evidence">
+            <div class="elabel">Gefunden bei</div>
+            <q>Diese decken heute meine monatlichen Fixkosten.</q>
+            <span class="src">Alberta — wealthyandconnected.de, Startseite</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>Eine klare Reihenfolge</h3>
+          <p>Sie will nicht noch mehr Wissen, sondern wissen, welcher Schritt jetzt dran ist — und was sie ignorieren kann.</p>
+          <div class="evidence">
+            <div class="elabel">Gefunden bei</div>
+            <q>zur 1. Immobilie mit Struktur</q>
+            <span class="src">@wealthyandconnected — Instagram-Bio</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>Frauen, die denselben Weg gehen</h3>
+          <p>Eine kleine, feste Gruppe, die sie motiviert und an der sie sieht, dass es funktioniert.</p>
+          <div class="evidence">
+            <div class="elabel">Gefunden bei</div>
+            <q>Durch die kleine, feste Gruppe konnte man außerdem die Entwicklung der anderen gut mitverfolgen.</q>
+            <span class="src">Alida, Kundin — wealthyandconnected.de</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">03</span><h2>Einwände</h2></div>
+      <p class="rintro">Warum sie nicht kauft. Ehrlich beantwortet statt weggewischt — so bereiten Webinar und FAQ das Strategiegespräch vor.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>„Ich habe zu wenig Eigenkapital.“</h3>
+          <p>Antwort: Rechne vor, wie viel Kaufpreis mit ihrem Eigenkapital realistisch ist und wie Fremdkapital hebelt. Kleine Wohnung zuerst — entscheidend ist die Strategie.</p>
+          <div class="evidence">
+            <div class="elabel">Gefunden bei</div>
+            <q>selbst mit wenig Eigenkapital oder ganz ohne Vorerfahrung</q>
+            <span class="src">wealthyandconnected.de — Startseite</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>„Ich finde einfach nichts.“</h3>
+          <p>Antwort: Ohne Suchprofil wirkt jedes Exposé falsch. Mit Ankaufskriterien wird aus „nichts“ eine kurze Liste.</p>
+          <div class="evidence">
+            <div class="elabel">Gefunden bei</div>
+            <q>Schluss mit „Ich finde nichts!“</q>
+            <span class="src">wealthyandconnected.de — Startseite</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>„Ich habe keine Zeit neben Job und Kindern.“</h3>
+          <p>Antwort: Wöchentliche Calls in kleiner Gruppe und jemand, der bei schnellen Fragen erreichbar ist. Eine deiner Kundinnen ist Mutter von drei Kindern.</p>
+          <div class="evidence">
+            <div class="elabel">Gefunden bei</div>
+            <q>Die wöchentlichen Calls waren für mich ein wichtiger Anker</q>
+            <span class="src">Alida, Kundin — wealthyandconnected.de</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">04</span><h2>Kauf-Trigger</h2></div>
+      <p class="rintro">Der Moment, in dem das Problem nicht mehr auszuhalten ist. Ads, die den Trigger benennen, schlagen Ads, die die Lösung benennen.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Das ETF-Depot läuft — und jetzt?</h3>
+          <p>Der Sparplan ist eingerichtet, die Frage „Was kommt als Nächstes?“ bleibt. Genau Albertas eigener Wendepunkt 2020.</p>
+        </div>
+        <div class="ritem">
+          <h3>Eine Freundin kauft ihre erste Wohnung</h3>
+          <p>Jemand aus dem Umfeld, ohne Erbe und ohne Finanzjob, schafft es. Plötzlich ist „das ist nur was für Profis“ keine Ausrede mehr.</p>
+        </div>
+        <div class="ritem">
+          <h3>Die Rentenübersicht im Briefkasten</h3>
+          <p>Eine Zahl, die schwarz auf weiß zeigt, dass die gesetzliche Rente nicht reicht — besonders mit Teilzeitjahren.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">05</span><h2>Ihre Sprache</h2></div>
+      <p class="rintro">Die Wörter, mit denen diese Frauen ihr eigenes Thema beschreiben. Texte in diesen Wörtern klingen nach Insiderin; Texte drumherum nach Außenseiter.</p>
+      <div class="vocab">
+        <span class="vword">Kapitalanlage</span>
+        <span class="vword">Cashflow</span>
+        <span class="vword">Eigenkapital</span>
+        <span class="vword">Bankgespräch</span>
+        <span class="vword">Exposé</span>
+        <span class="vword">Standort</span>
+        <span class="vword">Notartermin</span>
+        <span class="vword">finanzielle Freiheit</span>
+        <span class="vword avoid">Passives Einkommen im Schlaf</span>
+        <span class="vword avoid">Immobilien-Imperium</span>
+      </div>
+      <p class="vocab-note">Durchgestrichene Begriffe besser meiden — sie klingen nach Hype statt nach dem sicheren, durchdachten Weg, den diese Frauen suchen.</p>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">06</span><h2>Wo sie ist</h2></div>
+      <p class="rintro">Wo sich diese Zielgruppe schon aufhält — nützlich fürs Targeting und dafür, welche Bezüge ankommen.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Instagram</h3>
+          <p>Finanz-Accounts für Frauen, Budgeting- und ETF-Content. Ton: persönlich, ermutigend, „ich zeige dir, wie ich es gemacht habe“.</p>
+        </div>
+        <div class="ritem">
+          <h3>Finanz-Podcasts und YouTube</h3>
+          <p>Wo sie ihr ETF-Wissen herhat. Sie kennt die Grundbegriffe — Texte dürfen „Cashflow“ und „Eigenkapital“ ohne Erklärung verwenden.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="tag tag-c">Weiter</span>
+    <h2>Aus dieser Analyse ist der Funnel entstanden.</h2>
+    <p class="sub">Jede Überschrift, jeder Einwand und jede FAQ in den Seiten kommt von hier — deshalb klingt der Funnel, als hätte ihn jemand aus deiner Community geschrieben.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">Wealthy & <em>Connected</em></div>
+    <div class="fmeta">
+      <span>Exklusiv erstellt für Alberta</span>
+      <span>Gebaut von <a href="https://link.robinpani.com/sas" target="_blank" rel="noopener noreferrer">Sales At Scale</a></span>
+    </div>
+    <p class="disc">Zusammengestellt aus öffentlich zugänglichen Quellen. Zitate stammen von wealthyandconnected.de und dem Instagram-Profil @wealthyandconnected und sind ihrer Quelle zugeordnet.</p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+</script>
