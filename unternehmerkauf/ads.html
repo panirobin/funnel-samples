@@ -1,0 +1,358 @@
+<title>5 Ad-Skripte fürs Webinar | Unternehmerkauf</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- page-specific: ad scripts ---------- */
+
+  .doc-hero {
+    padding: 76px 0 44px;
+    background: radial-gradient(ellipse 60% 80% at 20% 0%, var(--glow-soft), transparent 70%);
+  }
+  .doc-hero .inner { max-width: 760px; }
+  .doc-hero h1 { font-size: clamp(30px, 5vw, 46px); margin: 18px 0 18px; }
+  .doc-hero .lede { font-size: 17px; color: var(--ink-soft); max-width: 58ch; }
+  .backbar { padding-top: 26px; }
+  .backlink {
+    font-family: var(--label); font-size: 11px; font-weight: 600; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ink-faint); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .backlink:hover { color: var(--ink-soft); }
+  .backlink svg { width: 1em; height: 1em; transform: rotate(180deg); flex: none; }
+
+  .scripts { display: flex; flex-direction: column; gap: 14px; }
+
+  .script { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; transition: border-color .2s ease, box-shadow .2s ease; }
+  .script:hover { border-color: var(--brand-line); }
+  .script.open { border-color: var(--brand-line); box-shadow: 0 0 44px -16px var(--glow), var(--shadow); }
+
+  .s-head {
+    width: 100%; display: grid; grid-template-columns: auto 1fr auto auto;
+    gap: 18px; align-items: center; text-align: left;
+    background: none; border: 0; cursor: pointer;
+    padding: 24px 26px; color: var(--ink); font-family: var(--sans);
+  }
+  .s-head:focus-visible { outline: 2px solid var(--brand-ink); outline-offset: -2px; }
+  .s-num {
+    font-family: var(--label); font-size: 11px; font-weight: 800; letter-spacing: .02em;
+    color: var(--brand-ink);
+    width: 40px; height: 40px; border-radius: 50%; flex: none;
+    display: flex; align-items: center; justify-content: center; line-height: 1;
+    background: var(--brand-soft); border: 1px solid var(--brand-line);
+  }
+  .s-title { font-family: var(--display); font-size: 18px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.25; }
+  .s-meta {
+    font-family: var(--label); font-size: 10.5px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ink-faint); white-space: nowrap;
+  }
+  .s-sign { font-family: var(--sans); font-size: 18px; font-weight: 600; color: var(--brand-ink); transition: transform .28s ease; }
+  .script.open .s-sign { transform: rotate(45deg); }
+
+  .s-body { max-height: 0; overflow: hidden; transition: max-height .34s ease; }
+  .s-inner { padding: 4px 26px 26px; }
+
+  .s-part { padding: 18px 0; border-top: 1px solid var(--line-soft); }
+  .s-part:first-child { border-top: 0; padding-top: 6px; }
+  .p-label {
+    font-family: var(--label); font-size: 10px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px;
+  }
+  .s-part p { font-size: 15.5px; line-height: 1.7; color: var(--ink); margin-bottom: 12px; }
+  .s-part p:last-child { margin-bottom: 0; }
+
+  .s-actions { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+  .s-btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: var(--sans); font-size: 13.5px; font-weight: 600; line-height: 1;
+    padding: 13px 20px; border-radius: 999px; cursor: pointer;
+    background: var(--btn-bg); color: var(--btn-fg); border: 1px solid transparent;
+    box-shadow: 0 8px 22px -10px var(--glow);
+    appearance: none; -webkit-appearance: none; margin: 0;
+  }
+  .s-btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); box-shadow: none; }
+  .s-btn.ghost:hover { background: var(--paper-2); }
+  .s-btn:focus-visible { outline: 2px solid var(--brand-ink); outline-offset: 3px; }
+  .s-btn svg { width: 1em; height: 1em; flex: none; }
+
+  @media (max-width: 640px) {
+    .doc-hero { padding: 52px 0 34px; }
+    .s-head { grid-template-columns: auto 1fr auto; gap: 12px; padding: 20px; }
+    .s-meta { display: none; }
+    .s-title { font-size: 17px; }
+    .s-inner { padding: 4px 20px 22px; }
+  }
+</style>
+
+<div class="wrap backbar">
+  <a class="backlink" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Zurück zum Paket
+  </a>
+</div>
+
+<header class="doc-hero">
+  <div class="wrap">
+    <div class="inner">
+      <span class="tag">05 · Ad-Skripte fürs Webinar</span>
+      <h1>Fünf Skripte, fünf verschiedene Käufer</h1>
+      <p class="lede">Jedes spricht einen anderen Grund an, warum jemand in deinem Markt noch keine Firma gekauft hat – so laufen sie parallel, ohne sich Konkurrenz zu machen. Geschrieben in deiner Stimme, aus deinen eigenen Formulierungen. Klick auf ein Skript, um es zu öffnen, dann kopieren oder herunterladen.</p>
+    </div>
+  </div>
+</header>
+
+<section class="sec">
+  <div class="wrap narrow">
+    <div class="scripts" id="scripts">
+
+      <article class="script" data-slug="skript-1">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">01</span>
+          <span class="s-title">Der teuerste Weg – für Angestellte, die übers Gründen nachdenken</span>
+          <span class="s-meta">~70 Sek</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+
+            <div class="s-part" data-part="HOOK">
+              <div class="p-label">Hook</div>
+              <p>Du willst Unternehmer werden und denkst ans Gründen? Dann hör mir 60 Sekunden zu. Gründen ist der teuerste Weg, Unternehmer zu werden.</p>
+            </div>
+
+            <div class="s-part" data-part="HAUPTTEIL">
+              <div class="p-label">Hauptteil</div>
+              <p>Job kündigen. Ersparnisse rein. 70 Stunden die Woche. Und warten, dass jemand kauft, was du gebaut hast. Das ist Selbstausbeutung mit Extraschritten.</p>
+              <p>Ich bin Stefan Lenhart. Ich habe in den letzten Jahren vier GmbHs gekauft und drei gegründet. Ich kenne beide Wege. Und es gibt einen zweiten: eine Firma übernehmen, die schon läuft. Kunden, Team, Umsatz – ab Tag 1.</p>
+            </div>
+
+            <div class="s-part" data-part="DAS LERNST DU">
+              <div class="p-label">Das lernst du</div>
+              <p>Im kostenlosen Live-Webinar zeige ich dir an einem echten Beispiel, wie du so eine Firma findest, ihre Zahlen prüfst und den Kauf finanzierst.</p>
+            </div>
+
+            <div class="s-part" data-part="CTA">
+              <div class="p-label">Call to Action</div>
+              <p>Donnerstag, 19 Uhr, live und kostenlos. Klick unten auf den Link und sichere dir deinen Platz – bevor du deinen Job für eine Gründung kündigst.</p>
+            </div>
+
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>
+                Skript kopieren
+              </button>
+              <button type="button" class="s-btn ghost download-script">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Als .txt laden
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </article>
+
+      <article class="script" data-slug="skript-2">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">02</span>
+          <span class="s-title">„Ich hab kein Eigenkapital“ – für alle, die am Geld hängen bleiben</span>
+          <span class="s-meta">~75 Sek</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+            <div class="s-part" data-part="HOOK"><div class="p-label">Hook</div><p>„Eine Firma kaufen? Dafür fehlt mir das Eigenkapital.“ Das ist die Frage, die ich am häufigsten höre. Und die Antwort überrascht die meisten.</p></div>
+            <div class="s-part" data-part="HAUPTTEIL"><div class="p-label">Hauptteil</div><p>Ja, du brauchst Eigenkapital. Aber weniger, als du denkst. Banken finanzieren eine Übernahme anders als eine Gründung – weil Cashflow und Substanz schon da sind. Die Bank sieht Zahlen, die sie versteht, statt einer Idee.</p><p>Dazu kommen Bausteine, von denen die meisten noch nie gehört haben: ein Verkäuferdarlehen, bei dem der Inhaber einen Teil des Kaufpreises stundet. Förderkredite. Ein cleveres Kaufpreis-Modell, das dein Risiko drückt.</p></div>
+            <div class="s-part" data-part="DAS LERNST DU"><div class="p-label">Das lernst du</div><p>Im Live-Webinar zeige ich dir, wie diese Bausteine zusammenspielen – und wie ich selbst Käufe finanziert habe.</p></div>
+            <div class="s-part" data-part="CTA"><div class="p-label">Call to Action</div><p>Donnerstag, 19 Uhr, live und kostenlos. Link unten, Platz sichern. Allgemeine Information, keine Finanzierungsberatung – aber danach weißt du, welche Fragen du deiner Bank stellst.</p></div>
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Skript kopieren</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Als .txt laden</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="script" data-slug="skript-3">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">03</span>
+          <span class="s-title">Der geschönte Gewinn – für alle, die schon Inserate lesen</span>
+          <span class="s-meta">~80 Sek</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+            <div class="s-part" data-part="HOOK"><div class="p-label">Hook</div><p>Dieser Gewinn ist oft zu hoch gerechnet. Und wenn du das erst nach dem Kauf merkst, wird es teuer.</p></div>
+            <div class="s-part" data-part="HAUPTTEIL"><div class="p-label">Hauptteil</div><p>Der Verkäufer zeigt dir 200.000&nbsp;€ EBIT. Klingt gut. Aber er hat sich selbst kaum Gehalt gezahlt. Du musst die Firma führen – also gehört dein Geschäftsführergehalt vom Gewinn abgezogen. Erst das ist der echte Gewinn.</p><p>Und der Kaufpreis ist nicht der Preis auf dem Papier. Schulden werden abgezogen, und die Firma muss am Stichtag genug Betriebskapital haben. Zieht der Verkäufer vorher die Kasse leer, zahlst du drauf. Ich bin Stefan Lenhart, ich habe vier GmbHs gekauft – und genau auf diese Zahlen schaue ich zuerst.</p></div>
+            <div class="s-part" data-part="DAS LERNST DU"><div class="p-label">Das lernst du</div><p>Im Live-Webinar zerlege ich ein Inserat Zeile für Zeile: Gewinn bereinigen, Multiplikator einordnen, Fallen im Kaufvertrag erkennen.</p></div>
+            <div class="s-part" data-part="CTA"><div class="p-label">Call to Action</div><p>Donnerstag, 19 Uhr, kostenlos. Bring das Inserat mit, das dich gerade beschäftigt. Link unten. Allgemeine Information, keine Rechts- oder Steuerberatung.</p></div>
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Skript kopieren</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Als .txt laden</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="script" data-slug="skript-4">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">04</span>
+          <span class="s-title">Das Branchen-Ranking – für alle, die nicht wissen, was sie kaufen sollen</span>
+          <span class="s-meta">~75 Sek</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+            <div class="s-part" data-part="HOOK"><div class="p-label">Hook</div><p>Nicht jede Firma ist gleich viel wert. Wenn du eine kaufen willst, gibt es genau eine Frage, die zählt: Kommen die Kunden von alleine zurück?</p></div>
+            <div class="s-part" data-part="HAUPTTEIL"><div class="p-label">Hauptteil</div><p>Sanitär und Heizung ist für mich S-Tier. Wartungsverträge bringen planbare Einnahmen, und Kunden rufen an, weil sie müssen. Die Dringlichkeit schützt den Preis.</p><p>Dachdecker? B-Tier. Der Winter bringt den Betrieb faktisch zum Stillstand. Und ein Betrieb ohne Burggraben landet im reinen Preiskampf. Ich bin Stefan Lenhart, ich kaufe selbst Firmen – und das ist der erste Filter, durch den jedes Inserat bei mir muss.</p></div>
+            <div class="s-part" data-part="DAS LERNST DU"><div class="p-label">Das lernst du</div><p>Im Live-Webinar bekommst du das ganze Ranking – und siehst, wie du eine Branche wählst, in der du führst, statt selbst auf der Baustelle zu stehen.</p></div>
+            <div class="s-part" data-part="CTA"><div class="p-label">Call to Action</div><p>Donnerstag, 19 Uhr, live und kostenlos. Klick auf den Link unten und sichere dir deinen Platz.</p></div>
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Skript kopieren</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Als .txt laden</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="script" data-slug="skript-5">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">05</span>
+          <span class="s-title">„Hätte ich doch“ – für alle, die sich noch nicht trauen</span>
+          <span class="s-meta">~65 Sek</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+            <div class="s-part" data-part="HOOK"><div class="p-label">Hook</div><p>Du willst eine Firma kaufen, traust dich aber nicht? Dann ist dieses Video für dich.</p></div>
+            <div class="s-part" data-part="HAUPTTEIL"><div class="p-label">Hauptteil</div><p>Laut KfW findet rund die Hälfte der Inhaber, die eine Nachfolge planen, keinen passenden Nachfolger. Da sitzt ein Unternehmer, 30 Jahre Firma, Kunden, Team, Umsatz. Alles läuft. Er sucht nicht den höchsten Preis. Er sucht jemanden wie dich.</p><p>Das größere Risiko ist nicht der Kauf. Das größere Risiko ist, in zehn Jahren immer noch zu denken: Hätte ich doch. Du musst nicht alles wissen. Du musst den ersten Schritt machen.</p></div>
+            <div class="s-part" data-part="DAS LERNST DU"><div class="p-label">Das lernst du</div><p>Im Live-Webinar zeige ich dir den ganzen Weg Schritt für Schritt – vom ersten Gespräch mit dem Inhaber bis zur Absichtserklärung.</p></div>
+            <div class="s-part" data-part="CTA"><div class="p-label">Call to Action</div><p>Donnerstag, 19 Uhr, kostenlos. Link unten, Platz sichern. Das ist dein erster Schritt.</p></div>
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Skript kopieren</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Als .txt laden</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="tag tag-c">Nächster Schritt</span>
+    <h2>Diese Skripte zeigen auf die Landingpage.</h2>
+    <p class="sub">Jedes Skript endet mit dem Link zur Anmeldeseite aus diesem Paket.</p>
+    <a class="btn" href="index.html">Zurück zum Paket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">Unternehmer<em>kauf</em></div>
+    <div class="fmeta">
+      <span>Exklusiv erstellt für Stefan Lenhart</span>
+      <span>Erstellt von <a href="https://link.robinpani.com/sas" target="_blank" rel="noopener noreferrer">Sales At Scale</a></span>
+    </div>
+    <p class="disc">Diese Skripte sind Entwürfe auf Basis öffentlich zugänglicher Recherche. Formulierungen und Angaben (u.&nbsp;a. „4 GmbHs gekauft, 3 gegründet“, Branchen-Ranking, Beispiel 200.000&nbsp;€ EBIT) stammen von unternehmerkauf.de und Instagram-Beiträgen von @stefan.lenhart_official; die Nachfolge-Zahl von KfW Research. Vor dem Einsatz in bezahlter Werbung bitte rechtlich prüfen lassen.</p>
+  </div>
+</footer>
+
+<div class="tally-toast" id="ads-toast" role="status" aria-live="polite"></div>
+<script>
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+
+  (function () {
+    var scripts = [].slice.call(document.querySelectorAll('.script'));
+    var toast = document.getElementById('ads-toast');
+    var toastTimer;
+
+    function flash(msg) {
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 2600);
+    }
+
+    // Assemble plain text from the script parts only (title + labelled parts).
+    function scriptText(article) {
+      var title = article.querySelector('.s-title').textContent.trim();
+      var out = [title, ''];
+      [].slice.call(article.querySelectorAll('.s-part')).forEach(function (part) {
+        out.push('[' + (part.getAttribute('data-part') || '').toUpperCase() + ']');
+        [].slice.call(part.querySelectorAll('p')).forEach(function (p) {
+          out.push(p.textContent.trim());
+        });
+        out.push('');
+      });
+      return out.join('\n').replace(/\n{3,}/g, '\n\n').trim() + '\n';
+    }
+
+    function setOpen(article, open) {
+      var body = article.querySelector('.s-body');
+      var btn = article.querySelector('.s-head');
+      article.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      body.style.maxHeight = open ? body.scrollHeight + 'px' : null;
+    }
+
+    scripts.forEach(function (article) {
+      article.querySelector('.s-head').addEventListener('click', function () {
+        setOpen(article, !article.classList.contains('open'));
+      });
+
+      article.querySelector('.copy-script').addEventListener('click', function () {
+        var text = scriptText(article);
+        function fallback() {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); flash('Skript kopiert'); }
+          catch (e) { flash('Kopieren fehlgeschlagen – bitte Text manuell markieren'); }
+          document.body.removeChild(ta);
+        }
+        // navigator.clipboard needs a secure context; fall back where it is absent
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(function () { flash('Skript kopiert'); }, fallback);
+        } else { fallback(); }
+      });
+
+      article.querySelector('.download-script').addEventListener('click', function () {
+        var blob = new Blob([scriptText(article)], { type: 'text/plain;charset=utf-8' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'unternehmerkauf-' + (article.getAttribute('data-slug') || 'skript') + '.txt';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+        flash('Heruntergeladen');
+      });
+    });
+
+    // An open panel's pixel height goes stale when the viewport reflows.
+    var t;
+    window.addEventListener('resize', function () {
+      clearTimeout(t);
+      t = setTimeout(function () {
+        var open = document.querySelector('.script.open');
+        if (open) { var b = open.querySelector('.s-body'); b.style.maxHeight = b.scrollHeight + 'px'; }
+      }, 120);
+    });
+  })();
+</script>
