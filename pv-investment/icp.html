@@ -7,13 +7,13 @@
   /* ---------- page-specific: ICP research ---------- */
 
   .doc-hero {
-    padding: 76px 0 40px;
+    padding: 0 0 40px;
     background: radial-gradient(ellipse 60% 80% at 20% 0%, var(--glow-soft), transparent 70%);
   }
   .doc-hero .inner { max-width: 760px; }
   .doc-hero h1 { font-size: clamp(30px, 5vw, 46px); margin: 18px 0 18px; }
   .doc-hero .lede { font-size: 17px; color: var(--ink-soft); max-width: 58ch; }
-  .backbar { padding-top: 26px; }
+  .backbar { padding-top: 26px; margin-bottom: 50px; }
   .backlink {
     font-family: var(--label); font-size: 11px; font-weight: 600; letter-spacing: .08em;
     text-transform: uppercase; color: var(--ink-faint); text-decoration: none;
@@ -98,21 +98,21 @@
   .vocab-note { margin-top: 18px; color: var(--ink-soft); font-size: 14.5px; max-width: 62ch; }
 
   @media (max-width: 640px) {
-    .doc-hero { padding: 52px 0 32px; }
+    .doc-hero { padding: 0 0 32px; }
+    .backbar { margin-bottom: 26px; }
     .profile { padding: 6px 20px; }
     .profile .prow { grid-template-columns: 1fr; gap: 5px; padding: 14px 0; }
     .ritem { padding: 22px 20px; }
   }
 </style>
 
-<div class="wrap backbar">
+<header class="doc-hero">
+  <div class="wrap backbar">
   <a class="backlink" href="index.html">
     <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
     Zurück zum Paket
   </a>
 </div>
-
-<header class="doc-hero">
   <div class="wrap">
     <div class="inner">
       <span class="tag">01 · ICP-Avatar-Recherche</span>
