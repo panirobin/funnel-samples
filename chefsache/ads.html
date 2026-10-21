@@ -1,0 +1,357 @@
+<title>5 Ad-Skripte für das Erstgespräch | Chefsache von Buddenbrock</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- page-specific: ad scripts ---------- */
+
+  .doc-hero {
+    padding: 0 0 44px;
+    background: radial-gradient(ellipse 60% 80% at 20% 0%, var(--glow-soft), transparent 70%);
+  }
+  .doc-hero .inner { max-width: 760px; }
+  .doc-hero h1 { font-size: clamp(30px, 5vw, 46px); margin: 18px 0 18px; }
+  .doc-hero .lede { font-size: 17px; color: var(--ink-soft); max-width: 58ch; }
+  /* the back link sits inside .doc-hero, so the glow starts at the very top of the page */
+  .backbar { padding-top: 26px; margin-bottom: 50px; }
+  .backlink {
+    font-family: var(--label); font-size: 11px; font-weight: 600; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ink-faint); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .backlink:hover { color: var(--ink-soft); }
+  .backlink svg { width: 1em; height: 1em; transform: rotate(180deg); flex: none; }
+
+  .scripts { display: flex; flex-direction: column; gap: 14px; }
+
+  .script { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; transition: border-color .2s ease, box-shadow .2s ease; }
+  .script:hover { border-color: var(--brand-line); }
+  .script.open { border-color: var(--brand-line); box-shadow: 0 0 44px -16px var(--glow), var(--shadow); }
+
+  .s-head {
+    width: 100%; display: grid; grid-template-columns: auto 1fr auto auto;
+    gap: 18px; align-items: center; text-align: left;
+    background: none; border: 0; cursor: pointer;
+    padding: 24px 26px; color: var(--ink); font-family: var(--sans);
+  }
+  .s-head:focus-visible { outline: 2px solid var(--brand-ink); outline-offset: -2px; }
+  .s-num {
+    font-family: var(--label); font-size: 11px; font-weight: 800; letter-spacing: .02em;
+    color: var(--brand-ink);
+    width: 40px; height: 40px; border-radius: 50%; flex: none;
+    display: flex; align-items: center; justify-content: center; line-height: 1;
+    background: var(--brand-soft); border: 1px solid var(--brand-line);
+  }
+  .s-title { font-family: var(--display); font-size: 18px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.25; }
+  .s-meta {
+    font-family: var(--label); font-size: 10.5px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ink-faint); white-space: nowrap;
+  }
+  .s-sign { font-family: var(--sans); font-size: 18px; font-weight: 600; color: var(--brand-ink); transition: transform .28s ease; }
+  .script.open .s-sign { transform: rotate(45deg); }
+
+  .s-body { max-height: 0; overflow: hidden; transition: max-height .34s ease; }
+  .s-inner { padding: 4px 26px 26px; }
+
+  .s-part { padding: 18px 0; border-top: 1px solid var(--line-soft); }
+  .s-part:first-child { border-top: 0; padding-top: 6px; }
+  .p-label {
+    font-family: var(--label); font-size: 10px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px;
+  }
+  .s-part p { font-size: 15.5px; line-height: 1.7; color: var(--ink); margin-bottom: 12px; }
+  .s-part p:last-child { margin-bottom: 0; }
+
+  .s-actions { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+  .s-btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: var(--sans); font-size: 13.5px; font-weight: 600; line-height: 1;
+    padding: 13px 20px; border-radius: 999px; cursor: pointer;
+    background: var(--btn-bg); color: var(--btn-fg); border: 1px solid transparent;
+    box-shadow: 0 8px 22px -10px var(--glow);
+    appearance: none; -webkit-appearance: none; margin: 0;
+  }
+  .s-btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); box-shadow: none; }
+  .s-btn.ghost:hover { background: var(--paper-2); }
+  .s-btn:focus-visible { outline: 2px solid var(--brand-ink); outline-offset: 3px; }
+  .s-btn svg { width: 1em; height: 1em; flex: none; }
+
+  @media (max-width: 640px) {
+    .doc-hero { padding: 0 0 34px; }
+    .backbar { margin-bottom: 26px; }
+    .s-head { grid-template-columns: auto 1fr auto; gap: 12px; padding: 20px; }
+    .s-meta { display: none; }
+    .s-title { font-size: 17px; }
+    .s-inner { padding: 4px 20px 22px; }
+  }
+</style>
+
+<header class="doc-hero">
+  <div class="wrap backbar">
+  <a class="backlink" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Zurück zum Paket
+  </a>
+</div>
+  <div class="wrap">
+    <div class="inner">
+      <span class="tag">02 · Ad-Skripte für das Erstgespräch</span>
+      <h1>Fünf Skripte, fünf verschiedene Geschäftsführer</h1>
+      <p class="lede">Jedes spricht einen anderen Grund an, warum ein Gesellschafter-Geschäftsführer seine Versorgung noch nicht angefasst hat – so laufen sie parallel, ohne sich Konkurrenz zu machen. Geschrieben in Ihrer Chefsache-Stimme, mit den Rechenbeispielen von Ihrer eigenen Website. Klicken Sie auf ein Skript, um es zu öffnen, dann kopieren oder herunterladen.</p>
+    </div>
+  </div>
+</header>
+
+<section class="sec">
+  <div class="wrap narrow">
+    <div class="scripts" id="scripts">
+
+      <article class="script" data-slug="script-1">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">01</span>
+          <span class="s-title">Die Tantieme – für GGF kurz vor dem Jahresabschluss</span>
+          <span class="s-meta">~75 Sek</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+
+            <div class="s-part" data-part="HOOK">
+              <div class="p-label">Hook</div>
+              <p>Dein Jahresabschluss steht an. Und mit ihm die Frage: Wie viel Tantieme zahle ich mir dieses Jahr aus? Bevor du das entscheidest, gib mir 60 Sekunden.</p>
+            </div>
+
+            <div class="s-part" data-part="HAUPTTEIL">
+              <div class="p-label">Hauptteil</div>
+              <p>Ich bin Stephan Seidenfad, Geschäftsführer bei von Buddenbrock in Essen. Seit 2004 kümmere ich mich um betriebliche Vorsorge – vor allem um die von Geschäftsführern.</p>
+              <p>Rechnen wir mal: 30.000 Euro Tantieme. Als Gehalt ausgezahlt kommen bei rund 42 Prozent Steuer etwa 17.400 Euro bei dir an. Wandelst du dieselbe Tantieme in eine Pensionszusage um, versteuerst du sie erst im Ruhestand, meist mit 20 bis 30 Prozent. In diesem Beispiel sind das 3.600 bis 6.600 Euro Ersparnis. Mit jeder einzelnen Tantieme. Klartext dazu: Das Geld ist dann gebunden, nicht auf deinem Konto. Und als beherrschender Gesellschafter-Geschäftsführer gilt: Was nicht vorher sauber vereinbart ist, erkennt das Finanzamt nicht an.</p>
+            </div>
+
+            <div class="s-part" data-part="IM ERSTGESPRÄCH">
+              <div class="p-label">Im Erstgespräch</div>
+              <p>Im Erstgespräch schauen wir auf deine Zahlen: ob eine Umwandlung für dich passt, in welcher Form – und was dafür vor dem Beschluss stehen muss.</p>
+            </div>
+
+            <div class="s-part" data-part="CTA">
+              <div class="p-label">Call to Action</div>
+              <p>Klick auf den Link und buch dein kostenloses Erstgespräch – am besten, bevor die Tantieme beschlossen ist. Leg deinen letzten Jahresabschluss bereit.</p>
+            </div>
+
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Skript kopieren</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Als .txt laden</button>
+            </div>
+
+          </div>
+        </div>
+      </article>
+
+      <article class="script" data-slug="script-2">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">02</span>
+          <span class="s-title">„Meine Firma ist meine Rente“ – für Inhaber, die auf den Verkauf setzen</span>
+          <span class="s-meta">~65 Sek</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+            <div class="s-part" data-part="HOOK"><div class="p-label">Hook</div><p>„Meine Firma ist meine Rente.“ Für mich ist das der teuerste Satz, den ein Unternehmer sagen kann. Und ich höre ihn in meinen Beratungen ständig.</p></div>
+            <div class="s-part" data-part="HAUPTTEIL"><div class="p-label">Hauptteil</div><p>Ich bin Stephan Seidenfad, Geschäftsführer bei von Buddenbrock. Versteh mich nicht falsch: Eine Firma aufzubauen ist großartig. Ohne diesen Glauben steht keiner morgens auf. Aber mach den Realitätscheck: Deine ganze Altersvorsorge hängt dann an einem einzigen Tag. Dem Tag, an dem jemand deine Firma kauft – zum richtigen Preis, zur richtigen Zeit. Und wenn das nicht klappt? Dann war das dein Konzept.</p><p>Die Lösung ist kein Entweder-oder. Leb dein Modell – und bau daneben ein Fundament, das deine GmbH als Betriebsausgabe bezahlt und das sauber gegen eine Insolvenz abgesichert ist. Dein Unternehmen ist dabei der Hebel, nicht das Risiko.</p></div>
+            <div class="s-part" data-part="IM ERSTGESPRÄCH"><div class="p-label">Im Erstgespräch</div><p>Im Erstgespräch rechnen wir aus, was du heute aufbauen solltest, damit du später verkaufen kannst – und nicht verkaufen musst.</p></div>
+            <div class="s-part" data-part="CTA"><div class="p-label">Call to Action</div><p>Klick auf den Link und buch dein kostenloses Erstgespräch. Rund 30 Minuten, danach weißt du, ob du handeln musst.</p></div>
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Skript kopieren</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Als .txt laden</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="script" data-slug="script-3">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">03</span>
+          <span class="s-title">„Klingt nach Steuertrick“ – für die Skeptiker</span>
+          <span class="s-meta">~75 Sek</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+            <div class="s-part" data-part="HOOK"><div class="p-label">Hook</div><p>Du hörst überall: Geld steuerfrei aus der GmbH holen. Und denkst: Da ist doch ein Haken. Stimmt. Es gibt sogar mehrere. Lass uns Klartext reden.</p></div>
+            <div class="s-part" data-part="HAUPTTEIL"><div class="p-label">Hauptteil</div><p>Ich bin Stephan Seidenfad. Seit 2004 baue ich Versorgung für Geschäftsführer, und ich sage dir offen, wo die Haken liegen. Erstens: Steuerfrei heißt nicht für immer steuerfrei. Was deine GmbH heute als Betriebsausgabe einzahlt, versteuerst du bei der Auszahlung. Wer die nicht plant, verliert hinten, was er vorne gespart hat. Zweitens: Bist du freiwillig gesetzlich krankenversichert, gehen von der Auszahlung noch Beiträge ab. Drittens: Ohne saubere Zusage und Gesellschafterbeschluss wird aus deiner Vorsorge schnell eine verdeckte Gewinnausschüttung.</p><p>Deshalb sitzen bei uns Finanzen, Recht und Steuern an einem Tisch. Wir nennen das Kontextberatung. Nicht, weil es schöner klingt – sondern weil jeder dieser Haken in einem anderen Fachgebiet steckt.</p></div>
+            <div class="s-part" data-part="IM ERSTGESPRÄCH"><div class="p-label">Im Erstgespräch</div><p>Im Erstgespräch stellst du mir die kritischste Frage, die dir einfällt. Wir sagen dir ehrlich, ob sich eine Zusammenarbeit lohnt. Und wenn ein anderer Weg für dich besser ist, sagen wir auch das.</p></div>
+            <div class="s-part" data-part="CTA"><div class="p-label">Call to Action</div><p>Klick auf den Link und buch dein kostenloses Erstgespräch. Bring deine Skepsis mit.</p></div>
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Skript kopieren</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Als .txt laden</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="script" data-slug="script-4">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">04</span>
+          <span class="s-title">Die alte Pensionszusage – für GGF vor Verkauf oder Nachfolge</span>
+          <span class="s-meta">~65 Sek</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+            <div class="s-part" data-part="HOOK"><div class="p-label">Hook</div><p>Du hast vor Jahren eine Pensionszusage bekommen. Seitdem hat sie keiner mehr angeschaut. Und jetzt sitzt du mit einem Käufer am Tisch – oder mit deinem Nachfolger.</p></div>
+            <div class="s-part" data-part="HAUPTTEIL"><div class="p-label">Hauptteil</div><p>Ich bin Stephan Seidenfad, Geschäftsführer bei von Buddenbrock in Essen. Nach unserer Erfahrung sind 9,5 von 10 Geschäftsführer-Versorgungen schlecht gemacht oder sogar gefährlich. Und das merkt man genau dann, wenn es eilt. Ein Käufer will keine lebenslange Verpflichtung übernehmen. Die Rückdeckung reicht nicht. Und als beherrschender Gesellschafter-Geschäftsführer hast du keinen gesetzlichen Insolvenzschutz – ungesicherte Ansprüche landen im Ernstfall in der Insolvenzmasse.</p><p>Das lässt sich lösen. Über die Rückdeckung, über eine Verpfändung, manchmal über eine Auslagerung. Aber nicht in den letzten drei Wochen vor dem Notartermin.</p></div>
+            <div class="s-part" data-part="IM ERSTGESPRÄCH"><div class="p-label">Im Erstgespräch</div><p>Im Erstgespräch schauen wir in deine Zusage: Wie schlimm ist es wirklich, welche Wege gibt es – und wie viel Zeit bleibt dir dafür?</p></div>
+            <div class="s-part" data-part="CTA"><div class="p-label">Call to Action</div><p>Klick auf den Link und buch dein kostenloses Erstgespräch. Schick uns vorher deine Zusage und die letzte Bilanz, dann reden wir direkt über deinen Fall.</p></div>
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Skript kopieren</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Als .txt laden</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="script" data-slug="script-5">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">05</span>
+          <span class="s-title">41.000 Euro brutto – für alle, die privat aus versteuertem Geld sparen</span>
+          <span class="s-meta">~65 Sek</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+            <div class="s-part" data-part="HOOK"><div class="p-label">Hook</div><p>Wie viel müsstest du privat verdienen, um 24.000 Euro im Jahr für deine Rente zur Seite zu legen? Rund 41.000 Euro. Brutto.</p></div>
+            <div class="s-part" data-part="HAUPTTEIL"><div class="p-label">Hauptteil</div><p>Ich bin Stephan Seidenfad, Geschäftsführer bei von Buddenbrock. Und das ist die Rechnung, die die meisten Geschäftsführer nie aufmachen: Bei 42 Prozent Einkommensteuer kostet dich jeder Euro, den du privat sparst, fast das Doppelte.</p><p>Jetzt der andere Weg. Über eine rückgedeckte Unterstützungskasse zahlt deine GmbH dieselben 2.000 Euro im Monat ein – als Betriebsausgabe. Bei rund 30 Prozent Unternehmenssteuer spart die GmbH damit 7.200 Euro im Jahr, über zehn Jahre 72.000 Euro. Netto kostet es 1.400 Euro im Monat statt 2.000. Ohne die Obergrenze der Direktversicherung. Versteuert wird erst bei der Auszahlung – und die planen wir von Anfang an mit.</p></div>
+            <div class="s-part" data-part="IM ERSTGESPRÄCH"><div class="p-label">Im Erstgespräch</div><p>Im Erstgespräch rechnen wir das mit deinen Zahlen durch und klären, welcher Weg zu deinem GF-Typ passt: Direktversicherung, Unterstützungskasse oder Pensionszusage.</p></div>
+            <div class="s-part" data-part="CTA"><div class="p-label">Call to Action</div><p>Klick auf den Link und buch dein kostenloses Erstgespräch. Leg dein Gehalt und die letzte Bilanz bereit.</p></div>
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Skript kopieren</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Als .txt laden</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="tag tag-c">Nächster Schritt</span>
+    <h2>Diese Skripte führen in Ihr Erstgespräch.</h2>
+    <p class="sub">Jedes Skript endet mit der Einladung zum kostenlosen Erstgespräch – dem Schritt, den Ihre Website und Ihr Instagram heute schon anbieten.</p>
+    <a class="btn" href="index.html">Zurück zum Paket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">Chefsache <em>von Buddenbrock</em></div>
+    <div class="fmeta">
+      <span>Exklusiv für Stephan Seidenfad erstellt</span>
+      <span>Erstellt von <a href="https://link.robinpani.com/sas" target="_blank" rel="noopener noreferrer">Sales At Scale</a></span>
+    </div>
+    <p class="disc">Diese Skripte sind Entwürfe auf Basis öffentlich zugänglicher Recherche. Die Rechenbeispiele (Tantieme 30.000&nbsp;€, Unterstützungskasse 2.000&nbsp;€ im Monat) und die Aussage „9,5 von 10“ stammen von vonbuddenbrock.de. Vor dem Einsatz in bezahlter Werbung bitte steuerlich, rechtlich und regulatorisch prüfen lassen.</p>
+    <p class="legal">Konzept/Demo erstellt von SalesAtScale · <a href="https://robinpani.com/impressum.html" target="_blank" rel="noopener">Impressum</a> · <a href="https://robinpani.com/datenschutz.html" target="_blank" rel="noopener">Datenschutz</a></p>
+  </div>
+</footer>
+
+
+<div class="tally-toast" id="ads-toast" role="status" aria-live="polite"></div>
+
+<script>
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+
+  (function () {
+    var scripts = [].slice.call(document.querySelectorAll('.script'));
+    var toast = document.getElementById('ads-toast');
+    var toastTimer;
+
+    function flash(msg) {
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 2600);
+    }
+
+    // Assemble plain text from the script parts only (title + labelled parts).
+    function scriptText(article) {
+      var title = article.querySelector('.s-title').textContent.trim();
+      var out = [title, ''];
+      [].slice.call(article.querySelectorAll('.s-part')).forEach(function (part) {
+        out.push('[' + (part.getAttribute('data-part') || '').toUpperCase() + ']');
+        [].slice.call(part.querySelectorAll('p')).forEach(function (p) {
+          out.push(p.textContent.trim());
+        });
+        out.push('');
+      });
+      return out.join('\n').replace(/\n{3,}/g, '\n\n').trim() + '\n';
+    }
+
+    function setOpen(article, open) {
+      var body = article.querySelector('.s-body');
+      var btn = article.querySelector('.s-head');
+      article.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      body.style.maxHeight = open ? body.scrollHeight + 'px' : null;
+    }
+
+    scripts.forEach(function (article) {
+      article.querySelector('.s-head').addEventListener('click', function () {
+        setOpen(article, !article.classList.contains('open'));
+      });
+
+      article.querySelector('.copy-script').addEventListener('click', function () {
+        var text = scriptText(article);
+        function fallback() {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); flash('Skript kopiert'); }
+          catch (e) { flash('Kopieren fehlgeschlagen – bitte Text manuell markieren'); }
+          document.body.removeChild(ta);
+        }
+        // navigator.clipboard needs a secure context; fall back where it is absent
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(function () { flash('Skript kopiert'); }, fallback);
+        } else { fallback(); }
+      });
+
+      article.querySelector('.download-script').addEventListener('click', function () {
+        var blob = new Blob([scriptText(article)], { type: 'text/plain;charset=utf-8' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'chefsache-' + (article.getAttribute('data-slug') || 'script') + '.txt';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+        flash('Heruntergeladen');
+      });
+    });
+
+    // An open panel's pixel height goes stale when the viewport reflows.
+    var t;
+    window.addEventListener('resize', function () {
+      clearTimeout(t);
+      t = setTimeout(function () {
+        var open = document.querySelector('.script.open');
+        if (open) { var b = open.querySelector('.s-body'); b.style.maxHeight = b.scrollHeight + 'px'; }
+      }, 120);
+    });
+  })();
+</script>

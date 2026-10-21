@@ -1,0 +1,340 @@
+<title>ICP-Recherche | Chefsache von Buddenbrock</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- page-specific: ICP research ---------- */
+
+  .doc-hero {
+    padding: 0 0 40px;
+    background: radial-gradient(ellipse 60% 80% at 20% 0%, var(--glow-soft), transparent 70%);
+  }
+  .doc-hero .inner { max-width: 760px; }
+  .doc-hero h1 { font-size: clamp(30px, 5vw, 46px); margin: 18px 0 18px; }
+  .doc-hero .lede { font-size: 17px; color: var(--ink-soft); max-width: 58ch; }
+  /* the back link sits inside .doc-hero, so the glow starts at the very top of the page */
+  .backbar { padding-top: 26px; margin-bottom: 50px; }
+  .backlink {
+    font-family: var(--label); font-size: 11px; font-weight: 600; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ink-faint); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .backlink:hover { color: var(--ink-soft); }
+  .backlink svg { width: 1em; height: 1em; transform: rotate(180deg); flex: none; }
+
+  /* short profile card — replaces the old full-bleed four-column strip so the
+     summary sits in the same narrow column, and reads in the same card
+     language as the .ritem and .evidence blocks below it */
+  .profile-sec { padding: 0 0 8px; }
+  .profile {
+    background: var(--surface-hi);
+    border: 1px solid var(--brand-line); border-left: 3px solid var(--brand);
+    border-radius: 6px 16px 16px 6px; padding: 8px 28px;
+    box-shadow: 0 0 44px -18px var(--glow);
+  }
+  .profile .prow {
+    display: grid; grid-template-columns: 168px 1fr; gap: 20px;
+    align-items: baseline; padding: 15px 0;
+    border-top: 1px solid var(--line-soft);
+  }
+  .profile .prow:first-child { border-top: 0; }
+  .profile .pk {
+    font-family: var(--label); font-size: 10.5px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+  .profile .pv { font-size: 15.5px; line-height: 1.5; color: var(--ink); }
+
+  /* research blocks */
+  .rblock { margin-bottom: 20px; }
+  .rblock > .rhead {
+    display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px;
+  }
+  .rblock .rnum {
+    font-family: var(--label); font-size: 10.5px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--brand-ink);
+  }
+  .rblock h2 { font-size: clamp(23px, 3.2vw, 30px); }
+  .rblock .rintro { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 22px; max-width: 62ch; }
+
+  .rlist { display: flex; flex-direction: column; gap: 14px; }
+  .ritem {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 16px; padding: 24px 26px;
+  }
+  .ritem h3 { font-size: 17.5px; margin-bottom: 9px; }
+  .ritem p { color: var(--ink-soft); font-size: 15px; line-height: 1.65; }
+
+  /* the thing that makes this not a generic persona doc */
+  .evidence {
+    margin-top: 16px; padding: 14px 18px;
+    background: var(--brand-soft); border-left: 3px solid var(--brand);
+    border-radius: 4px 10px 10px 4px;
+  }
+  .evidence .elabel {
+    font-family: var(--label); font-size: 9.5px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 7px;
+  }
+  .evidence q {
+    display: block; font-family: var(--display); font-size: 16px; font-weight: 500;
+    line-height: 1.55; color: var(--ink); quotes: none;
+  }
+  .evidence .src {
+    display: block; margin-top: 9px;
+    font-family: var(--label); font-size: 10.5px; color: var(--ink-faint);
+  }
+
+  /* vocabulary */
+  .vocab { display: flex; flex-wrap: wrap; gap: 10px; }
+  .vword {
+    font-family: var(--label); font-size: 12.5px; font-weight: 600; letter-spacing: .01em;
+    background: var(--brand); color: var(--on-brand);
+    padding: 9px 15px; border-radius: 999px;
+    box-shadow: 0 0 18px -6px var(--glow);
+  }
+  .vword.avoid {
+    background: transparent; color: var(--ink-faint);
+    border: 1px dashed var(--line); text-decoration: line-through;
+  }
+  .vocab-note { margin-top: 18px; color: var(--ink-soft); font-size: 14.5px; max-width: 62ch; }
+
+  @media (max-width: 640px) {
+    .doc-hero { padding: 0 0 32px; }
+    .backbar { margin-bottom: 26px; }
+    .profile { padding: 6px 20px; }
+    .profile .prow { grid-template-columns: 1fr; gap: 5px; padding: 14px 0; }
+    .ritem { padding: 22px 20px; }
+  }
+</style>
+
+<header class="doc-hero">
+  <div class="wrap backbar">
+  <a class="backlink" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Zurück zum Paket
+  </a>
+</div>
+  <div class="wrap">
+    <div class="inner">
+      <span class="tag">01 · ICP-Recherche</span>
+      <h1>An wen Sie wirklich verkaufen</h1>
+      <p class="lede">Der Gesellschafter-Geschäftsführer, der für alle vorsorgt außer für sich selbst. Zusammengestellt aus Ihrer Website, Ihrem Chefsache-Kanal, Ihren laufenden Meta-Anzeigen und der Fachpresse zur GGF-Versorgung. Jede Aussage hat eine Quelle.</p>
+    </div>
+  </div>
+</header>
+
+<section class="profile-sec">
+  <div class="wrap narrow">
+    <div class="profile">
+      <div class="prow"><span class="pk">Wer sie sind</span><span class="pv">Gesellschafter-Geschäftsführer einer GmbH, meist beherrschend</span></div>
+      <div class="prow"><span class="pk">Wo es hakt</span><span class="pv">Gutes Jahr, aber privat kommt nur die Hälfte an</span></div>
+      <div class="prow"><span class="pk">Schon versucht</span><span class="pv">Gehalt und Boni erhöhen, die Firma als Rente</span></div>
+      <div class="prow"><span class="pk">Was sie wollen</span><span class="pv">Vorsorge aus der GmbH, rechtssicher und geprüft</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap narrow">
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">01</span><h2>Ängste</h2></div>
+      <p class="rintro">Was sie beschäftigt, aber im Gespräch selten aussprechen. Die Anzeige muss es benennen, bevor sie danach fragen.</p>
+      <div class="rlist">
+
+        <div class="ritem">
+          <h3>Ohne Netz, sobald die Mehrheit bei mir liegt</h3>
+          <p>Ab 50&nbsp;Prozent Anteil fällt alles weg, was Angestellte selbstverständlich haben: Rente, Krankengeld, Erwerbsminderungsrente. Viele merken das erst, wenn sie krank werden oder die Rente näher rückt. Die Angst ist nicht abstrakt, sie ist der Grund, warum das Thema verdrängt wird.</p>
+          <div class="evidence">
+            <div class="elabel">Beleg</div>
+            <q>Beherrschende Gesellschafter-Geschäftsführer (GGF) stehen vollständig außerhalb des Sozial­versicherungssystems.</q>
+            <span class="src">vonbuddenbrock.de/geschaeftsfuehrerversorgung</span>
+          </div>
+        </div>
+
+        <div class="ritem">
+          <h3>Die Insolvenz frisst die Vorsorge mit</h3>
+          <p>Wer über die eigene GmbH vorsorgt, hängt die Rente an genau das Unternehmen, das schiefgehen kann. Ohne Verpfändung oder Rückdeckung ist das Geld im Ernstfall weg. Ihre eigenen Anzeigen von September und Oktober greifen genau diese Angst auf.</p>
+          <div class="evidence">
+            <div class="elabel">Beleg</div>
+            <q>Versorgungsansprüche, die bei einer Insolvenz nicht gesichert sind, fallen in die Insolvenzmasse.</q>
+            <span class="src">vonbuddenbrock.de/geschaeftsfuehrerversorgung</span>
+          </div>
+        </div>
+
+        <div class="ritem">
+          <h3>Die Betriebsprüfung, die alles kippt</h3>
+          <p>Jeder GGF hat von einem Fall gehört, in dem das Finanzamt die Pensionszusage nicht anerkannt hat. Das macht vorsichtig gegenüber allem, was nach „Steuern sparen über die GmbH“ klingt – auch gegenüber guten Lösungen.</p>
+          <div class="evidence">
+            <div class="elabel">Beleg</div>
+            <q>Bei einer Betriebsprüfung können dann hohe Steuernachzahlungen samt sechs Prozent Zinsen drohen.</q>
+            <span class="src">channelpartner.de, „So befreien Sie sich von Pensionszusagen“</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">02</span><h2>Wünsche</h2></div>
+      <p class="rintro">Was sie tatsächlich kaufen würden – meist bescheidener und konkreter als „finanzielle Freiheit“.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Für sich selbst so gut vorsorgen wie für die Firma</h3>
+          <p>Sie bewegen jeden Tag große Summen für das Unternehmen und wissen, dass die eigene Versorgung liegen bleibt. Sie wollen das Thema endlich einmal sauber erledigen – nicht optimieren, sondern abhaken.</p>
+          <div class="evidence">
+            <div class="elabel">Beleg</div>
+            <q>Ihre eigene Versorgung ist oft die Baustelle, die zuletzt drankommt.</q>
+            <span class="src">vonbuddenbrock.de, Startseite</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>Ein Gespräch statt drei Berater</h3>
+          <p>Steuerberater, Anwalt und Makler geben jeweils ihren Teil, aber keiner verantwortet das Ganze. Der Wunsch ist eine Stelle, die alles zusammendenkt. Das ist Ihre Kontextberatung – und das stärkste Argument gegen die Steuertrick-Skepsis.</p>
+          <div class="evidence">
+            <div class="elabel">Beleg</div>
+            <q>Wann saßen Sie zuletzt mit Ihrem Finanz-, Steuer- und Rechtsexperten an einem Tisch, um Ihre Vorsorge abzustimmen? Vermutlich noch nie.</q>
+            <span class="src">vonbuddenbrock.de, Startseite</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>Die GmbH als Hebel nutzen, nicht als Risiko tragen</h3>
+          <p>Sie wollen, dass das Unternehmen, für das sie haften, auch für sie arbeitet: Beiträge als Betriebsausgabe, Ansprüche gegen Insolvenz gesichert, ohne dass das Thema sie jedes Jahr wieder beschäftigt.</p>
+          <div class="evidence">
+            <div class="elabel">Beleg</div>
+            <q>Ihr Unternehmen ist dabei der Hebel, nicht das Risiko.</q>
+            <span class="src">vonbuddenbrock.de, Startseite</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">03</span><h2>Einwände</h2></div>
+      <p class="rintro">Warum sie nicht anfragen. Jedes Skript nimmt einen dieser Einwände vorweg, statt ihn im Gespräch auffangen zu müssen.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>„Das klingt nach Steuertrick“</h3>
+          <p>Wer seit Monaten „steuerfrei aus der GmbH“ liest, wird misstrauisch. Die Antwort in der Anzeige: die Haken selbst aussprechen – nachgelagerte Besteuerung, Beiträge bei freiwilliger GKV, verdeckte Gewinnausschüttung. Wer die Risiken nennt, wirkt nicht wie ein Verkäufer (Skript 03).</p>
+          <div class="evidence">
+            <div class="elabel">Beleg</div>
+            <q>Die Finanzverwaltung stellt hohe Anforderungen an die steuerliche Anerkennung.</q>
+            <span class="src">channelpartner.de, „So befreien Sie sich von Pensionszusagen“</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>„Später, wenn die Firma läuft“</h3>
+          <p>Erst die Aufbauphase, dann die eigene Vorsorge. Nur kommt „dann“ nie. Die Anzeige beantwortet das mit einer Rechnung statt einer Mahnung: was jedes Jahr Warten kostet (Skript 05).</p>
+          <div class="evidence">
+            <div class="elabel">Beleg</div>
+            <q>Der häufigste Fehler ist, die Altersvorsorge zu lange aufzuschieben – auf die Zeit „nach der Gründungsphase“.</q>
+            <span class="src">vonbuddenbrock.de/geschaeftsfuehrerversorgung</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>„Eine Zusage stört nur beim Verkauf“</h3>
+          <p>Wer verkaufen oder übergeben will, sieht die Pensionszusage als Bremsklotz – und lässt sie lieber liegen. Die Anzeige dreht das um: Gerade vor dem Verkauf muss sie angeschaut werden, und zwar nicht drei Wochen vor dem Notar (Skript 04).</p>
+          <div class="evidence">
+            <div class="elabel">Beleg</div>
+            <q>Doch so nützlich sie im Alter ist, so hinderlich ist sie bei Firmenveräußerungen und -nachfolgen.</q>
+            <span class="src">channelpartner.de, „So befreien Sie sich von Pensionszusagen“</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">04</span><h2>Kauf-Auslöser</h2></div>
+      <p class="rintro">Der Moment, in dem das Thema nicht mehr warten kann. Anzeigen, die den Auslöser benennen, schlagen Anzeigen, die die Lösung benennen.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Jahresabschluss und Tantiemenbeschluss – jetzt</h3>
+          <p>Zwischen Oktober und Jahresende entscheidet sich, wie viel Gewinn, Gehalt und Tantieme fließen. Für beherrschende GGF muss alles vorher vereinbart sein. Das ist der Grund, warum diese Anzeigen jetzt laufen sollten (Skript 01).</p>
+        </div>
+        <div class="ritem">
+          <h3>Verkauf, Nachfolge, neuer Gesellschafter, Bankgespräch</h3>
+          <p>Sobald ein Dritter in die Bilanz schaut, wird die alte Zusage zum Thema – ob sie ausfinanziert ist, ob sie übertragbar ist, was sie den Unternehmenswert kostet.</p>
+        </div>
+        <div class="ritem">
+          <h3>Die Rentenreform 2027</h3>
+          <p>Altersvorsorgedepot und Zulagen sind gerade in den Nachrichten – und gelten für GmbH-Chefs nur eingeschränkt. Ihre Videos vom Oktober („Aktienrente für alle – nur nicht für GmbH-Chefs“) zeigen, dass das Thema schon zieht.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">05</span><h2>Ihr Vokabular</h2></div>
+      <p class="rintro">Die Wörter, die dieser Markt selbst benutzt – die meisten davon stehen schon auf Ihrer Website oder in Ihren Videotiteln.</p>
+      <div class="vocab">
+        <span class="vword">Chefsache</span>
+        <span class="vword">Klartext</span>
+        <span class="vword">GGF</span>
+        <span class="vword">Pensionszusage</span>
+        <span class="vword">Unterstützungskasse</span>
+        <span class="vword">Tantieme</span>
+        <span class="vword">Betriebsausgabe</span>
+        <span class="vword">Insolvenzmasse</span>
+        <span class="vword">rechtssicher</span>
+        <span class="vword">Realitätscheck</span>
+        <span class="vword avoid">Altersvorsorge&shy;produkt</span>
+        <span class="vword avoid">Tarif</span>
+        <span class="vword avoid">„steuerfrei“ ohne Zusatz</span>
+      </div>
+      <p class="vocab-note">Durchgestrichen: „Produkt“ und „Tarif“ klingen nach der „Tarif-Verkaufslogik“, von der sich Ihre Website ausdrücklich abgrenzt. Und „steuerfrei“ ohne Zusatz lässt die nachgelagerte Besteuerung offen, die Sie in „5 Fehler in der Geschäftsführerversorgung“ selbst als größten Fehler nennen – genau dort setzen Skeptiker an.</p>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">06</span><h2>Wo sie sind</h2></div>
+      <p class="rintro">Wo dieses Publikum ohnehin unterwegs ist – und wie die Skripte dort laufen.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Facebook und Instagram (Meta)</h3>
+          <p>Ihre Geschäftsführer-Anzeigen laufen hier seit Januar 2026 als Video, in der Du-Form. Die fünf Skripte sind für genau dieses Format geschrieben: 65 bis 75 Sekunden, ein Gesicht, ein Gedanke.</p>
+        </div>
+        <div class="ritem">
+          <h3>LinkedIn</h3>
+          <p>Laut Ihrer YouTube-Beschreibung Ihr Hauptkanal. Dieselben Skripte funktionieren dort als Video-Post – mit Sie statt du, wenn Sie dort förmlicher auftreten.</p>
+        </div>
+        <div class="ritem">
+          <h3>YouTube „Chefsache“</h3>
+          <p>Wer nach einer Anzeige mehr wissen will, landet hier. Die Videos zu Tantieme, Pensionszusage und „Meine Firma ist meine Rente“ sind das natürliche Retargeting zu den Skripten 01, 02 und 04.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="tag tag-c">Weiter</span>
+    <h2>Aus dieser Recherche sind die Anzeigen entstanden.</h2>
+    <p class="sub">Jeder Hook, jeder Einwand und jedes Rechenbeispiel in den Skripten stammt von oben – deshalb klingen sie nach Ihnen und nicht nach Werbeagentur.</p>
+    <a class="btn" href="index.html">Zurück zum Paket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">Chefsache <em>von Buddenbrock</em></div>
+    <div class="fmeta">
+      <span>Exklusiv für Stephan Seidenfad erstellt</span>
+      <span>Erstellt von <a href="https://link.robinpani.com/sas" target="_blank" rel="noopener noreferrer">Sales At Scale</a></span>
+    </div>
+    <p class="disc">Recherche aus öffentlich zugänglichen Quellen: vonbuddenbrock.de, der YouTube-Kanal „Chefsache“, die Meta-Werbebibliothek und channelpartner.de. Zitate sind wörtlich übernommen und ihrer Quelle zugeordnet, nicht einzelnen Personen.</p>
+    <p class="legal">Konzept/Demo erstellt von SalesAtScale · <a href="https://robinpani.com/impressum.html" target="_blank" rel="noopener">Impressum</a> · <a href="https://robinpani.com/datenschutz.html" target="_blank" rel="noopener">Datenschutz</a></p>
+  </div>
+</footer>
+
+
+<script>
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+</script>
