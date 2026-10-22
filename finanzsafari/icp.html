@@ -1,0 +1,333 @@
+<title>ICP-Avatar-Recherche | Finanzsafari</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- page-specific: ICP research ---------- */
+
+  .doc-hero {
+    padding: 76px 0 40px;
+    background: radial-gradient(ellipse 60% 80% at 20% 0%, var(--glow-soft), transparent 70%);
+  }
+  .doc-hero .inner { max-width: 760px; }
+  .doc-hero h1 { font-size: clamp(30px, 5vw, 46px); margin: 18px 0 18px; }
+  .doc-hero .lede { font-size: 17px; color: var(--ink-soft); max-width: 58ch; }
+  .backbar { padding-top: 26px; }
+  .backlink {
+    font-family: var(--label); font-size: 11px; font-weight: 600; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ink-faint); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .backlink:hover { color: var(--ink-soft); }
+  .backlink svg { width: 1em; height: 1em; transform: rotate(180deg); flex: none; }
+
+  /* short profile card — replaces the old full-bleed four-column strip so the
+     summary sits in the same narrow column, and reads in the same card
+     language as the .ritem and .evidence blocks below it */
+  .profile-sec { padding: 0 0 8px; }
+  .profile {
+    background: var(--surface-hi);
+    border: 1px solid var(--brand-line); border-left: 3px solid var(--brand);
+    border-radius: 6px 16px 16px 6px; padding: 8px 28px;
+    box-shadow: 0 0 44px -18px var(--glow);
+  }
+  .profile .prow {
+    display: grid; grid-template-columns: 168px 1fr; gap: 20px;
+    align-items: baseline; padding: 15px 0;
+    border-top: 1px solid var(--line-soft);
+  }
+  .profile .prow:first-child { border-top: 0; }
+  .profile .pk {
+    font-family: var(--label); font-size: 10.5px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+  .profile .pv { font-size: 15.5px; line-height: 1.5; color: var(--ink); }
+
+  /* research blocks */
+  .rblock { margin-bottom: 20px; }
+  .rblock > .rhead {
+    display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px;
+  }
+  .rblock .rnum {
+    font-family: var(--label); font-size: 10.5px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--brand-ink);
+  }
+  .rblock h2 { font-size: clamp(23px, 3.2vw, 30px); }
+  .rblock .rintro { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 22px; max-width: 62ch; }
+
+  .rlist { display: flex; flex-direction: column; gap: 14px; }
+  .ritem {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 16px; padding: 24px 26px;
+  }
+  .ritem h3 { font-size: 17.5px; margin-bottom: 9px; }
+  .ritem p { color: var(--ink-soft); font-size: 15px; line-height: 1.65; }
+
+  /* the thing that makes this not a generic persona doc */
+  .evidence {
+    margin-top: 16px; padding: 14px 18px;
+    background: var(--brand-soft); border-left: 3px solid var(--brand);
+    border-radius: 4px 10px 10px 4px;
+  }
+  .evidence .elabel {
+    font-family: var(--label); font-size: 9.5px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 7px;
+  }
+  .evidence q {
+    display: block; font-family: var(--display); font-size: 16px; font-weight: 500;
+    line-height: 1.55; color: var(--ink); quotes: none;
+  }
+  .evidence .src {
+    display: block; margin-top: 9px;
+    font-family: var(--label); font-size: 10.5px; color: var(--ink-faint);
+  }
+
+  /* vocabulary */
+  .vocab { display: flex; flex-wrap: wrap; gap: 10px; }
+  .vword {
+    font-family: var(--label); font-size: 12.5px; font-weight: 600; letter-spacing: .01em;
+    background: var(--brand); color: var(--on-brand);
+    padding: 9px 15px; border-radius: 999px;
+    box-shadow: 0 0 18px -6px var(--glow);
+  }
+  .vword.avoid {
+    background: transparent; color: var(--ink-faint);
+    border: 1px dashed var(--line); text-decoration: line-through;
+  }
+  .vocab-note { margin-top: 18px; color: var(--ink-soft); font-size: 14.5px; max-width: 62ch; }
+
+  @media (max-width: 640px) {
+    .doc-hero { padding: 52px 0 32px; }
+    .profile { padding: 6px 20px; }
+    .profile .prow { grid-template-columns: 1fr; gap: 5px; padding: 14px 0; }
+    .ritem { padding: 22px 20px; }
+  }
+</style>
+
+<div class="wrap backbar">
+  <a class="backlink" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Zurück zum Paket
+  </a>
+</div>
+
+<header class="doc-hero">
+  <div class="wrap">
+    <div class="inner">
+      <span class="tag">04 · ICP-Avatar-Recherche</span>
+      <h1>Wer deine Follower wirklich sind</h1>
+      <p class="lede">Zusammengestellt aus dem, was dein Markt öffentlich sagt – Ratgeberseiten, deine Academy-Seite und deine stärksten Posts. Jede Aussage hat eine Quelle. Nutzbar für Reels, Captions, E-Mails und FIA-Calls, nicht nur für diesen Funnel.</p>
+    </div>
+  </div>
+</header>
+
+<section class="profile-sec">
+  <div class="wrap narrow">
+    <div class="profile">
+      <div class="prow"><span class="pk">Wer sie sind</span><span class="pv">Angestellte, 28–45, 2.000–3.500 € netto</span></div>
+      <div class="prow"><span class="pk">Hängen fest bei</span><span class="pv">Exposés speichern, nie durchrechnen</span></div>
+      <div class="prow"><span class="pk">Schon versucht</span><span class="pv">ETF-Sparplan, Bücher, Reels, Rechner</span></div>
+      <div class="prow"><span class="pk">Wollen eigentlich</span><span class="pv">Erste Immo – und irgendwann Teilzeit</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap narrow">
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">01</span><h2>Ängste</h2></div>
+      <p class="rintro">Was sie insgeheim beschäftigt. Diese Einwände sagt im Call kaum jemand laut – deshalb muss die Copy sie beantworten, bevor sie fallen.</p>
+      <div class="rlist">
+
+        <div class="ritem">
+          <h3>Zu viel bezahlen für die falsche Wohnung</h3>
+          <p>Die größte Angst ist nicht der Kredit, sondern der Fehlkauf: zu teuer, falsche Lage, kein Potenzial. Weil sie den echten Wert nicht einschätzen können, wirkt jedes Angebot gleichzeitig verlockend und gefährlich.</p>
+          <div class="evidence">
+            <div class="elabel">So klingt das</div>
+            <q>Du rechnest das Angebot durch und merkst: Viel zu teuer. Wirtschaftlich macht das keinen Sinn.</q>
+            <span class="src">Quelle — @finanzsafari, Reel zur Kaufpreisverhandlung, 1. Okt. 2026</span>
+          </div>
+        </div>
+
+        <div class="ritem">
+          <h3>Eine Wohnung, die jeden Monat Geld frisst</h3>
+          <p>Sie haben von Leerstand, Reparaturen und Rücklagen gehört und fürchten, dass die schöne Rendite im Exposé am Ende ein Minus aufs Girokonto bedeutet. Genau deshalb muss die Rechnung im Live-Event realistisch sein, nicht schöngerechnet.</p>
+          <div class="evidence">
+            <div class="elabel">So klingt das</div>
+            <q>Eine Immobilie kann auf dem Papier eine akzeptable Rendite haben und trotzdem jeden Monat zusätzliches Geld erfordern.</q>
+            <span class="src">Quelle — von Poll Immobilien, Ratgeber „Immobilien als Kapitalanlage: 10 Tipps für den Einstieg“</span>
+          </div>
+        </div>
+
+        <div class="ritem">
+          <h3>Die Rente reicht nicht – und das Geld verliert an Wert</h3>
+          <p>Hinter dem Immobilien-Interesse steckt oft keine Gier, sondern Unbehagen: die staatliche Rente, die Inflation, das Geld, das auf dem Konto liegt. Wer das benennt, spricht den Grund an, warum sie überhaupt zuschauen.</p>
+          <div class="evidence">
+            <div class="elabel">So klingt das</div>
+            <q>Du hast kein Bock mehr, dich auf die unsichere staatliche Rente zu verlassen.</q>
+            <span class="src">Quelle — freedomimmoacademy.de, Abschnitt „Deine finanzielle Freiheit beginnt jetzt“</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">02</span><h2>Wünsche</h2></div>
+      <p class="rintro">Was sie wirklich kaufen würden – so formuliert, wie sie es sagen, nicht wie ein Prospekt. Meist bescheidener und konkreter, als man denkt.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Von Voll- auf Teilzeit, nicht ins Luxusleben</h3>
+          <p>Das Ziel ist selten die Yacht. Es ist ein Tag weniger im Büro, mehr Zeit für Familie, weniger Abhängigkeit vom Chef. Jakobs eigene Geschichte trifft genau diesen bescheidenen Wunsch – und macht ihn glaubwürdig.</p>
+          <div class="evidence">
+            <div class="elabel">So klingt das</div>
+            <q>Immos haben mir kein Luxusleben geschenkt, sondern etwas viel Wertvolleres: Freiheit über meine Zeit und echte Lebensqualität.</q>
+            <span class="src">Quelle — @finanzsafari, Vorstellungs-Post, 5. Jan. 2026</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>Endlich ins Handeln kommen</h3>
+          <p>Sie wissen schon viel. Was fehlt, ist der Schritt vom Wissen zur Unterschrift – und jemand, der sagt: Dieser Deal ja, dieser nein. Das ist der Kern hinter „finanzielle Freiheit“.</p>
+          <div class="evidence">
+            <div class="elabel">So klingt das</div>
+            <q>Du akzepierst den Staus Quo nicht mehr und willst endlich ins Handeln kommen.</q>
+            <span class="src">Quelle — freedomimmoacademy.de, Abschnitt „Deine finanzielle Freiheit beginnt jetzt“ (Schreibweise wie im Original)</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>Vermögen, das nicht vom Gehalt abhängt</h3>
+          <p>Sie verdienen ordentlich und sehen trotzdem kaum Vermögen wachsen. Die Vorstellung, dass das Problem nicht das Einkommen ist, sondern was sie damit machen, ist entlastend – und öffnet die Tür für Immobilien.</p>
+          <div class="evidence">
+            <div class="elabel">So klingt das</div>
+            <q>Vermögen entsteht nicht durch ein hohes Gehalt allein, sondern durch das, was du jeden Monat mit deinem Geld machst.</q>
+            <span class="src">Quelle — @finanzsafari, Reel „3.000 € netto, aber keine 20.000 € Vermögen?“, 15. Okt. 2026</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">03</span><h2>Einwände</h2></div>
+      <p class="rintro">Warum sie nicht kaufen. Bewusst auch aus skeptischen Quellen gezogen – das Negative ist das Nützlichste in diesem Dokument.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>„Ich muss erst noch mehr verstehen“</h3>
+          <p>Der häufigste Grund, nicht zu kaufen, ist kein Nein, sondern ein Noch-nicht. Jede neue Information erzeugt eine neue Frage. Die Copy sollte das nicht als Faulheit darstellen, sondern als fehlendes System – und den Deal-Check als Ausweg.</p>
+          <div class="evidence">
+            <div class="elabel">So klingt das</div>
+            <q>Ein Plan sollte Orientierung geben, darf aber nicht zur Endlosschleife werden.</q>
+            <span class="src">Quelle — von Poll Immobilien, Ratgeber „Immobilien als Kapitalanlage: 10 Tipps für den Einstieg“</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>„Jetzt ist ein schlechter Zeitpunkt“</h3>
+          <p>Zinsen, Preise, Nachrichten: Es gibt immer einen Grund zu warten. Jakob dreht das Argument um – wenn viele aussteigen, sinkt die Konkurrenz um gute Deals. Das gehört in Hook und FAQ, ehrlich und ohne Garantie.</p>
+          <div class="evidence">
+            <div class="elabel">So klingt das</div>
+            <q>Ich zeige dir, warum jetzt eine der besten Phasen zum Kaufen ist, während 90 % aussteigen.</q>
+            <span class="src">Quelle — @finanzsafari, Reel zum Immobilien-Live-Event, 16. Aug. 2026</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>„Die Gurus haben 100 Wohnungen – das bin nicht ich“</h3>
+          <p>Viele Immo-Coaches verkaufen Größe. Das schreckt Angestellte ab, die eine einzige Wohnung kaufen wollen. Jakobs Anti-Guru-Positionierung ist hier die stärkste Waffe und sollte früh im Funnel stehen.</p>
+          <div class="evidence">
+            <div class="elabel">So klingt das</div>
+            <q>ich besitze keine 100 Immobilien. Ich habe auch keine riesigen Bauprojekte geleitet oder Mehrfamilienhäuser entwickelt.</q>
+            <span class="src">Quelle — freedomimmoacademy.de, Abschnitt „Hi, ich bin Jakob“</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">04</span><h2>Kauf-Auslöser</h2></div>
+      <p class="rintro">Der Moment, in dem das Problem nicht mehr auszuhalten ist. Ads, die den Auslöser benennen, schlagen Ads, die die Lösung benennen – weil sie den Gedanken treffen, den die Leute ohnehin gerade haben.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Das Geld, das auf dem Girokonto liegt</h3>
+          <p>10.000 oder 20.000 € angespart, und es bringt keinen Cent. Jakobs stärkste Reels starten genau hier – der natürliche Einstieg für eine Ad zum Live-Event.</p>
+        </div>
+        <div class="ritem">
+          <h3>Das Exposé, das nicht aus dem Kopf geht</h3>
+          <p>Eine Wohnung, die gut aussieht, aber zu teuer wirkt. In dieser Woche suchen sie aktiv nach jemandem, der ihnen sagt, ob das ein Deal ist – der beste Moment für „Bring dein Exposé mit“.</p>
+        </div>
+        <div class="ritem">
+          <h3>Die Renteninformation im Briefkasten</h3>
+          <p>Einmal im Jahr steht schwarz auf weiß, was mit 67 übrig bleibt. Der Moment, in dem „irgendwann mal investieren“ zu „jetzt“ wird.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">05</span><h2>Ihr Vokabular</h2></div>
+      <p class="rintro">Die Wörter, mit denen dieser Markt sein eigenes Problem beschreibt. Copy in diesen Wörtern klingt nach Insider; Copy drumherum klingt nach jemandem, der von außen rät.</p>
+      <div class="vocab">
+        <span class="vword">Kapitalanlage</span>
+        <span class="vword">Exposé</span>
+        <span class="vword">Preisgrenze</span>
+        <span class="vword">Lage</span>
+        <span class="vword">Entwicklungspotenzial</span>
+        <span class="vword">Finanzierungsrahmen</span>
+        <span class="vword">Mieteinnahmen</span>
+        <span class="vword">ins Handeln kommen</span>
+        <span class="vword">Voll- auf Teilzeit</span>
+        <span class="vword avoid">Wealth Building</span>
+        <span class="vword avoid">Garantierte Rendite</span>
+        <span class="vword avoid">Immobilienportfolio-Optimierung</span>
+      </div>
+      <p class="vocab-note">Durchgestrichene Begriffe besser meiden – entweder Anglizismen, die die Zielgruppe selbst nicht benutzt, oder Sprache, die nach Finanzvertrieb klingt.</p>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">06</span><h2>Wo sie sind</h2></div>
+      <p class="rintro">Wo sich diese Zielgruppe schon aufhält und was sie liest – nützlich fürs Targeting und um zu wissen, welche Bezüge ankommen.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Instagram und TikTok – Finanz-Reels</h3>
+          <p>Konkrete Geldsituationen („20.000 € auf dem Konto“), Geldgewohnheiten, ETF vs. Immo. Kommentar-Keywords wie „LIVE“ sind gelernt und funktionieren – 128 Kommentare auf Jakobs Live-Event-Reel.</p>
+        </div>
+        <div class="ritem">
+          <h3>ImmoScout24 und Makler-Ratgeber</h3>
+          <p>Sie scrollen Inserate lange bevor sie kaufen, und lesen Einsteiger-Ratgeber von Maklern und Banken. Gesucht wird nach „erste Immobilie als Kapitalanlage“ und „Was ist eine Wohnung wert“.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="tag tag-c">Weiter</span>
+    <h2>Diese Recherche hat den Funnel geschrieben.</h2>
+    <p class="sub">Jede Headline, jeder Einwand und jede FAQ auf den Seiten kommt aus dem, was oben steht – deshalb klingt alles, als hätte es jemand aus deinem Markt geschrieben.</p>
+    <a class="btn" href="index.html">Zurück zum Paket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">Finanz<em>safari</em></div>
+    <div class="fmeta">
+      <span>Exklusiv erstellt für Jakob Szymanski</span>
+      <span>Erstellt von <a href="https://link.robinpani.com/sas" target="_blank" rel="noopener noreferrer">Sales At Scale</a></span>
+    </div>
+    <p class="disc">Recherche aus öffentlich zugänglichen Quellen. Zitate stammen aus öffentlichen Ratgeberseiten, freedomimmoacademy.de und Instagram-Captions von @finanzsafari und sind ihrer Quelle zugeordnet, nicht einzelnen Privatpersonen.</p>
+    <p class="legal">Konzept/Demo erstellt von SalesAtScale · <a href="https://robinpani.com/impressum.html" target="_blank" rel="noopener">Impressum</a> · <a href="https://robinpani.com/datenschutz.html" target="_blank" rel="noopener">Datenschutz</a></p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+</script>
