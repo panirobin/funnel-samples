@@ -1,0 +1,357 @@
+<title>5 Ad-Skripte fürs Webinar | Immoglow</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- page-specific: ad scripts ---------- */
+
+  .doc-hero {
+    padding: 76px 0 44px;
+    background: radial-gradient(ellipse 60% 80% at 20% 0%, var(--glow-soft), transparent 70%);
+  }
+  .doc-hero .inner { max-width: 760px; }
+  .doc-hero h1 { font-size: clamp(30px, 5vw, 46px); margin: 18px 0 18px; }
+  .doc-hero .lede { font-size: 17px; color: var(--ink-soft); max-width: 58ch; }
+  .backbar { padding-top: 26px; }
+  .backlink {
+    font-family: var(--label); font-size: 11px; font-weight: 600; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ink-faint); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .backlink:hover { color: var(--ink-soft); }
+  .backlink svg { width: 1em; height: 1em; transform: rotate(180deg); flex: none; }
+
+  .scripts { display: flex; flex-direction: column; gap: 14px; }
+
+  .script { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; transition: border-color .2s ease, box-shadow .2s ease; }
+  .script:hover { border-color: var(--brand-line); }
+  .script.open { border-color: var(--brand-line); box-shadow: 0 0 44px -16px var(--glow), var(--shadow); }
+
+  .s-head {
+    width: 100%; display: grid; grid-template-columns: auto 1fr auto auto;
+    gap: 18px; align-items: center; text-align: left;
+    background: none; border: 0; cursor: pointer;
+    padding: 24px 26px; color: var(--ink); font-family: var(--sans);
+  }
+  .s-head:focus-visible { outline: 2px solid var(--brand-ink); outline-offset: -2px; }
+  .s-num {
+    font-family: var(--label); font-size: 11px; font-weight: 800; letter-spacing: .02em;
+    color: var(--brand-ink);
+    width: 40px; height: 40px; border-radius: 50%; flex: none;
+    display: flex; align-items: center; justify-content: center; line-height: 1;
+    background: var(--brand-soft); border: 1px solid var(--brand-line);
+  }
+  .s-title { font-family: var(--display); font-size: 18px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.25; }
+  .s-meta {
+    font-family: var(--label); font-size: 10.5px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ink-faint); white-space: nowrap;
+  }
+  .s-sign { font-family: var(--sans); font-size: 18px; font-weight: 600; color: var(--brand-ink); transition: transform .28s ease; }
+  .script.open .s-sign { transform: rotate(45deg); }
+
+  .s-body { max-height: 0; overflow: hidden; transition: max-height .34s ease; }
+  .s-inner { padding: 4px 26px 26px; }
+
+  .s-part { padding: 18px 0; border-top: 1px solid var(--line-soft); }
+  .s-part:first-child { border-top: 0; padding-top: 6px; }
+  .p-label {
+    font-family: var(--label); font-size: 10px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px;
+  }
+  .s-part p { font-size: 15.5px; line-height: 1.7; color: var(--ink); margin-bottom: 12px; }
+  .s-part p:last-child { margin-bottom: 0; }
+
+  .s-actions { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+  .s-btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: var(--sans); font-size: 13.5px; font-weight: 600; line-height: 1;
+    padding: 13px 20px; border-radius: 999px; cursor: pointer;
+    background: var(--btn-bg); color: var(--btn-fg); border: 1px solid transparent;
+    box-shadow: 0 8px 22px -10px var(--glow);
+    appearance: none; -webkit-appearance: none; margin: 0;
+  }
+  .s-btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); box-shadow: none; }
+  .s-btn.ghost:hover { background: var(--paper-2); }
+  .s-btn:focus-visible { outline: 2px solid var(--brand-ink); outline-offset: 3px; }
+  .s-btn svg { width: 1em; height: 1em; flex: none; }
+
+  @media (max-width: 640px) {
+    .doc-hero { padding: 52px 0 34px; }
+    .s-head { grid-template-columns: auto 1fr auto; gap: 12px; padding: 20px; }
+    .s-meta { display: none; }
+    .s-title { font-size: 17px; }
+    .s-inner { padding: 4px 20px 22px; }
+  }
+</style>
+
+<div class="wrap backbar">
+  <a class="backlink" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Zurück zum Paket
+  </a>
+</div>
+
+<header class="doc-hero">
+  <div class="wrap">
+    <div class="inner">
+      <span class="tag">05 · Ad-Skripte fürs Webinar</span>
+      <h1>Fünf Skripte, fünf verschiedene Menschen</h1>
+      <p class="lede">Jedes spricht einen anderen Grund an, warum jemand aus deiner Community noch nicht gekauft hat – so können alle gleichzeitig laufen, ohne sich zu kannibalisieren. Geschrieben in deiner Stimme, aus deinen eigenen Captions. Klick auf ein Skript, um es zu öffnen, zu kopieren oder herunterzuladen.</p>
+    </div>
+  </div>
+</header>
+
+<section class="sec">
+  <div class="wrap narrow">
+    <div class="scripts" id="scripts">
+
+      <article class="script" data-slug="skript-1-schulden">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">01</span>
+          <span class="s-title">„Investoren lieben Schulden“ – für alle, die Angst vor dem Kredit haben</span>
+          <span class="s-meta">~80 Sek</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+
+            <div class="s-part" data-part="HOOK">
+              <div class="p-label">Hook</div>
+              <p>Immobilieninvestoren lieben Schulden. Und wenn dir bei dem Satz gerade ein bisschen schlecht wird – dann ist dieses Video für dich.</p>
+            </div>
+
+            <div class="s-part" data-part="HAUPTTEIL">
+              <div class="p-label">Hauptteil</div>
+              <p>Ich bin Maja, ich kaufe, saniere und vermiete seit 2018 Wohnungen und Häuser. Und die meisten Menschen, mit denen ich spreche, haben nicht zu wenig Geld. Sie haben Angst vor dem Kredit. Weil sie Schulden automatisch mit Risiko, Druck und Unsicherheit verbinden.</p>
+              <p>Aber es gibt einen riesigen Unterschied zwischen Konsumschulden und produktiven Schulden. Mit einem Immobilienkredit kaufst du einen echten Sachwert – mit Geld, das dir eigentlich gar nicht gehört. Und den Kredit zahlen zu einem großen Teil deine Mieter ab. Monat für Monat.</p>
+            </div>
+
+            <div class="s-part" data-part="DAS LERNST DU">
+              <div class="p-label">Das lernst du</div>
+              <p>Genau das rechne ich in meinem kostenlosen Live-Webinar mit dir durch: wann ein Kredit dich ärmer macht und wann er dich reicher macht, wie du deinen Cashflow vorher kennst, und welche Unterlagen du brauchst, damit die Bank dich ernst nimmt.</p>
+            </div>
+
+            <div class="s-part" data-part="CALL TO ACTION">
+              <div class="p-label">Call to Action</div>
+              <p>Donnerstag, 19 Uhr, live und kostenlos. Klick auf den Link und sichere dir deinen Platz. Let’s glow up – mit Immobilien.</p>
+            </div>
+
+            <div class="s-actions">
+              <button type="button" class="s-btn copy-script">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>
+                Skript kopieren
+              </button>
+              <button type="button" class="s-btn ghost download-script">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                .txt herunterladen
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </article>
+
+      <article class="script" data-slug="skript-2-konsum">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">02</span>
+          <span class="s-title">„Eine Tasche bleibt eine Tasche“ – für alle, deren Geld im Konsum verschwindet</span>
+          <span class="s-meta">~75 Sek</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+            <div class="s-part" data-part="HOOK"><div class="p-label">Hook</div><p>Die meisten kaufen Dinge, die sie heute reich aussehen lassen. Statt Dinge zu kaufen, die sie morgen wirklich reicher machen.</p></div>
+            <div class="s-part" data-part="HAUPTTEIL"><div class="p-label">Hauptteil</div><p>Das Problem ist nicht die Tasche. Nicht das Auto, nicht die Uhr, nicht der Urlaub. Das Problem ist, dass diese Dinge keinen einzigen Euro zu deinem Vermögen beitragen.</p><p>Ich habe mit 25 meine erste Immobilie gekauft, weil ich früh verstanden habe: Jeder Euro kann entweder konsumiert oder investiert werden. Beides gleichzeitig geht selten. Und das Geld, das bei vielen über ein paar Jahre im Konsum verschwindet, könnte oft schon das Eigenkapital für eine Kapitalanlage sein.</p></div>
+            <div class="s-part" data-part="DAS LERNST DU"><div class="p-label">Das lernst du</div><p>In meinem kostenlosen Live-Webinar zeige ich dir, wie viel Eigenkapital du für den Start wirklich brauchst, wie du eine Wohnung durchrechnest, bevor du sie besichtigst, und welche eine Frage du dir ab jetzt vor jeder großen Ausgabe stellst.</p></div>
+            <div class="s-part" data-part="CALL TO ACTION"><div class="p-label">Call to Action</div><p>Donnerstag, 19 Uhr, live. Kostenlos. Klick unten auf den Link – denn eine Tasche bleibt eine Tasche. Eine Immobilie kann der Grund sein, warum du sie dir irgendwann kaufst, ohne nachzudenken.</p></div>            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Skript kopieren</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>.txt herunterladen</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="script" data-slug="skript-3-steuern">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">03</span>
+          <span class="s-title">„Nicht die nächste Gehaltserhöhung“ – für gut verdienende Angestellte mit hohem Steuersatz</span>
+          <span class="s-meta">~80 Sek</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+            <div class="s-part" data-part="HOOK"><div class="p-label">Hook</div><p>Dein nächster finanzieller Schritt muss nicht die nächste Gehaltserhöhung sein. Sondern eine Immobilie.</p></div>
+            <div class="s-part" data-part="HAUPTTEIL"><div class="p-label">Hauptteil</div><p>Ein Rechenbeispiel: Du kaufst eine vermietete Wohnung für 300.000 Euro. Davon entfallen zum Beispiel 225.000 Euro auf das Gebäude – und das kannst du steuerlich abschreiben. Bei einer AfA von 4 Prozent sind das 9.000 Euro im Jahr, die du geltend machst, obwohl das Geld dein Konto nie verlässt.</p><p>Bei einem persönlichen Steuersatz von 42 Prozent kann das eine Entlastung von bis zu 3.780 Euro im Jahr sein. Rechnerisch über 315 Euro im Monat. Während die meisten überlegen, wie sie mehr verdienen, nutzen andere Immobilien, um Vermögen aufzubauen und gleichzeitig ihre Steuerlast zu senken.</p></div>
+            <div class="s-part" data-part="DAS LERNST DU"><div class="p-label">Das lernst du</div><p>Im kostenlosen Live-Webinar rechne ich das mit dir an einer echten Wohnung durch: Cashflow, Tilgung und AfA zusammen – damit du siehst, was am Monatsende wirklich bei dir bleibt. Und ich zeige dir, worauf du achten musst, bevor du dich auf so eine Rechnung verlässt.</p></div>
+            <div class="s-part" data-part="CALL TO ACTION"><div class="p-label">Call to Action</div><p>Donnerstag, 19 Uhr, live und kostenlos. Klick auf den Link, sichere dir deinen Platz und bring deine eigenen Zahlen mit. Manchmal reicht die richtige Strategie.</p></div>            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Skript kopieren</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>.txt herunterladen</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="script" data-slug="skript-4-cashflow">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">04</span>
+          <span class="s-title">„Ich zahle jeden Monat zu“ – für alle, die Angst vor dem falschen Deal haben</span>
+          <span class="s-meta">~85 Sek</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+            <div class="s-part" data-part="HOOK"><div class="p-label">Hook</div><p>Ich habe ein Mehrfamilienhaus in Köln gekauft – und zahle aktuell jeden Monat zu. Klingt nach einem Fehler, oder?</p></div>
+            <div class="s-part" data-part="HAUPTTEIL"><div class="p-label">Hauptteil</div><p>Ich bin Maja, Investorin und Bauträgerin seit 2018. Und genau dieser negative Cashflow ist der Grund, warum so viele nie ihre erste Immobilie kaufen: Sie sehen eine Zahl, die rot ist, und denken, der Deal ist schlecht.</p><p>Aber ob sich eine Immobilie lohnt, siehst du nicht an einer einzigen Zahl. Du siehst es, wenn du Miete, Tilgung, Steuer und Wertentwicklung zusammen rechnest. Manche Wohnung mit rotem Cashflow ist ein gutes Investment. Manche mit schwarzem ist es nicht.</p></div>
+            <div class="s-part" data-part="DAS LERNST DU"><div class="p-label">Das lernst du</div><p>In meinem kostenlosen Live-Webinar zeige ich dir an meinem eigenen Haus in Köln, warum sich das für mich trotzdem lohnt – und wie du jede Wohnung selbst durchrechnest, bevor du unterschreibst. Damit du nicht aus Angst gute Deals verwirfst oder aus Euphorie schlechte kaufst.</p></div>
+            <div class="s-part" data-part="CALL TO ACTION"><div class="p-label">Call to Action</div><p>Donnerstag, 19 Uhr, live und kostenlos. Klick auf den Link und sichere dir deinen Platz – die Zahlen zeige ich dir dort ganz offen.</p></div>            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Skript kopieren</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>.txt herunterladen</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="script" data-slug="skript-5-frauensache">
+        <button class="s-head" aria-expanded="false">
+          <span class="s-num">05</span>
+          <span class="s-title">„Immobilien sind auch Frauensache“ – für Frauen, die sich in der Branche fremd fühlen</span>
+          <span class="s-meta">~75 Sek</span>
+          <span class="s-sign">+</span>
+        </button>
+        <div class="s-body">
+          <div class="s-inner">
+            <div class="s-part" data-part="HOOK"><div class="p-label">Hook</div><p>Wenn du bei „Immobilieninvestor“ an einen Typen im Anzug denkst, der dir eine Wohnung andrehen will – dann hör kurz zu.</p></div>
+            <div class="s-part" data-part="HAUPTTEIL"><div class="p-label">Hauptteil</div><p>Ich bin Maja. Seit 2018 kaufe, saniere, vermiete und verkaufe ich Wohnungen und Häuser. Und ja, ich bin eine Frau in einer Branche, die überwiegend von Männern dominiert wird. Aber Immobilien sind auch Frauensache.</p><p>Viele Frauen, die mir schreiben, haben einen sicheren Job und Erspartes – und trotzdem das Gefühl, dass sie „noch nicht so weit“ sind. Dabei geht es nicht um Mut. Es geht darum, einmal zu verstehen, wie Finanzierung, Cashflow und Steuern zusammenhängen.</p></div>
+            <div class="s-part" data-part="DAS LERNST DU"><div class="p-label">Das lernst du</div><p>Genau das zeige ich dir in meinem kostenlosen Live-Webinar: wie du deine Finanzierbarkeit vor der ersten Besichtigung klärst, wie du eine Wohnung ehrlich durchrechnest, und wie du dich auf das erste Bankgespräch vorbereitest, ohne dich klein zu fühlen.</p></div>
+            <div class="s-part" data-part="CALL TO ACTION"><div class="p-label">Call to Action</div><p>Donnerstag, 19 Uhr, live und kostenlos. Klick auf den Link, sichere dir deinen Platz – und bring deine Fragen mit. Let’s glow up – mit Immobilien.</p></div>            <div class="s-actions">
+              <button type="button" class="s-btn copy-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 5.5v-2a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3.5V9A1.5 1.5 0 0 0 3 10.5h2" stroke="currentColor" stroke-width="1.6"/></svg>Skript kopieren</button>
+              <button type="button" class="s-btn ghost download-script"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.4M4.6 7l3.4 3.4L11.4 7M2 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>.txt herunterladen</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="tag tag-c">Weiter</span>
+    <h2>Richte sie auf die Landingpage aus.</h2>
+    <p class="sub">Jedes Skript schickt die Leute am Ende auf die Anmeldeseite aus diesem Paket.</p>
+    <a class="btn" href="index.html">Zurück zum Paket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">Immo<em>glow</em></div>
+    <div class="fmeta">
+      <span>Exklusiv erstellt für Maja Balz</span>
+      <span>Erstellt von <a href="https://link.robinpani.com/sas" target="_blank" rel="noopener noreferrer">Sales At Scale</a></span>
+    </div>
+    <p class="disc">Diese Skripte sind Entwürfe auf Basis öffentlich zugänglicher Recherche, vor allem Majas eigener Instagram-Captions. Zahlen sind als Rechenbeispiele gekennzeichnet und vor dem Einsatz in bezahlter Werbung zu prüfen; Steuerangaben sind keine Steuerberatung.</p>
+    <p class="legal">Konzept/Demo erstellt von SalesAtScale · <a href="https://robinpani.com/impressum.html" target="_blank" rel="noopener">Impressum</a> · <a href="https://robinpani.com/datenschutz.html" target="_blank" rel="noopener">Datenschutz</a></p>
+  </div>
+</footer>
+
+<div class="tally-toast" id="ads-toast" role="status" aria-live="polite"></div>
+
+<script>
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+
+  (function () {
+    var scripts = [].slice.call(document.querySelectorAll('.script'));
+    var toast = document.getElementById('ads-toast');
+    var toastTimer;
+
+    function flash(msg) {
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 2600);
+    }
+
+    // Assemble plain text from the script parts only (title + labelled parts).
+    function scriptText(article) {
+      var title = article.querySelector('.s-title').textContent.trim();
+      var out = [title, ''];
+      [].slice.call(article.querySelectorAll('.s-part')).forEach(function (part) {
+        out.push('[' + (part.getAttribute('data-part') || '').toUpperCase() + ']');
+        [].slice.call(part.querySelectorAll('p')).forEach(function (p) {
+          out.push(p.textContent.trim());
+        });
+        out.push('');
+      });
+      return out.join('\n').replace(/\n{3,}/g, '\n\n').trim() + '\n';
+    }
+
+    function setOpen(article, open) {
+      var body = article.querySelector('.s-body');
+      var btn = article.querySelector('.s-head');
+      article.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      body.style.maxHeight = open ? body.scrollHeight + 'px' : null;
+    }
+
+    scripts.forEach(function (article) {
+      article.querySelector('.s-head').addEventListener('click', function () {
+        setOpen(article, !article.classList.contains('open'));
+      });
+
+      article.querySelector('.copy-script').addEventListener('click', function () {
+        var text = scriptText(article);
+        function fallback() {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); flash('Skript kopiert'); }
+          catch (e) { flash('Kopieren fehlgeschlagen – bitte Text manuell markieren'); }
+          document.body.removeChild(ta);
+        }
+        // navigator.clipboard needs a secure context; fall back where it is absent
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(function () { flash('Skript kopiert'); }, fallback);
+        } else { fallback(); }
+      });
+
+      article.querySelector('.download-script').addEventListener('click', function () {
+        var blob = new Blob([scriptText(article)], { type: 'text/plain;charset=utf-8' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'immoglow-' + (article.getAttribute('data-slug') || 'script') + '.txt';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+        flash('Heruntergeladen');
+      });
+    });
+
+    // An open panel's pixel height goes stale when the viewport reflows.
+    var t;
+    window.addEventListener('resize', function () {
+      clearTimeout(t);
+      t = setTimeout(function () {
+        var open = document.querySelector('.script.open');
+        if (open) { var b = open.querySelector('.s-body'); b.style.maxHeight = b.scrollHeight + 'px'; }
+      }, 120);
+    });
+  })();
+</script>

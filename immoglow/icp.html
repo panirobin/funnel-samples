@@ -1,0 +1,333 @@
+<title>ICP-Avatar-Recherche | Immoglow</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- page-specific: ICP research ---------- */
+
+  .doc-hero {
+    padding: 76px 0 40px;
+    background: radial-gradient(ellipse 60% 80% at 20% 0%, var(--glow-soft), transparent 70%);
+  }
+  .doc-hero .inner { max-width: 760px; }
+  .doc-hero h1 { font-size: clamp(30px, 5vw, 46px); margin: 18px 0 18px; }
+  .doc-hero .lede { font-size: 17px; color: var(--ink-soft); max-width: 58ch; }
+  .backbar { padding-top: 26px; }
+  .backlink {
+    font-family: var(--label); font-size: 11px; font-weight: 600; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ink-faint); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .backlink:hover { color: var(--ink-soft); }
+  .backlink svg { width: 1em; height: 1em; transform: rotate(180deg); flex: none; }
+
+  /* short profile card — replaces the old full-bleed four-column strip so the
+     summary sits in the same narrow column, and reads in the same card
+     language as the .ritem and .evidence blocks below it */
+  .profile-sec { padding: 0 0 8px; }
+  .profile {
+    background: var(--surface-hi);
+    border: 1px solid var(--brand-line); border-left: 3px solid var(--brand);
+    border-radius: 6px 16px 16px 6px; padding: 8px 28px;
+    box-shadow: 0 0 44px -18px var(--glow);
+  }
+  .profile .prow {
+    display: grid; grid-template-columns: 168px 1fr; gap: 20px;
+    align-items: baseline; padding: 15px 0;
+    border-top: 1px solid var(--line-soft);
+  }
+  .profile .prow:first-child { border-top: 0; }
+  .profile .pk {
+    font-family: var(--label); font-size: 10.5px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+  .profile .pv { font-size: 15.5px; line-height: 1.5; color: var(--ink); }
+
+  /* research blocks */
+  .rblock { margin-bottom: 20px; }
+  .rblock > .rhead {
+    display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px;
+  }
+  .rblock .rnum {
+    font-family: var(--label); font-size: 10.5px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--brand-ink);
+  }
+  .rblock h2 { font-size: clamp(23px, 3.2vw, 30px); }
+  .rblock .rintro { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 22px; max-width: 62ch; }
+
+  .rlist { display: flex; flex-direction: column; gap: 14px; }
+  .ritem {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 16px; padding: 24px 26px;
+  }
+  .ritem h3 { font-size: 17.5px; margin-bottom: 9px; }
+  .ritem p { color: var(--ink-soft); font-size: 15px; line-height: 1.65; }
+
+  /* the thing that makes this not a generic persona doc */
+  .evidence {
+    margin-top: 16px; padding: 14px 18px;
+    background: var(--brand-soft); border-left: 3px solid var(--brand);
+    border-radius: 4px 10px 10px 4px;
+  }
+  .evidence .elabel {
+    font-family: var(--label); font-size: 9.5px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 7px;
+  }
+  .evidence q {
+    display: block; font-family: var(--display); font-size: 16px; font-weight: 500;
+    line-height: 1.55; color: var(--ink); quotes: none;
+  }
+  .evidence .src {
+    display: block; margin-top: 9px;
+    font-family: var(--label); font-size: 10.5px; color: var(--ink-faint);
+  }
+
+  /* vocabulary */
+  .vocab { display: flex; flex-wrap: wrap; gap: 10px; }
+  .vword {
+    font-family: var(--label); font-size: 12.5px; font-weight: 600; letter-spacing: .01em;
+    background: var(--brand); color: var(--on-brand);
+    padding: 9px 15px; border-radius: 999px;
+    box-shadow: 0 0 18px -6px var(--glow);
+  }
+  .vword.avoid {
+    background: transparent; color: var(--ink-faint);
+    border: 1px dashed var(--line); text-decoration: line-through;
+  }
+  .vocab-note { margin-top: 18px; color: var(--ink-soft); font-size: 14.5px; max-width: 62ch; }
+
+  @media (max-width: 640px) {
+    .doc-hero { padding: 52px 0 32px; }
+    .profile { padding: 6px 20px; }
+    .profile .prow { grid-template-columns: 1fr; gap: 5px; padding: 14px 0; }
+    .ritem { padding: 22px 20px; }
+  }
+</style>
+
+<div class="wrap backbar">
+  <a class="backlink" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Zurück zum Paket
+  </a>
+</div>
+
+<header class="doc-hero">
+  <div class="wrap">
+    <div class="inner">
+      <span class="tag">04 · ICP-Avatar-Recherche</span>
+      <h1>Wer deine Follower wirklich sind</h1>
+      <p class="lede">Zusammengestellt aus dem, was dein Markt öffentlich sagt – Erfahrungsberichte, Bank- und Ratgeberseiten und deine eigenen stärksten Posts. Jede Aussage hat eine Quelle. Nutzbar für Reels, Captions, E-Mails und Erstgespräche, nicht nur für diesen Funnel.</p>
+    </div>
+  </div>
+</header>
+
+<section class="profile-sec">
+  <div class="wrap narrow">
+    <div class="profile">
+      <div class="prow"><span class="pk">Wer sie sind</span><span class="pv">Angestellte, 25–40, fester Job, erste Ersparnisse</span></div>
+      <div class="prow"><span class="pk">Hängen fest bei</span><span class="pv">Angst vor dem Kredit, „erst mal sparen“</span></div>
+      <div class="prow"><span class="pk">Schon versucht</span><span class="pv">ETF-Sparplan, YouTube, Rechner im Netz</span></div>
+      <div class="prow"><span class="pk">Wollen eigentlich</span><span class="pv">Die erste Wohnung kaufen – mit Plan</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap narrow">
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">01</span><h2>Ängste</h2></div>
+      <p class="rintro">Was sie insgeheim beschäftigt. Diese Einwände sagt im Erstgespräch kaum jemand laut – deshalb muss die Copy sie beantworten, bevor sie fallen.</p>
+      <div class="rlist">
+
+        <div class="ritem">
+          <h3>„Schulden“ fühlen sich nach Kontrollverlust an</h3>
+          <p>Ein Kredit ist für sie kein Werkzeug, sondern ein Risiko. Sie verwechseln Konsumschulden mit produktiven Schulden – und schieben den Kauf deshalb auf, obwohl die Zahlen oft schon passen würden.</p>
+          <div class="evidence">
+            <div class="elabel">So klingt das</div>
+            <q>Viele Menschen haben Angst davor, einen Kredit aufzunehmen. Weil sie Schulden automatisch mit Risiko, Druck und Unsicherheit verbinden.</q>
+            <span class="src">Quelle — @immoglow, Reel „Immobilieninvestoren lieben Schulden“, Juni 2025</span>
+          </div>
+        </div>
+
+        <div class="ritem">
+          <h3>Zu wenig Eigenkapital – also „noch nicht“</h3>
+          <p>Sie halten eine hohe Eigenkapitalquote für Pflicht und warten deshalb. Dass Vollfinanzierung bei gutem Einkommen und guter Bonität möglich ist, wissen viele nicht – oder sie trauen sich nicht, es bei der Bank anzusprechen.</p>
+          <div class="evidence">
+            <div class="elabel">So klingt das</div>
+            <q>Ein Kredit ohne Eigenkapital ist immer dann möglich, wenn ein überdurchschnittliches Einkommen und eine gute Bonität vorliegen.</q>
+            <span class="src">Quelle — ImmoScout24, Ratgeber „Wohnung kaufen und vermieten ohne Eigenkapital“</span>
+          </div>
+        </div>
+
+        <div class="ritem">
+          <h3>Kosten, die man vorher nicht sieht</h3>
+          <p>Sonderumlagen, Sanierungen, Leerstand: Die Angst ist nicht der Kaufpreis, sondern die Rechnung, die danach kommt. Wer davon einmal gehört hat, will erst „alles verstehen“ – und kommt so nie zum Kauf.</p>
+          <div class="evidence">
+            <div class="elabel">So klingt das</div>
+            <q>Lediglich die zweite Sonderumlage für die Haussanierung, die zu Beginn nicht absehbar war, in Höhe von 7.300 € habe ich später aus eigener Tasche bezahlt</q>
+            <span class="src">Quelle — desired.de, Interview „Vollfinanzierung mit 25“, Mai 2026</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">02</span><h2>Wünsche</h2></div>
+      <p class="rintro">Was sie wirklich kaufen würden – so formuliert, wie sie es sagen, nicht wie ein Prospekt. Meist bescheidener und konkreter, als man denkt.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Verstehen, bevor sie kaufen</h3>
+          <p>Sie wollen keinen Tipp, sondern die Logik dahinter: Wie trägt sich eine Wohnung, was macht die Bank, was bleibt am Monatsende? Genau das, was ein Live-Webinar mit echten Rechnungen liefert.</p>
+          <div class="evidence">
+            <div class="elabel">So klingt das</div>
+            <q>Ich wollte nicht einfach „irgendwas kaufen“, sondern verstehen, wie Immobilien wirklich funktionieren – sowohl emotional als auch wirtschaftlich.</q>
+            <span class="src">Quelle — desired.de, Interview „Vollfinanzierung mit 25“, Mai 2026</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>Selbst gestalten statt nur besparen</h3>
+          <p>Der ETF läuft, aber er fühlt sich passiv an. Eine Immobilie ist greifbar: aufwerten, vermieten, entscheiden. Das ist der emotionale Kern hinter „Vermögensaufbau“.</p>
+          <div class="evidence">
+            <div class="elabel">So klingt das</div>
+            <q>Anders als bei Aktien, ETFs oder Rohstoffen kann ich bei Immobilien aktiv Einfluss nehmen, gestalten, aufwerten, anpassen.</q>
+            <span class="src">Quelle — desired.de, Interview „Vollfinanzierung mit 25“, Mai 2026</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>Weniger Steuern – ohne mehr arbeiten zu müssen</h3>
+          <p>Die nächste Gehaltserhöhung bringt netto wenig. Die Vorstellung, über die AfA jeden Monat spürbar mehr zu behalten, ist für Angestellte mit hohem Steuersatz einer der stärksten Hebel.</p>
+          <div class="evidence">
+            <div class="elabel">So klingt das</div>
+            <q>Deshalb muss der nächste finanzielle Schritt nicht immer die nächste Gehaltserhöhung sein. Manchmal reicht die richtige Strategie.</q>
+            <span class="src">Quelle — @immoglow, Reel zur AfA, Mai 2026</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">03</span><h2>Einwände</h2></div>
+      <p class="rintro">Warum sie nicht kaufen. Bewusst aus kritischen und skeptischen Quellen gezogen – das Negative ist das Nützlichste in diesem Dokument.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>„Die Bank will doch 20 % Eigenkapital“</h3>
+          <p>Ein Teil der Banken verlangt das tatsächlich. Ehrliche Antwort: Es hängt von Einkommen, Bonität und Objekt ab – und genau deshalb lohnt es sich, die eigene Finanzierbarkeit vor der ersten Besichtigung zu klären, statt pauschal abzuwinken.</p>
+          <div class="evidence">
+            <div class="elabel">So klingt das</div>
+            <q>In Summe müssen daher mindestens 20 % der Gesamtsumme Ihres Vorhabens inklusive Nebenkosten als Eigenmittel zur Verfügung stehen.</q>
+            <span class="src">Quelle — Erste Bank / Sparkasse, „Voraussetzungen Wohnkredit“</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>„Familie und Umfeld raten zum Eigenheim“</h3>
+          <p>Wer als Kapitalanlage kauft statt selbst einzuziehen, bekommt Gegenwind. Die Copy sollte den Unterschied zwischen Zuhause und Investment sauber erklären, statt das Eigenheim schlechtzureden.</p>
+          <div class="evidence">
+            <div class="elabel">So klingt das</div>
+            <q>Sie wünschten sich, dass ich eine Wohnung zum Selbstbezug kaufe – Sicherheit, Nest, Eigentum.</q>
+            <span class="src">Quelle — desired.de, Interview „Vollfinanzierung mit 25“, Mai 2026</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>„Ich trau meinem eigenen Urteil noch nicht“</h3>
+          <p>Selbst wer später erfolgreich kauft, war vorher unsicher. Das spricht für ein Format mit Live-Rechnung und Fragerunde: Unsicherheit verschwindet durch Nachrechnen, nicht durch Motivation.</p>
+          <div class="evidence">
+            <div class="elabel">So klingt das</div>
+            <q>Sicher war ich mir aber nicht von Anfang an.</q>
+            <span class="src">Quelle — desired.de, Interview „Vollfinanzierung mit 25“, Mai 2026</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">04</span><h2>Kauf-Auslöser</h2></div>
+      <p class="rintro">Der Moment, in dem das Problem nicht mehr auszuhalten ist. Ads, die den Auslöser benennen, schlagen Ads, die die Lösung benennen – weil sie den Gedanken treffen, den die Leute ohnehin gerade haben.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Die Gehaltserhöhung, die einfach verpufft</h3>
+          <p>Mehr brutto, kaum mehr netto, und am Monatsende ist es trotzdem weg. Der Moment, in dem „mehr verdienen“ als Strategie nicht mehr reicht.</p>
+        </div>
+        <div class="ritem">
+          <h3>Die große Konsum-Entscheidung</h3>
+          <p>Auto, Tasche, Luxusurlaub – kurz vor dem Kauf taucht die Frage auf, ob das nicht schon das Eigenkapital für eine Wohnung wäre. Maja spricht genau diesen Moment in ihren Reels an.</p>
+        </div>
+        <div class="ritem">
+          <h3>Die Steuererklärung</h3>
+          <p>Einmal im Jahr sieht man schwarz auf weiß, wie viel ans Finanzamt geht. Der natürliche Moment für das AfA-Argument.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">05</span><h2>Ihr Vokabular</h2></div>
+      <p class="rintro">Die Wörter, mit denen dieser Markt sein eigenes Problem beschreibt. Copy in diesen Wörtern klingt nach Insider; Copy drumherum klingt nach jemandem, der von außen rät.</p>
+      <div class="vocab">
+        <span class="vword">Kapitalanlage</span>
+        <span class="vword">Cashflow</span>
+        <span class="vword">AfA</span>
+        <span class="vword">Eigenkapital</span>
+        <span class="vword">Selbstauskunft</span>
+        <span class="vword">SCHUFA</span>
+        <span class="vword">Fremdkapital</span>
+        <span class="vword">Sonderumlage</span>
+        <span class="vword">Vermögensaufbau</span>
+        <span class="vword avoid">Asset-Allokation</span>
+        <span class="vword avoid">Passives Einkommen garantiert</span>
+        <span class="vword avoid">Real Estate Portfolio</span>
+      </div>
+      <p class="vocab-note">Durchgestrichene Begriffe besser meiden – entweder Fachjargon, den die Zielgruppe selbst nicht benutzt, oder Sprache, die nach Finanzvertrieb klingt.</p>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">06</span><h2>Wo sie sind</h2></div>
+      <p class="rintro">Wo sich diese Zielgruppe schon aufhält und was sie liest – nützlich fürs Targeting und um zu wissen, welche Bezüge ankommen.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Instagram – Finanz- und Immo-Reels</h3>
+          <p>Kurze Rechenbeispiele, Vorher-nachher-Sanierungen, Mindset-Captions. Der Ton ist persönlich und nahbar; Kommentar-Keywords („IMMO“, „Standortanalyse“) sind gelernt und funktionieren.</p>
+        </div>
+        <div class="ritem">
+          <h3>Ratgeber- und Lifestyle-Medien</h3>
+          <p>ImmoScout24-Ratgeber, Bankseiten, Frauen- und Lifestyle-Magazine mit Erfahrungsberichten wie desired.de. Gesucht wird nach „Wohnung ohne Eigenkapital“ und „erste Immobilie als Kapitalanlage“.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="tag tag-c">Weiter</span>
+    <h2>Diese Recherche hat den Funnel geschrieben.</h2>
+    <p class="sub">Jede Headline, jeder Einwand und jede FAQ auf den Seiten kommt aus dem, was oben steht – deshalb klingt alles, als hätte es jemand aus deinem Markt geschrieben.</p>
+    <a class="btn" href="index.html">Zurück zum Paket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">Immo<em>glow</em></div>
+    <div class="fmeta">
+      <span>Exklusiv erstellt für Maja Balz</span>
+      <span>Erstellt von <a href="https://link.robinpani.com/sas" target="_blank" rel="noopener noreferrer">Sales At Scale</a></span>
+    </div>
+    <p class="disc">Recherche aus öffentlich zugänglichen Quellen. Zitate stammen aus öffentlichen Artikeln, Ratgeberseiten und Instagram-Captions und sind ihrer Quelle zugeordnet, nicht einzelnen Privatpersonen.</p>
+    <p class="legal">Konzept/Demo erstellt von SalesAtScale · <a href="https://robinpani.com/impressum.html" target="_blank" rel="noopener">Impressum</a> · <a href="https://robinpani.com/datenschutz.html" target="_blank" rel="noopener">Datenschutz</a></p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+</script>
