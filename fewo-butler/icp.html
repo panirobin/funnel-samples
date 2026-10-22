@@ -1,0 +1,336 @@
+<title>ICP-Avatar-Recherche | Fewo Butler</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- page-specific: ICP research ---------- */
+
+  .doc-hero {
+    padding: 76px 0 40px;
+    background: radial-gradient(ellipse 60% 80% at 20% 0%, var(--glow-soft), transparent 70%);
+  }
+  .doc-hero .inner { max-width: 760px; }
+  .doc-hero h1 { font-size: clamp(30px, 5vw, 46px); margin: 18px 0 18px; }
+  .doc-hero .lede { font-size: 17px; color: var(--ink-soft); max-width: 58ch; }
+  .backbar { padding-top: 26px; }
+  .backlink {
+    font-family: var(--label); font-size: 11px; font-weight: 600; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ink-faint); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .backlink:hover { color: var(--ink-soft); }
+  .backlink svg { width: 1em; height: 1em; transform: rotate(180deg); flex: none; }
+
+  /* short profile card — replaces the old full-bleed four-column strip so the
+     summary sits in the same narrow column, and reads in the same card
+     language as the .ritem and .evidence blocks below it */
+  .profile-sec { padding: 0 0 8px; }
+  .profile {
+    background: var(--surface-hi);
+    border: 1px solid var(--brand-line); border-left: 3px solid var(--brand);
+    border-radius: 6px 16px 16px 6px; padding: 8px 28px;
+    box-shadow: 0 0 44px -18px var(--glow);
+  }
+  .profile .prow {
+    display: grid; grid-template-columns: 168px 1fr; gap: 20px;
+    align-items: baseline; padding: 15px 0;
+    border-top: 1px solid var(--line-soft);
+  }
+  .profile .prow:first-child { border-top: 0; }
+  .profile .pk {
+    font-family: var(--label); font-size: 10.5px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+  .profile .pv { font-size: 15.5px; line-height: 1.5; color: var(--ink); }
+
+  /* research blocks */
+  .rblock { margin-bottom: 20px; }
+  .rblock > .rhead {
+    display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px;
+  }
+  .rblock .rnum {
+    font-family: var(--label); font-size: 10.5px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--brand-ink);
+  }
+  .rblock h2 { font-size: clamp(23px, 3.2vw, 30px); }
+  .rblock .rintro { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 22px; max-width: 62ch; }
+
+  .rlist { display: flex; flex-direction: column; gap: 14px; }
+  .ritem {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 16px; padding: 24px 26px;
+  }
+  .ritem h3 { font-size: 17.5px; margin-bottom: 9px; }
+  .ritem p { color: var(--ink-soft); font-size: 15px; line-height: 1.65; }
+
+  /* the thing that makes this not a generic persona doc */
+  .evidence {
+    margin-top: 16px; padding: 14px 18px;
+    background: var(--brand-soft); border-left: 3px solid var(--brand);
+    border-radius: 4px 10px 10px 4px;
+  }
+  .evidence .elabel {
+    font-family: var(--label); font-size: 9.5px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 7px;
+  }
+  .evidence q {
+    display: block; font-family: var(--display); font-size: 16px; font-weight: 500;
+    line-height: 1.55; color: var(--ink); quotes: none;
+  }
+  .evidence .src {
+    display: block; margin-top: 9px;
+    font-family: var(--label); font-size: 10.5px; color: var(--ink-faint);
+  }
+
+  /* vocabulary */
+  .vocab { display: flex; flex-wrap: wrap; gap: 10px; }
+  .vword {
+    font-family: var(--label); font-size: 12.5px; font-weight: 600; letter-spacing: .01em;
+    background: var(--brand); color: var(--on-brand);
+    padding: 9px 15px; border-radius: 999px;
+    box-shadow: 0 0 18px -6px var(--glow);
+  }
+  .vword.avoid {
+    background: transparent; color: var(--ink-faint);
+    border: 1px dashed var(--line); text-decoration: line-through;
+  }
+  .vocab-note { margin-top: 18px; color: var(--ink-soft); font-size: 14.5px; max-width: 62ch; }
+
+  @media (max-width: 640px) {
+    .doc-hero { padding: 52px 0 32px; }
+    .profile { padding: 6px 20px; }
+    .profile .prow { grid-template-columns: 1fr; gap: 5px; padding: 14px 0; }
+    .ritem { padding: 22px 20px; }
+  }
+</style>
+
+<div class="wrap backbar">
+  <a class="backlink" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Zurück zum Paket
+  </a>
+</div>
+
+<header class="doc-hero">
+  <div class="wrap">
+    <div class="inner">
+      <span class="tag">04 · ICP-Avatar-Recherche</span>
+      <h1>An wen du wirklich verkaufst</h1>
+      <p class="lede">Gebaut aus dem, was dein Markt selbst sagt: eure FAQ, die Erfahrungsberichte eurer Teilnehmer, eure meistgesehenen Videos und die Fragen, die immer wieder kommen. Jede Aussage hat eine Quelle. Nutzbar für E-Mails, Video-Hooks und Erstgespräche, nicht nur für diesen Funnel.</p>
+    </div>
+  </div>
+</header>
+
+<section class="profile-sec">
+  <div class="wrap narrow">
+    <div class="profile">
+      <div class="prow"><span class="pk">Wer sie sind</span><span class="pv">Angestellte, 28–45, oft zu zweit gestartet</span></div>
+      <div class="prow"><span class="pk">Hängen fest bei</span><span class="pv">Kein Vermieter sagt Ja zu Airbnb</span></div>
+      <div class="prow"><span class="pk">Schon versucht</span><span class="pv">ImmoScout-Anfragen, YouTube, Rechner</span></div>
+      <div class="prow"><span class="pk">Wollen eigentlich</span><span class="pv">Erste Wohnung, die neben dem Job läuft</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap narrow">
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">01</span><h2>Ängste</h2></div>
+      <p class="rintro">Was sie insgeheim beschäftigt. Das sind die Einwände, die im Erstgespräch nie laut ausgesprochen werden. Die Copy muss sie beantworten, bevor sie aufkommen.</p>
+      <div class="rlist">
+
+        <div class="ritem">
+          <h3>„Sobald ich Airbnb sage, legt der Vermieter auf.“</h3>
+          <p>Die größte Hürde ist nicht Geld, sondern das erste Gespräch. Sie stellen sich vor, wie der Vermieter die Hände über dem Kopf zusammenschlägt, und schicken deshalb lieber anonyme Anfragen, statt anzurufen. Genau das macht das Nein wahrscheinlicher.</p>
+          <div class="evidence">
+            <div class="elabel">So steht es bei euch</div>
+            <q>Und sobald du auch nur erwähnst, dass du kurzfristig vermieten willst, ist das Gespräch vorbei.</q>
+            <span class="src">fewo-butler.com, FAQ „Wie komme ich an Wohnungen für die Vermietung?“</span>
+          </div>
+        </div>
+
+        <div class="ritem">
+          <h3>„Ist das überhaupt legal?“</h3>
+          <p>Zweckentfremdungsverbot, Registrierungsnummer, Zustimmung des Vermieters: Sie haben Bruchstücke gehört und verwechseln Regeln mit einem Verbot. Lieber nicht anfangen, als einen teuren Fehler machen.</p>
+          <div class="evidence">
+            <div class="elabel">So steht es bei euch</div>
+            <q>Ich habe irgendwo gelesen, dass das ganze illegal ist, stimmt das?</q>
+            <span class="src">fewo-butler.com, FAQ (Frage wörtlich aus dem Markt übernommen)</span>
+          </div>
+        </div>
+
+        <div class="ritem">
+          <h3>„Das schaffe ich neben dem Job nicht.“</h3>
+          <p>Schichtdienst, Nachtdienst, Familie. Sie rechnen den Zeitaufwand im Kopf hoch, sehen sich nach Feierabend Bettwäsche wechseln und lassen es. Dazu kommt bei vielen Technikangst: Plattformen, Preis-Tools, Smartlocks.</p>
+          <div class="evidence">
+            <div class="elabel">So steht es bei euch</div>
+            <q>Ihre Hürden: große Technikangst, kaum Computererfahrung und Unsicherheit bei Themen wie Recht, Plattformen und Preisgestaltung.</q>
+            <span class="src">blog.fewo-butler.com, „Fewo Butler Erfahrungen“ (Manuela, Pflegefachkraft)</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">02</span><h2>Wünsche</h2></div>
+      <p class="rintro">Was sie wirklich kaufen würden, so formuliert, wie sie es selbst sagen würden. Meist bescheidener und konkreter, als man denkt.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Die Option, kündigen zu können</h3>
+          <p>Nicht sofort raus, sondern die Möglichkeit. Viele haben innerlich längst gekündigt, wollen aber nichts riskieren, bevor die erste Wohnung trägt.</p>
+          <div class="evidence">
+            <div class="elabel">So steht es bei euch</div>
+            <q>Das übergeordnete Ziel dieser Phase ist die Kündigungsoption. Nicht die Pflicht - aber die Möglichkeit, deinen Job zu verlassen, wenn du es willst.</q>
+            <span class="src">blog.fewo-butler.com, „Für wen lohnt sich Fewo Butler?“</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>Geld, das nicht an ihren Händen hängt</h3>
+          <p>Wer bisher nur für Stunden bezahlt wurde, will erleben, dass Geld reinkommt, während er etwas anderes macht. Das ist der emotionale Kern, nicht die Rendite.</p>
+          <div class="evidence">
+            <div class="elabel">Niklas im Video</div>
+            <q>das war das allererste Mal, dass wir Geld verdient haben, und zwar völlig zeitunabhängig</q>
+            <span class="src">YouTube „Airbnb Business Schritt für Schritt“, ab 16:30 (Auto-Untertitel, sinngemäß)</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>Steuern vom Handy aus</h3>
+          <p>Sie wollen nicht ständig vor Ort sein. Self-Check-in, ausgelagerte Reinigung und feste Abläufe sind für sie keine Spielerei, sondern die Bedingung, überhaupt anzufangen.</p>
+          <div class="evidence">
+            <div class="elabel">So steht es bei euch</div>
+            <q>Besonders überzeugt hat ihn, dass sich Probleme remote lösen lassen - eines davon sogar aus 700 Kilometer Entfernung, mitten im Urlaub.</q>
+            <span class="src">blog.fewo-butler.com, „Fewo Butler Erfahrungen“ (Thomas, Tischlermeister)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">03</span><h2>Einwände</h2></div>
+      <p class="rintro">Warum sie nicht buchen. Diese drei kommen auf eurer eigenen Seite und im Blog immer wieder vor, und jeder davon lässt sich ehrlich beantworten.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>„Wie viel Startkapital brauche ich?“</h3>
+          <p>Sie fürchten eine fünfstellige Summe. Ehrliche Antwort: Kaution, Einrichtung, erste Mieten und ein Puffer. Niklas und Falk haben mit 3.000 € angefangen; das ist die glaubwürdigste Zahl, die ihr habt.</p>
+          <div class="evidence">
+            <div class="elabel">So steht es bei euch</div>
+            <q>Typische Startkosten sind Kaution, Einrichtung, die ersten Mieten und ein Puffer für ruhigere Monate.</q>
+            <span class="src">fewo-butler.com, FAQ „Wie viel Startkapital benötige ich?“</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>„Funktioniert das in meiner Stadt?“</h3>
+          <p>Jeder hält die eigene Stadt für den Sonderfall. Die Antwort ist nicht „überall“, sondern ein Prüfweg: Nachfrage, Mietpreise, Regeln. Das macht den Live-Standortcheck zum stärksten Teil des Trainings.</p>
+          <div class="evidence">
+            <div class="elabel">So steht es bei euch</div>
+            <q>Nicht überall gleich gut. Entscheidend sind die Nachfrage vor Ort, die Mietpreise und die Regeln der Stadt</q>
+            <span class="src">fewo-butler.com, FAQ „Funktioniert dieses Business-Modell in jeder Stadt?“</span>
+          </div>
+        </div>
+        <div class="ritem">
+          <h3>„Warum steht kein Preis auf der Seite?“</h3>
+          <p>Fehlender Preis wirkt auf Skeptiker wie ein Warnsignal. Ein Webinar vor dem Kennenlerngespräch nimmt diese Spannung raus: Sie haben euch eine Stunde arbeiten sehen, bevor über Geld gesprochen wird.</p>
+          <div class="evidence">
+            <div class="elabel">So steht es bei euch</div>
+            <q>Ich verstehe den Reflex: Du willst eine Zahl sehen, kurz rechnen und dann entscheiden.</q>
+            <span class="src">blog.fewo-butler.com, „Was kostet Fewo Butler?“</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">04</span><h2>Kaufauslöser</h2></div>
+      <p class="rintro">Der Moment, in dem das Problem nicht mehr auszuhalten ist. Ads, die den Auslöser benennen, schlagen Ads, die die Lösung benennen, weil der Auslöser das ist, woran sie ohnehin denken.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>Die Nacht in einer fremden Ferienwohnung</h3>
+          <p>Sie übernachten selbst in einem Airbnb und rechnen plötzlich mit: Was kostet die Nacht, was zahlt der Gastgeber an Miete? Eure eigene Gründungsgeschichte ist genau dieser Moment, und sie trifft deshalb so gut.</p>
+        </div>
+        <div class="ritem">
+          <h3>Der Kollege mit der zweiten Wohnung</h3>
+          <p>Jemand im Umfeld macht es schon. Euer Short „Kollege fragt - Du hast eine zweite Wohnung“ gehört zu den meistgesehenen Videos der letzten Wochen. Auch Leonard kam über einen Freund dazu.</p>
+        </div>
+        <div class="ritem">
+          <h3>Wieder Montag, wieder um sechs aufstehen</h3>
+          <p>Der Urlaub ist vorbei und die Rückkehr in den Job fühlt sich falsch an. Niklas beschreibt genau das: im Hotel auf Rhodos, „überhaupt gar keinen Bock“, zurück in den Gärtnerjob zu gehen.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">05</span><h2>Ihr Vokabular</h2></div>
+      <p class="rintro">Die Wörter, die dieser Markt für sein eigenes Problem benutzt. Copy in diesen Wörtern klingt nach Insider; Copy um sie herum klingt nach jemandem, der rät.</p>
+      <div class="vocab">
+        <span class="vword">Vermieter überzeugen</span>
+        <span class="vword">an Wohnungen kommen</span>
+        <span class="vword">Akquise</span>
+        <span class="vword">Bittsteller</span>
+        <span class="vword">auf Augenhöhe</span>
+        <span class="vword">Standortanalyse</span>
+        <span class="vword">Pullfaktoren</span>
+        <span class="vword">Goldader</span>
+        <span class="vword">Auslastung</span>
+        <span class="vword">Inserat</span>
+        <span class="vword">Zweckentfremdung</span>
+        <span class="vword">neben dem Job</span>
+        <span class="vword avoid">passives Einkommen</span>
+        <span class="vword avoid">Airbnb-Arbitrage</span>
+        <span class="vword avoid">Untervermietung</span>
+      </div>
+      <p class="vocab-note">Durchgestrichen = vermeiden. „Passives Einkommen“ lehnt ihr selbst ab („Ganz ohne Arbeit geht es nicht.“), „Arbitrage“ ist Szene-Englisch, das eure Zielgruppe nicht sagt, und „Untervermietung“ weckt genau die Vermieter-Angst, die ihr auflösen wollt.</p>
+    </div>
+
+    <div class="rblock">
+      <div class="rhead"><span class="rnum">06</span><h2>Wo sie sind</h2></div>
+      <p class="rintro">Wo diese Zielgruppe sich schon aufhält und was sie liest: nützlich fürs Targeting und um zu wissen, welche Referenzen ankommen.</p>
+      <div class="rlist">
+        <div class="ritem">
+          <h3>YouTube, lange Videos mit echten Zahlen</h3>
+          <p>Die Themen mit Zug: Wohnung ohne Kauf (Gardasee), Vermieter, die mitmachen, echte Zahlen pro Wohnungsgröße. Der Ton: ehrlich, durchgerechnet, kein Hype. Euer 94-Minuten-Guide zeigt, dass diese Leute lange zuhören.</p>
+        </div>
+        <div class="ritem">
+          <h3>Instagram und Reels über den Alltag</h3>
+          <p>Vorher/Nachher-Einrichtung, Airbnb-Foto-Tricks, „In 7 Tagen ein neues Airbnb“. Hier entsteht der Wunsch; die Entscheidung fällt später, wenn jemand die Rechnung sieht.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="tag tag-c">Weiter</span>
+    <h2>Diese Recherche hat den Funnel geschrieben.</h2>
+    <p class="sub">Jede Headline, jeder Einwand und jede FAQ auf den Seiten kommt von hier. Deshalb klingt der Funnel, als hätte ihn jemand aus eurer Branche geschrieben.</p>
+    <a class="btn" href="index.html">Zurück zum Paket <svg class="arw" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 3.75 13.25 8 9 12.25" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">Fewo <em>Butler</em></div>
+    <div class="fmeta">
+      <span>Exklusiv erstellt für Niklas Kuhn</span>
+      <span>Erstellt von <a href="https://link.robinpani.com/sas" target="_blank" rel="noopener noreferrer">Sales At Scale</a></span>
+    </div>
+    <p class="disc">Recherche aus öffentlich zugänglichen Quellen: fewo-butler.com, blog.fewo-butler.com, YouTube-Kanal und Instagram von Fewo Butler. Zitate sind wörtlich übernommen und mit Quelle versehen; Video-Zitate stammen aus automatischen Untertiteln und sind sinngemäß.</p>
+    <p class="legal">Konzept/Demo erstellt von SalesAtScale · <a href="https://robinpani.com/impressum.html" target="_blank" rel="noopener">Impressum</a> · <a href="https://robinpani.com/datenschutz.html" target="_blank" rel="noopener">Datenschutz</a></p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    if (!document.querySelector('meta[name="viewport"]')) {
+      var mv = document.createElement('meta');
+      mv.name = 'viewport';
+      mv.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(mv);
+    }
+  })();
+</script>
